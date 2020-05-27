@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace InstantJob.Core.NHibernate.Conventions
 {
-    public class InstantJobTableNameConventions : IClassConvention
+    public class InstantJobTableNameConvention : IClassConvention
     {
         public void Apply(IClassInstance instance)
         {
