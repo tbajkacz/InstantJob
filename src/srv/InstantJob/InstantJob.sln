@@ -3,19 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Api", "InstantJob.Api\InstantJob.Api.csproj", "{B0271397-58D8-4673-A183-40151685293F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Api", "InstantJob.Api\InstantJob.Api.csproj", "{B0271397-58D8-4673-A183-40151685293F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Infrastructure", "InstantJob.Infrastructure\InstantJob.Infrastructure.csproj", "{9E4E7B62-4639-4467-B87E-25D448400804}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Infrastructure", "InstantJob.Infrastructure\InstantJob.Infrastructure.csproj", "{9E4E7B62-4639-4467-B87E-25D448400804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{830C8C45-BA16-481C-927B-BD7E8FF1D94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{830C8C45-BA16-481C-927B-BD7E8FF1D94B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Core", "InstantJob.Core\InstantJob.Core.csproj", "{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Core", "InstantJob.Core\InstantJob.Core.csproj", "{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserBillingContext", "UserBillingContext", "{D72719B9-90E9-43E5-8F86-261B6403C1AB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBillingContext.Core", "UserBillingContext.Core\UserBillingContext.Core.csproj", "{5AA30022-76A2-4487-9921-A746203E331E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBillingContext.Infrastructure", "UserBillingContext.Infrastructure\UserBillingContext.Infrastructure.csproj", "{7F017907-6CC1-4B0B-BCE5-613307E1A92B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Core.NHibernate", "InstantJob.Core.Mapping\InstantJob.Core.NHibernate.csproj", "{3C25D994-6A50-4C25-97CB-2EFA8537D79E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,21 +35,13 @@ Global
 		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AA30022-76A2-4487-9921-A746203E331E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AA30022-76A2-4487-9921-A746203E331E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AA30022-76A2-4487-9921-A746203E331E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AA30022-76A2-4487-9921-A746203E331E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F017907-6CC1-4B0B-BCE5-613307E1A92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F017907-6CC1-4B0B-BCE5-613307E1A92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F017907-6CC1-4B0B-BCE5-613307E1A92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F017907-6CC1-4B0B-BCE5-613307E1A92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5AA30022-76A2-4487-9921-A746203E331E} = {D72719B9-90E9-43E5-8F86-261B6403C1AB}
-		{7F017907-6CC1-4B0B-BCE5-613307E1A92B} = {D72719B9-90E9-43E5-8F86-261B6403C1AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBB1D26D-7583-4B38-AB37-36B57963232C}
