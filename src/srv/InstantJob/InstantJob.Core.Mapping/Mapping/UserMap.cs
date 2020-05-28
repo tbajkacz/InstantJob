@@ -14,7 +14,8 @@ namespace InstantJob.Core.NHibernate.Mapping
             Map(x => x.PasswordHash)
                 .Not.Nullable();
             Map(x => x.Email)
-                .Not.Nullable();
+                .Not.Nullable()
+                .Unique();
             Map(x => x.Picture);
             Map(x => x.Verified);
             Map(x => x.Type)
