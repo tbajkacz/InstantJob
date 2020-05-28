@@ -9,7 +9,7 @@ namespace InstantJob.Core.NHibernate.Conventions
     {
         public void Apply(IIdentityInstance instance)
         {
-            if (!instance.Type.Name.Contains("string", StringComparison.InvariantCultureIgnoreCase))
+            if (instance.Type.Name.Contains("int", StringComparison.InvariantCultureIgnoreCase))
             {
                 instance.GeneratedBy.Increment();
             }
