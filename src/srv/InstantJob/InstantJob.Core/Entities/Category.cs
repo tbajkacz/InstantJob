@@ -4,6 +4,6 @@ namespace InstantJob.Core.Entities
 {
     public class Category : BaseEntity<int>
     {
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 }
