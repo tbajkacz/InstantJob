@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Constants
+﻿namespace InstantJob.Core.Users.Constants
 {
     public class Roles
     {
