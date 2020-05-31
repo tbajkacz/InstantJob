@@ -1,7 +1,7 @@
 ﻿using SharedKernel.Types;
 using System;
 
-namespace InstantJob.Core.Jobs.Models
+namespace InstantJob.Core.Jobs.Entities
 {
     public class JobApplication : BaseEntity<int>
     {

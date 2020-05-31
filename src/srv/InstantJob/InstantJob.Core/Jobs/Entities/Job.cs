@@ -1,9 +1,9 @@
-﻿using InstantJob.Core.Constants;
+﻿using InstantJob.Core.Jobs.Constants;
 using SharedKernel.Types;
 using System;
 using System.Collections.Generic;
 
-namespace InstantJob.Core.Jobs.Models
+namespace InstantJob.Core.Jobs.Entities
 {
     public class Job : BaseEntity<Guid>
     {
