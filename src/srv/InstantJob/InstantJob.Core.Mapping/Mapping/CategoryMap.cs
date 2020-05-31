@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Entities;
+﻿using InstantJob.Core.Jobs.Models;
 
 namespace InstantJob.Core.NHibernate.Mapping
 {

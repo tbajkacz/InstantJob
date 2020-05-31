@@ -1,5 +1,5 @@
 ﻿using InstantJob.Core.Dtos;
-using InstantJob.Core.Entities.UserAggregate;
+using InstantJob.Core.Users.Models;
 using System.Threading.Tasks;
 
 namespace InstantJob.Core.Interfaces

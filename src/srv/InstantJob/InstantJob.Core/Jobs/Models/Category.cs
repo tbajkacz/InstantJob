@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Types;
 
-namespace InstantJob.Core.Entities
+namespace InstantJob.Core.Jobs.Models
 {
     public class Category : BaseEntity<int>
     {

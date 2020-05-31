@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using InstantJob.Core.Dtos;
-using InstantJob.Core.Entities.UserAggregate;
 using InstantJob.Core.Interfaces;
+using InstantJob.Core.Users.Models;
 using NHibernate;
 using NHibernate.Linq;
 

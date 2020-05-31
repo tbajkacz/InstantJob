@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Types;
 
-namespace InstantJob.Core.Entities.UserAggregate
+namespace InstantJob.Core.Users.Models
 {
     public class User : BaseEntity<int>
     {

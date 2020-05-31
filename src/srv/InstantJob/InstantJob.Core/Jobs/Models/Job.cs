@@ -3,7 +3,7 @@ using SharedKernel.Types;
 using System;
 using System.Collections.Generic;
 
-namespace InstantJob.Core.Entities.JobAggregate
+namespace InstantJob.Core.Jobs.Models
 {
     public class Job : BaseEntity<Guid>
     {
