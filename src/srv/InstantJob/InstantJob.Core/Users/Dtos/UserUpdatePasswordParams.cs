@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Dtos
+﻿namespace InstantJob.Core.Users.Dtos
 {
     public class UserUpdatePasswordParams
     {
