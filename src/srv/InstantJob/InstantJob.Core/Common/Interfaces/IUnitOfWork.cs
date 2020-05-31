@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Interfaces
+namespace InstantJob.Core.Common.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

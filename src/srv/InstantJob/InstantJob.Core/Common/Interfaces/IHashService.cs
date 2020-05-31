@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Interfaces
+﻿namespace InstantJob.Core.Common.Interfaces
 {
     public interface IHashService
     {

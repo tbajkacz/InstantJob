@@ -1,8 +1,8 @@
-﻿using InstantJob.Core.Dtos;
-using InstantJob.Core.Users.Models;
+﻿using InstantJob.Core.Users.Dtos;
+using InstantJob.Core.Users.Entities;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Interfaces
+namespace InstantJob.Core.Common.Interfaces
 {
     public interface IUserRepository : IRepository<User, int>
     {

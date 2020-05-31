@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Interfaces
+namespace InstantJob.Core.Common.Interfaces
 {
     public interface IRepository<TEntity, TId> where TEntity : BaseEntity<TId>
     {
