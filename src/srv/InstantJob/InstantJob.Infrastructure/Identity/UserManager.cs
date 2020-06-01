@@ -1,4 +1,5 @@
-﻿using InstantJob.Core.Common.Interfaces;
+﻿using InstantJob.Core.Common.Exceptions;
+using InstantJob.Core.Common.Interfaces;
 using InstantJob.Core.Users.Dtos;
 using InstantJob.Core.Users.Entities;
 using System.Collections.Generic;
@@ -43,9 +44,19 @@ namespace InstantJob.Infrastructure.Identity
             await userRepository.UpdateAsync(user);
         }
 
+        public async Task UpdateInformationAsync(UserUpdateInfoParams param)
+        {
+            var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
+            user.Age = param.Age;
+            user.Name = param.Name;
+            user.Surname = param.Surname;
+            user.Picture = param.Picture;
+            await UpdateAsync(user);
+        }
+
         public async Task UpdatePasswordAsync(UserUpdatePasswordParams param)
         {
-            var user = await userRepository.GetByIdAsync(currentUser.UserId.Value);
+            var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
             user.PasswordHash = hashService.Hash(param.Password);
             await UpdateAsync(user);
         }

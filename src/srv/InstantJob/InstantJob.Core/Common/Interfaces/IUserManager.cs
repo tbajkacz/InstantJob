@@ -17,6 +17,8 @@ namespace InstantJob.Core.Common.Interfaces
 
         Task UpdatePasswordAsync(UserUpdatePasswordParams param);
 
+        Task UpdateInformationAsync(UserUpdateInfoParams param);
+
         IEnumerable<User> Users { get; }
     }
 }
