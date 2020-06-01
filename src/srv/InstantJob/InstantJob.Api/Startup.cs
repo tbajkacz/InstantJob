@@ -26,13 +26,15 @@ namespace InstantJob.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
             services.AddPersistence(configuration.GetConnectionString("Database"));
             services.AddInfrastructure(configuration);
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
             services.AddCookieAuthentication(env.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always);
             services.AddAuthorizationWithPolicies();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+            services.AddOpenApiDocument(settings => settings.Title = "Instant Job");
+                
             services.AddControllers().AddUnitOfWorkFinalizerFilter();
         }
 
@@ -43,6 +45,9 @@ namespace InstantJob.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3(settings => settings.Path = "/swagger");
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -52,6 +57,7 @@ namespace InstantJob.Api
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
