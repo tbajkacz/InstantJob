@@ -26,17 +26,18 @@ namespace InstantJob.Api.Extensions
                     {
                         OnValidatePrincipal = async context =>
                         {
-                            var currentUser = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserService>();
+                            var users = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
                             try
                             {
-                                var claimRoles = context.Principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Role).Value;
-                                if (currentUser.Type != claimRoles)
+                                var user = await users.GetByIdAsync(GetId(context.Principal));
+                                var incomingType = context.Principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Role).Value;
+                                if (user.Type != incomingType)
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();
                                 }
                             }
-                            catch (Exception e) when (e is FormatException || e is EntityNotFoundException)
+                            catch (Exception e) when (e is EntityNotFoundException || e is InvalidUserSessionException)
                             {
                                 context.RejectPrincipal();
                             }
@@ -53,6 +54,15 @@ namespace InstantJob.Api.Extensions
                         },
                     };
                 });
+
+        private static int GetId(ClaimsPrincipal principal)
+        {
+            if (!int.TryParse(principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value, out int id))
+            {
+                throw new InvalidUserSessionException();
+            }
+            return id;
+        }
 
         public static IServiceCollection AddAuthorizationWithPolicies(this IServiceCollection services)
             => services.AddAuthorization(cfg =>
