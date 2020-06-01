@@ -1,4 +1,7 @@
 using InstantJob.Api.Extensions;
+using InstantJob.Api.Middleware;
+using InstantJob.Api.Services;
+using InstantJob.Core.Common.Interfaces;
 using InstantJob.Core.NHibernate;
 using InstantJob.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -23,12 +26,14 @@ namespace InstantJob.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddPersistence(configuration.GetConnectionString("Database"));
-            services.AddInfrastructure();
+            services.AddInfrastructure(configuration);
             services.AddCookieAuthentication(env.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always);
             services.AddAuthorizationWithPolicies();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-            services.AddControllers();
+            services.AddControllers().AddUnitOfWorkFinalizerFilter();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,7 +50,7 @@ namespace InstantJob.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllers();
             });
         }
     }
