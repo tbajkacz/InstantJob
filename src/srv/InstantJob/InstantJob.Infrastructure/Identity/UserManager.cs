@@ -9,13 +9,11 @@ namespace InstantJob.Infrastructure.Identity
     public class UserManager : IUserManager
     {
         private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork uow;
         private readonly IHashService hashService;
 
-        public UserManager(IUserRepository userRepository, IUnitOfWork uow, IHashService hashService)
+        public UserManager(IUserRepository userRepository, IHashService hashService)
         {
             this.userRepository = userRepository;
-            this.uow = uow;
             this.hashService = hashService;
         }
 
@@ -36,13 +34,11 @@ namespace InstantJob.Infrastructure.Identity
         {
             user.PasswordHash = hashService.Hash(password);
             await userRepository.AddAsync(user);
-            await uow.CommitAsync();
         }
 
         public async Task UpdateAsync(User user)
         {
             await userRepository.UpdateAsync(user);
-            await uow.CommitAsync();
         }
 
         public async Task UpdatePasswordAsync(UserUpdatePasswordParams param)
@@ -50,7 +46,6 @@ namespace InstantJob.Infrastructure.Identity
             var user = await userRepository.GetByIdAsync(param.Id);
             user.PasswordHash = hashService.Hash(param.Password);
             await UpdateAsync(user);
-            await uow.CommitAsync();
         }
 
         public async Task<User> ValidateCredentialsAsync(UserAuthParams param)
