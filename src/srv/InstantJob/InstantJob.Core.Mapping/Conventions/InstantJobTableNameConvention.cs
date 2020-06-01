@@ -7,7 +7,7 @@ namespace InstantJob.Core.NHibernate.Conventions
     {
         public void Apply(IClassInstance instance)
         {
-            instance.Table("IJ_" + instance.TableName);
+            instance.Table($"`IJ_{instance.TableName.Replace("`", "")}`");
         }
     }
 }
