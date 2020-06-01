@@ -9,6 +9,8 @@ namespace InstantJob.Infrastructure.Data
         private readonly ISession session;
         private readonly ITransaction transaction;
 
+        public bool Active => transaction.IsActive;
+
         public NHibernateUnitOfWork(ISession session)
         {
             this.session = session;
@@ -24,6 +26,7 @@ namespace InstantJob.Infrastructure.Data
         {
             await transaction.RollbackAsync();
         }
+
 
         public void Dispose()
         {

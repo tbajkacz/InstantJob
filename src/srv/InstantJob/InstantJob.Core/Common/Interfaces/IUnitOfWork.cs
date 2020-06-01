@@ -8,5 +8,7 @@ namespace InstantJob.Core.Common.Interfaces
         Task CommitAsync();
 
         Task RollbackAsync();
+
+        bool Active { get; }
     }
 }
