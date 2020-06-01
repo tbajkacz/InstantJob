@@ -1,7 +1,7 @@
 ﻿using InstantJob.Api.Constants;
-using InstantJob.Core.Constants;
-using InstantJob.Core.Exceptions;
-using InstantJob.Core.Interfaces;
+using InstantJob.Core.Common.Exceptions;
+using InstantJob.Core.Common.Interfaces;
+using InstantJob.Core.Users.Constants;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -26,13 +26,11 @@ namespace InstantJob.Api.Extensions
                     {
                         OnValidatePrincipal = async context =>
                         {
-                            var userSession = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
+                            var currentUser = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserService>();
                             try
                             {
-                                var userId = context.Principal.GetId();
-                                var user = await userSession.GetByIdAsync(userId);
                                 var claimRoles = context.Principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Role).Value;
-                                if (user.Type != claimRoles)
+                                if (currentUser.Type != claimRoles)
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();
