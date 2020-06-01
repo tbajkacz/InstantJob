@@ -10,11 +10,13 @@ namespace InstantJob.Infrastructure.Identity
     {
         private readonly IUserRepository userRepository;
         private readonly IHashService hashService;
+        private readonly ICurrentUserService currentUser;
 
-        public UserManager(IUserRepository userRepository, IHashService hashService)
+        public UserManager(IUserRepository userRepository, IHashService hashService, ICurrentUserService currentUser)
         {
             this.userRepository = userRepository;
             this.hashService = hashService;
+            this.currentUser = currentUser;
         }
 
         public IEnumerable<User> Users => userRepository.Get();
@@ -43,7 +45,7 @@ namespace InstantJob.Infrastructure.Identity
 
         public async Task UpdatePasswordAsync(UserUpdatePasswordParams param)
         {
-            var user = await userRepository.GetByIdAsync(param.Id);
+            var user = await userRepository.GetByIdAsync(currentUser.UserId.Value);
             user.PasswordHash = hashService.Hash(param.Password);
             await UpdateAsync(user);
         }
