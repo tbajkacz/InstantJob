@@ -1,5 +1,5 @@
-﻿using InstantJob.Core.Exceptions;
-using InstantJob.Core.Interfaces;
+﻿using InstantJob.Core.Common.Exceptions;
+using InstantJob.Core.Common.Interfaces;
 using NHibernate;
 using NHibernate.Criterion;
 using SharedKernel.Types;

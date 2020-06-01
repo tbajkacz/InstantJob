@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Interfaces;
+﻿using InstantJob.Core.Common.Interfaces;
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;

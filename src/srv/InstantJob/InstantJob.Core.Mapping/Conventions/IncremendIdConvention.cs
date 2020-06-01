@@ -1,7 +1,6 @@
 ﻿using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 using System;
-using System.Linq;
 
 namespace InstantJob.Core.NHibernate.Conventions
 {
