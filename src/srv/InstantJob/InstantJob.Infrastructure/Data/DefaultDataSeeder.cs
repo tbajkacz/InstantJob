@@ -8,12 +8,20 @@ namespace InstantJob.Infrastructure.Data
     public class DefaultDataSeeder : IDataSeeder
     {
         private readonly IUserManager userManager;
+        private readonly IUnitOfWork uow;
 
-        public DefaultDataSeeder(IUserManager userManager)
+        public DefaultDataSeeder(IUserManager userManager, IUnitOfWork uow)
         {
             this.userManager = userManager;
+            this.uow = uow;
         }
         public async Task SeedAsync()
+        {
+            await SeedUsers();
+            await uow.CommitAsync();
+        }
+
+        private async Task SeedUsers()
         {
             if (userManager.Users.Any())
             {
