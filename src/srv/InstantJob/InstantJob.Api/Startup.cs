@@ -1,6 +1,7 @@
 using InstantJob.Api.Extensions;
 using InstantJob.Api.Middleware;
 using InstantJob.Api.Services;
+using InstantJob.Core;
 using InstantJob.Core.Common.Interfaces;
 using InstantJob.Core.NHibernate;
 using InstantJob.Infrastructure;
@@ -26,6 +27,7 @@ namespace InstantJob.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCore();
             services.AddPersistence(configuration.GetConnectionString("Database"));
             services.AddInfrastructure(configuration);
             services.AddScoped<ICurrentUserService, CurrentUserService>();
