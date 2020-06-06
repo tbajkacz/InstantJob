@@ -36,7 +36,7 @@ namespace InstantJob.Api.Middleware
         }
     }
 
-    public static class IMvcBuilderExtensions
+    public static class UnitOfWorkFinalizerFilterExtensions
     {
         public static IMvcBuilder AddUnitOfWorkFinalizerFilter(this IMvcBuilder builder)
         {
