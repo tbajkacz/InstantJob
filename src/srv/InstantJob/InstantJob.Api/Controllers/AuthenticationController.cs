@@ -1,7 +1,10 @@
 ﻿using InstantJob.Core.Common.Interfaces;
+using InstantJob.Core.Users.Commands;
 using InstantJob.Core.Users.Dtos;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;
@@ -10,16 +13,20 @@ using System.Threading.Tasks;
 
 namespace InstantJob.Api.Controllers
 {
+    [Authorize]
     public class AuthenticationController : RoutedApiController
     {
+        private readonly IMediator mediator;
         private readonly IUserManager userManager;
 
-        public AuthenticationController(IUserManager userManager)
+        public AuthenticationController(IMediator mediator, IUserManager userManager)
         {
+            this.mediator = mediator;
             this.userManager = userManager;
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task SignIn(UserAuthParams param)
         {
             var user = await userManager.ValidateCredentialsAsync(param);
@@ -49,15 +56,15 @@ namespace InstantJob.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Register(UserRegisterParams param)
+        public async Task Register(CreateUserCommand param)
         {
-            await userManager.CreateAsync(param);
+            await mediator.Send(param);
         }
 
         [HttpPost]
-        public async Task ChangePassword(UserUpdatePasswordParams param)
+        public async Task ChangePassword(ChangeUserPasswordCommand param)
         {
-            await userManager.UpdatePasswordAsync(param);
+            await mediator.Send(param);
         }
 
         [HttpPost]
