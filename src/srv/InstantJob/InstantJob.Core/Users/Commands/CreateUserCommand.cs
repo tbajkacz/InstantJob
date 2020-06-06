@@ -1,6 +1,8 @@
-﻿namespace InstantJob.Core.Users.Dtos
+﻿using MediatR;
+
+namespace InstantJob.Core.Users.Commands
 {
-    public class UserRegisterParams
+    public class CreateUserCommand : IRequest
     {
         public string Name { get; set; }
 
