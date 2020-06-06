@@ -1,7 +1,9 @@
+using FluentValidation;
 using InstantJob.Api.Extensions;
 using InstantJob.Api.Middleware;
 using InstantJob.Api.Services;
 using InstantJob.Core;
+using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
 using InstantJob.Core.NHibernate;
 using InstantJob.Infrastructure;
@@ -36,8 +38,10 @@ namespace InstantJob.Api
             services.AddAuthorizationWithPolicies();
 
             services.AddOpenApiDocument(settings => settings.Title = "Instant Job");
-                
-            services.AddControllers().AddUnitOfWorkFinalizerFilter();
+
+            services.AddControllers()
+                .AddUnitOfWorkFinalizerFilter()
+                .AddExceptionHandlerFilter();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
