@@ -1,4 +1,5 @@
-﻿using InstantJob.Core.Users.Dtos;
+﻿using InstantJob.Core.Users.Commands;
+using InstantJob.Core.Users.Dtos;
 using InstantJob.Core.Users.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace InstantJob.Core.Common.Interfaces
 {
     public interface IUserManager
     {
-        Task CreateAsync(UserRegisterParams param);
+        Task CreateAsync(CreateUserCommand param);
 
         Task CreateAsync(User user, string password);
 
@@ -15,7 +16,7 @@ namespace InstantJob.Core.Common.Interfaces
 
         Task<User> ValidateCredentialsAsync(UserAuthParams param);
 
-        Task UpdatePasswordAsync(UserUpdatePasswordParams param);
+        Task UpdatePasswordAsync(ChangeUserPasswordCommand param);
 
         Task UpdateInformationAsync(UserUpdateInfoParams param);
 

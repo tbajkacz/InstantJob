@@ -1,5 +1,6 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
+using InstantJob.Core.Users.Commands;
 using InstantJob.Core.Users.Dtos;
 using InstantJob.Core.Users.Entities;
 using System.Collections.Generic;
@@ -22,8 +23,9 @@ namespace InstantJob.Infrastructure.Identity
 
         public IEnumerable<User> Users => userRepository.Get();
 
-        public async Task CreateAsync(UserRegisterParams param)
+        public async Task CreateAsync(CreateUserCommand param)
         {
+            //TODO add email verification
             await CreateAsync(new User
             {
                 Name = param.Name,
@@ -54,7 +56,7 @@ namespace InstantJob.Infrastructure.Identity
             await UpdateAsync(user);
         }
 
-        public async Task UpdatePasswordAsync(UserUpdatePasswordParams param)
+        public async Task UpdatePasswordAsync(ChangeUserPasswordCommand param)
         {
             var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
             user.PasswordHash = hashService.Hash(param.Password);
