@@ -1,10 +1,9 @@
 ﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Users.Commands;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Users.Handlers
+namespace InstantJob.Core.Users.Commands.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
     {
