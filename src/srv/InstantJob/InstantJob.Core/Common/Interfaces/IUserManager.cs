@@ -1,6 +1,6 @@
 ﻿using InstantJob.Core.Users.Commands;
-using InstantJob.Core.Users.Dtos;
 using InstantJob.Core.Users.Entities;
+using InstantJob.Core.Users.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,11 +14,11 @@ namespace InstantJob.Core.Common.Interfaces
 
         Task UpdateAsync(User user);
 
-        Task<User> ValidateCredentialsAsync(UserAuthParams param);
+        Task<User> ValidateCredentialsAsync(FindUserByCredentialsQuery param);
 
         Task UpdatePasswordAsync(ChangeUserPasswordCommand param);
 
-        Task UpdateInformationAsync(UserUpdateInfoParams param);
+        Task UpdateInformationAsync(UpdateUserInformationCommand param);
 
         IEnumerable<User> Users { get; }
     }

@@ -1,6 +1,8 @@
-﻿namespace InstantJob.Core.Users.Dtos
+﻿using MediatR;
+
+namespace InstantJob.Core.Users.Commands
 {
-    public class UserUpdateInfoParams
+    public class UpdateUserInformationCommand : IRequest
     {
         public virtual string Name { get; set; }
 

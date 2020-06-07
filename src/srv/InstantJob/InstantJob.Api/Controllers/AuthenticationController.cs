@@ -1,6 +1,5 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Users.Commands;
-using InstantJob.Core.Users.Dtos;
+﻿using InstantJob.Core.Users.Commands;
+using InstantJob.Core.Users.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -17,19 +16,17 @@ namespace InstantJob.Api.Controllers
     public class AuthenticationController : RoutedApiController
     {
         private readonly IMediator mediator;
-        private readonly IUserManager userManager;
 
-        public AuthenticationController(IMediator mediator, IUserManager userManager)
+        public AuthenticationController(IMediator mediator)
         {
             this.mediator = mediator;
-            this.userManager = userManager;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task SignIn(UserAuthParams param)
+        public async Task SignIn(FindUserByCredentialsQuery query)
         {
-            var user = await userManager.ValidateCredentialsAsync(param);
+            var user = await mediator.Send(query);
 
             if (user == null)
             {
@@ -56,21 +53,21 @@ namespace InstantJob.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Register(CreateUserCommand param)
+        public async Task Register(CreateUserCommand command)
         {
-            await mediator.Send(param);
+            await mediator.Send(command);
         }
 
-        [HttpPost]
-        public async Task ChangePassword(ChangeUserPasswordCommand param)
+        [HttpPut]
+        public async Task ChangePassword(ChangeUserPasswordCommand command)
         {
-            await mediator.Send(param);
+            await mediator.Send(command);
         }
 
-        [HttpPost]
-        public async Task UpdateInformation(UserUpdateInfoParams param)
+        [HttpPut]
+        public async Task UpdateInformation(UpdateUserInformationCommand command)
         {
-            await userManager.UpdateInformationAsync(param);
+            await mediator.Send(command);
         }
     }
 }

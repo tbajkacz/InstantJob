@@ -1,8 +1,8 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
 using InstantJob.Core.Users.Commands;
-using InstantJob.Core.Users.Dtos;
 using InstantJob.Core.Users.Entities;
+using InstantJob.Core.Users.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -46,7 +46,7 @@ namespace InstantJob.Infrastructure.Identity
             await userRepository.UpdateAsync(user);
         }
 
-        public async Task UpdateInformationAsync(UserUpdateInfoParams param)
+        public async Task UpdateInformationAsync(UpdateUserInformationCommand param)
         {
             var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
             user.Age = param.Age;
@@ -63,7 +63,7 @@ namespace InstantJob.Infrastructure.Identity
             await UpdateAsync(user);
         }
 
-        public async Task<User> ValidateCredentialsAsync(UserAuthParams param)
+        public async Task<User> ValidateCredentialsAsync(FindUserByCredentialsQuery param)
         {
             var user = await userRepository.FindByEmailAsync(param.Email); 
 
