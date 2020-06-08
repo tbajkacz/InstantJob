@@ -20,7 +20,7 @@ namespace InstantJob.Core.NHibernate.Mapping
             Map(x => x.CategoryId);
             Map(x => x.MandatorId)
                 .Not.Nullable();
-            Map(x => x.MandateeId);
+            Map(x => x.ContractorId);
         }
     }
 }

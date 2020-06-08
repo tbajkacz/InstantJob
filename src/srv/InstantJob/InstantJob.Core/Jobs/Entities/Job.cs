@@ -27,7 +27,7 @@ namespace InstantJob.Core.Jobs.Entities
 
         public virtual int? MandatorId { get; set; }
 
-        public virtual int? MandateeId { get; protected set; }
+        public virtual int? ContractorId { get; protected set; }
 
         //Non persisted properties
         public virtual bool IsCompleted { get; set; }

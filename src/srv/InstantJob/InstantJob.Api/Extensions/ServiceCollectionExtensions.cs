@@ -69,11 +69,11 @@ namespace InstantJob.Api.Extensions
             {
                 cfg.AddPolicy(Policies.Administrator, p => p.RequireRole(Roles.Administrator));
                 cfg.AddPolicy(Policies.Mandatee,
-                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Mandatee) ||
+                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Contractor) ||
                                                              ctx.User.IsInRole(Roles.Administrator)
                 ));
                 cfg.AddPolicy(Policies.Mandator,
-                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Mandatee) ||
+                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Contractor) ||
                                                              ctx.User.IsInRole(Roles.Administrator)
                 ));
             });

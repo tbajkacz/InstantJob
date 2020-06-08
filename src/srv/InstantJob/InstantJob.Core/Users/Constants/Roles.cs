@@ -7,7 +7,7 @@ namespace InstantJob.Core.Users.Constants
     public class Roles
     {
         public const string Mandator = nameof(Mandator);
-        public const string Mandatee = nameof(Mandatee);
+        public const string Contractor = nameof(Contractor);
         public const string Administrator = nameof(Administrator);
 
         public static readonly IReadOnlyCollection<string> RolesCollection
