@@ -6,7 +6,7 @@ namespace InstantJob.Core.NHibernate.Mapping
     {
         public JobApplicationMap()
         {
-            Map(x => x.ContractorId)
+            References(x => x.Contractor)
                 .Not.Nullable();
             Map(x => x.ApplicationDate)
                 .Not.Nullable();

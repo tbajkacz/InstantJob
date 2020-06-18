@@ -17,10 +17,14 @@ namespace InstantJob.Core.NHibernate.Mapping
             Map(x => x.Deadline);
             References(x => x.CompletionInfo);
             Map(x => x.Difficulty);
-            Map(x => x.CategoryId);
-            Map(x => x.MandatorId)
-                .Not.Nullable();
-            Map(x => x.ContractorId);
+            Map(x => x.WasCanceled);
+            References(x => x.Category)
+                .Cascade.None();
+            References(x => x.Mandator)
+                .Not.Nullable()
+                .Cascade.None();
+            References(x => x.Contractor)
+                .Cascade.None();
         }
     }
 }
