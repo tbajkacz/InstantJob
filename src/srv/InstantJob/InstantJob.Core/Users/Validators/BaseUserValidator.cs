@@ -11,15 +11,15 @@ namespace InstantJob.Core.Users.Validators
         protected void RuleForName(Expression<Func<T, string>> expression)
         {
             RuleFor(expression)
-                .Length(2, 20)
-                .NotNull();
+                .NotNull()
+                .Length(2, 50);
         }
 
         protected void RuleForSurname(Expression<Func<T, string>> expression)
         {
             RuleFor(expression)
-                .Length(2, 20)
-                .NotNull();
+                .NotNull()
+                .Length(2, 50);
         }
 
         protected void RuleForEmail(Expression<Func<T, string>> expression)
@@ -31,8 +31,8 @@ namespace InstantJob.Core.Users.Validators
         protected void RuleForPassword(Expression<Func<T, string>> expression)
         {
             RuleFor(expression)
-                .Length(5, 20)
-                .NotNull();
+                .NotNull()
+                .Length(5, 50);
         }
 
         protected void RuleForType(Expression<Func<T, string>> expression)
