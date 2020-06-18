@@ -15,7 +15,7 @@ namespace InstantJob.Core.Jobs.Entities
 
         public virtual IList<JobApplication> Applications { get; protected set; } = new List<JobApplication>();
 
-        public virtual decimal? Price { get; set; }
+        public virtual decimal Price { get; set; }
 
         public virtual DateTime PostedDate { get; set; } = DateTime.UtcNow;
 
