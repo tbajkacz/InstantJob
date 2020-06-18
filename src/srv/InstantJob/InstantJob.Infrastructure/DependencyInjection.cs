@@ -12,6 +12,8 @@ namespace InstantJob.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
             => services.AddScoped<IUnitOfWork, NHibernateUnitOfWork>()
                        .AddScoped<IUserRepository, NHibernateUserRepository>()
+                       .AddScoped<IJobRepository, NHibernateJobRepository>()
+                       .AddScoped<ICategoryRepository, NHibernateCategoryRepository>()
                        .AddSingleton<IHashService, HashService>()
                        .Configure<HashOptions>(configuration.GetSection("Hash"))
                        .AddScoped<IUserManager, UserManager>()
