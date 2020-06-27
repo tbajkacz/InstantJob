@@ -43,6 +43,8 @@ namespace InstantJob.Core.Jobs.Entities
 
         public virtual bool IsInProgress => Contractor != null && CompletionInfo == null;
 
+        public virtual bool IsAvailable => !WasCanceled && !IsCompleted;
+
         protected Job()
         {
         }
@@ -75,15 +77,10 @@ namespace InstantJob.Core.Jobs.Entities
             CheckRule(new JobWasNotCanceledRule(WasCanceled));
             CheckRule(new JobIsNotInProgressRule(IsInProgress));
             CheckRule(new JobIsNotCompletedRule(IsCompleted));
+            CheckRule(new ContractorCannotApplyTwiceRule(Applications, contractor.Id));
+            CheckRule(new MandatorCannotApplyToHisJobRule(Mandator.Id, contractor.Id));
 
-            var jobApplication = new JobApplication(contractor);
-
-            if (Applications.Any(x => x.Contractor == jobApplication.Contractor))
-            {
-                throw new InvalidOperationException("Each contractor may apply only once");
-            }
-
-            Applications.Add(jobApplication);
+            Applications.Add(new JobApplication(contractor));
         }
 
         public virtual void CompleteJob()
@@ -102,11 +99,7 @@ namespace InstantJob.Core.Jobs.Entities
             CheckRule(new JobWasNotCanceledRule(WasCanceled));
             CheckRule(new JobIsNotInProgressRule(IsInProgress));
             CheckRule(new JobIsNotCompletedRule(IsCompleted));
-
-            if (!Applications.Any(x => x.Contractor.Id == contractor.Id))
-            {
-                throw new InvalidOperationException("The provided contractor did not apply for this job");
-            }
+            CheckRule(new ContractorMustHaveAppliedForJobRule(Applications, contractor.Id));
 
             Contractor = contractor;
         }
