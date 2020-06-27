@@ -1,7 +1,5 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-
-namespace InstantJob.Core.Common.Types
+﻿
+namespace InstantJob.Domain.Common
 {
     public abstract class BaseEntity<TId>
     {

@@ -1,5 +1,5 @@
-﻿using InstantJob.Core.Categories.Entities;
-using InstantJob.Core.Common.Interfaces;
+﻿using InstantJob.Core.Common.Interfaces;
+using InstantJob.Domain.Categories.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

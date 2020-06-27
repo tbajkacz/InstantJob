@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstantJob.Core\InstantJob.Core.csproj" />
+    <ProjectReference Include="..\InstantJob.Domain\InstantJob.Domain.csproj" />
   </ItemGroup>
 
 </Project>

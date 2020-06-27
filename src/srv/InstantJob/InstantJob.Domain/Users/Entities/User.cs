@@ -1,6 +1,6 @@
-﻿using InstantJob.Core.Common.Types;
+﻿using InstantJob.Domain.Common;
 
-namespace InstantJob.Core.Users.Entities
+namespace InstantJob.Domain.Users.Entities
 {
     public class User : BaseEntity<int>
     {
@@ -22,7 +22,7 @@ namespace InstantJob.Core.Users.Entities
 
         //TODO when deleting a user publish the id in order to delete the jobs he created
         //if he was in progress with some jobs then take action as well
-        
+
         //TODO user may have multiple types, to become mandator one may need to provide additional data
     }
 }

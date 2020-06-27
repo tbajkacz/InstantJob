@@ -1,5 +1,5 @@
 ﻿using InstantJob.Core.Common.Mappings;
-using InstantJob.Core.Jobs.Entities;
+using InstantJob.Domain.Jobs.Entities;
 using System;
 
 namespace InstantJob.Core.Jobs.Queries.GetJobDetails

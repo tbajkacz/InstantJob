@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Jobs.Constants
+﻿namespace InstantJob.Domain.Jobs.Constants
 {
     public enum Difficulty
     {

@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Users.Entities;
+﻿using InstantJob.Domain.Users.Entities;
 using System.Threading.Tasks;
 
 namespace InstantJob.Core.Common.Interfaces

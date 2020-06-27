@@ -1,6 +1,7 @@
-﻿using InstantJob.Core.Categories.Entities;
+﻿
+using InstantJob.Domain.Categories.Entities;
 
-namespace InstantJob.Core.NHibernate.Mapping
+namespace InstantJob.Persistence.Mapping
 {
     internal class CategoryMap : BaseEntityMap<Category, int>
     {

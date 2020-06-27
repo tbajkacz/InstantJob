@@ -1,6 +1,6 @@
 ﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Users.Constants;
-using InstantJob.Core.Users.Entities;
+using InstantJob.Domain.Users.Constants;
+using InstantJob.Domain.Users.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 

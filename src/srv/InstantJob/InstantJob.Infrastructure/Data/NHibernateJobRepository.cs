@@ -1,5 +1,5 @@
 ﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Jobs.Entities;
+using InstantJob.Domain.Jobs.Entities;
 using NHibernate;
 using System;
 

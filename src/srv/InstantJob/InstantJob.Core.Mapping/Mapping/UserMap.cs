@@ -1,6 +1,6 @@
-﻿using InstantJob.Core.Users.Entities;
+﻿using InstantJob.Domain.Users.Entities;
 
-namespace InstantJob.Core.NHibernate.Mapping
+namespace InstantJob.Persistence.Mapping
 {
     internal class UserMap : BaseEntityMap<User, int>
     {

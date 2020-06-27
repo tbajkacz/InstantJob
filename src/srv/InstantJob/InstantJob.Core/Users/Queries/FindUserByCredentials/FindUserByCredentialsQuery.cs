@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Users.Entities;
+﻿using InstantJob.Domain.Users.Entities;
 using MediatR;
 
 namespace InstantJob.Core.Users.Queries.FindUserByCredentials

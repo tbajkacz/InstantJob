@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Categories.Entities;
+﻿using InstantJob.Domain.Categories.Entities;
 
 namespace InstantJob.Core.Common.Interfaces
 {

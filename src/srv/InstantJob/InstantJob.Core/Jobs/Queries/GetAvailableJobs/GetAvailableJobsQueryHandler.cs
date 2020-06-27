@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Jobs.Entities;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;

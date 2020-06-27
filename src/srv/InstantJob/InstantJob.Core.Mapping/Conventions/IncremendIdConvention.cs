@@ -2,7 +2,7 @@
 using FluentNHibernate.Conventions.Instances;
 using System;
 
-namespace InstantJob.Core.NHibernate.Conventions
+namespace InstantJob.Persistence.Conventions
 {
     public class IncrementIdConvention : IIdConvention
     {

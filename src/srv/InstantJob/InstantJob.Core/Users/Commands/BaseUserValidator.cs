@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using InstantJob.Core.Users.Constants;
+using InstantJob.Domain.Users.Constants;
 using System;
 using System.Linq;
 using System.Linq.Expressions;

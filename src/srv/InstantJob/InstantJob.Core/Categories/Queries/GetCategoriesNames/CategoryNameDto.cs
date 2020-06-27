@@ -1,5 +1,5 @@
-﻿using InstantJob.Core.Categories.Entities;
-using InstantJob.Core.Common.Mappings;
+﻿using InstantJob.Core.Common.Mappings;
+using InstantJob.Domain.Categories.Entities;
 
 namespace InstantJob.Core.Categories.Queries.GetCategoriesNames
 {

@@ -1,6 +1,6 @@
-﻿using InstantJob.Core.Common.Interfaces;
+﻿using InstantJob.Domain.Common;
 
-namespace InstantJob.Core.Jobs.Rules
+namespace InstantJob.Domain.Jobs.Rules
 {
     public class JobIsNotInProgressRule : IDomainRule
     {

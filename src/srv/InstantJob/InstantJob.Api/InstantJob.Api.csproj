@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstantJob.Core.Mapping\InstantJob.Core.NHibernate.csproj" />
+    <ProjectReference Include="..\InstantJob.Core.Mapping\InstantJob.Persistence.csproj" />
     <ProjectReference Include="..\InstantJob.Infrastructure\InstantJob.Infrastructure.csproj" />
   </ItemGroup>
 

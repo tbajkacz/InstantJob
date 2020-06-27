@@ -1,7 +1,7 @@
-﻿using InstantJob.Core.Common.Types;
+﻿using InstantJob.Domain.Common;
 using System;
 
-namespace InstantJob.Core.Jobs.Entities
+namespace InstantJob.Domain.Jobs.Entities
 {
     public class CompletionInfo : BaseEntity<int>
     {

@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{830C8C45-BA16-481C-927B-BD7E8FF1D94B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Core", "InstantJob.Core\InstantJob.Core.csproj", "{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Application", "InstantJob.Core\InstantJob.Application.csproj", "{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Core.NHibernate", "InstantJob.Core.Mapping\InstantJob.Core.NHibernate.csproj", "{3C25D994-6A50-4C25-97CB-2EFA8537D79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Persistence", "InstantJob.Core.Mapping\InstantJob.Persistence.csproj", "{3C25D994-6A50-4C25-97CB-2EFA8537D79E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Domain", "InstantJob.Domain\InstantJob.Domain.csproj", "{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
-﻿using InstantJob.Core.Categories.Entities;
-using InstantJob.Core.Common.Interfaces;
+﻿using InstantJob.Core.Common.Interfaces;
+using InstantJob.Domain.Categories.Entities;
 using NHibernate;
 
 namespace InstantJob.Infrastructure.Data

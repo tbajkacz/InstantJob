@@ -1,7 +1,7 @@
-﻿using InstantJob.Core.Jobs.Entities;
+﻿using InstantJob.Domain.Jobs.Entities;
 using System;
 
-namespace InstantJob.Core.NHibernate.Mapping
+namespace InstantJob.Persistence.Mapping
 {
     internal class JobMap : BaseEntityMap<Job, Guid>
     {

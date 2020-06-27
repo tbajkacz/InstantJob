@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstantJob.Core\InstantJob.Core.csproj" />
-    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\InstantJob.Core\InstantJob.Application.csproj" />
   </ItemGroup>
 
 </Project>

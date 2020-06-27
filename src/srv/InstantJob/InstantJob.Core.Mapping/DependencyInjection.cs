@@ -1,11 +1,11 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using InstantJob.Core.NHibernate.Conventions;
+using InstantJob.Persistence.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 using NHibernate.Tool.hbm2ddl;
 using System.Data;
 
-namespace InstantJob.Core.NHibernate
+namespace InstantJob.Persistence
 {
     public static class DependencyInjection
     {

@@ -1,6 +1,6 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Jobs.Entities;
+using InstantJob.Domain.Jobs.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

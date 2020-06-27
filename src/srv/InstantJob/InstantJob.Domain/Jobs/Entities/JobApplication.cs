@@ -1,8 +1,8 @@
-﻿using InstantJob.Core.Common.Types;
-using InstantJob.Core.Users.Entities;
+﻿using InstantJob.Domain.Common;
+using InstantJob.Domain.Users.Entities;
 using System;
 
-namespace InstantJob.Core.Jobs.Entities
+namespace InstantJob.Domain.Jobs.Entities
 {
     public class JobApplication : BaseEntity<int>
     {

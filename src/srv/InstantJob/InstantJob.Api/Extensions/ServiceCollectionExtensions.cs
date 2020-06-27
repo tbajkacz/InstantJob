@@ -1,7 +1,7 @@
 ﻿using InstantJob.Api.Constants;
 using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Users.Constants;
+using InstantJob.Domain.Users.Constants;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;

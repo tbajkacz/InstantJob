@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Common.Types;
+﻿using InstantJob.Domain.Common;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

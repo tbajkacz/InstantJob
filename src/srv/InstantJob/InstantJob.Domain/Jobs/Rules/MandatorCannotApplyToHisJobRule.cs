@@ -1,7 +1,7 @@
-﻿using InstantJob.Core.Common.Interfaces;
+﻿using InstantJob.Domain.Common;
 using System;
 
-namespace InstantJob.Core.Jobs.Rules
+namespace InstantJob.Domain.Jobs.Rules
 {
     public class MandatorCannotApplyToHisJobRule : IDomainRule
     {

@@ -1,4 +1,4 @@
-﻿using InstantJob.Core.Jobs.Constants;
+﻿using InstantJob.Domain.Jobs.Constants;
 using MediatR;
 using System;
 

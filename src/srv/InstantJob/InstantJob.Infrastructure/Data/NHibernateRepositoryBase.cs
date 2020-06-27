@@ -1,6 +1,6 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Common.Types;
+using InstantJob.Domain.Common;
 using NHibernate;
 using NHibernate.Criterion;
 using System.Collections.Generic;

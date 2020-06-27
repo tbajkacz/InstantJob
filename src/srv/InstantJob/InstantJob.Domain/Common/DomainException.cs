@@ -1,7 +1,6 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using System;
+﻿using System;
 
-namespace InstantJob.Core.Common.Exceptions
+namespace InstantJob.Domain.Common
 {
     public class DomainException : Exception
     {

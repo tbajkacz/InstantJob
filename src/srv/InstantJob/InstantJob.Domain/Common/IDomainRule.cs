@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Common.Interfaces
+﻿namespace InstantJob.Domain.Common
 {
     public interface IDomainRule
     {

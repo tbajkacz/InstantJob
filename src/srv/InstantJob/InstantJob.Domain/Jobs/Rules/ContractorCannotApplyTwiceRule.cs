@@ -1,9 +1,9 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Jobs.Entities;
+﻿using InstantJob.Domain.Common;
+using InstantJob.Domain.Jobs.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace InstantJob.Core.Jobs.Rules
+namespace InstantJob.Domain.Jobs.Rules
 {
     public class ContractorCannotApplyTwiceRule : IDomainRule
     {

@@ -1,6 +1,6 @@
-﻿using InstantJob.Core.Jobs.Entities;
+﻿using InstantJob.Domain.Jobs.Entities;
 
-namespace InstantJob.Core.NHibernate.Mapping
+namespace InstantJob.Persistence.Mapping
 {
     public class CompletionInfoMap : BaseEntityMap<CompletionInfo, int>
     {

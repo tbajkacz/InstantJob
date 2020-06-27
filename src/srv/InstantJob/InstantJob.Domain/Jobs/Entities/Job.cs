@@ -1,14 +1,13 @@
-﻿using InstantJob.Core.Categories.Entities;
-using InstantJob.Core.Common.Types;
-using InstantJob.Core.Jobs.Constants;
-using InstantJob.Core.Jobs.Rules;
-using InstantJob.Core.Users.Constants;
-using InstantJob.Core.Users.Entities;
+﻿using InstantJob.Domain.Categories.Entities;
+using InstantJob.Domain.Common;
+using InstantJob.Domain.Jobs.Constants;
+using InstantJob.Domain.Jobs.Rules;
+using InstantJob.Domain.Users.Constants;
+using InstantJob.Domain.Users.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace InstantJob.Core.Jobs.Entities
+namespace InstantJob.Domain.Jobs.Entities
 {
     public class Job : BaseEntity<Guid>
     {
