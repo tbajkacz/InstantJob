@@ -1,7 +1,8 @@
 ﻿using InstantJob.Core.Common.Types;
+using InstantJob.Core.Jobs.Entities;
 using System.Collections.Generic;
 
-namespace InstantJob.Core.Jobs.Entities
+namespace InstantJob.Core.Categories.Entities
 {
     public class Category : BaseEntity<int>
     {

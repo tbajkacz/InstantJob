@@ -1,4 +1,5 @@
-﻿using InstantJob.Core.Common.Types;
+﻿using InstantJob.Core.Categories.Entities;
+using InstantJob.Core.Common.Types;
 using InstantJob.Core.Jobs.Constants;
 using InstantJob.Core.Jobs.Rules;
 using InstantJob.Core.Users.Constants;
