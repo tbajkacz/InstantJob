@@ -6,11 +6,11 @@ namespace InstantJob.Api.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
-        public int? UserId { get; }
+        public int UserId { get; }
 
         public string Type { get; }
 
-        public string Email { get; set; }
+        public string Email { get; }
 
         public CurrentUserService(IHttpContextAccessor accessor)
         {

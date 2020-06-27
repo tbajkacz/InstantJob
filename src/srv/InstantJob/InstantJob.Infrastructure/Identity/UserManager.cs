@@ -48,7 +48,8 @@ namespace InstantJob.Infrastructure.Identity
 
         public async Task UpdateInformationAsync(UpdateUserInformationCommand param)
         {
-            var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
+            var user = await userRepository.GetByIdOrDefaultAsync(currentUser.UserId) ?? throw new InvalidUserSessionException();
+
             user.Age = param.Age;
             user.Name = param.Name;
             user.Surname = param.Surname;
@@ -58,7 +59,7 @@ namespace InstantJob.Infrastructure.Identity
 
         public async Task UpdatePasswordAsync(ChangeUserPasswordCommand param)
         {
-            var user = await userRepository.GetByIdAsync(currentUser.UserId ?? throw new InvalidUserSessionException());
+            var user = await userRepository.GetByIdOrDefaultAsync(currentUser.UserId) ?? throw new InvalidUserSessionException();
             user.PasswordHash = hashService.Hash(param.Password);
             await UpdateAsync(user);
         }
