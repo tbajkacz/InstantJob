@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace InstantJob.Core.Users.Validators
+namespace InstantJob.Core.Users.Commands
 {
     public abstract class BaseUserValidator<T> : AbstractValidator<T>
     {

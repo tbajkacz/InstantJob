@@ -4,7 +4,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Users.Queries.Handlers
+namespace InstantJob.Core.Users.Queries.FindUserByCredentials
 {
     public class FindUserByCredentialsQueryHandler : IRequestHandler<FindUserByCredentialsQuery, User>
     {

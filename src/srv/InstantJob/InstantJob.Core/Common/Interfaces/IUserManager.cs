@@ -1,6 +1,8 @@
-﻿using InstantJob.Core.Users.Commands;
+﻿using InstantJob.Core.Users.Commands.ChangeUserPassword;
+using InstantJob.Core.Users.Commands.CreateUser;
+using InstantJob.Core.Users.Commands.UpdateUserInformation;
 using InstantJob.Core.Users.Entities;
-using InstantJob.Core.Users.Queries;
+using InstantJob.Core.Users.Queries.FindUserByCredentials;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace InstantJob.Core.Users.Commands
+namespace InstantJob.Core.Users.Commands.ChangeUserPassword
 {
     public class ChangeUserPasswordCommand : IRequest
     {

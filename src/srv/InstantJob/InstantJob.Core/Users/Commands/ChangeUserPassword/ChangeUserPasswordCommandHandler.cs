@@ -3,7 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InstantJob.Core.Users.Commands.Handlers
+namespace InstantJob.Core.Users.Commands.ChangeUserPassword
 {
     public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswordCommand>
     {

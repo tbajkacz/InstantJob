@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace InstantJob.Core.Users.Commands
+namespace InstantJob.Core.Users.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest
     {

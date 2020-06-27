@@ -1,5 +1,7 @@
-﻿using InstantJob.Core.Users.Commands;
-using InstantJob.Core.Users.Queries;
+﻿using InstantJob.Core.Users.Commands.ChangeUserPassword;
+using InstantJob.Core.Users.Commands.CreateUser;
+using InstantJob.Core.Users.Commands.UpdateUserInformation;
+using InstantJob.Core.Users.Queries.FindUserByCredentials;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
