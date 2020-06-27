@@ -11,5 +11,16 @@ namespace InstantJob.Core.Categories.Entities
         public virtual string Description { get; set; }
 
         public virtual IList<Job> JobsInCategory { get; set; }
+
+        protected Category()
+        {
+
+        }
+
+        public Category(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
     }
 }
