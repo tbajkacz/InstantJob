@@ -1,4 +1,4 @@
-﻿using SharedKernel.Types;
+﻿using InstantJob.Core.Common.Types;
 
 namespace InstantJob.Core.Users.Entities
 {
@@ -19,5 +19,10 @@ namespace InstantJob.Core.Users.Entities
         public virtual bool Verified { get; set; }
 
         public virtual string Type { get; set; }
+
+        //TODO when deleting a user publish the id in order to delete the jobs he created
+        //if he was in progress with some jobs then take action as well
+        
+        //TODO user may have multiple types, to become mandator one may need to provide additional data
     }
 }

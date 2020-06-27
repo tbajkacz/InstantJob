@@ -1,4 +1,4 @@
-﻿using SharedKernel.Types;
+﻿using InstantJob.Core.Common.Types;
 using System.Collections.Generic;
 
 namespace InstantJob.Core.Jobs.Entities

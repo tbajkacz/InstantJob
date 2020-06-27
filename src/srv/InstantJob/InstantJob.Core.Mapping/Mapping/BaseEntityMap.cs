@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using SharedKernel.Types;
+using InstantJob.Core.Common.Types;
 
 namespace InstantJob.Core.NHibernate.Mapping
 {

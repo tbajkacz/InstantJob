@@ -1,8 +1,8 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
+using InstantJob.Core.Common.Types;
 using NHibernate;
 using NHibernate.Criterion;
-using SharedKernel.Types;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
