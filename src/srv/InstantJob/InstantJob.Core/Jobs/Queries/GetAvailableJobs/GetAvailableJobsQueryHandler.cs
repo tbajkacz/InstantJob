@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InstantJob.Core.Common.Interfaces;
+using InstantJob.Core.Jobs.Entities;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
         public Task<IEnumerable<JobOverviewDto>> Handle(GetAvailableJobsQuery request, CancellationToken cancellationToken)
         {
             return Task.FromResult(jobRepository.Get()
-                .Where(x => !x.WasCanceled)
+                .Where(x => x.IsAvailable)
                 .Select(mapper.Map<JobOverviewDto>));
         }
     }
