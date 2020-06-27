@@ -57,10 +57,7 @@ namespace InstantJob.Domain.Jobs.Entities
             Category category,
             User mandator)
         {
-            if (mandator?.Type != Roles.Mandator)
-            {
-                throw new InvalidOperationException("Only a mandator is allowed to create jobs");
-            }
+            CheckRule(new MustBeMandatorRule(mandator));
 
             Title = title;
             Description = description;
