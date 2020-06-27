@@ -1,6 +1,8 @@
-﻿using InstantJob.Core.Jobs.Constants;
+﻿using InstantJob.Core.Common.Types;
+using InstantJob.Core.Jobs.Constants;
+using InstantJob.Core.Jobs.Rules;
+using InstantJob.Core.Users.Constants;
 using InstantJob.Core.Users.Entities;
-using SharedKernel.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +11,71 @@ namespace InstantJob.Core.Jobs.Entities
 {
     public class Job : BaseEntity<Guid>
     {
-        public virtual string Title { get; set; }
+        public virtual string Title { get; protected set; }
 
-        public virtual string Description { get; set; }
+        public virtual string Description { get; protected set; }
 
+        //TODO probably should be an IReadOnlyCollection property with a IList backing field
         public virtual IList<JobApplication> Applications { get; protected set; } = new List<JobApplication>();
 
-        public virtual decimal Price { get; set; }
+        public virtual decimal Price { get; protected set; }
 
-        public virtual DateTime PostedDate { get; set; } = DateTime.UtcNow;
+        public virtual DateTime PostedDate { get; protected set; } = DateTime.UtcNow;
 
-        public virtual DateTime? Deadline { get; set; }
+        public virtual DateTime? Deadline { get; protected set; }
 
         public virtual CompletionInfo CompletionInfo { get; protected set; }
 
-        //might be changed to a class enum
-        public virtual Difficulty? Difficulty { get; set; }
+        //TODO might be changed to a class enum
+        public virtual Difficulty? Difficulty { get; protected set; }
 
         public virtual bool WasCanceled { get; protected set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category Category { get; protected set; }
 
-        public virtual User Mandator { get; set; }
+        public virtual User Mandator { get; protected set; }
 
         public virtual User Contractor { get; protected set; }
 
         //Non persisted properties
         public virtual bool IsCompleted => CompletionInfo != null;
 
-        public virtual bool IsInProgress => Contractor != null;
+        public virtual bool IsInProgress => Contractor != null && CompletionInfo == null;
 
-        public virtual void AddJobApplication(JobApplication jobApplication)
+        protected Job()
         {
-            GuardWasCanceled();
-            GuardIsCompleted();
+        }
+
+        public Job(
+            string title,
+            string description,
+            decimal price,
+            DateTime? deadline,
+            Difficulty difficulty,
+            Category category,
+            User mandator)
+        {
+            if (mandator?.Type != Roles.Mandator)
+            {
+                throw new InvalidOperationException("Only a mandator is allowed to create jobs");
+            }
+
+            Title = title;
+            Description = description;
+            Price = price;
+            Deadline = deadline;
+            Difficulty = difficulty;
+            Category = category;
+            Mandator = mandator;
+        }
+
+        public virtual void ApplyForJob(User contractor)
+        {
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsNotInProgressRule(IsInProgress));
+            CheckRule(new JobIsNotCompletedRule(IsCompleted));
+
+            var jobApplication = new JobApplication(contractor);
 
             if (Applications.Any(x => x.Contractor == jobApplication.Contractor))
             {
@@ -54,8 +87,8 @@ namespace InstantJob.Core.Jobs.Entities
 
         public virtual void CompleteJob()
         {
-            GuardWasCanceled();
-            GuardIsNotInProgress();
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsInProgressRule(IsInProgress));
 
             CompletionInfo = new CompletionInfo
             {
@@ -65,9 +98,9 @@ namespace InstantJob.Core.Jobs.Entities
 
         public virtual void AssignContractor(User contractor)
         {
-            GuardWasCanceled();
-            GuardIsNotInProgress();
-            GuardIsCompleted();
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsNotInProgressRule(IsInProgress));
+            CheckRule(new JobIsNotCompletedRule(IsCompleted));
 
             if (!Applications.Any(x => x.Contractor.Id == contractor.Id))
             {
@@ -77,37 +110,36 @@ namespace InstantJob.Core.Jobs.Entities
             Contractor = contractor;
         }
 
-        public virtual void Cancel()
+        public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty)
         {
-            GuardWasCanceled();
-            GuardIsNotInProgress();
-            GuardIsCompleted();
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsNotInProgressRule(IsInProgress));
+            CheckRule(new JobIsNotCompletedRule(IsCompleted));
+
+            Title = title;
+            Description = description;
+            Price = price;
+            Deadline = deadline;
+            Difficulty = difficulty;
+        }
+
+        public virtual void CancelJobOffer()
+        {
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsNotInProgressRule(IsInProgress));
+            CheckRule(new JobIsNotCompletedRule(IsCompleted));
 
             WasCanceled = true;
         }
 
-        private void GuardIsCompleted(bool throwCondition = true)
+        public virtual bool WasPostedBy(int mandatorId)
         {
-            if (IsCompleted == throwCondition)
-            {
-                throw new InvalidOperationException("Job applications can't be added to a completed job");
-            }
+            return mandatorId == Mandator.Id;
         }
 
-        private void GuardIsNotInProgress(bool throwCondition = true)
+        public virtual bool IsAssignedTo(int contractorId)
         {
-            if (!IsInProgress == throwCondition)
-            {
-                throw new InvalidOperationException("A job offer can't be marked as finished");
-            }
-        }
-
-        private void GuardWasCanceled(bool throwCondition = true)
-        {
-            if (WasCanceled == throwCondition)
-            {
-                throw new InvalidOperationException("This job offer was canceled");
-            }
+            return contractorId == Contractor?.Id;
         }
     }
 }
