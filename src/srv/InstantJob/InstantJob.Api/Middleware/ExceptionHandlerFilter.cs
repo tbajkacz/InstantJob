@@ -21,6 +21,9 @@ namespace InstantJob.Api.Middleware
                     statusCode = HttpStatusCode.BadRequest;
                     response = JsonSerializer.Serialize(validationException.Failures);
                     break;
+                case EntityAccessException _:
+                    statusCode = HttpStatusCode.Forbidden;
+                    break;
                 case EntityNotFoundException _:
                     statusCode = HttpStatusCode.NotFound;
                     break;
