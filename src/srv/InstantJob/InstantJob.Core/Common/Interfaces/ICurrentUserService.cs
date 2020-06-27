@@ -2,10 +2,10 @@
 {
     public interface ICurrentUserService
     {
-        int? UserId { get; }
+        int UserId { get; }
 
         string Type { get; }
 
-        string Email { get; set; }
+        string Email { get; }
     }
 }
