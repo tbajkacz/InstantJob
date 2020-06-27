@@ -10,12 +10,14 @@ namespace InstantJob.Core.NHibernate.Mapping
             Map(x => x.Title)
                 .Not.Nullable();
             Map(x => x.Description);
-            HasMany(x => x.Applications);
+            HasMany(x => x.Applications)
+                .Cascade.SaveUpdate();
             Map(x => x.Price);
             Map(x => x.PostedDate)
                 .Not.Nullable();
             Map(x => x.Deadline);
-            References(x => x.CompletionInfo);
+            References(x => x.CompletionInfo)
+                .Cascade.SaveUpdate();
             Map(x => x.Difficulty);
             Map(x => x.WasCanceled);
             References(x => x.Category)
