@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstantJob.Core\InstantJob.Application.csproj" />
+    <ProjectReference Include="..\InstantJob.Application\InstantJob.Application.csproj" />
   </ItemGroup>
 
 </Project>

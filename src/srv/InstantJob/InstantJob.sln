@@ -7,13 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Api", "InstantJo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Infrastructure", "InstantJob.Infrastructure\InstantJob.Infrastructure.csproj", "{9E4E7B62-4639-4467-B87E-25D448400804}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{830C8C45-BA16-481C-927B-BD7E8FF1D94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Domain", "InstantJob.Domain\InstantJob.Domain.csproj", "{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Application", "InstantJob.Core\InstantJob.Application.csproj", "{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Application", "InstantJob.Application\InstantJob.Application.csproj", "{1EDBD970-11D0-4468-85A2-12E5CF60177F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Persistence", "InstantJob.Core.Mapping\InstantJob.Persistence.csproj", "{3C25D994-6A50-4C25-97CB-2EFA8537D79E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Domain", "InstantJob.Domain\InstantJob.Domain.csproj", "{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Persistence", "InstantJob.Persistence\InstantJob.Persistence.csproj", "{78AB72C4-328A-4AEB-A59B-95A3EF36F487}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,22 +27,18 @@ Global
 		{9E4E7B62-4639-4467-B87E-25D448400804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4E7B62-4639-4467-B87E-25D448400804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4E7B62-4639-4467-B87E-25D448400804}.Release|Any CPU.Build.0 = Release|Any CPU
-		{830C8C45-BA16-481C-927B-BD7E8FF1D94B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{830C8C45-BA16-481C-927B-BD7E8FF1D94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{830C8C45-BA16-481C-927B-BD7E8FF1D94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{830C8C45-BA16-481C-927B-BD7E8FF1D94B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CC2C66D-9B14-4903-8381-64B7AC6D85B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C25D994-6A50-4C25-97CB-2EFA8537D79E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7215EDC-7483-46A8-B8B8-2329C8C03AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDBD970-11D0-4468-85A2-12E5CF60177F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDBD970-11D0-4468-85A2-12E5CF60177F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDBD970-11D0-4468-85A2-12E5CF60177F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDBD970-11D0-4468-85A2-12E5CF60177F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78AB72C4-328A-4AEB-A59B-95A3EF36F487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78AB72C4-328A-4AEB-A59B-95A3EF36F487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78AB72C4-328A-4AEB-A59B-95A3EF36F487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78AB72C4-328A-4AEB-A59B-95A3EF36F487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

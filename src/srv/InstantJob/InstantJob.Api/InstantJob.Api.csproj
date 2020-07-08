@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstantJob.Core.Mapping\InstantJob.Persistence.csproj" />
     <ProjectReference Include="..\InstantJob.Infrastructure\InstantJob.Infrastructure.csproj" />
+    <ProjectReference Include="..\InstantJob.Persistence\InstantJob.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
