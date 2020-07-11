@@ -1,5 +1,4 @@
-﻿using InstantJob.Domain.Jobs.Constants;
-using MediatR;
+﻿using MediatR;
 using System;
 
 namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
@@ -16,6 +15,6 @@ namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
 
         public DateTime? Deadline { get; set; }
 
-        public Difficulty Difficulty { get; set; }
+        public int DifficultyId { get; set; }
     }
 }

@@ -18,7 +18,9 @@ namespace InstantJob.Persistence.Mapping
             Map(x => x.Deadline);
             References(x => x.CompletionInfo)
                 .Cascade.SaveUpdate();
-            Map(x => x.Difficulty);
+            Map(x => x.Difficulty)
+                .CustomType<int>()
+                .Access.CamelCaseField();
             Map(x => x.WasCanceled);
             References(x => x.Category)
                 .Cascade.None();

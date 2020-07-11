@@ -2,7 +2,6 @@
 using InstantJob.Domain.Common;
 using InstantJob.Domain.Jobs.Constants;
 using InstantJob.Domain.Jobs.Rules;
-using InstantJob.Domain.Users.Constants;
 using InstantJob.Domain.Users.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,8 @@ namespace InstantJob.Domain.Jobs.Entities
 {
     public class Job : BaseEntity<Guid>
     {
+        private int difficulty;
+
         public virtual string Title { get; protected set; }
 
         public virtual string Description { get; protected set; }
@@ -26,8 +27,11 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual CompletionInfo CompletionInfo { get; protected set; }
 
-        //TODO might be changed to a class enum
-        public virtual Difficulty? Difficulty { get; protected set; }
+        public virtual Difficulty Difficulty 
+        {
+            get => (Difficulty)difficulty;
+            protected set => difficulty = (int)value; 
+        }
 
         public virtual bool WasCanceled { get; protected set; }
 

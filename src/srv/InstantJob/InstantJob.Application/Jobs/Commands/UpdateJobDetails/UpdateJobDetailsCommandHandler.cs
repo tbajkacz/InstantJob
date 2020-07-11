@@ -1,5 +1,6 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
+using InstantJob.Domain.Jobs.Constants;
 using InstantJob.Domain.Jobs.Entities;
 using MediatR;
 using System.Threading;
@@ -32,7 +33,7 @@ namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
                 request.Description,
                 request.Price,
                 request.Deadline,
-                request.Difficulty
+                (Difficulty)request.DifficultyId
                 );
             await jobRepository.UpdateAsync(job);
             return Unit.Value;
