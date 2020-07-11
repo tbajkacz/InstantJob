@@ -11,7 +11,8 @@ namespace InstantJob.Persistence.Mapping
                 .Not.Nullable();
             Map(x => x.Description);
             HasMany(x => x.Applications)
-                .Cascade.SaveUpdate();
+                .Cascade.SaveUpdate()
+                .Access.CamelCaseField();
             Map(x => x.Price);
             Map(x => x.PostedDate)
                 .Not.Nullable();

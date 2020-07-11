@@ -11,13 +11,16 @@ namespace InstantJob.Domain.Jobs.Entities
     public class Job : BaseEntity<Guid>
     {
         private int difficulty;
+        private readonly IList<JobApplication> applications = new List<JobApplication>();
 
         public virtual string Title { get; protected set; }
 
         public virtual string Description { get; protected set; }
 
-        //TODO probably should be an IReadOnlyCollection property with a IList backing field
-        public virtual IList<JobApplication> Applications { get; protected set; } = new List<JobApplication>();
+        public virtual IEnumerable<JobApplication> Applications 
+        { 
+            get => applications; 
+        }
 
         public virtual decimal Price { get; protected set; }
 
@@ -27,10 +30,10 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual CompletionInfo CompletionInfo { get; protected set; }
 
-        public virtual Difficulty Difficulty 
+        public virtual Difficulty Difficulty
         {
             get => (Difficulty)difficulty;
-            protected set => difficulty = (int)value; 
+            protected set => difficulty = (int)value;
         }
 
         public virtual bool WasCanceled { get; protected set; }
@@ -80,7 +83,7 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new ContractorCannotApplyTwiceRule(Applications, contractor.Id));
             CheckRule(new MandatorCannotApplyToHisJobRule(Mandator.Id, contractor.Id));
 
-            Applications.Add(new JobApplication(contractor));
+            applications.Add(new JobApplication(contractor));
         }
 
         public virtual void CompleteJob()
