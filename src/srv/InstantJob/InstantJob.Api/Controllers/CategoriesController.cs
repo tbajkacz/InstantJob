@@ -1,4 +1,5 @@
-﻿using InstantJob.Core.Categories.Commands.AddCategory;
+﻿using InstantJob.Application.Categories.Commands.UpdateCategoryDescription;
+using InstantJob.Core.Categories.Commands.AddCategory;
 using InstantJob.Core.Categories.Queries.GetCategoriesNames;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +31,10 @@ namespace InstantJob.Api.Controllers
             await mediator.Send(command);
         }
 
-        //TODO update should update only description, name change would mean a different entity
+        [HttpPut]
+        public async Task UpdateCategoryDescription(UpdateCategoryDescriptionCommand command)
+        {
+            await mediator.Send(command);
+        }
     }
 }
