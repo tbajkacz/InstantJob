@@ -10,7 +10,8 @@ namespace InstantJob.Domain.Categories.Entities
 
         public virtual string Description { get; set; }
 
-        public virtual IList<Job> JobsInCategory { get; set; }
+        //TODO consider removing the reference
+        public virtual IList<Job> JobsInCategory { get; protected set; }
 
         protected Category()
         {
