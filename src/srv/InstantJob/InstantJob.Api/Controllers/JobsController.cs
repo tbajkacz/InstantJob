@@ -28,9 +28,9 @@ namespace InstantJob.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<JobOverviewDto>> GetAvailableJobs()
+        public async Task<IEnumerable<JobOverviewDto>> GetAvailableJobs([FromQuery] GetAvailableJobsQuery query)
         {
-            return await mediator.Send(new GetAvailableJobsQuery());
+            return await mediator.Send(query);
         }
 
         [HttpGet]
