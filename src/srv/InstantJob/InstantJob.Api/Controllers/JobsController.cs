@@ -1,4 +1,5 @@
-﻿using InstantJob.Core.Jobs.Commands.ApplyForJob;
+﻿using InstantJob.Application.Jobs.Queries.GetDifficulties;
+using InstantJob.Core.Jobs.Commands.ApplyForJob;
 using InstantJob.Core.Jobs.Commands.AssignContractor;
 using InstantJob.Core.Jobs.Commands.CancelJob;
 using InstantJob.Core.Jobs.Commands.CompleteJob;
@@ -6,6 +7,7 @@ using InstantJob.Core.Jobs.Commands.PostJob;
 using InstantJob.Core.Jobs.Commands.UpdateJobDetails;
 using InstantJob.Core.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Core.Jobs.Queries.GetJobDetails;
+using InstantJob.Domain.Jobs.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +31,12 @@ namespace InstantJob.Api.Controllers
         public async Task<IEnumerable<JobOverviewDto>> GetAvailableJobs()
         {
             return await mediator.Send(new GetAvailableJobsQuery());
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Difficulty>> GetDifficulties()
+        {
+            return await mediator.Send(new GetDifficultiesQuery());
         }
 
         [HttpGet("{id}")]
