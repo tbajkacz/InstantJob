@@ -9,7 +9,7 @@ namespace InstantJob.Core
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddCore(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             return services.AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(Assembly.GetExecutingAssembly())

@@ -29,7 +29,7 @@ namespace InstantJob.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCore();
+            services.AddApplication();
             services.AddPersistence(configuration.GetConnectionString("Database"));
             services.AddInfrastructure(configuration);
             services.AddScoped<ICurrentUserService, CurrentUserService>();
