@@ -1,4 +1,5 @@
-﻿using InstantJob.Application.Jobs.Queries.GetDifficulties;
+﻿using InstantJob.Application.Jobs.Commands.AcceptJobAssignment;
+using InstantJob.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Core.Jobs.Commands.ApplyForJob;
 using InstantJob.Core.Jobs.Commands.AssignContractor;
 using InstantJob.Core.Jobs.Commands.CancelJob;
@@ -65,6 +66,12 @@ namespace InstantJob.Api.Controllers
 
         [HttpPut]
         public async Task AssignContractor(AssignContractorCommand command)
+        {
+            await mediator.Send(command);
+        }
+
+        [HttpPut]
+        public async Task AcceptJobAssignment(AcceptJobAssignmentCommand command)
         {
             await mediator.Send(command);
         }

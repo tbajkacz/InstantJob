@@ -44,10 +44,12 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual User Contractor { get; protected set; }
 
+        public virtual bool HasContractorAcceptedAssignment { get; protected set; }
+
         //Non persisted properties
         public virtual bool IsCompleted => CompletionInfo != null;
 
-        public virtual bool IsInProgress => Contractor != null && CompletionInfo == null;
+        public virtual bool IsInProgress => Contractor != null && CompletionInfo == null && HasContractorAcceptedAssignment;
 
         public virtual bool IsAvailable => !WasCanceled && !IsCompleted;
 
@@ -127,6 +129,15 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new JobIsNotCompletedRule(IsCompleted));
 
             WasCanceled = true;
+        }
+
+        public virtual void AcceptJobAssignment()
+        {
+            CheckRule(new JobWasNotCanceledRule(WasCanceled));
+            CheckRule(new JobIsNotInProgressRule(IsInProgress));
+            CheckRule(new JobIsNotCompletedRule(IsCompleted));
+
+            HasContractorAcceptedAssignment = true;
         }
 
         public virtual bool WasPostedBy(int mandatorId)
