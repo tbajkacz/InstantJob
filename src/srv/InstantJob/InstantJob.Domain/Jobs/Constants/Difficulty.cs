@@ -9,7 +9,7 @@ namespace InstantJob.Domain.Jobs.Constants
         public static readonly Difficulty Intermediate = new Difficulty(1, "Intermediate");
         public static readonly Difficulty Expert = new Difficulty(2, "Expert");
 
-        public Difficulty(int id, string name)
+        protected Difficulty(int id, string name)
             : base(id, name)
         {
         }
