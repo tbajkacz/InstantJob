@@ -7,7 +7,7 @@ namespace InstantJob.Domain.Common
 
         protected void CheckRule(IDomainRule rule)
         {
-            if (rule.IsFailed())
+            if (rule.IsViolated())
             {
                 throw new DomainException(rule);
             }

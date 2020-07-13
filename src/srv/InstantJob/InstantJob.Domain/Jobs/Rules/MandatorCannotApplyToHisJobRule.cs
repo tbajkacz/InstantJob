@@ -16,6 +16,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "A mandator may not apply to his own job";
 
-        public bool IsFailed() => mandatorId == contractorId;
+        public bool IsViolated() => mandatorId == contractorId;
     }
 }

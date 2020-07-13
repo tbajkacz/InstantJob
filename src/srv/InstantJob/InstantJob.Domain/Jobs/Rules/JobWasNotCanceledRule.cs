@@ -13,6 +13,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "This job offer was canceled";
 
-        public bool IsFailed() => wasCanceled;
+        public bool IsViolated() => wasCanceled;
     }
 }

@@ -18,6 +18,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "A contractor must first apply, before being assigned to a job";
 
-        public bool IsFailed() => !applications.Any(x => x.Contractor.Id == contractorId);
+        public bool IsViolated() => !applications.Any(x => x.Contractor.Id == contractorId);
     }
 }

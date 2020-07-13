@@ -18,6 +18,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "Each contractor may apply only once";
 
-        public bool IsFailed() => applications.Any(x => x.Contractor.Id == contractorId);
+        public bool IsViolated() => applications.Any(x => x.Contractor.Id == contractorId);
     }
 }

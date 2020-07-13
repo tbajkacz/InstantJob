@@ -13,6 +13,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "This job was not started";
 
-        public bool IsFailed() => !inProgress;
+        public bool IsViolated() => !inProgress;
     }
 }

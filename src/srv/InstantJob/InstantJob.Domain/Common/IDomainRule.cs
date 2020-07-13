@@ -2,7 +2,7 @@
 {
     public interface IDomainRule
     {
-        public bool IsFailed();
+        public bool IsViolated();
 
         public string Message { get; }
     }

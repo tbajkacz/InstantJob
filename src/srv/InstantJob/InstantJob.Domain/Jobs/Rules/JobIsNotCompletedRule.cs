@@ -13,6 +13,6 @@ namespace InstantJob.Domain.Jobs.Rules
 
         public string Message => "This job was already completed";
 
-        public bool IsFailed() => isCompleted;
+        public bool IsViolated() => isCompleted;
     }
 }
