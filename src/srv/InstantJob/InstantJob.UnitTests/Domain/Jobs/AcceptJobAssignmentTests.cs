@@ -45,7 +45,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
             job.AssignContractor(contractor);
             job.AcceptJobAssignment();
 
-            Assert.That(job.HasContractorAcceptedAssignment && job.IsInProgress);
+            Assert.That(job.IsPerformedBy(contractor.Id));
         }
     }
 }

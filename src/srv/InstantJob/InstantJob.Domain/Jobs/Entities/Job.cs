@@ -150,5 +150,10 @@ namespace InstantJob.Domain.Jobs.Entities
         {
             return contractorId == Contractor?.Id;
         }
+
+        public virtual bool IsPerformedBy(int contractorId)
+        {
+            return contractorId == Contractor?.Id && HasContractorAcceptedAssignment && IsInProgress;
+        }
     }
 }
