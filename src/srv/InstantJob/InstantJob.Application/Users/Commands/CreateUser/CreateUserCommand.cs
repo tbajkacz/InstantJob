@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.Collections.Generic;
 
 namespace InstantJob.Core.Users.Commands.CreateUser
 {
@@ -12,6 +13,6 @@ namespace InstantJob.Core.Users.Commands.CreateUser
 
         public string Password { get; set; }
 
-        public string Type { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }

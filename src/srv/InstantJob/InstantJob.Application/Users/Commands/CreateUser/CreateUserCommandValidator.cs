@@ -8,7 +8,7 @@
             RuleForSurname(x => x.Surname);
             RuleForEmail(x => x.Email);
             RuleForPassword(x => x.Password);
-            RuleForType(x => x.Type);
+            RuleForRoles(x => x.Roles);
         }
     }
 }

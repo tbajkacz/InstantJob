@@ -33,7 +33,7 @@ namespace InstantJob.Infrastructure.Identity
                 Name = param.Name,
                 Surname = param.Surname,
                 Email = param.Email,
-                Type = param.Type,
+                Roles = param.Roles,
             }, param.Password);
         }
 

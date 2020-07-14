@@ -18,8 +18,9 @@ namespace InstantJob.Persistence.Mapping
                 .Unique();
             Map(x => x.Picture);
             Map(x => x.Verified);
-            Map(x => x.Type)
-                .Not.Nullable();
+            HasMany(x => x.Roles)
+                .Table("Roles")
+                .Element("Role");
         }
     }
 }

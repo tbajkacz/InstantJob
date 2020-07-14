@@ -30,8 +30,12 @@ namespace InstantJob.Api.Extensions
                             try
                             {
                                 var user = await users.GetByIdAsync(GetId(context.Principal));
-                                var incomingType = context.Principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Role).Value;
-                                if (user.Type != incomingType)
+                                var incomingRoles = context.Principal.Claims
+                                    .Where(c => c.Type == ClaimTypes.Role)
+                                    .Select(c => c.Value)
+                                    .ToList();
+
+                                if (user.Roles.Count != incomingRoles.Count || !incomingRoles.All(user.Roles.Contains))
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();

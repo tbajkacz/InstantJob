@@ -1,6 +1,7 @@
 ﻿using InstantJob.Core.Common.Interfaces;
 using InstantJob.Domain.Users.Constants;
 using InstantJob.Domain.Users.Entities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace InstantJob.Infrastructure.Data
                 Name = "root",
                 Surname = "root",
                 Email = "root@root.root",
-                Type = Roles.Administrator,
+                Roles = new List<string> { Roles.Administrator, Roles.Mandator, Roles.Contractor },
             };
 
             await userManager.CreateAsync(rootUser, "root");

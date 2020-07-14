@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using InstantJob.Domain.Users.Constants;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -35,10 +37,10 @@ namespace InstantJob.Core.Users.Commands
                 .Length(5, 50);
         }
 
-        protected void RuleForType(Expression<Func<T, string>> expression)
+        protected void RuleForRoles(Expression<Func<T, IEnumerable<string>>> expression)
         {
             RuleFor(expression)
-                .Must(x => Roles.RolesCollection.Contains(x));
+                .Must(x => x.All(Roles.RolesCollection.Contains));
         }
     }
 }

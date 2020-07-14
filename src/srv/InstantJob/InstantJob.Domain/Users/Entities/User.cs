@@ -1,4 +1,5 @@
 ﻿using InstantJob.Domain.Common;
+using System.Collections.Generic;
 
 namespace InstantJob.Domain.Users.Entities
 {
@@ -18,7 +19,7 @@ namespace InstantJob.Domain.Users.Entities
 
         public virtual bool Verified { get; set; }
 
-        public virtual string Type { get; set; }
+        public virtual IList<string> Roles { get; set; } = new List<string>();
 
         //TODO when deleting a user publish the id in order to delete the jobs he created
         //if he was in progress with some jobs then take action as well
