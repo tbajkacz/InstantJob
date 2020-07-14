@@ -13,8 +13,8 @@ namespace InstantJob.Domain.Jobs.Rules
             this.mandator = mandator;
         }
 
-        public string Message => "Only a mandator is allowed to create jobs";
+        public string Message => "User must be a mandator to perform this action";
 
-        public bool IsViolated() => mandator?.Type != Roles.Mandator;
+        public bool IsViolated() => !mandator.Roles.Contains(Roles.Mandator);
     }
 }

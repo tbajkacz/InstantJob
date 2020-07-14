@@ -79,6 +79,7 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual void ApplyForJob(User contractor)
         {
+            CheckRule(new MustBeContractorRule(contractor));
             CheckRule(new JobWasNotCanceledRule(WasCanceled));
             CheckRule(new JobIsNotInProgressRule(IsInProgress));
             CheckRule(new JobIsNotCompletedRule(IsCompleted));
