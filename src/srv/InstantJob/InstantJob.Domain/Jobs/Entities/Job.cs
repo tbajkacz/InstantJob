@@ -91,7 +91,6 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual void CompleteJob()
         {
-            CheckRule(new JobWasNotCanceledRule(WasCanceled));
             CheckRule(new JobIsInProgressRule(IsInProgress));
 
             CompletionInfo = new CompletionInfo
@@ -115,6 +114,7 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new JobWasNotCanceledRule(WasCanceled));
             CheckRule(new JobIsNotInProgressRule(IsInProgress));
             CheckRule(new JobIsNotCompletedRule(IsCompleted));
+            CheckRule(new NoContractorAssignedRule(Contractor));
 
             Title = title;
             Description = description;
