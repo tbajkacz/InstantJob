@@ -39,7 +39,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
         [Test]
         public void AssignContractor_NotPossible_IfContractorHasNotApplied()
         {
-            AssertRuleWasBroken<ContractorMustHaveAppliedForJobRule>(() => job.AssignContractor(contractor));
+            AssertRuleWasBroken<ContractorMustHaveActiveApplicationRule>(() => job.AssignContractor(contractor));
         }
 
         [Test]

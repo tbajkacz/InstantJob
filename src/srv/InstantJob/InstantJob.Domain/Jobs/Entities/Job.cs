@@ -71,7 +71,7 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
-            CheckRule(new ContractorCannotApplyTwiceRule(this, contractor));
+            CheckRule(new ContractorMustNotHaveTwoActiveApplicationsRule(this, contractor));
             CheckRule(new MustNotBeOwnerOfJobRule(this, contractor));
 
             applications.Add(new JobApplication(contractor));
@@ -79,8 +79,11 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual void WithdrawJobApplication(User contractor)
         {
-            CheckRule(new ContractorMustHaveAppliedForJobRule(Applications, contractor.Id));
+            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor));
             CheckRule(new ContractorMustNotBePerformingJobRule(this, contractor));
+
+            applications.Single(a => a.Contractor.Id == contractor.Id && a.Status == ApplicationStatus.Active)
+                .WithdrawApplication();
         }
 
         public virtual void CompleteJob()
@@ -100,7 +103,7 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
-            CheckRule(new ContractorMustHaveAppliedForJobRule(Applications, contractor.Id));
+            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor));
 
             Contractor = contractor;
             Status = JobStatus.Assigned;
@@ -153,7 +156,7 @@ namespace InstantJob.Domain.Jobs.Entities
             return Status.IsInProgress && contractorId == Contractor?.Id;
         }
 
-        public virtual bool HasApplied(int contractorId)
+        public virtual bool HasActiveApplication(int contractorId)
         {
             return Applications.Any(x => x.Contractor.Id == contractorId);
         }

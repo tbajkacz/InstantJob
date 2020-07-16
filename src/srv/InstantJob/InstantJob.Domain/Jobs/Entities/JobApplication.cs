@@ -28,5 +28,10 @@ namespace InstantJob.Domain.Jobs.Entities
             : this(contractor, DateTime.UtcNow, ApplicationStatus.Active)
         {
         }
+
+        public void WithdrawApplication()
+        {
+            Status = ApplicationStatus.Withdrawn;
+        }
     }
 }

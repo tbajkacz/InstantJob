@@ -47,7 +47,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
         {
             job.ApplyForJob(contractor);
 
-            AssertRuleWasBroken<ContractorCannotApplyTwiceRule>(() => job.ApplyForJob(contractor));
+            AssertRuleWasBroken<ContractorMustNotHaveTwoActiveApplicationsRule>(() => job.ApplyForJob(contractor));
         }
 
         [Test]
