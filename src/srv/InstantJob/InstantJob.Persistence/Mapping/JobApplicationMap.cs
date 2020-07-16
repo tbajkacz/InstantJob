@@ -1,4 +1,6 @@
-﻿using InstantJob.Domain.Jobs.Entities;
+﻿using InstantJob.Domain.Jobs.Constants;
+using InstantJob.Domain.Jobs.Entities;
+using InstantJob.Persistence.CustomTypes;
 
 namespace InstantJob.Persistence.Mapping
 {
@@ -10,6 +12,8 @@ namespace InstantJob.Persistence.Mapping
                 .Not.Nullable();
             Map(x => x.ApplicationDate)
                 .Not.Nullable();
+            Map(x => x.Status)
+                .CustomType<EnumerationType<ApplicationStatus>>();
         }
     }
 }
