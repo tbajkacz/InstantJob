@@ -65,11 +65,18 @@ namespace InstantJob.UnitTests.Domain.Jobs
         [Test]
         public void ApplyForJob_Succeeds_IfRulesNotViolated()
         {
-            Assert.DoesNotThrow(() => job.ApplyForJob(contractor));
-            Assert.DoesNotThrow(() => job.ApplyForJob(contractor2));
+            job.ApplyForJob(contractor);
+            job.ApplyForJob(contractor2);
 
-            Assert.That(job.Applications.Any(a => a.Contractor.Id == contractor.Id));
-            Assert.That(job.Applications.Any(a => a.Contractor.Id == contractor2.Id));
+            Assert.That(job.HasActiveApplication(contractor.Id));
+            Assert.That(job.HasActiveApplication(contractor2.Id));
+
+            job.WithdrawJobApplication(contractor);
+
+            job.ApplyForJob(contractor);
+
+            Assert.That(job.HasActiveApplication(contractor.Id));
+            Assert.That(job.Applications.Count(), Is.EqualTo(3));
         }
     }
 }
