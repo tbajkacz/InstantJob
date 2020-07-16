@@ -38,6 +38,13 @@ namespace InstantJob.Domain.Common
             return typeMatches && valueMatches;
         }
 
-        public int CompareTo(object other) => Id.CompareTo(((Enumeration)other).Id);
+        public int CompareTo(object other)
+            => Id.CompareTo(((Enumeration)other).Id);
+
+        public static explicit operator int(Enumeration enumeration)
+            => enumeration.Id;
+
+        public static T FromInt<T>(int id) where T : Enumeration
+            => GetAll<T>().Single(e => e.Id == id);
     }
 }

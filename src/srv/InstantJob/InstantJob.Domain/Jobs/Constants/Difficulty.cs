@@ -13,8 +13,5 @@ namespace InstantJob.Domain.Jobs.Constants
             : base(id, name)
         {
         }
-
-        public static explicit operator int(Difficulty difficulty) => difficulty.Id;
-        public static explicit operator Difficulty(int id) => GetAll<Difficulty>().Single(x => x.Id == id);
     }
 }
