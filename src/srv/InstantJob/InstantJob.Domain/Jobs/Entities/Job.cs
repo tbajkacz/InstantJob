@@ -158,7 +158,7 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual bool HasActiveApplication(int contractorId)
         {
-            return Applications.Any(x => x.Contractor.Id == contractorId);
+            return Applications.Any(x => x.Contractor.Id == contractorId && x.Status.IsActive);
         }
     }
 }
