@@ -26,6 +26,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
             job.CompleteJob();
 
             Assert.That(job.CompletionInfo, Is.Not.EqualTo(null));
+            Assert.That(job.Status.IsCompleted);
         }
     }
 }

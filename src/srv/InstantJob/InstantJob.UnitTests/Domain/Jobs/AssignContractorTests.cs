@@ -49,6 +49,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
             job.AssignContractor(contractor);
 
             Assert.That(job.IsAssignedTo(contractor.Id));
+            Assert.That(job.Status.IsAssigned);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
     [TestFixture]
     public class CtorTests : BaseDomainTest
     {
-        private Action<User> jobCtor = u =>
+        private Func<User, Job> jobCtor = u =>
             new Job("",
                 "",
                 0,
@@ -39,8 +39,10 @@ namespace InstantJob.UnitTests.Domain.Jobs
         {
             var user = new User();
             user.Roles.Add(Roles.Mandator);
+            Job job = null;
 
-            Assert.DoesNotThrow(() => jobCtor(user));
+            Assert.DoesNotThrow(() => job = jobCtor(user));
+            Assert.That(job.Status.IsAvailable);
         }
     }
 }

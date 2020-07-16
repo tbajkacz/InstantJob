@@ -39,6 +39,14 @@ namespace InstantJob.UnitTests.Domain.Jobs
         }
 
         [Test]
+        public void AcceptJobAssignment_NotPossible_IfJobHasNoAssignment()
+        {
+            job.ApplyForJob(contractor);
+
+            AssertRuleWasBroken<JobMustHaveAssignmentRule>(() => job.AcceptJobAssignment());
+        }
+
+        [Test]
         public void AcceptJobAssignment_Succeeds_IfRulesNotViolated()
         {
             job.ApplyForJob(contractor);
@@ -46,6 +54,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
             job.AcceptJobAssignment();
 
             Assert.That(job.IsPerformedBy(contractor.Id));
+            Assert.That(job.Status.IsInProgress);
         }
     }
 }
