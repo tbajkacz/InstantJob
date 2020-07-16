@@ -4,19 +4,19 @@ using InstantJob.Domain.Users.Entities;
 
 namespace InstantJob.Domain.Jobs.Rules
 {
-    public class ContractorCannotApplyTwiceRule : IDomainRule
+    public class ContractorMustNotBePerformingJobRule : IDomainRule
     {
         private readonly Job job;
         private readonly User contractor;
 
-        public ContractorCannotApplyTwiceRule(Job job, User contractor)
+        public ContractorMustNotBePerformingJobRule(Job job, User contractor)
         {
             this.job = job;
             this.contractor = contractor;
         }
 
-        public string Message => "Each contractor may apply only once";
+        public string Message => "The contractor can't be in progress with this job";
 
-        public bool IsViolated() => job.HasApplied(contractor.Id);
+        public bool IsViolated() => job.IsPerformedBy(contractor.Id);
     }
 }

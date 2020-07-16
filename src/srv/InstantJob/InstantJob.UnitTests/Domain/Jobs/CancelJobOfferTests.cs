@@ -40,7 +40,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
         {
             job.CancelJobOffer();
 
-            Assert.That(job.WasCanceled);
+            Assert.That(job.Status.IsCanceled);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
 
             job.CancelJobOffer();
 
-            Assert.That(job.WasCanceled);
+            Assert.That(job.Status.IsCanceled);
         }
     }
 }

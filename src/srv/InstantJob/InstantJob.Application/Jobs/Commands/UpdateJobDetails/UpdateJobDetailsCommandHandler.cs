@@ -1,5 +1,6 @@
 ﻿using InstantJob.Core.Common.Exceptions;
 using InstantJob.Core.Common.Interfaces;
+using InstantJob.Domain.Common;
 using InstantJob.Domain.Jobs.Constants;
 using InstantJob.Domain.Jobs.Entities;
 using MediatR;
@@ -23,7 +24,7 @@ namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
         {
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
-            if (!job.WasPostedBy(currentUser.UserId))
+            if (!job.IsOwnedBy(currentUser.UserId))
             {
                 throw new EntityAccessException(currentUser.UserId, job.Id, typeof(Job));
             }
@@ -33,7 +34,7 @@ namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
                 request.Description,
                 request.Price,
                 request.Deadline,
-                (Difficulty)request.DifficultyId
+                Enumeration.FromInt<Difficulty>(request.DifficultyId)
                 );
             await jobRepository.UpdateAsync(job);
             return Unit.Value;

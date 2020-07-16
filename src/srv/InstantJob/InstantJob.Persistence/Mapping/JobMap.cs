@@ -1,4 +1,6 @@
-﻿using InstantJob.Domain.Jobs.Entities;
+﻿using InstantJob.Domain.Jobs.Constants;
+using InstantJob.Domain.Jobs.Entities;
+using InstantJob.Persistence.CustomTypes;
 using System;
 
 namespace InstantJob.Persistence.Mapping
@@ -20,9 +22,7 @@ namespace InstantJob.Persistence.Mapping
             References(x => x.CompletionInfo)
                 .Cascade.SaveUpdate();
             Map(x => x.Difficulty)
-                .CustomType<int>()
-                .Access.CamelCaseField();
-            Map(x => x.WasCanceled);
+                .CustomType<EnumerationType<Difficulty>>();
             References(x => x.Category)
                 .Cascade.None();
             References(x => x.Mandator)
@@ -30,6 +30,8 @@ namespace InstantJob.Persistence.Mapping
                 .Cascade.None();
             References(x => x.Contractor)
                 .Cascade.None();
+            Map(x => x.Status)
+                .CustomType<EnumerationType<JobStatus>>();
         }
     }
 }

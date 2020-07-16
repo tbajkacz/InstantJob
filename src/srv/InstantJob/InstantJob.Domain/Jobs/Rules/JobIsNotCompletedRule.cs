@@ -1,18 +1,19 @@
 ﻿using InstantJob.Domain.Common;
+using InstantJob.Domain.Jobs.Constants;
 
 namespace InstantJob.Domain.Jobs.Rules
 {
     public class JobIsNotCompletedRule : IDomainRule
     {
-        private readonly bool isCompleted;
+        private readonly JobStatus status;
 
-        public JobIsNotCompletedRule(bool isCompleted)
+        public JobIsNotCompletedRule(JobStatus status)
         {
-            this.isCompleted = isCompleted;
+            this.status = status;
         }
 
         public string Message => "This job was already completed";
 
-        public bool IsViolated() => isCompleted;
+        public bool IsViolated() => status.IsCompleted;
     }
 }

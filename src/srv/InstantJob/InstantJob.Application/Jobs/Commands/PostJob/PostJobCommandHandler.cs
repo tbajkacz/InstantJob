@@ -1,4 +1,5 @@
 ﻿using InstantJob.Core.Common.Interfaces;
+using InstantJob.Domain.Common;
 using InstantJob.Domain.Jobs.Constants;
 using InstantJob.Domain.Jobs.Entities;
 using MediatR;
@@ -34,7 +35,7 @@ namespace InstantJob.Core.Jobs.Commands.PostJob
                     request.Description,
                     request.Price,
                     request.Deadline,
-                    (Difficulty)request.DifficultyId,
+                    Enumeration.FromInt<Difficulty>(request.DifficultyId),
                     await categoryRepository.GetByIdAsync(request.CategoryId),
                     await userRepository.GetByIdAsync(currentUser.UserId))
                 );

@@ -22,7 +22,7 @@ namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
         public Task<IEnumerable<JobOverviewDto>> Handle(GetAvailableJobsQuery request, CancellationToken cancellationToken)
         {
             return Task.FromResult(jobRepository.Get(request.CategoryId, request.Skip, request.Count)
-                .Where(x => x.IsAvailable)
+                .Where(x => x.Status.IsAvailable)
                 .Select(mapper.Map<JobOverviewDto>));
         }
     }

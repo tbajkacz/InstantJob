@@ -1,18 +1,19 @@
 ﻿using InstantJob.Domain.Common;
+using InstantJob.Domain.Jobs.Constants;
 
 namespace InstantJob.Domain.Jobs.Rules
 {
     public class JobIsNotInProgressRule : IDomainRule
     {
-        private readonly bool inProgress;
+        private readonly JobStatus status;
 
-        public JobIsNotInProgressRule(bool inProgress)
+        public JobIsNotInProgressRule(JobStatus status)
         {
-            this.inProgress = inProgress;
+            this.status = status;
         }
 
         public string Message => "This job is currently in progress";
 
-        public bool IsViolated() => inProgress;
+        public bool IsViolated() => status.IsInProgress;
     }
 }

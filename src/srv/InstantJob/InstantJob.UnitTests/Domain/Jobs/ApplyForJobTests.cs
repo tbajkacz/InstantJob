@@ -59,7 +59,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
         [Test]
         public void ApplyForJob_NotPossible_IfOwnerApplies()
         {
-            AssertRuleWasBroken<MandatorCannotApplyToHisJobRule>(() => job.ApplyForJob(ownerMandator));
+            AssertRuleWasBroken<MustNotBeOwnerOfJobRule>(() => job.ApplyForJob(ownerMandator));
         }
 
         [Test]

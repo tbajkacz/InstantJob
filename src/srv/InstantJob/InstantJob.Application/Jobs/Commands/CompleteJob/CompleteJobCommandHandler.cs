@@ -22,7 +22,7 @@ namespace InstantJob.Core.Jobs.Commands.CompleteJob
         {
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
-            if (!job.WasPostedBy(currentUser.UserId))
+            if (!job.IsOwnedBy(currentUser.UserId))
             {
                 throw new EntityAccessException(currentUser.UserId, job.Id, typeof(Job));
             }

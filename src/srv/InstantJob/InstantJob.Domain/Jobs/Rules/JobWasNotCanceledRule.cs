@@ -1,18 +1,19 @@
 ﻿using InstantJob.Domain.Common;
+using InstantJob.Domain.Jobs.Constants;
 
 namespace InstantJob.Domain.Jobs.Rules
 {
     public class JobWasNotCanceledRule : IDomainRule
     {
-        private readonly bool wasCanceled;
+        private readonly JobStatus status;
 
-        public JobWasNotCanceledRule(bool wasCanceled)
+        public JobWasNotCanceledRule(JobStatus status)
         {
-            this.wasCanceled = wasCanceled;
+            this.status = status;
         }
 
         public string Message => "This job offer was canceled";
 
-        public bool IsViolated() => wasCanceled;
+        public bool IsViolated() => status.IsCanceled;
     }
 }
