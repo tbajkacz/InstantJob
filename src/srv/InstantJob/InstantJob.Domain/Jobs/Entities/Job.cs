@@ -82,7 +82,7 @@ namespace InstantJob.Domain.Jobs.Entities
             CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor));
             CheckRule(new ContractorMustNotBePerformingJobRule(this, contractor));
 
-            applications.Single(a => a.Contractor.Id == contractor.Id && a.Status == ApplicationStatus.Active)
+            applications.Single(a => a.Contractor.Id == contractor.Id && a.Status.IsActive)
                 .WithdrawApplication();
         }
 
