@@ -109,6 +109,16 @@ namespace InstantJob.Domain.Jobs.Entities
             Status = JobStatus.Assigned;
         }
 
+        public virtual void CancelJobAssignment()
+        {
+            CheckRule(new JobWasNotCanceledRule(Status));
+            CheckRule(new JobIsNotInProgressRule(Status));
+            CheckRule(new JobIsNotCompletedRule(Status));
+
+            Contractor = null;
+            Status = JobStatus.Available;
+        }
+
         public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
