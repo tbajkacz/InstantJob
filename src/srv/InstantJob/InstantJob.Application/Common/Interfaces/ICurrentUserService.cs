@@ -1,10 +1,12 @@
-﻿namespace InstantJob.Core.Common.Interfaces
+﻿using System.Collections.Generic;
+
+namespace InstantJob.Core.Common.Interfaces
 {
     public interface ICurrentUserService
     {
         int UserId { get; }
 
-        string Type { get; }
+        IEnumerable<string> Roles { get; }
 
         string Email { get; }
     }

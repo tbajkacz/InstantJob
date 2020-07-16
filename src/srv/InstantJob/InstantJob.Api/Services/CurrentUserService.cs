@@ -1,5 +1,7 @@
 ﻿using InstantJob.Core.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 
 namespace InstantJob.Api.Services
@@ -8,7 +10,7 @@ namespace InstantJob.Api.Services
     {
         public int UserId { get; }
 
-        public string Type { get; }
+        public IEnumerable<string> Roles { get; }
 
         public string Email { get; }
 
@@ -17,7 +19,7 @@ namespace InstantJob.Api.Services
             if (int.TryParse(FindClaim(accessor, ClaimTypes.NameIdentifier), out int id))
             {
                 UserId = id;
-                Type = FindClaim(accessor, ClaimTypes.Role);
+                Roles = accessor.HttpContext?.User?.FindAll(c => c.Type == ClaimTypes.Role)?.Select(c => c.Value);
                 Email = FindClaim(accessor, ClaimTypes.Email);
             }
         }
