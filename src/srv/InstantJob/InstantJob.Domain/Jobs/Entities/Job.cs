@@ -92,10 +92,7 @@ namespace InstantJob.Domain.Jobs.Entities
         {
             CheckRule(new JobIsInProgressRule(Status));
 
-            CompletionInfo = new CompletionInfo
-            {
-                CompletionDate = DateTime.UtcNow
-            };
+            CompletionInfo = new CompletionInfo();
 
             Status = JobStatus.Completed;
         }

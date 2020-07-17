@@ -9,6 +9,15 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual string Comment { get; set; }
 
-        public virtual int? Rating { get; set; }
+        public virtual int? Rating { get; protected set; }
+
+        public CompletionInfo() 
+            : this(DateTime.UtcNow, null, null)
+        {
+        }
+
+        public CompletionInfo(DateTime completionDate, string comment, int? rating)
+        {
+        }
     }
 }
