@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.UnitTests", "InstantJob.UnitTests\InstantJob.Modules.Jobs.UnitTests.csproj", "{988F92AD-2D70-4908-B880-2A09D0511778}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{294B18DE-B876-4E3A-89AB-199B426758D8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.BuildingBlocks.Application", "BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj", "{719F0305-E2B5-4867-94B1-77D0574E5FBA}"
@@ -45,16 +43,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F2E450E5-B9A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Web.Api", "Web\InstantJob.Api\InstantJob.Web.Api.csproj", "{BE28A7CD-E5F8-4D3A-BAED-E1847748A3F8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.UnitTests", "Modules\Jobs\InstantJob.Modules.Jobs.UnitTests\InstantJob.Modules.Jobs.UnitTests.csproj", "{B8475DB0-AC0B-4229-BB08-D9010C341B03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{988F92AD-2D70-4908-B880-2A09D0511778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{988F92AD-2D70-4908-B880-2A09D0511778}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{988F92AD-2D70-4908-B880-2A09D0511778}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{988F92AD-2D70-4908-B880-2A09D0511778}.Release|Any CPU.Build.0 = Release|Any CPU
 		{719F0305-E2B5-4867-94B1-77D0574E5FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{719F0305-E2B5-4867-94B1-77D0574E5FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719F0305-E2B5-4867-94B1-77D0574E5FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,12 +103,15 @@ Global
 		{BE28A7CD-E5F8-4D3A-BAED-E1847748A3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE28A7CD-E5F8-4D3A-BAED-E1847748A3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE28A7CD-E5F8-4D3A-BAED-E1847748A3F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8475DB0-AC0B-4229-BB08-D9010C341B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8475DB0-AC0B-4229-BB08-D9010C341B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8475DB0-AC0B-4229-BB08-D9010C341B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8475DB0-AC0B-4229-BB08-D9010C341B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{988F92AD-2D70-4908-B880-2A09D0511778} = {61D63754-5C99-4B5E-AF62-E7AD25B4DF5D}
 		{719F0305-E2B5-4867-94B1-77D0574E5FBA} = {294B18DE-B876-4E3A-89AB-199B426758D8}
 		{61D63754-5C99-4B5E-AF62-E7AD25B4DF5D} = {CD2A0C34-6FE1-405B-BBD7-073A7840B9D0}
 		{AEBD3567-19A1-4339-94AB-0D97CAF67F0E} = {CD2A0C34-6FE1-405B-BBD7-073A7840B9D0}
@@ -129,6 +128,7 @@ Global
 		{59B54855-5085-47BF-A66A-772AF322AA59} = {294B18DE-B876-4E3A-89AB-199B426758D8}
 		{27C61A98-587D-4C1F-AE4F-001663F03048} = {9D399350-58B5-4CCE-9F1F-1B407AF46606}
 		{BE28A7CD-E5F8-4D3A-BAED-E1847748A3F8} = {F2E450E5-B9A5-49DB-875C-56E5F4AF202D}
+		{B8475DB0-AC0B-4229-BB08-D9010C341B03} = {61D63754-5C99-4B5E-AF62-E7AD25B4DF5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBB1D26D-7583-4B38-AB37-36B57963232C}
