@@ -9,6 +9,8 @@ namespace InstantJob.Core
 {
     public static class DependencyInjection
     {
+        private static Assembly[] 
+
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             return services.AddAutoMapper(Assembly.GetExecutingAssembly())

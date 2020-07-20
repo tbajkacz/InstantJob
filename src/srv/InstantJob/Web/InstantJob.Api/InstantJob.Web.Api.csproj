@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InstantJob.Infrastructure\InstantJob.Infrastructure.csproj" />
+    <ProjectReference Include="..\InstantJob.Persistence\InstantJob.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
