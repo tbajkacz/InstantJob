@@ -15,7 +15,6 @@ namespace InstantJob.Modules.Users.Infrastructure.Configuration
                        .AddSingleton<IHashService, HashService>()
                        .Configure<HashOptions>(configuration.GetSection("Hash"))
                        .AddScoped<IUserManager, UserManager>()
-                       .AddScoped<IDataSeeder, UserSeeder>()
-                       .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                       .AddScoped<IDataSeeder, UserSeeder>();
     }
 }
