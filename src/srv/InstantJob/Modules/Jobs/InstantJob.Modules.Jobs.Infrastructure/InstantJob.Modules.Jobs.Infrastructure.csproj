@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Database\InstantJob.Persistence\InstantJob.Database.Persistence.csproj" />
     <ProjectReference Include="..\InstantJob.Modules.Jobs.Application\InstantJob.Modules.Jobs.Application.csproj" />
     <ProjectReference Include="..\InstantJob.Modules.Jobs.Domain\InstantJob.Modules.Jobs.Domain.csproj" />
   </ItemGroup>
