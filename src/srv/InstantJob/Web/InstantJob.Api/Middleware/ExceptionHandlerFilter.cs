@@ -1,12 +1,12 @@
-﻿using InstantJob.Core.Common.Exceptions;
+﻿using System.Net;
+using System.Text.Json;
+using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api.Middleware
+namespace InstantJob.Web.Api.Middleware
 {
     public class ExceptionHandlerFilter : IAsyncExceptionFilter
     {

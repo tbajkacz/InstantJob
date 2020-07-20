@@ -1,6 +1,6 @@
-﻿using InstantJob.Domain.Common;
+﻿using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Domain.Jobs.Constants
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Constants
 {
     //TODO this could be a valueobject (check modular monolith)
     public class JobStatus : Enumeration

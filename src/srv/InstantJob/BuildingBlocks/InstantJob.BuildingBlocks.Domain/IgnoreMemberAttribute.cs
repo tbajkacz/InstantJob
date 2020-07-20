@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InstantJob.Domain.Common
+namespace InstantJob.BuildingBlocks.Domain
 {
     //Source: https://github.com/jhewlett/ValueObject
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]

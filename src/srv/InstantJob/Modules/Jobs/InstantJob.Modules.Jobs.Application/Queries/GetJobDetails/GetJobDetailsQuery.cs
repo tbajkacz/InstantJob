@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Queries.GetJobDetails
+namespace InstantJob.Modules.Jobs.Application.Queries.GetJobDetails
 {
     public class GetJobDetailsQuery : IRequest<JobDetailsDto>
     {

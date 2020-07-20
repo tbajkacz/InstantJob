@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using InstantJob.Core.Common.Mappings;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
+using InstantJob.BuildingBlocks.Application.Automapper;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Core.Jobs.Queries.GetJobDetails
+namespace InstantJob.Modules.Jobs.Application.Queries.GetJobDetails
 {
     public class JobDetailsDto : IMapFrom<Job>
     {
@@ -27,9 +27,9 @@ namespace InstantJob.Core.Jobs.Queries.GetJobDetails
 
         public string CategoryName { get; set; }
 
-        public JobDetailsUserDto Mandator { get; set; }
+        public JobDetailsMandatorDto Mandator { get; set; }
 
-        public JobDetailsUserDto Contractor { get; set; }
+        public JobDetailsContractorDto Contractor { get; set; }
 
         public bool IsCompleted { get; set; }
 

@@ -1,12 +1,12 @@
-﻿using FluentValidation;
-using InstantJob.Core.Common.Exceptions;
-using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using InstantJob.BuildingBlocks.Application.Exceptions;
+using MediatR;
 
-namespace InstantJob.Core.Common.Behaviors
+namespace InstantJob.BuildingBlocks.Application.MediatR
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
@@ -20,7 +20,7 @@ namespace InstantJob.Core.Common.Behaviors
 
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            var validationContext = new ValidationContext(request);
+            var validationContext = new ValidationContext<TRequest>(request);
 
             var validationFailures = validators
                 .Select(v => v.Validate(validationContext))

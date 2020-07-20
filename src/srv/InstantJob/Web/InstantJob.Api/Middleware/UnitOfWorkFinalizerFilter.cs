@@ -1,11 +1,10 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api.Middleware
+namespace InstantJob.Web.Api.Middleware
 {
     public class UnitOfWorkFinalizerFilter : IAsyncActionFilter
     {

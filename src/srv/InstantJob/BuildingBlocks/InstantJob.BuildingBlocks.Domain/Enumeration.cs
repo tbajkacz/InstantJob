@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace InstantJob.Domain.Common
+namespace InstantJob.BuildingBlocks.Domain
 {
     public abstract class Enumeration : IComparable
     {

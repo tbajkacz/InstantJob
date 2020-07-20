@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Api.Constants
+﻿namespace InstantJob.Web.Api.Constants
 {
     public class Policies
     {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace InstantJob.Application.Categories.Commands.UpdateCategoryDescription
+namespace InstantJob.Modules.Jobs.Application.Commands.UpdateCategoryDescription
 {
     public class UpdateCategoryDescriptionCommand : IRequest
     {

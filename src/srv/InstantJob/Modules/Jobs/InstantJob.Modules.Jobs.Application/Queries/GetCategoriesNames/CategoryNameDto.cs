@@ -1,7 +1,7 @@
-﻿using InstantJob.Core.Common.Mappings;
-using InstantJob.Domain.Categories.Entities;
+﻿using InstantJob.BuildingBlocks.Application.Automapper;
+using InstantJob.Modules.Jobs.Domain.Categories;
 
-namespace InstantJob.Core.Categories.Queries.GetCategoriesNames
+namespace InstantJob.Modules.Jobs.Application.Queries.GetCategoriesNames
 {
     public class CategoryNameDto : IMapFrom<Category>
     {

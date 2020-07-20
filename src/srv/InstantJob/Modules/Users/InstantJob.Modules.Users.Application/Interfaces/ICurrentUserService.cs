@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace InstantJob.Core.Common.Interfaces
+namespace InstantJob.Modules.Users.Application.Interfaces
 {
     public interface ICurrentUserService
     {

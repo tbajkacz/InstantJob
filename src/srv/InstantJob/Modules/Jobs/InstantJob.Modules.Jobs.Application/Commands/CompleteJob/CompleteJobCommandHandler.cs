@@ -1,33 +1,28 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Jobs.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Exceptions;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.CompleteJob
+namespace InstantJob.Modules.Jobs.Application.Commands.CompleteJob
 {
     public class CompleteJobCommandHandler : IRequestHandler<CompleteJobCommand>
     {
         private readonly IJobRepository jobRepository;
-        private readonly ICurrentUserService currentUser;
+        private readonly ICurrentMandatorService currentMandator;
 
-        public CompleteJobCommandHandler(IJobRepository jobRepository, ICurrentUserService currentUser)
+        public CompleteJobCommandHandler(IJobRepository jobRepository, ICurrentMandatorService currentMandator)
         {
             this.jobRepository = jobRepository;
-            this.currentUser = currentUser;
+            this.currentMandator = currentMandator;
         }
 
         public async Task<Unit> Handle(CompleteJobCommand request, CancellationToken cancellationToken)
         {
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
-            if (!job.IsOwnedBy(currentUser.UserId))
-            {
-                throw new EntityAccessException(currentUser.UserId, job.Id, typeof(Job));
-            }
-
-            job.CompleteJob();
+            job.CompleteJob(currentMandator.Id);
 
             await jobRepository.UpdateAsync(job);
 

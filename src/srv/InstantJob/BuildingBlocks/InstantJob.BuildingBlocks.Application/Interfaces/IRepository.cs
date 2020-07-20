@@ -1,8 +1,8 @@
-﻿using InstantJob.Domain.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Core.Common.Interfaces
+namespace InstantJob.BuildingBlocks.Application.Interfaces
 {
     public interface IRepository<TEntity, TId> where TEntity : BaseEntity<TId>
     {

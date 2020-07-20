@@ -1,30 +1,30 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.PostJob
+namespace InstantJob.Modules.Jobs.Application.Commands.PostJob
 {
     public class PostJobCommandHandler : IRequestHandler<PostJobCommand>
     {
         private readonly IJobRepository jobRepository;
         private readonly ICategoryRepository categoryRepository;
-        private readonly IUserRepository userRepository;
-        private readonly ICurrentUserService currentUser;
+        private readonly IMandatorRepository mandatorRepository;
+        private readonly ICurrentMandatorService currentMandator;
 
         public PostJobCommandHandler(
             IJobRepository jobRepository,
             ICategoryRepository categoryRepository,
-            IUserRepository userRepository,
-            ICurrentUserService currentUser)
+            IMandatorRepository mandatorRepository,
+            ICurrentMandatorService currentMandator)
         {
             this.jobRepository = jobRepository;
             this.categoryRepository = categoryRepository;
-            this.userRepository = userRepository;
-            this.currentUser = currentUser;
+            this.mandatorRepository = mandatorRepository;
+            this.currentMandator = currentMandator;
         }
 
         public async Task<Unit> Handle(PostJobCommand request, CancellationToken cancellationToken)
@@ -37,7 +37,7 @@ namespace InstantJob.Core.Jobs.Commands.PostJob
                     request.Deadline,
                     Enumeration.FromInt<Difficulty>(request.DifficultyId),
                     await categoryRepository.GetByIdAsync(request.CategoryId),
-                    await userRepository.GetByIdAsync(currentUser.UserId))
+                    await mandatorRepository.GetByIdAsync(currentMandator.Id))
                 );
             return Unit.Value;
         }

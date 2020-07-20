@@ -1,12 +1,12 @@
-﻿using InstantJob.Core.Common.Mappings;
-using InstantJob.Domain.Jobs.Entities;
-using System;
+﻿using System;
+using InstantJob.BuildingBlocks.Application.Automapper;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Core.Jobs.Queries.GetJobDetails
+namespace InstantJob.Modules.Jobs.Application.Queries.GetJobDetails
 {
     public class JobDetailsApplicationDto : IMapFrom<JobApplication>
     {
-        public JobDetailsUserDto Contractor { get; set; }
+        public JobDetailsContractorDto Contractor { get; set; }
 
         public DateTime ApplicationDate { get; set; }
     }

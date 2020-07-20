@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Domain.Common
+﻿namespace InstantJob.BuildingBlocks.Domain
 {
     public interface IDomainRule
     {

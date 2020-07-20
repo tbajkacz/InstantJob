@@ -1,23 +1,28 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
+using AutoMapper;
 
-namespace InstantJob.Core.Common.Mappings
+namespace InstantJob.BuildingBlocks.Application.Automapper
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile()
+        public MappingProfile(params Assembly[] assemblies)
         {
-            CreateMapsFromAssembly(Assembly.GetExecutingAssembly());
+            foreach (var assembly in assemblies)
+            {
+                CreateMapsFromAssembly(assembly);
+            }
         }
 
         private void CreateMapsFromAssembly(Assembly assembly)
         {
             var types = assembly.GetExportedTypes()
                 .Where(t => t.GetInterfaces()
-                .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
-                .ToList();
+                    .Any(i =>
+                        i.IsGenericType &&
+                        i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
+                    .ToList();
 
             foreach (var type in types)
             {

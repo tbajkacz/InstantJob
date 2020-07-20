@@ -1,10 +1,10 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Users.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Domain.Entities;
+using MediatR;
 
-namespace InstantJob.Core.Users.Queries.FindUserByCredentials
+namespace InstantJob.Modules.Users.Application.Queries.FindUserByCredentials
 {
     public class FindUserByCredentialsQueryHandler : IRequestHandler<FindUserByCredentialsQuery, User>
     {

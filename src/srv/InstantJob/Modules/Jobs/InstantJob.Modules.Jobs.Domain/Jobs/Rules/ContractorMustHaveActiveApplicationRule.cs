@@ -1,22 +1,21 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Entities;
-using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Domain.Jobs.Rules
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
 {
     public class ContractorMustHaveActiveApplicationRule : IDomainRule
     {
         private readonly Job job;
-        private readonly User contractor;
+        private readonly int contractorId;
 
-        public ContractorMustHaveActiveApplicationRule(Job job, User contractor)
+        public ContractorMustHaveActiveApplicationRule(Job job, int contractorId)
         {
             this.job = job;
-            this.contractor = contractor;
+            this.contractorId = contractorId;
         }
 
         public string Message => "A contractor must first apply, before being assigned to a job";
 
-        public bool IsViolated() => !job.HasActiveApplication(contractor.Id);
+        public bool IsViolated() => !job.HasActiveApplication(contractorId);
     }
 }

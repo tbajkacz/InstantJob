@@ -1,6 +1,6 @@
-﻿using InstantJob.Domain.Common;
+﻿using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Domain.Jobs.Constants
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Constants
 {
     public class Difficulty : Enumeration
     {

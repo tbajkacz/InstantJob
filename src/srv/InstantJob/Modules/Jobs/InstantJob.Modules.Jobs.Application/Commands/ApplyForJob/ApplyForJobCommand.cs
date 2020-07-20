@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.ApplyForJob
+namespace InstantJob.Modules.Jobs.Application.Commands.ApplyForJob
 {
     public class ApplyForJobCommand : IRequest
     {

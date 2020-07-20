@@ -1,22 +1,22 @@
-﻿using InstantJob.Application.Jobs.Commands.AcceptJobAssignment;
-using InstantJob.Application.Jobs.Queries.GetDifficulties;
-using InstantJob.Core.Jobs.Commands.ApplyForJob;
-using InstantJob.Core.Jobs.Commands.AssignContractor;
-using InstantJob.Core.Jobs.Commands.CancelJob;
-using InstantJob.Core.Jobs.Commands.CompleteJob;
-using InstantJob.Core.Jobs.Commands.PostJob;
-using InstantJob.Core.Jobs.Commands.UpdateJobDetails;
-using InstantJob.Core.Jobs.Queries.GetAvailableJobs;
-using InstantJob.Core.Jobs.Queries.GetJobDetails;
-using InstantJob.Domain.Jobs.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Commands.AcceptJobAssignment;
+using InstantJob.Modules.Jobs.Application.Commands.ApplyForJob;
+using InstantJob.Modules.Jobs.Application.Commands.AssignContractor;
+using InstantJob.Modules.Jobs.Application.Commands.CancelJob;
+using InstantJob.Modules.Jobs.Application.Commands.CompleteJob;
+using InstantJob.Modules.Jobs.Application.Commands.PostJob;
+using InstantJob.Modules.Jobs.Application.Commands.UpdateJobDetails;
+using InstantJob.Modules.Jobs.Application.Queries.GetAvailableJobs;
+using InstantJob.Modules.Jobs.Application.Queries.GetDifficulties;
+using InstantJob.Modules.Jobs.Application.Queries.GetJobDetails;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api.Controllers
+namespace InstantJob.Web.Api.Controllers
 {
     [Authorize]
     public class JobsController : RoutedApiController

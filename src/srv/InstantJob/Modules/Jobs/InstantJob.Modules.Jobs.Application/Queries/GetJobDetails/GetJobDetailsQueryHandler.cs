@@ -1,11 +1,10 @@
-﻿using AutoMapper;
-using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Queries.GetJobDetails
+namespace InstantJob.Modules.Jobs.Application.Queries.GetJobDetails
 {
     public class GetJobDetailsQueryHandler : IRequestHandler<GetJobDetailsQuery, JobDetailsDto>
     {

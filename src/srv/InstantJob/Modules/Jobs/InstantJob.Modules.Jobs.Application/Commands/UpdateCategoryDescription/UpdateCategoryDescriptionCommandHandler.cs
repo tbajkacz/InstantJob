@@ -1,9 +1,9 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Application.Categories.Commands.UpdateCategoryDescription
+namespace InstantJob.Modules.Jobs.Application.Commands.UpdateCategoryDescription
 {
     public class UpdateCategoryDescriptionCommandHandler : IRequestHandler<UpdateCategoryDescriptionCommand>
     {

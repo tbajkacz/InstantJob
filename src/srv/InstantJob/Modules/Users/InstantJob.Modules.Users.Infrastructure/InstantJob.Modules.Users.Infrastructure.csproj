@@ -5,11 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.4" />
+    <PackageReference Include="NHibernate" Version="5.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Infrastructure\InstantJob.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\InstantJob.Modules.Users.Application\InstantJob.Modules.Users.Application.csproj" />
   </ItemGroup>
 
 </Project>

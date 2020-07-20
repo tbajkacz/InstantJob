@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Users.Commands.ChangeUserPassword
+﻿namespace InstantJob.Modules.Users.Application.Commands.ChangeUserPassword
 {
     public class ChangeUserPasswordCommandValidator : BaseUserValidator<ChangeUserPasswordCommand>
     {

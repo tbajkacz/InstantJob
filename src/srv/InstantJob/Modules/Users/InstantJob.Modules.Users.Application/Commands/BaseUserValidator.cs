@@ -1,12 +1,11 @@
-﻿using FluentValidation;
-using InstantJob.Domain.Users.Constants;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using FluentValidation;
+using InstantJob.Modules.Users.Domain.Constants;
 
-namespace InstantJob.Core.Users.Commands
+namespace InstantJob.Modules.Users.Application.Commands
 {
     public abstract class BaseUserValidator<T> : AbstractValidator<T>
     {

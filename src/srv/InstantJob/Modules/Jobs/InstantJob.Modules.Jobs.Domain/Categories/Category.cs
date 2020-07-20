@@ -1,8 +1,8 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Domain.Categories.Entities
+namespace InstantJob.Modules.Jobs.Domain.Categories
 {
     public class Category : BaseEntity<int>
     {

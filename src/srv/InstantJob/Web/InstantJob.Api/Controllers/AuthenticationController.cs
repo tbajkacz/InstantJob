@@ -1,19 +1,19 @@
-﻿using InstantJob.Core.Users.Commands.ChangeUserPassword;
-using InstantJob.Core.Users.Commands.CreateUser;
-using InstantJob.Core.Users.Commands.UpdateUserInformation;
-using InstantJob.Core.Users.Queries.FindUserByCredentials;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using InstantJob.Modules.Users.Application.Commands.ChangeUserPassword;
+using InstantJob.Modules.Users.Application.Commands.CreateUser;
+using InstantJob.Modules.Users.Application.Commands.UpdateUserInformation;
+using InstantJob.Modules.Users.Application.Queries.FindUserByCredentials;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api.Controllers
+namespace InstantJob.Web.Api.Controllers
 {
     [Authorize]
     public class AuthenticationController : RoutedApiController

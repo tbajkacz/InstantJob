@@ -1,13 +1,13 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Contractors;
 
-namespace InstantJob.Domain.Jobs.Rules
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
 {
     public class NoContractorAssignedRule : IDomainRule
     {
-        private readonly User contractor;
+        private readonly Contractor contractor;
 
-        public NoContractorAssignedRule(User contractor)
+        public NoContractorAssignedRule(Contractor contractor)
         {
             this.contractor = contractor;
         }

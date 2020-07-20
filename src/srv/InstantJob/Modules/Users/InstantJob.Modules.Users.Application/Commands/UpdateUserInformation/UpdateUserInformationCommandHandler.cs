@@ -1,9 +1,9 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Users.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Core.Users.Commands.UpdateUserInformation
+namespace InstantJob.Modules.Users.Application.Commands.UpdateUserInformation
 {
     public class UpdateUserInformationCommandHandler : IRequestHandler<UpdateUserInformationCommand>
     {

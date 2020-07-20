@@ -1,9 +1,9 @@
-﻿using FluentValidation.Results;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentValidation.Results;
 
-namespace InstantJob.Core.Common.Exceptions
+namespace InstantJob.BuildingBlocks.Application.Exceptions
 {
     public class ValidationFailedException : Exception
     {

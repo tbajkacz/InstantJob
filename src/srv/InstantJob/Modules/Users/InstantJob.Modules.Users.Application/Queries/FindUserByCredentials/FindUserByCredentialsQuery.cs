@@ -1,7 +1,7 @@
-﻿using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.Modules.Users.Domain.Entities;
 using MediatR;
 
-namespace InstantJob.Core.Users.Queries.FindUserByCredentials
+namespace InstantJob.Modules.Users.Application.Queries.FindUserByCredentials
 {
     public class FindUserByCredentialsQuery : IRequest<User>
     {

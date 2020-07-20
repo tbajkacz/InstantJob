@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InstantJob.Core.Common.Exceptions
+namespace InstantJob.BuildingBlocks.Application.Exceptions
 {
     public class EntityNotFoundException : Exception
     {

@@ -1,6 +1,6 @@
-﻿using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.Modules.Users.Domain.Entities;
 
-namespace InstantJob.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping
 {
     internal class UserMap : BaseEntityMap<User, int>
     {

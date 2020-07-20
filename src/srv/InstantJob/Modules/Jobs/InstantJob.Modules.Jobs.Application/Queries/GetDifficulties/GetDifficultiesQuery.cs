@@ -1,8 +1,8 @@
-﻿using InstantJob.Domain.Jobs.Constants;
+﻿using System.Collections.Generic;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using MediatR;
-using System.Collections.Generic;
 
-namespace InstantJob.Application.Jobs.Queries.GetDifficulties
+namespace InstantJob.Modules.Jobs.Application.Queries.GetDifficulties
 {
     public class GetDifficultiesQuery : IRequest<IEnumerable<Difficulty>>
     {

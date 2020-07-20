@@ -1,9 +1,9 @@
-﻿using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using InstantJob.Persistence.CustomTypes;
-using System;
+﻿using System;
+using InstantJob.Database.Persistence.CustomTypes;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping
 {
     internal class JobMap : BaseEntityMap<Job, Guid>
     {

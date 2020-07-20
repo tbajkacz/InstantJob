@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Infrastructure.Security
+﻿namespace InstantJob.Modules.Users.Infrastructure.Security
 {
     public class HashOptions
     {

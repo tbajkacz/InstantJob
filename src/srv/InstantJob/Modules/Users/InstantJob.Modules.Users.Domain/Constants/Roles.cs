@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace InstantJob.Domain.Users.Constants
+namespace InstantJob.Modules.Users.Domain.Constants
 {
     public class Roles
     {

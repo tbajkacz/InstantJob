@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace InstantJob.Core.Categories.Commands.AddCategory
+namespace InstantJob.Modules.Jobs.Application.Commands.AddCategory
 {
     public class AddCategoryCommandValidator : AbstractValidator<AddCategoryCommand>
     {

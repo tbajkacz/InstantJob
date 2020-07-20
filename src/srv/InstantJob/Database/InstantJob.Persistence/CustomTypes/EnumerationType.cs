@@ -1,14 +1,14 @@
-﻿using InstantJob.Domain.Common;
+﻿using System;
+using System.Data;
+using System.Data.Common;
+using System.Diagnostics;
+using InstantJob.BuildingBlocks.Domain;
 using NHibernate;
 using NHibernate.Engine;
 using NHibernate.SqlTypes;
 using NHibernate.UserTypes;
-using System;
-using System.Data;
-using System.Data.Common;
-using System.Diagnostics;
 
-namespace InstantJob.Persistence.CustomTypes
+namespace InstantJob.Database.Persistence.CustomTypes
 {
     internal class EnumerationType<T> : IUserType where T : Enumeration 
     {

@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using InstantJob.Core.Common.Mappings;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using System;
+﻿using System;
+using AutoMapper;
+using InstantJob.BuildingBlocks.Application.Automapper;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
+namespace InstantJob.Modules.Jobs.Application.Queries.GetAvailableJobs
 {
     public class JobOverviewDto : IMapFrom<Job>
     {
@@ -22,7 +22,7 @@ namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
 
         public string CategoryName { get; set; }
 
-        public JobOverviewUserDto Mandator { get; set; }
+        public JobOverviewMandatorDto Mandator { get; set; }
 
         public void CreateMap(Profile profile)
         {

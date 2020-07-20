@@ -1,8 +1,9 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Categories.Entities;
+﻿using InstantJob.BuildingBlocks.Infrastructure.Data;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Categories;
 using NHibernate;
 
-namespace InstantJob.Infrastructure.Data
+namespace InstantJob.Modules.Jobs.Infrastructure.Data
 {
     public class NHibernateCategoryRepository : NHibernateRepositoryBase<Category, int>, ICategoryRepository
     {

@@ -1,7 +1,7 @@
 ﻿
-using InstantJob.Domain.Categories.Entities;
+using InstantJob.Modules.Jobs.Domain.Categories;
 
-namespace InstantJob.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping
 {
     internal class CategoryMap : BaseEntityMap<Category, int>
     {

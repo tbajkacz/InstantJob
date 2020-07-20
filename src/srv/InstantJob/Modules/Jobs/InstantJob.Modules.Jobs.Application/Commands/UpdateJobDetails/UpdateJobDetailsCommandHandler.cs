@@ -1,40 +1,34 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
+namespace InstantJob.Modules.Jobs.Application.Commands.UpdateJobDetails
 {
     public class UpdateJobDetailsCommandHandler : IRequestHandler<UpdateJobDetailsCommand>
     {
         private readonly IJobRepository jobRepository;
-        private readonly ICurrentUserService currentUser;
+        private readonly ICurrentMandatorService currentMandator;
 
-        public UpdateJobDetailsCommandHandler(IJobRepository jobRepository, ICurrentUserService currentUser)
+        public UpdateJobDetailsCommandHandler(IJobRepository jobRepository, ICurrentMandatorService currentMandator)
         {
             this.jobRepository = jobRepository;
-            this.currentUser = currentUser;
+            this.currentMandator = currentMandator;
         }
 
         public async Task<Unit> Handle(UpdateJobDetailsCommand request, CancellationToken cancellationToken)
         {
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
-            if (!job.IsOwnedBy(currentUser.UserId))
-            {
-                throw new EntityAccessException(currentUser.UserId, job.Id, typeof(Job));
-            }
-
             job.UpdateJobDetails(
                 request.Title,
                 request.Description,
                 request.Price,
                 request.Deadline,
-                Enumeration.FromInt<Difficulty>(request.DifficultyId)
+                Enumeration.FromInt<Difficulty>(request.DifficultyId),
+                currentMandator.Id
                 );
             await jobRepository.UpdateAsync(job);
             return Unit.Value;

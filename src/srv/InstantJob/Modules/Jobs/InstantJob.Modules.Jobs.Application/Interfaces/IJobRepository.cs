@@ -1,8 +1,9 @@
-﻿using InstantJob.Domain.Jobs.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using InstantJob.BuildingBlocks.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Core.Common.Interfaces
+namespace InstantJob.Modules.Jobs.Application.Interfaces
 {
     public interface IJobRepository : IRepository<Job, Guid>
     {

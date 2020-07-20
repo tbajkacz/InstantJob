@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InstantJob.Domain.Common
+namespace InstantJob.BuildingBlocks.Domain
 {
     public class DomainException : Exception
     {

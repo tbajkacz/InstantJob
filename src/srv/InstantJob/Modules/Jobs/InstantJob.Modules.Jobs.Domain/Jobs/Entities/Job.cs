@@ -1,13 +1,14 @@
-﻿using InstantJob.Domain.Categories.Entities;
-using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Rules;
-using InstantJob.Domain.Users.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Categories;
+using InstantJob.Modules.Jobs.Domain.Contractors;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
+using InstantJob.Modules.Jobs.Domain.Mandators;
 
-namespace InstantJob.Domain.Jobs.Entities
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 {
     public class Job : BaseEntity<Guid>
     {
@@ -34,9 +35,9 @@ namespace InstantJob.Domain.Jobs.Entities
 
         public virtual Category Category { get; protected set; }
 
-        public virtual User Mandator { get; protected set; }
+        public virtual Mandator Mandator { get; protected set; }
 
-        public virtual User Contractor { get; protected set; }
+        public virtual Contractor Contractor { get; protected set; }
 
         public virtual JobStatus Status { get; protected set; }
 
@@ -51,10 +52,8 @@ namespace InstantJob.Domain.Jobs.Entities
             DateTime? deadline,
             Difficulty difficulty,
             Category category,
-            User mandator)
+            Mandator mandator)
         {
-            CheckRule(new MustBeMandatorRule(mandator));
-
             Title = title;
             Description = description;
             Price = price;
@@ -65,30 +64,28 @@ namespace InstantJob.Domain.Jobs.Entities
             Status = JobStatus.Available;
         }
 
-        public virtual void ApplyForJob(User contractor)
+        public virtual void ApplyForJob(Contractor contractor)
         {
-            CheckRule(new MustBeContractorRule(contractor));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
             CheckRule(new ContractorMustNotHaveTwoActiveApplicationsRule(this, contractor));
-            CheckRule(new MustNotBeOwnerOfJobRule(this, contractor));
 
             applications.Add(new JobApplication(contractor));
         }
 
-        public virtual void WithdrawJobApplication(User contractor)
+        public virtual void WithdrawJobApplication(int contractorId)
         {
-            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor));
-            CheckRule(new ContractorMustNotBePerformingJobRule(this, contractor));
+            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractorId));
+            CheckRule(new ContractorMustNotBePerformingJobRule(this, contractorId));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
 
-            applications.Single(a => a.Contractor.Id == contractor.Id && a.Status.IsActive)
+            applications.Single(a => a.Contractor.Id == contractorId && a.Status.IsActive)
                 .WithdrawApplication();
         }
 
-        public virtual void CompleteJob(User mandator)
+        public virtual void CompleteJob(int mandatorId)
         {
             CheckRule(new JobIsInProgressRule(Status));
 
@@ -97,18 +94,18 @@ namespace InstantJob.Domain.Jobs.Entities
             Status = JobStatus.Completed;
         }
 
-        public virtual void AssignContractor(User contractor, User mandator)
+        public virtual void AssignContractor(Contractor contractor, int mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
-            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor));
+            CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractor.Id));
 
             Contractor = contractor;
             Status = JobStatus.Assigned;
         }
 
-        public virtual void CancelJobAssignment(User mandator)
+        public virtual void CancelJobAssignment(int mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -119,7 +116,7 @@ namespace InstantJob.Domain.Jobs.Entities
             Status = JobStatus.Available;
         }
 
-        public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty, User mandator)
+        public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty, int mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -133,7 +130,7 @@ namespace InstantJob.Domain.Jobs.Entities
             Difficulty = difficulty;
         }
 
-        public virtual void CancelJobOffer(User mandator)
+        public virtual void CancelJobOffer(int mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -142,7 +139,7 @@ namespace InstantJob.Domain.Jobs.Entities
             Status = JobStatus.Canceled;
         }
 
-        public virtual void AcceptJobAssignment(User contractor)
+        public virtual void AcceptJobAssignment(int contractorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));

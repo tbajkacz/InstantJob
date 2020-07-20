@@ -1,22 +1,21 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Entities;
-using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Domain.Jobs.Rules
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
 {
     public class ContractorMustNotBePerformingJobRule : IDomainRule
     {
         private readonly Job job;
-        private readonly User contractor;
+        private readonly int contractorId;
 
-        public ContractorMustNotBePerformingJobRule(Job job, User contractor)
+        public ContractorMustNotBePerformingJobRule(Job job, int contractorId)
         {
             this.job = job;
-            this.contractor = contractor;
+            this.contractorId = contractorId;
         }
 
         public string Message => "The contractor can't be in progress with this job";
 
-        public bool IsViolated() => job.IsPerformedBy(contractor.Id);
+        public bool IsViolated() => job.IsPerformedBy(contractorId);
     }
 }

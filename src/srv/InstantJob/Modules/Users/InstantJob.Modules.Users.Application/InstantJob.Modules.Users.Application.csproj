@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\InstantJob.Modules.Users.Domain\InstantJob.Modules.Users.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

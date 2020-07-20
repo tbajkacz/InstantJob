@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MediatR;
 
-namespace InstantJob.Core.Categories.Queries.GetCategoriesNames
+namespace InstantJob.Modules.Jobs.Application.Queries.GetCategoriesNames
 {
     public class GetCategoriesNamesQuery : IRequest<IEnumerable<CategoryNameDto>>
     {

@@ -1,29 +1,29 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.ApplyForJob
+namespace InstantJob.Modules.Jobs.Application.Commands.ApplyForJob
 {
     public class ApplyForJobCommandHandler : IRequestHandler<ApplyForJobCommand>
     {
         private readonly IJobRepository jobRepository;
-        private readonly IUserRepository userRepository;
-        private readonly ICurrentUserService currentUser;
+        private readonly IContractorRepository contractorRepository;
+        private readonly ICurrentContractorService currentContractor;
 
         public ApplyForJobCommandHandler(
             IJobRepository jobRepository,
-            IUserRepository userRepository,
-            ICurrentUserService currentUser)
+            IContractorRepository contractorRepository,
+            ICurrentContractorService currentContractor)
         {
             this.jobRepository = jobRepository;
-            this.userRepository = userRepository;
-            this.currentUser = currentUser;
+            this.contractorRepository = contractorRepository;
+            this.currentContractor = currentContractor;
         }
 
         public async Task<Unit> Handle(ApplyForJobCommand request, CancellationToken cancellationToken)
         {
-            var contractor = await userRepository.GetByIdAsync(currentUser.UserId);
+            var contractor = await contractorRepository.GetByIdAsync(currentContractor.Id);
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
             job.ApplyForJob(contractor);

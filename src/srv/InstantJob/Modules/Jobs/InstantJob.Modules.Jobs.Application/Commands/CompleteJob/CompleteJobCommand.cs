@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.CompleteJob
+namespace InstantJob.Modules.Jobs.Application.Commands.CompleteJob
 {
     public class CompleteJobCommand : IRequest
     {

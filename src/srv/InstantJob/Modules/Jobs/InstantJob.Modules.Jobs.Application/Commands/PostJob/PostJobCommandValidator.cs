@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Jobs.Commands.PostJob
+﻿namespace InstantJob.Modules.Jobs.Application.Commands.PostJob
 {
     public class PostJobCommandValidator : BaseJobValidator<PostJobCommand>
     {

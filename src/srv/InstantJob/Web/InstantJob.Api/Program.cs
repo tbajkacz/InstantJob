@@ -1,10 +1,10 @@
-using InstantJob.Core.Common.Interfaces;
+using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api
+namespace InstantJob.Web.Api
 {
     public class Program
     {

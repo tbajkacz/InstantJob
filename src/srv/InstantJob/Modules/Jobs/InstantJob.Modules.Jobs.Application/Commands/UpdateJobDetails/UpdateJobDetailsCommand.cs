@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
+namespace InstantJob.Modules.Jobs.Application.Commands.UpdateJobDetails
 {
     public class UpdateJobDetailsCommand : IRequest
     {

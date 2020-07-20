@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
+namespace InstantJob.Modules.Jobs.Application.Queries.GetAvailableJobs
 {
     public class GetAvailableJobsQuery : IRequest<IEnumerable<JobOverviewDto>>
     {

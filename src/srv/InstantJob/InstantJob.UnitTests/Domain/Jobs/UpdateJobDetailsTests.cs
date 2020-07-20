@@ -1,19 +1,19 @@
-﻿using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Rules;
+﻿using System;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
 using NUnit.Framework;
-using System;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     [TestFixture]
     public class UpdateJobDetailsTests : BaseJobTest
     {
-        private TestDelegate UpdateJobDetails => () => job.UpdateJobDetails("", "", 0, DateTime.UtcNow, Difficulty.Beginner);
+        private TestDelegate UpdateJobDetails => () => job.UpdateJobDetails("", "", 0, DateTime.UtcNow, Difficulty.Beginner, ownerMandator.Id);
 
         [Test]
         public void UpdateJobDetails_NotPossible_IfJobWasCanceled()
         {
-            job.CancelJobOffer();
+            job.CancelJobOffer(ownerMandator.Id);
             AssertRuleWasBroken<JobWasNotCanceledRule>(UpdateJobDetails);
         }
 
@@ -21,8 +21,8 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void UpdateJobDetails_NotPossible_IfJobIsInProgress()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
             AssertRuleWasBroken<JobIsNotInProgressRule>(UpdateJobDetails);
         }
@@ -31,9 +31,9 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void UpdateJobDetails_NotPossible_IfJobIsCompleted()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
-            job.CompleteJob();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
+            job.CompleteJob(ownerMandator.Id);
 
             AssertRuleWasBroken<JobIsNotCompletedRule>(UpdateJobDetails);
         }
@@ -42,7 +42,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void UpdateJobDetails_NotPossible_IfContractorIsAssigned()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
+            job.AssignContractor(contractor, ownerMandator.Id);
 
             AssertRuleWasBroken<NoContractorAssignedRule>(UpdateJobDetails);
         }
@@ -53,10 +53,10 @@ namespace InstantJob.UnitTests.Domain.Jobs
             var (title, description, price, deadline, difficulty) =
                 ("title", "desc", 11.12312M, DateTime.UtcNow, Difficulty.Intermediate);
 
-            job.UpdateJobDetails(job.Title, job.Description, price, job.Deadline, job.Difficulty);
+            job.UpdateJobDetails(job.Title, job.Description, price, job.Deadline, job.Difficulty, ownerMandator.Id);
             job.ApplyForJob(contractor);
 
-            job.UpdateJobDetails(title, description, job.Price, deadline, difficulty);
+            job.UpdateJobDetails(title, description, job.Price, deadline, difficulty, ownerMandator.Id);
 
             Assert.AreEqual(job.Title, title);
             Assert.AreEqual(job.Description, description);

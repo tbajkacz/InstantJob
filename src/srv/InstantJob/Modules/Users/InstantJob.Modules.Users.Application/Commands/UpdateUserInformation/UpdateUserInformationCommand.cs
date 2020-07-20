@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace InstantJob.Core.Users.Commands.UpdateUserInformation
+namespace InstantJob.Modules.Users.Application.Commands.UpdateUserInformation
 {
     public class UpdateUserInformationCommand : IRequest
     {

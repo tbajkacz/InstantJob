@@ -1,13 +1,13 @@
-﻿using InstantJob.Application.Categories.Commands.UpdateCategoryDescription;
-using InstantJob.Core.Categories.Commands.AddCategory;
-using InstantJob.Core.Categories.Queries.GetCategoriesNames;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Commands.AddCategory;
+using InstantJob.Modules.Jobs.Application.Commands.UpdateCategoryDescription;
+using InstantJob.Modules.Jobs.Application.Queries.GetCategoriesNames;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace InstantJob.Api.Controllers
+namespace InstantJob.Web.Api.Controllers
 {
     [Authorize]
     public class CategoriesController : RoutedApiController

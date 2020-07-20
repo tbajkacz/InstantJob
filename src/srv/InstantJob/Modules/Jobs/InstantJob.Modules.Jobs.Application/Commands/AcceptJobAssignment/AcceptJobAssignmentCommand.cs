@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Application.Jobs.Commands.AcceptJobAssignment
+namespace InstantJob.Modules.Jobs.Application.Commands.AcceptJobAssignment
 {
     public class AcceptJobAssignmentCommand : IRequest
     {

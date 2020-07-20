@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\InstantJob.BuildingBlocks.Domain\InstantJob.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\InstantJob.BuildingBlocks.Infrastructure\InstantJob.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Jobs\InstantJob.Modules.Jobs.Domain\InstantJob.Modules.Jobs.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Users\InstantJob.Modules.Users.Domain\InstantJob.Modules.Users.Domain.csproj" />
   </ItemGroup>
 
 </Project>

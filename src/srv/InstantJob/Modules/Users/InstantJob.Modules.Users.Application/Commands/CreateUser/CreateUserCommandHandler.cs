@@ -1,9 +1,9 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Users.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Core.Users.Commands.CreateUser
+namespace InstantJob.Modules.Users.Application.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
     {

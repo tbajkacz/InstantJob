@@ -1,10 +1,10 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Categories.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Categories;
+using MediatR;
 
-namespace InstantJob.Core.Categories.Commands.AddCategory
+namespace InstantJob.Modules.Jobs.Application.Commands.AddCategory
 {
     public class AddCategoryCommandHandler : IRequestHandler<AddCategoryCommand>
     {

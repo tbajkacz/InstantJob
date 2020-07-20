@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using InstantJob.Domain.Common;
+using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping
 {
     public class BaseEntityMap<TEntity, TId> : ClassMap<TEntity> where TEntity : BaseEntity<TId>
     {

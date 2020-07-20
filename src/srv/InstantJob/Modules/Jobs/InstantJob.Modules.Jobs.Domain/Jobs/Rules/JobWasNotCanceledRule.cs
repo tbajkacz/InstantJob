@@ -1,7 +1,7 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Constants;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 
-namespace InstantJob.Domain.Jobs.Rules
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
 {
     public class JobWasNotCanceledRule : IDomainRule
     {

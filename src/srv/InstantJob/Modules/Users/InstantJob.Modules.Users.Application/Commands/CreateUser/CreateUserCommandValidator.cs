@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Users.Commands.CreateUser
+﻿namespace InstantJob.Modules.Users.Application.Commands.CreateUser
 {
     public class CreateUserCommandValidator : BaseUserValidator<CreateUserCommand>
     {

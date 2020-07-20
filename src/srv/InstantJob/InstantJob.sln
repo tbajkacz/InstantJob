@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Jobs.UnitTests", "InstantJob.UnitTests\InstantJob.Modules.Jobs.UnitTests.csproj", "{988F92AD-2D70-4908-B880-2A09D0511778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.UnitTests", "InstantJob.UnitTests\InstantJob.Modules.Jobs.UnitTests.csproj", "{988F92AD-2D70-4908-B880-2A09D0511778}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{294B18DE-B876-4E3A-89AB-199B426758D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.BuildingBlocks.Application", "BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj", "{719F0305-E2B5-4867-94B1-77D0574E5FBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.BuildingBlocks.Application", "BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj", "{719F0305-E2B5-4867-94B1-77D0574E5FBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CD2A0C34-6FE1-405B-BBD7-073A7840B9D0}"
 EndProject
@@ -17,21 +17,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{AEBD3567
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1D9947E6-920F-46F3-B50D-EBE31675C8F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Jobs.IntegrationEvents", "Modules\Jobs\InstantJob.Modules.Jobs.IntegrationEvents\InstantJob.Modules.Jobs.IntegrationEvents.csproj", "{ACC750D0-AA1D-429E-B273-43BA5E9A231D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.IntegrationEvents", "Modules\Jobs\InstantJob.Modules.Jobs.IntegrationEvents\InstantJob.Modules.Jobs.IntegrationEvents.csproj", "{ACC750D0-AA1D-429E-B273-43BA5E9A231D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Jobs.Application", "Modules\Jobs\InstantJob.Modules.Jobs.Application\InstantJob.Modules.Jobs.Application.csproj", "{2C596522-9DE4-4EDE-AB14-037F2185BC50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.Application", "Modules\Jobs\InstantJob.Modules.Jobs.Application\InstantJob.Modules.Jobs.Application.csproj", "{2C596522-9DE4-4EDE-AB14-037F2185BC50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Jobs.Domain", "Modules\Jobs\InstantJob.Modules.Jobs.Domain\InstantJob.Modules.Jobs.Domain.csproj", "{AE039147-CE64-4C8F-BDC3-55570A7C378F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.Domain", "Modules\Jobs\InstantJob.Modules.Jobs.Domain\InstantJob.Modules.Jobs.Domain.csproj", "{AE039147-CE64-4C8F-BDC3-55570A7C378F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Jobs.Infrastructure", "Modules\Jobs\InstantJob.Modules.Jobs.Infrastructure\InstantJob.Modules.Jobs.Infrastructure.csproj", "{EF250452-9D54-4A3C-8F95-2A99FFC2D1DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Jobs.Infrastructure", "Modules\Jobs\InstantJob.Modules.Jobs.Infrastructure\InstantJob.Modules.Jobs.Infrastructure.csproj", "{EF250452-9D54-4A3C-8F95-2A99FFC2D1DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Users.Application", "Modules\Users\InstantJob.Modules.Users.Application\InstantJob.Modules.Users.Application.csproj", "{1B048D54-FFCA-4280-8F13-0ACF772C5FD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Users.Application", "Modules\Users\InstantJob.Modules.Users.Application\InstantJob.Modules.Users.Application.csproj", "{1B048D54-FFCA-4280-8F13-0ACF772C5FD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Users.Domain", "Modules\Users\InstantJob.Modules.Users.Domain\InstantJob.Modules.Users.Domain.csproj", "{5843E884-7842-4840-A52C-69BE87E06840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Users.Domain", "Modules\Users\InstantJob.Modules.Users.Domain\InstantJob.Modules.Users.Domain.csproj", "{5843E884-7842-4840-A52C-69BE87E06840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Users.IntegrationEvents", "Modules\Users\InstantJob.Modules.Users.IntegrationEvents\InstantJob.Modules.Users.IntegrationEvents.csproj", "{945828FB-D04E-49C4-A752-6EFA385F857B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Users.IntegrationEvents", "Modules\Users\InstantJob.Modules.Users.IntegrationEvents\InstantJob.Modules.Users.IntegrationEvents.csproj", "{945828FB-D04E-49C4-A752-6EFA385F857B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantJob.Modules.Users.Infrastructure", "Modules\Users\InstantJob.Modules.Users.Infrastructure\InstantJob.Modules.Users.Infrastructure.csproj", "{E5BBB1E9-2C16-41BF-ACCE-D5E8DCDDB7FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.Modules.Users.Infrastructure", "Modules\Users\InstantJob.Modules.Users.Infrastructure\InstantJob.Modules.Users.Infrastructure.csproj", "{E5BBB1E9-2C16-41BF-ACCE-D5E8DCDDB7FF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstantJob.BuildingBlocks.Domain", "BuildingBlocks\InstantJob.BuildingBlocks.Domain\InstantJob.BuildingBlocks.Domain.csproj", "{30321889-01C6-4347-85C1-9CA29715FCC4}"
 EndProject

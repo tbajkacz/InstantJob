@@ -1,8 +1,8 @@
-﻿using FluentNHibernate.Conventions;
+﻿using System;
+using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
-using System;
 
-namespace InstantJob.Persistence.Conventions
+namespace InstantJob.Database.Persistence.Conventions
 {
     public class IncrementIdConvention : IIdConvention
     {

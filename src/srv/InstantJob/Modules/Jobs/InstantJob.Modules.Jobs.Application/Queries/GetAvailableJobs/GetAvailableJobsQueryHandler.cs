@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using InstantJob.Core.Common.Interfaces;
-using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Queries.GetAvailableJobs
+namespace InstantJob.Modules.Jobs.Application.Queries.GetAvailableJobs
 {
     public class GetAvailableJobsQueryHandler : IRequestHandler<GetAvailableJobsQuery, IEnumerable<JobOverviewDto>>
     {

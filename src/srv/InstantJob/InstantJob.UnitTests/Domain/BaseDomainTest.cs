@@ -1,7 +1,7 @@
-﻿using InstantJob.Domain.Common;
+﻿using InstantJob.BuildingBlocks.Domain;
 using NUnit.Framework;
 
-namespace InstantJob.UnitTests.Domain
+namespace InstantJob.Modules.Jobs.UnitTests.Domain
 {
     public abstract class BaseDomainTest
     {

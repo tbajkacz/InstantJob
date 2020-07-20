@@ -1,39 +1,40 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Jobs.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Exceptions;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.AssignContractor
+namespace InstantJob.Modules.Jobs.Application.Commands.AssignContractor
 {
     public class AssignContractorCommandHandler : IRequestHandler<AssignContractorCommand>
     {
         private readonly IJobRepository jobRepository;
-        private readonly IUserRepository userRepository;
-        private readonly ICurrentUserService currentUser;
+        private readonly IContractorRepository contractorRepository;
+        private readonly IMandatorRepository mandatorRepository;
+        private readonly ICurrentMandatorService currentMandator;
 
         public AssignContractorCommandHandler(
             IJobRepository jobRepository,
-            IUserRepository userRepository,
-            ICurrentUserService currentUser)
+            IContractorRepository contractorRepository,
+            IMandatorRepository mandatorRepository,
+            ICurrentMandatorService currentMandator)
         {
             this.jobRepository = jobRepository;
-            this.userRepository = userRepository;
-            this.currentUser = currentUser;
+            this.contractorRepository = contractorRepository;
+            this.mandatorRepository = mandatorRepository;
+            this.currentMandator = currentMandator;
         }
 
         public async Task<Unit> Handle(AssignContractorCommand request, CancellationToken cancellationToken)
         {
             var job = await jobRepository.GetByIdAsync(request.JobId);
 
-            if (!job.IsOwnedBy(currentUser.UserId))
-            {
-                throw new EntityAccessException(currentUser.UserId, job.Id, typeof(Job));
-            }
-            var contractor = await userRepository.GetByIdAsync(request.ContractorId);
+            var contractor = await contractorRepository.GetByIdAsync(request.ContractorId);
+            var mandator =
+                await mandatorRepository.GetByIdAsync(currentMandator.Id);
 
-            job.AssignContractor(contractor, );
+            job.AssignContractor(contractor, mandator.Id);
             await jobRepository.UpdateAsync(job);
 
             return Unit.Value;

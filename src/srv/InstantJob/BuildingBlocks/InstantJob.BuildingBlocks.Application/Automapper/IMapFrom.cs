@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace InstantJob.Core.Common.Mappings
+namespace InstantJob.BuildingBlocks.Application.Automapper
 {
     public interface IMapFrom<T>
     {

@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MediatR;
 
-namespace InstantJob.Core.Users.Commands.CreateUser
+namespace InstantJob.Modules.Users.Application.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest
     {

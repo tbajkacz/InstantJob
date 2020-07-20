@@ -1,11 +1,12 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Jobs.Entities;
-using NHibernate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using InstantJob.BuildingBlocks.Infrastructure.Data;
+using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+using NHibernate;
 
-namespace InstantJob.Infrastructure.Data
+namespace InstantJob.Modules.Jobs.Infrastructure.Data
 {
     public class NHibernateJobRepository : NHibernateRepositoryBase<Job, Guid>, IJobRepository
     {

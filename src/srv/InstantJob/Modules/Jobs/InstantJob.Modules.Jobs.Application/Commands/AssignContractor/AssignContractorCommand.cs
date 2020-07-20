@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.AssignContractor
+namespace InstantJob.Modules.Jobs.Application.Commands.AssignContractor
 {
     public class AssignContractorCommand : IRequest
     {

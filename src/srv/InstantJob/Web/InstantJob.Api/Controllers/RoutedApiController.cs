@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace InstantJob.Api.Controllers
+namespace InstantJob.Web.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

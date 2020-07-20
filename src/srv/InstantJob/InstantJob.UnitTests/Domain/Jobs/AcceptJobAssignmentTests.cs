@@ -1,7 +1,7 @@
-﻿using InstantJob.Domain.Jobs.Rules;
+﻿using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
 using NUnit.Framework;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     [TestFixture]
     public class AcceptJobAssignmentTests : BaseJobTest
@@ -10,32 +10,32 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void AcceptJobAssignment_NotPossible_IfJobWasCanceled()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
+            job.AssignContractor(contractor, ownerMandator.Id);
 
-            job.CancelJobOffer();
+            job.CancelJobOffer(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.AcceptJobAssignment());
+            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.AcceptJobAssignment(contractor.Id));
         }
 
         [Test]
         public void AcceptJobAssignment_NotPossible_IfJobIsInProgress()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
-            AssertRuleWasBroken<JobIsNotInProgressRule>(() => job.AcceptJobAssignment());
+            AssertRuleWasBroken<JobIsNotInProgressRule>(() => job.AcceptJobAssignment(contractor.Id));
         }
 
         [Test]
         public void AcceptJobAssignment_NotPossible_IfJobIsCompleted()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
-            job.CompleteJob();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
+            job.CompleteJob(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.AcceptJobAssignment());
+            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.AcceptJobAssignment(contractor.Id));
         }
 
         [Test]
@@ -43,15 +43,15 @@ namespace InstantJob.UnitTests.Domain.Jobs
         {
             job.ApplyForJob(contractor);
 
-            AssertRuleWasBroken<JobMustHaveAssignmentRule>(() => job.AcceptJobAssignment());
+            AssertRuleWasBroken<JobMustHaveAssignmentRule>(() => job.AcceptJobAssignment(contractor.Id));
         }
 
         [Test]
         public void AcceptJobAssignment_Succeeds_IfRulesNotViolated()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
             Assert.That(job.IsPerformedBy(contractor.Id));
             Assert.That(job.Status.IsInProgress);

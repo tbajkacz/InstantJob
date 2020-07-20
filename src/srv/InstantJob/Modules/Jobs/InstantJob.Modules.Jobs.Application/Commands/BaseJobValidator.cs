@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using FluentValidation;
 
-namespace InstantJob.Core.Jobs.Commands
+namespace InstantJob.Modules.Jobs.Application.Commands
 {
     public class BaseJobValidator<T> : AbstractValidator<T>
     {

@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using MediatR;
 
-namespace InstantJob.Core.Jobs.Commands.CancelJob
+namespace InstantJob.Modules.Jobs.Application.Commands.CancelJob
 {
     public class CancelJobCommand : IRequest
     {

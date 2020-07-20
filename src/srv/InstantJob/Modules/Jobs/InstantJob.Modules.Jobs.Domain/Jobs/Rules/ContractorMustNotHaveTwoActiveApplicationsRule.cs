@@ -1,15 +1,15 @@
-﻿using InstantJob.Domain.Common;
-using InstantJob.Domain.Jobs.Entities;
-using InstantJob.Domain.Users.Entities;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Jobs.Domain.Contractors;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Domain.Jobs.Rules
+namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
 {
     public class ContractorMustNotHaveTwoActiveApplicationsRule : IDomainRule
     {
         private readonly Job job;
-        private readonly User contractor;
+        private readonly Contractor contractor;
 
-        public ContractorMustNotHaveTwoActiveApplicationsRule(Job job, User contractor)
+        public ContractorMustNotHaveTwoActiveApplicationsRule(Job job, Contractor contractor)
         {
             this.job = job;
             this.contractor = contractor;

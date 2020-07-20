@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace InstantJob.Persistence.Conventions
+namespace InstantJob.Database.Persistence.Conventions
 {
     public class InstantJobTableNameConvention : IClassConvention
     {

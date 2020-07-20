@@ -1,13 +1,13 @@
-﻿using InstantJob.Domain.Categories.Entities;
-using InstantJob.Domain.Jobs.Constants;
-using InstantJob.Domain.Jobs.Entities;
-using InstantJob.Domain.Users.Constants;
-using InstantJob.Domain.Users.Entities;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using InstantJob.Modules.Jobs.Domain.Categories;
+using InstantJob.Modules.Jobs.Domain.Contractors;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+using InstantJob.Modules.Jobs.Domain.Mandators;
+using NUnit.Framework;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     public abstract class BaseJobTest : BaseDomainTest
     {
@@ -17,8 +17,8 @@ namespace InstantJob.UnitTests.Domain.Jobs
 
         protected Job job;
 
-        protected User ownerMandator = new User() { Id = NextId(), Roles = new List<string> { Roles.Mandator, Roles.Contractor } };
-        protected User contractor = new User() { Id = NextId(), Roles = new List<string> { Roles.Contractor } };
+        protected Mandator ownerMandator = new Mandator() { Id = NextId() };
+        protected Contractor contractor = new Contractor() { Id = NextId() };
 
         [SetUp]
         public void Setup()

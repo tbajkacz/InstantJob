@@ -1,14 +1,14 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Core.Users.Commands.ChangeUserPassword;
-using InstantJob.Core.Users.Commands.CreateUser;
-using InstantJob.Core.Users.Commands.UpdateUserInformation;
-using InstantJob.Core.Users.Queries.FindUserByCredentials;
-using InstantJob.Domain.Users.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Exceptions;
+using InstantJob.Modules.Users.Application.Commands.ChangeUserPassword;
+using InstantJob.Modules.Users.Application.Commands.CreateUser;
+using InstantJob.Modules.Users.Application.Commands.UpdateUserInformation;
+using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Application.Queries.FindUserByCredentials;
+using InstantJob.Modules.Users.Domain.Entities;
 
-namespace InstantJob.Infrastructure.Identity
+namespace InstantJob.Modules.Users.Infrastructure.Identity
 {
     public class UserManager : IUserManager
     {

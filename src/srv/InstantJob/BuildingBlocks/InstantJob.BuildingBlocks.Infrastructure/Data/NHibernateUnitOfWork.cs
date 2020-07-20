@@ -1,8 +1,8 @@
-﻿using InstantJob.Core.Common.Interfaces;
+﻿using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.Interfaces;
 using NHibernate;
-using System.Threading.Tasks;
 
-namespace InstantJob.Infrastructure.Data
+namespace InstantJob.BuildingBlocks.Infrastructure.Data
 {
     public sealed class NHibernateUnitOfWork : IUnitOfWork
     {

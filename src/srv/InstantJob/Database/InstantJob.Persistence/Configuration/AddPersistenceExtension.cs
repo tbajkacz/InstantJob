@@ -1,11 +1,11 @@
-﻿using FluentNHibernate.Cfg;
+﻿using System.Data;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Infrastructure.Data;
-using InstantJob.Persistence.Conventions;
+using InstantJob.BuildingBlocks.Application.Interfaces;
+using InstantJob.BuildingBlocks.Infrastructure.Data;
+using InstantJob.Database.Persistence.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 using NHibernate.Tool.hbm2ddl;
-using System.Data;
 
 namespace InstantJob.Database.Persistence.Configuration
 {

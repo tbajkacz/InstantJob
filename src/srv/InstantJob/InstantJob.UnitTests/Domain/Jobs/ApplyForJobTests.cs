@@ -1,22 +1,22 @@
-﻿using InstantJob.Domain.Jobs.Rules;
-using InstantJob.Domain.Users.Constants;
-using InstantJob.Domain.Users.Entities;
-using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using InstantJob.Modules.Jobs.Domain.Contractors;
+using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
+using InstantJob.Modules.Jobs.Domain.Mandators;
+using NUnit.Framework;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     [TestFixture]
     public class ApplyForJobTests : BaseJobTest
     {
-        private User mandator = new User() { Id = NextId(), Roles = new List<string> { Roles.Mandator, Roles.Administrator } };
-        private User contractor2 = new User() { Id = NextId(), Roles = new List<string> { Roles.Contractor } };
+        private Mandator mandator = new Mandator() { Id = NextId() };
+        private Contractor contractor2 = new Contractor() { Id = NextId() };
 
         [Test]
         public void ApplyForJob_NotPossible_IfJobWasCanceled()
         {
-            job.CancelJobOffer();
+            job.CancelJobOffer(ownerMandator.Id);
 
             AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.ApplyForJob(contractor));
         }
@@ -25,8 +25,8 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void ApplyForJob_NotPossible_IfJobIsInProgress()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
             AssertRuleWasBroken<JobIsNotInProgressRule>(() => job.ApplyForJob(contractor));
         }
@@ -35,9 +35,9 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void ApplyForJob_NotPossible_IfJobIsCompleted()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
-            job.CompleteJob();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
+            job.CompleteJob(ownerMandator.Id);
 
             AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.ApplyForJob(contractor));
         }
@@ -51,18 +51,6 @@ namespace InstantJob.UnitTests.Domain.Jobs
         }
 
         [Test]
-        public void ApplyForJob_NotPossible_IfNotContractorApplies()
-        {
-            AssertRuleWasBroken<MustBeContractorRule>(() => job.ApplyForJob(mandator));
-        }
-
-        [Test]
-        public void ApplyForJob_NotPossible_IfOwnerApplies()
-        {
-            AssertRuleWasBroken<MustNotBeOwnerOfJobRule>(() => job.ApplyForJob(ownerMandator));
-        }
-
-        [Test]
         public void ApplyForJob_Succeeds_IfRulesNotViolated()
         {
             job.ApplyForJob(contractor);
@@ -71,7 +59,7 @@ namespace InstantJob.UnitTests.Domain.Jobs
             Assert.That(job.HasActiveApplication(contractor.Id));
             Assert.That(job.HasActiveApplication(contractor2.Id));
 
-            job.WithdrawJobApplication(contractor);
+            job.WithdrawJobApplication(contractor.Id);
 
             job.ApplyForJob(contractor);
 

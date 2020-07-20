@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Core.Jobs.Commands.UpdateJobDetails
+﻿namespace InstantJob.Modules.Jobs.Application.Commands.UpdateJobDetails
 {
     public class UpdateJobDetailsCommandValidator : BaseJobValidator<UpdateJobDetailsCommand>
     {

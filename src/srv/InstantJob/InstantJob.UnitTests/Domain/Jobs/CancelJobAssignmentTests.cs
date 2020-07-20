@@ -1,12 +1,7 @@
-﻿using InstantJob.Domain.Jobs.Rules;
+﻿using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     [TestFixture]
     public class CancelJobAssignmentTests : BaseJobTest
@@ -15,31 +10,31 @@ namespace InstantJob.UnitTests.Domain.Jobs
         public void CancelJobAssignment_NotPossible_IfJobWasCanceled()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.CancelJobOffer();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.CancelJobOffer(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.CancelJobAssignment());
+            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.CancelJobAssignment(ownerMandator.Id));
         }
 
         [Test]
         public void CancelJobAssignment_NotPossible_IfJobIsInProgress()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
-            AssertRuleWasBroken<JobIsNotInProgressRule>(() => job.CancelJobAssignment());
+            AssertRuleWasBroken<JobIsNotInProgressRule>(() => job.CancelJobAssignment(ownerMandator.Id));
         }
 
         [Test]
         public void CancelJobAssignment_NotPossible_IfJobIsCompleted()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
-            job.CompleteJob();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
+            job.CompleteJob(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.CancelJobAssignment());
+            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.CancelJobAssignment(ownerMandator.Id));
         }
 
         [Test]
@@ -47,16 +42,16 @@ namespace InstantJob.UnitTests.Domain.Jobs
         {
             job.ApplyForJob(contractor);
 
-            AssertRuleWasBroken<JobMustHaveAssignmentRule>(() => job.CancelJobAssignment());
+            AssertRuleWasBroken<JobMustHaveAssignmentRule>(() => job.CancelJobAssignment(ownerMandator.Id));
         }
 
         [Test]
         public void CancelJobAssignment_Succeeds_IfRulesNotViolated()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
+            job.AssignContractor(contractor, ownerMandator.Id);
 
-            job.CancelJobAssignment();
+            job.CancelJobAssignment(ownerMandator.Id);
 
             Assert.That(job.IsAssignedTo(contractor.Id), Is.Not.True);
             Assert.That(job.Status.IsAssigned, Is.Not.True);

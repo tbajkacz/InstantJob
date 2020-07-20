@@ -1,12 +1,7 @@
-﻿using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Domain.Common;
-using NHibernate;
-using NHibernate.Criterion;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace InstantJob.Infrastructure.Data
+namespace InstantJob.Database.Infrastructure.Data
 {
     public class NHibernateRepositoryBase<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>

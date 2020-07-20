@@ -1,11 +1,11 @@
-﻿using InstantJob.Core.Common.Interfaces;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using InstantJob.Modules.Users.Application.Interfaces;
+using Microsoft.Extensions.Options;
 
-namespace InstantJob.Infrastructure.Security
+namespace InstantJob.Modules.Users.Infrastructure.Security
 {
     public class HashService : IHashService
     {

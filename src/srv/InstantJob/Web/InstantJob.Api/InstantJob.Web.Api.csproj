@@ -8,4 +8,13 @@
     <PackageReference Include="NSwag.AspNetCore" Version="13.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\InstantJob.BuildingBlocks.Infrastructure\InstantJob.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Database\InstantJob.Persistence\InstantJob.Database.Persistence.csproj" />
+    <ProjectReference Include="..\..\Modules\Jobs\InstantJob.Modules.Jobs.Application\InstantJob.Modules.Jobs.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Jobs\InstantJob.Modules.Jobs.Infrastructure\InstantJob.Modules.Jobs.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Users\InstantJob.Modules.Users.Application\InstantJob.Modules.Users.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Users\InstantJob.Modules.Users.Infrastructure\InstantJob.Modules.Users.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

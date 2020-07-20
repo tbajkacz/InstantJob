@@ -1,7 +1,7 @@
-﻿using InstantJob.Domain.Jobs.Rules;
+﻿using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
 using NUnit.Framework;
 
-namespace InstantJob.UnitTests.Domain.Jobs
+namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     [TestFixture]
     public class WithdrawJobApplicationTests : BaseJobTest
@@ -9,44 +9,44 @@ namespace InstantJob.UnitTests.Domain.Jobs
         [Test]
         public void WithdrawJobApplication_NotPossible_IfNoActiveApplication()
         {
-            AssertRuleWasBroken<ContractorMustHaveActiveApplicationRule>(() => job.WithdrawJobApplication(contractor));
+            AssertRuleWasBroken<ContractorMustHaveActiveApplicationRule>(() => job.WithdrawJobApplication(contractor.Id));
         }
 
         [Test]
         public void WithdrawJobApplication_NotPossible_IfContractorInProgress()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
 
-            AssertRuleWasBroken<ContractorMustNotBePerformingJobRule>(() => job.WithdrawJobApplication(contractor));
+            AssertRuleWasBroken<ContractorMustNotBePerformingJobRule>(() => job.WithdrawJobApplication(contractor.Id));
         }
 
         [Test]
         public void WithdrawJobApplication_NotPossible_IfJobIsCompleted()
         {
             job.ApplyForJob(contractor);
-            job.AssignContractor(contractor);
-            job.AcceptJobAssignment();
-            job.CompleteJob();
+            job.AssignContractor(contractor, ownerMandator.Id);
+            job.AcceptJobAssignment(contractor.Id);
+            job.CompleteJob(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.WithdrawJobApplication(contractor));
+            AssertRuleWasBroken<JobIsNotCompletedRule>(() => job.WithdrawJobApplication(contractor.Id));
         }
 
         [Test]
         public void WithdrawJobApplication_NotPossible_IfJobWasCanceled()
         {
             job.ApplyForJob(contractor);
-            job.CancelJobOffer();
+            job.CancelJobOffer(ownerMandator.Id);
 
-            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.WithdrawJobApplication(contractor));
+            AssertRuleWasBroken<JobWasNotCanceledRule>(() => job.WithdrawJobApplication(contractor.Id));
         }
 
         [Test]
         public void WithdrawJobApplication_Succeeds_IfRulesNotViolated()
         {
             job.ApplyForJob(contractor);
-            job.WithdrawJobApplication(contractor);
+            job.WithdrawJobApplication(contractor.Id);
 
             Assert.That(job.HasActiveApplication(contractor.Id), Is.Not.True);
         }

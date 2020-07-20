@@ -1,12 +1,13 @@
-using FluentValidation;
-using InstantJob.Api.Extensions;
-using InstantJob.Api.Middleware;
-using InstantJob.Api.Services;
-using InstantJob.Core;
-using InstantJob.Core.Common.Exceptions;
-using InstantJob.Core.Common.Interfaces;
-using InstantJob.Infrastructure;
-using InstantJob.Persistence;
+using InstantJob.BuildingBlocks.Infrastructure.Configuration;
+using InstantJob.Database.Persistence.Configuration;
+using InstantJob.Modules.Jobs.Application.Commands.AddCategory;
+using InstantJob.Modules.Jobs.Infrastructure.Configuration;
+using InstantJob.Modules.Users.Application.Commands.CreateUser;
+using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Infrastructure.Configuration;
+using InstantJob.Web.Api.Extensions;
+using InstantJob.Web.Api.Middleware;
+using InstantJob.Web.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace InstantJob.Api
+namespace InstantJob.Web.Api
 {
     public class Startup
     {
@@ -29,9 +30,10 @@ namespace InstantJob.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication();
+            services.AddBasicServicesForAssemblies(typeof(AddCategoryCommand).Assembly, typeof(CreateUserCommand).Assembly);
             services.AddPersistence(configuration.GetConnectionString("Database"));
-            services.AddInfrastructure(configuration);
+            services.AddUsersModule(configuration);
+            services.AddJobsModule();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();
             services.AddCookieAuthentication(env.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always);
