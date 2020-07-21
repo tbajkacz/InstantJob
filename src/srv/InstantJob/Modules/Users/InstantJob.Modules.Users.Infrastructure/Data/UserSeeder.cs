@@ -20,6 +20,7 @@ namespace InstantJob.Modules.Users.Infrastructure.Data
         }
         public async Task SeedAsync()
         {
+            uow.BeginTransaction();
             await SeedUsers();
             await uow.CommitAsync();
         }
