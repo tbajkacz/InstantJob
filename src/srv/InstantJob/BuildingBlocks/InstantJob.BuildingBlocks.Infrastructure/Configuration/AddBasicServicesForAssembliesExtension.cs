@@ -16,7 +16,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Configuration
             => services.AddAutoMapper(c => c.AddProfile(new MappingProfile(assemblies)))
                 .AddMediatR(assemblies)
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))
-                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkCommitBehavior<,>))
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkTransactionBehavior<,>))
                 .AddValidatorsFromAssemblies(assemblies)
                 .AddTransient<IDomainEventsDispatcher, DomainEventsDispatcher>()
                 .AddTransient<IDomainEventsAccessor, NHibernateDomainEventsAccessor>();
