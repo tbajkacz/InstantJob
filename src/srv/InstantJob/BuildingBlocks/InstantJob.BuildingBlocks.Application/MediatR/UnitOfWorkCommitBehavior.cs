@@ -6,7 +6,7 @@ using MediatR;
 
 namespace InstantJob.BuildingBlocks.Application.MediatR
 {
-    public class UnitOfWorkCommitBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRequest>
+    public class UnitOfWorkCommitBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
         private readonly IUnitOfWork uow;
@@ -16,8 +16,8 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
             this.uow = uow;
         }
 
-        public async Task<TRequest> Handle(TRequest request, CancellationToken cancellationToken,
-            RequestHandlerDelegate<TRequest> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             if (!uow.Active)
             {
