@@ -5,6 +5,7 @@ using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
 using InstantJob.Database.Persistence.Conventions;
 using Microsoft.Extensions.DependencyInjection;
+using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
 namespace InstantJob.Database.Persistence.Configuration
@@ -22,8 +23,14 @@ namespace InstantJob.Database.Persistence.Configuration
                 .ExposeConfiguration(x =>
                     new SchemaUpdate(x).Execute(false, true))
                 .BuildSessionFactory();
-            return services.AddScoped(p => fact.OpenSession())
-                           .AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
+            return services.AddScoped(p =>
+            {
+                var session = fact.OpenSession();
+                //Default value FlushMode.Auto causes updates to be flushed before manually commiting
+                //It becomes impossible to detect updated entites and prevents domain events from being properly dispatched 
+                session.FlushMode = FlushMode.Commit;
+                return session;
+            }).AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
         }
     }
 }
