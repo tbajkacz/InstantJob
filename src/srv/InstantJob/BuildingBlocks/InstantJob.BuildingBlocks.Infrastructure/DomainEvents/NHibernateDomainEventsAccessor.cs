@@ -2,7 +2,6 @@
 using System.Linq;
 using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Domain;
-using MediatR;
 using NHibernate;
 using NHibernate.Engine;
 
@@ -17,7 +16,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.DomainEvents
             this.session = session;
         }
 
-        public IEnumerable<INotification> PopUnhandledDomainEvents()
+        public IEnumerable<IDomainEvent> PopUnhandledDomainEvents()
         {
             //The entities are currently in memory so the domain events were not lost
             var modifiedEntities = GetDirtyDomainEntities();

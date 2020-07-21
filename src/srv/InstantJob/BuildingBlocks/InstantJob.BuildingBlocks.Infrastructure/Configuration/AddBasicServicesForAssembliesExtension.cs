@@ -2,7 +2,9 @@
 using AutoMapper;
 using FluentValidation;
 using InstantJob.BuildingBlocks.Application.Automapper;
+using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Application.MediatR;
+using InstantJob.BuildingBlocks.Infrastructure.DomainEvents;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +16,9 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Configuration
             => services.AddAutoMapper(c => c.AddProfile(new MappingProfile(assemblies)))
                 .AddMediatR(assemblies)
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))
-                .AddValidatorsFromAssemblies(assemblies);
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkCommitBehavior<,>))
+                .AddValidatorsFromAssemblies(assemblies)
+                .AddTransient<IDomainEventsDispatcher, DomainEventsDispatcher>()
+                .AddTransient<IDomainEventsAccessor, NHibernateDomainEventsAccessor>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace InstantJob.BuildingBlocks.Domain
 {
-    public abstract class BaseEntity<TId>
+    public abstract class BaseEntity<TId> : BaseDomainEntity
     {
         public virtual TId Id { get; set; }
 
