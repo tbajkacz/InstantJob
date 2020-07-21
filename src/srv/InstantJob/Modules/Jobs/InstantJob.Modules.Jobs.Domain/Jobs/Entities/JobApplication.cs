@@ -29,7 +29,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
         {
         }
 
-        public void WithdrawApplication()
+        public virtual void WithdrawApplication()
         {
             Status = ApplicationStatus.Withdrawn;
         }
