@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Interfaces;
-using InstantJob.Modules.Users.Domain.Entities;
+using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Application.Interfaces
 {

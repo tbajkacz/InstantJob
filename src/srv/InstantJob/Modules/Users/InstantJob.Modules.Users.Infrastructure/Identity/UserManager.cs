@@ -6,7 +6,7 @@ using InstantJob.Modules.Users.Application.Commands.CreateUser;
 using InstantJob.Modules.Users.Application.Commands.UpdateUserInformation;
 using InstantJob.Modules.Users.Application.Interfaces;
 using InstantJob.Modules.Users.Application.Queries.FindUserByCredentials;
-using InstantJob.Modules.Users.Domain.Entities;
+using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Infrastructure.Identity
 {

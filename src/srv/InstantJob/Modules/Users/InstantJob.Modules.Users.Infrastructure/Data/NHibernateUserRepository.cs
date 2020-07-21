@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Domain.Entities;
+using InstantJob.Modules.Users.Domain.Users;
 using NHibernate;
 using NHibernate.Linq;
 

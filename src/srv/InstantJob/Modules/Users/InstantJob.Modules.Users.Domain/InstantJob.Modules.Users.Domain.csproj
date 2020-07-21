@@ -8,4 +8,8 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Domain\InstantJob.BuildingBlocks.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\Events\" />
+  </ItemGroup>
+
 </Project>

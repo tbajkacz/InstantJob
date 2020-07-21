@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Modules.Users.Domain.Entities
+namespace InstantJob.Modules.Users.Domain.Users
 {
     public class User : BaseEntity<int>
     {

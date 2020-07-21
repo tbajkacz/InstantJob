@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.Modules.Users.Application.Interfaces;
 using InstantJob.Modules.Users.Domain.Constants;
-using InstantJob.Modules.Users.Domain.Entities;
+using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Infrastructure.Data
 {

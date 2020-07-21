@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Domain.Entities;
+using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Queries.FindUserByCredentials
