@@ -1,6 +1,9 @@
+using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Infrastructure.Configuration;
+using InstantJob.BuildingBlocks.Infrastructure.DomainEvents;
 using InstantJob.Database.Persistence.Configuration;
 using InstantJob.Modules.Jobs.Application.Commands.AddCategory;
+using InstantJob.Modules.Jobs.Application.Interfaces;
 using InstantJob.Modules.Jobs.Infrastructure.Configuration;
 using InstantJob.Modules.Users.Application.Commands.CreateUser;
 using InstantJob.Modules.Users.Application.Interfaces;
@@ -35,6 +38,8 @@ namespace InstantJob.Web.Api
             services.AddUsersModule(configuration);
             services.AddJobsModule();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<ICurrentMandatorService, CurrentMandatorService>();
+            services.AddScoped<ICurrentContractorService, CurrentContractorService>();
             services.AddHttpContextAccessor();
             services.AddCookieAuthentication(env.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always);
             services.AddAuthorizationWithPolicies();

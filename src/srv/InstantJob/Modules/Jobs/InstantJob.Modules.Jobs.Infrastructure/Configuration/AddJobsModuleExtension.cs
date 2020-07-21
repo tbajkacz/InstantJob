@@ -8,6 +8,8 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Configuration
     {
         public static IServiceCollection AddJobsModule(this IServiceCollection services)
             => services.AddScoped<IJobRepository, NHibernateJobRepository>()
-                       .AddScoped<ICategoryRepository, NHibernateCategoryRepository>();
+                       .AddScoped<ICategoryRepository, NHibernateCategoryRepository>()
+                       .AddScoped<IContractorRepository, NHibernateContractorRepository>()
+                       .AddScoped<IMandatorRepository, NHibernateMandatorRepository>();
     }
 }

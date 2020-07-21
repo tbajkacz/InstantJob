@@ -2,6 +2,6 @@
 {
     public interface ICurrentContractorService
     {
-        public int Id { get; set; }
+        public int Id { get; }
     }
 }
