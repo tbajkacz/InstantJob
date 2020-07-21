@@ -47,7 +47,6 @@ namespace InstantJob.Web.Api
             services.AddOpenApiDocument(settings => settings.Title = "Instant Job");
 
             services.AddControllers()
-                .AddUnitOfWorkFinalizerFilter()
                 .AddExceptionHandlerFilter();
         }
 

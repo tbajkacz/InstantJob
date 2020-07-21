@@ -5,6 +5,8 @@ namespace InstantJob.BuildingBlocks.Application.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        void BeginTransaction();
+
         Task CommitAsync();
 
         Task RollbackAsync();

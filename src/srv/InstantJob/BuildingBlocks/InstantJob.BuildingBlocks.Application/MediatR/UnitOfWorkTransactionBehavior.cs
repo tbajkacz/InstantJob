@@ -1,19 +1,21 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using MediatR;
 
 namespace InstantJob.BuildingBlocks.Application.MediatR
 {
-    public class UnitOfWorkCommitBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class UnitOfWorkTransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
         private readonly IUnitOfWork uow;
+        private readonly IDomainEventsDispatcher dispatcher;
 
-        public UnitOfWorkCommitBehavior(IUnitOfWork uow)
+        public UnitOfWorkTransactionBehavior(IUnitOfWork uow, IDomainEventsDispatcher dispatcher)
         {
             this.uow = uow;
+            this.dispatcher = dispatcher;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
@@ -21,10 +23,12 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
         {
             if (!uow.Active)
             {
-                throw new Exception("Unit of work connection is already closed");
+                uow.BeginTransaction();
             }
 
             var nextRequest = await next();
+
+            await dispatcher.DispatchDomainEvents();
 
             await uow.CommitAsync();
 
