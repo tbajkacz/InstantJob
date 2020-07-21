@@ -30,10 +30,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Data
 
         public void Dispose()
         {
-            if (transaction != null)
-            {
-                transaction.Dispose();
-            }
+            transaction?.Dispose();
             session.Dispose();
         }
     }
