@@ -7,16 +7,22 @@ namespace InstantJob.Modules.Users.Application.Commands.UpdateUserInformation
 {
     public class UpdateUserInformationCommandHandler : IRequestHandler<UpdateUserInformationCommand>
     {
-        private readonly IUserManager userManager;
+        private readonly IUserRepository users;
+        private readonly ICurrentUserService currentUser;
 
-        public UpdateUserInformationCommandHandler(IUserManager userManager)
+        public UpdateUserInformationCommandHandler(IUserRepository users, ICurrentUserService currentUser)
         {
-            this.userManager = userManager;
+            this.users = users;
+            this.currentUser = currentUser;
         }
 
         public async Task<Unit> Handle(UpdateUserInformationCommand request, CancellationToken cancellationToken)
         {
-            await userManager.UpdateInformationAsync(request);
+            var user = await users.GetByIdAsync(currentUser.UserId);
+
+            user.UpdateInformation(request.Name, request.Surname, request.Age, request.Picture);
+            await users.UpdateAsync(user);
+
             return Unit.Value;
         }
     }

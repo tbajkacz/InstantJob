@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Infrastructure.Identity;
 using InstantJob.Modules.Users.Infrastructure.Security;
 using Microsoft.Extensions.Configuration;
 
@@ -15,7 +14,6 @@ namespace InstantJob.Modules.Users.Infrastructure.Configuration
                        .AddScoped<IUserRegistrationRepository, NHibernateUserRegistrationRepository>()
                        .AddSingleton<IHashService, HashService>()
                        .Configure<HashOptions>(configuration.GetSection("Hash"))
-                       .AddScoped<IUserManager, UserManager>()
                        .AddScoped<IDataSeeder, UserSeeder>();
     }
 }

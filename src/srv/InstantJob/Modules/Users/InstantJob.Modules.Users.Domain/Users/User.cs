@@ -36,6 +36,19 @@ namespace InstantJob.Modules.Users.Domain.Users
             this.AddDomainEvent(new UserCreatedDomainEvent(Id, Name, Surname, Email, Role));
         }
 
+        public void UpdateInformation(string name, string surname, int? age, string picture)
+        {
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Picture = picture;
+        }
+
+        public void UpdatePassword(string passwordHash)
+        {
+            PasswordHash = passwordHash;
+        }
+
         //TODO when deleting a user publish the id in order to delete the jobs he created
         //if he was in progress with some jobs then take action as well
     }

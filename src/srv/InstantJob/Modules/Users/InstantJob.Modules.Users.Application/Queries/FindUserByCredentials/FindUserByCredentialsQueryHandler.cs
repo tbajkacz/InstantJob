@@ -8,16 +8,20 @@ namespace InstantJob.Modules.Users.Application.Queries.FindUserByCredentials
 {
     public class FindUserByCredentialsQueryHandler : IRequestHandler<FindUserByCredentialsQuery, User>
     {
-        private readonly IUserManager userManager;
+        private readonly IUserRepository users;
+        private readonly IHashService hashService;
 
-        public FindUserByCredentialsQueryHandler(IUserManager userManager)
+        public FindUserByCredentialsQueryHandler(IUserRepository users, IHashService hashService)
         {
-            this.userManager = userManager;
+            this.users = users;
+            this.hashService = hashService;
         }
 
         public async Task<User> Handle(FindUserByCredentialsQuery request, CancellationToken cancellationToken)
         {
-            return await userManager.ValidateCredentialsAsync(request);
+            var user = await users.FindByEmailAsync(request.Email);
+
+            return user == null ? null : hashService.CompareHashes(request.Password, user.PasswordHash) ? user : null;
         }
     }
 }

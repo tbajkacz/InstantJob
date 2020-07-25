@@ -7,16 +7,24 @@ namespace InstantJob.Modules.Users.Application.Commands.ChangeUserPassword
 {
     public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswordCommand>
     {
-        private readonly IUserManager userManager;
+        private readonly IUserRepository users;
+        private readonly ICurrentUserService currentUser;
+        private readonly IHashService hashService;
 
-        public ChangeUserPasswordCommandHandler(IUserManager userManager)
+        public ChangeUserPasswordCommandHandler(IUserRepository users, ICurrentUserService currentUser, IHashService hashService)
         {
-            this.userManager = userManager;
+            this.users = users;
+            this.currentUser = currentUser;
+            this.hashService = hashService;
         }
 
         public async Task<Unit> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            await userManager.UpdatePasswordAsync(request);
+            var user = await users.GetByIdAsync(currentUser.UserId);
+
+            user.UpdatePassword(hashService.Hash(request.Password));
+            await users.UpdateAsync(user);
+
             return Unit.Value;
         }
     }
