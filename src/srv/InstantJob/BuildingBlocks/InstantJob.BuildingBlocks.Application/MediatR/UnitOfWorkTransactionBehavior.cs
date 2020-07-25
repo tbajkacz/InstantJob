@@ -30,7 +30,10 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
 
             await dispatcher.DispatchDomainEvents();
 
-            await uow.CommitAsync();
+            if (uow.Active)
+            {
+                await uow.CommitAsync();
+            }
 
             return nextRequest;
         }
