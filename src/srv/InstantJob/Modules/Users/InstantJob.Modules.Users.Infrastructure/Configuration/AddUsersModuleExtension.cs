@@ -12,6 +12,7 @@ namespace InstantJob.Modules.Users.Infrastructure.Configuration
     {
         public static IServiceCollection AddUsersModule(this IServiceCollection services, IConfiguration configuration)
             => services.AddScoped<IUserRepository, NHibernateUserRepository>()
+                       .AddScoped<IUserRegistrationRepository, NHibernateUserRegistrationRepository>()
                        .AddSingleton<IHashService, HashService>()
                        .Configure<HashOptions>(configuration.GetSection("Hash"))
                        .AddScoped<IUserManager, UserManager>()
