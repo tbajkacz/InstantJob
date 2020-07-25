@@ -1,6 +1,8 @@
-﻿namespace InstantJob.BuildingBlocks.Domain
+﻿using System.Collections.Generic;
+
+namespace InstantJob.BuildingBlocks.Domain
 {
-    public abstract class BaseEntity<TId> : BaseDomainEntity
+    public abstract class BaseEntity<TId> : BaseEntity
     {
         public virtual TId Id { get; set; }
 
@@ -10,6 +12,23 @@
             {
                 throw new DomainException(rule);
             }
+        }
+    }
+
+    public abstract class BaseEntity
+    {
+        private readonly IList<IDomainEvent> domainEvents = new List<IDomainEvent>();
+
+        public virtual IEnumerable<IDomainEvent> DomainEvents => domainEvents;
+
+        public virtual void AddDomainEvent(IDomainEvent @event)
+        {
+            domainEvents.Add(@event);
+        }
+
+        public virtual void ClearDomainEvents()
+        {
+            domainEvents.Clear();
         }
     }
 }
