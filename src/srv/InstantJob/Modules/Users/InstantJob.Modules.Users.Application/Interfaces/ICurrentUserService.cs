@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Application.Interfaces
 {
@@ -6,7 +7,7 @@ namespace InstantJob.Modules.Users.Application.Interfaces
     {
         int UserId { get; }
 
-        IEnumerable<string> Roles { get; }
+        Role Role { get; }
 
         string Email { get; }
     }
