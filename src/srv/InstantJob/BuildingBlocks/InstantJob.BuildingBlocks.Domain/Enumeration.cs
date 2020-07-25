@@ -38,6 +38,25 @@ namespace InstantJob.BuildingBlocks.Domain
             return typeMatches && valueMatches;
         }
 
+        public static bool operator ==(Enumeration e1, Enumeration e2)
+        {
+            if (Equals(e1, null))
+            {
+                if (Equals(e2, null))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            return e1.Equals(e2);
+        }
+
+        public static bool operator !=(Enumeration e1, Enumeration e2)
+        {
+            return !(e1 == e2);
+        }
+
         public int CompareTo(object other)
             => Id.CompareTo(((Enumeration)other).Id);
 
