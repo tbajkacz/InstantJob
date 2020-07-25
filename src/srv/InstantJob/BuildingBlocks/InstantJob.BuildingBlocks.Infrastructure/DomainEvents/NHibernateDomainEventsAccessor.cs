@@ -31,9 +31,9 @@ namespace InstantJob.BuildingBlocks.Infrastructure.DomainEvents
             return domainEvents;
         }
 
-        private List<BaseDomainEntity> GetDirtyDomainEntities()
+        private List<BaseEntity> GetDirtyDomainEntities()
         {
-            var modifiedEntities = new List<BaseDomainEntity>();
+            var modifiedEntities = new List<BaseEntity>();
             var sessionImplementor = session.GetSessionImplementation();
             foreach (EntityEntry entityEntry in sessionImplementor.PersistenceContext.EntityEntries.Values)
             {
@@ -42,7 +42,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.DomainEvents
                 var currentState = entityEntry.Persister.GetPropertyValues(currentObject);
 
                 if (entityEntry.Persister.FindDirty(currentState, loadedState, currentObject, sessionImplementor) != null &&
-                    currentObject is BaseDomainEntity entity)
+                    currentObject is BaseEntity entity)
                 {
                     modifiedEntities.Add(entity);
                 }
