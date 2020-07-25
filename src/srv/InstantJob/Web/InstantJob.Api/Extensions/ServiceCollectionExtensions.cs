@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Exceptions;
 using InstantJob.Modules.Users.Application.Queries.GetUserRolesQuery;
-using InstantJob.Modules.Users.Domain.Constants;
+using InstantJob.Modules.Users.Domain.Users;
 using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
@@ -30,15 +30,14 @@ namespace InstantJob.Web.Api.Extensions
                             var mediator = context.HttpContext.RequestServices.GetRequiredService<IMediator>();
                             try
                             {
-                                var roles =
+                                var role =
                                     await mediator.Send(
-                                        new GetUserRolesQuery{ Id = GetId(context.Principal) });
-                                var incomingRoles = context.Principal.Claims
-                                    .Where(c => c.Type == ClaimTypes.Role)
-                                    .Select(c => c.Value)
-                                    .ToList();
+                                        new GetUserRoleQuery{ Id = GetId(context.Principal) });
+                                var incomingRole = context.Principal.Claims
+                                    ?.SingleOrDefault(c =>
+                                        c.Type == ClaimTypes.Role)?.Value;
 
-                                if (roles.Count != incomingRoles.Count || !incomingRoles.All(roles.Contains))
+                                if (incomingRole != role.Name)
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();
@@ -74,14 +73,14 @@ namespace InstantJob.Web.Api.Extensions
         public static IServiceCollection AddAuthorizationWithPolicies(this IServiceCollection services)
             => services.AddAuthorization(cfg =>
             {
-                cfg.AddPolicy(Policies.Administrator, p => p.RequireRole(Roles.Administrator));
+                cfg.AddPolicy(Policies.Administrator, p => p.RequireRole(Role.Administrator.Name));
                 cfg.AddPolicy(Policies.Mandatee,
-                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Contractor) ||
-                                                             ctx.User.IsInRole(Roles.Administrator)
+                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Role.Contractor.Name) ||
+                                                             ctx.User.IsInRole(Role.Administrator.Name)
                 ));
                 cfg.AddPolicy(Policies.Mandator,
-                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Roles.Contractor) ||
-                                                             ctx.User.IsInRole(Roles.Administrator)
+                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Role.Contractor.Name) ||
+                                                             ctx.User.IsInRole(Role.Administrator.Name)
                 ));
             });
     }

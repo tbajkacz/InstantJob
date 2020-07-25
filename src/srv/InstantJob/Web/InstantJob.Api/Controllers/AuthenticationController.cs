@@ -7,6 +7,11 @@ using InstantJob.Modules.Users.Application.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Commands.CreateUser;
 using InstantJob.Modules.Users.Application.Commands.UpdateUserInformation;
 using InstantJob.Modules.Users.Application.Queries.FindUserByCredentials;
+using InstantJob.Modules.Users.Application.Queries.GetUserById;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command.ConfirmRegistration;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser;
+using InstantJob.Web.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -41,9 +46,8 @@ namespace InstantJob.Web.Api.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role.Name),
             };
-
-            claims.AddRange(user.Roles.Select(r => new Claim(ClaimTypes.Role, r)));
 
             var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
 
@@ -56,8 +60,22 @@ namespace InstantJob.Web.Api.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
+        [HttpGet]
+        public async Task<UserDetailsDto> GetCurrentUser()
+        {
+            return await mediator.Send(new GetUserDetailsQuery());
+        }
+
         [HttpPost]
-        public async Task Register(CreateUserCommand command)
+        [AllowAnonymous]
+        public async Task<CreateResponse<int>> Register(RegisterUserCommand command)
+        {
+            return new CreateResponse<int>(await mediator.Send(command));
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task ConfirmRegistration(ConfirmRegistrationCommand command)
         {
             await mediator.Send(command);
         }
