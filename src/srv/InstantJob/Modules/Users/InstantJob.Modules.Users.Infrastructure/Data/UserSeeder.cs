@@ -1,46 +1,49 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Interfaces;
+using InstantJob.Modules.Users.Application.Commands.SeedUser;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Domain.Constants;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command;
 using InstantJob.Modules.Users.Domain.Users;
+using MediatR;
 
 namespace InstantJob.Modules.Users.Infrastructure.Data
 {
     public class UserSeeder : IDataSeeder
     {
-        private readonly IUserManager userManager;
-        private readonly IUnitOfWork uow;
+        private readonly IMediator mediator;
+        private readonly IUserRepository userRepository;
+        private readonly IUserRegistrationRepository registrations;
 
-        public UserSeeder(IUserManager userManager, IUnitOfWork uow)
+        public UserSeeder(IMediator mediator, IUserRepository userRepository, IUserRegistrationRepository registrations)
         {
-            this.userManager = userManager;
-            this.uow = uow;
+            this.mediator = mediator;
+            this.userRepository = userRepository;
+            this.registrations = registrations;
         }
         public async Task SeedAsync()
         {
-            uow.BeginTransaction();
             await SeedUsers();
-            await uow.CommitAsync();
         }
 
         private async Task SeedUsers()
         {
-            if (userManager.Users.Any())
+            if (userRepository.Get().Any())
             {
                 return;
             }
 
-            var rootUser = new User
+            var seedCommand = new SeedUserCommand
             {
+                Email = "root",
                 Name = "root",
+                Password = "root",
+                Role = Role.Administrator,
                 Surname = "root",
-                Email = "root@root.root",
-                Roles = new List<string> { Roles.Administrator, Roles.Mandator, Roles.Contractor },
             };
 
-            await userManager.CreateAsync(rootUser, "root");
+
+            await mediator.Send(seedCommand);
         }
     }
 }
