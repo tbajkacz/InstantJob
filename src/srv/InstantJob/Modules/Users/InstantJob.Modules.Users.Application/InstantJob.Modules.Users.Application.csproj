@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Application\InstantJob.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\InstantJob.BuildingBlocks.Infrastructure\InstantJob.BuildingBlocks.Infrastructure.csproj" />
     <ProjectReference Include="..\InstantJob.Modules.Users.Domain\InstantJob.Modules.Users.Domain.csproj" />
+    <ProjectReference Include="..\InstantJob.Modules.Users.IntegrationEvents\InstantJob.Modules.Users.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

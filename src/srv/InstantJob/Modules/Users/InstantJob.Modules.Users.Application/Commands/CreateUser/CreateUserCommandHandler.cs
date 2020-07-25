@@ -1,22 +1,33 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
     {
-        private readonly IUserManager userManager;
+        private readonly IUserRegistrationRepository registrations;
+        private readonly IUserRepository users;
 
-        public CreateUserCommandHandler(IUserManager userManager)
+        public CreateUserCommandHandler(IUserRegistrationRepository registrations, IUserRepository users)
         {
-            this.userManager = userManager;
+            this.registrations = registrations;
+            this.users = users;
         }
 
         public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            await userManager.CreateAsync(request);
+            var registration =
+                await registrations.GetByIdAsync(request.UserRegistrationId);
+
+            var user = new User(request.UserRegistrationId, registration.Name,
+                registration.Surname, registration.PasswordHash,
+                registration.Email, registration.Role);
+
+            await users.AddAsync(user);
+
             return Unit.Value;
         }
     }

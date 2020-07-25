@@ -1,4 +1,5 @@
-﻿using InstantJob.Modules.Users.Domain.Users;
+﻿using InstantJob.Database.Persistence.CustomTypes;
+using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Database.Persistence.Mapping
 {
@@ -17,10 +18,8 @@ namespace InstantJob.Database.Persistence.Mapping
                 .Not.Nullable()
                 .Unique();
             Map(x => x.Picture);
-            Map(x => x.Verified);
-            HasMany(x => x.Roles)
-                .Table("Roles")
-                .Element("Role");
+            Map(x => x.Role)
+                .CustomType<EnumerationType<Role>>();
         }
     }
 }

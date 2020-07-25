@@ -1,29 +1,42 @@
-﻿using System.Collections.Generic;
-using InstantJob.BuildingBlocks.Domain;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Users.Domain.Users.Events;
 
 namespace InstantJob.Modules.Users.Domain.Users
 {
     public class User : BaseEntity<int>
     {
-        public virtual string Name { get; set; }
+        public virtual string Name { get; protected set; }
 
-        public virtual string Surname { get; set; }
+        public virtual string Surname { get; protected set; }
 
-        public virtual int? Age { get; set; }
+        public virtual int? Age { get; protected set; }
 
-        public virtual string PasswordHash { get; set; }
+        public virtual string PasswordHash { get; protected set; }
 
-        public virtual string Email { get; set; }
+        public virtual string Email { get; protected set; }
 
-        public virtual string Picture { get; set; }
+        public virtual string Picture { get; protected set; }
 
-        public virtual bool Verified { get; set; }
+        public virtual Role Role { get; protected set; }
 
-        public virtual IList<string> Roles { get; set; } = new List<string>();
+        protected User()
+        {
+        }
+
+        public User(int userRegistrationId, string name, string surname, string passwordHash,
+            string email, Role role)
+        {
+            Id = userRegistrationId;
+            Name = name;
+            Surname = surname;
+            PasswordHash = passwordHash;
+            Email = email;
+            Role = role;
+
+            this.AddDomainEvent(new UserCreatedDomainEvent(Id, Name, Surname, Email, Role));
+        }
 
         //TODO when deleting a user publish the id in order to delete the jobs he created
         //if he was in progress with some jobs then take action as well
-
-        //TODO user may have multiple types, to become mandator one may need to provide additional data
     }
 }

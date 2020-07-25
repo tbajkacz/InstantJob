@@ -1,14 +1,14 @@
-﻿namespace InstantJob.Modules.Users.Application.Commands.CreateUser
+﻿using FluentValidation;
+using InstantJob.Modules.Users.Application.Interfaces;
+
+namespace InstantJob.Modules.Users.Application.Commands.CreateUser
 {
     public class CreateUserCommandValidator : BaseUserValidator<CreateUserCommand>
     {
-        public CreateUserCommandValidator()
+        public CreateUserCommandValidator(IUserRegistrationRepository repository)
         {
-            RuleForName(x => x.Name);
-            RuleForSurname(x => x.Surname);
-            RuleForEmail(x => x.Email);
-            RuleForPassword(x => x.Password);
-            RuleForRoles(x => x.Roles);
+            RuleFor(x => x.UserRegistrationId)
+                .MustAsync(async (x, c) => await repository.GetByIdOrDefaultAsync(x) != null);
         }
     }
 }
