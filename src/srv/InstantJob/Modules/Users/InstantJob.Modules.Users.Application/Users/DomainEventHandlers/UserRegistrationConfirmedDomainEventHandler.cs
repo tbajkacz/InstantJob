@@ -19,7 +19,7 @@ namespace InstantJob.Modules.Users.Application.Users.DomainEventHandlers
             CancellationToken cancellationToken)
         {
             await mediator.Send(new CreateUserCommand
-                {UserRegistrationId = notification.UserRegistrationId});
+                {UserRegistrationId = notification.UserRegistrationId}, cancellationToken);
         }
     }
 }
