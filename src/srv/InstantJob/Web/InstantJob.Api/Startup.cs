@@ -1,4 +1,6 @@
+using System;
 using InstantJob.BuildingBlocks.Application.DomainEvents;
+using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.BuildingBlocks.Infrastructure.Configuration;
 using InstantJob.BuildingBlocks.Infrastructure.DomainEvents;
 using InstantJob.Database.Persistence.Configuration;
@@ -50,8 +52,12 @@ namespace InstantJob.Web.Api
                 .AddExceptionHandlerFilter();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
+            using var scope = app.ApplicationServices.CreateScope();
+            var seeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
+            seeder.SeedAsync();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
