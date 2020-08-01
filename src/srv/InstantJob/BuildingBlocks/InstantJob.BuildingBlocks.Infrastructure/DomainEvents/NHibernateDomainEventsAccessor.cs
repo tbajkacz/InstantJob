@@ -41,7 +41,8 @@ namespace InstantJob.BuildingBlocks.Infrastructure.DomainEvents
                 var currentObject = sessionImplementor.PersistenceContext.GetEntity(entityEntry.EntityKey);
                 var currentState = entityEntry.Persister.GetPropertyValues(currentObject);
 
-                if (entityEntry.Persister.FindDirty(currentState, loadedState, currentObject, sessionImplementor) != null &&
+                if ((!entityEntry.ExistsInDatabase ||
+                     entityEntry.Persister.FindDirty(currentState, loadedState, currentObject, sessionImplementor) != null) &&
                     currentObject is BaseEntity entity)
                 {
                     modifiedEntities.Add(entity);
