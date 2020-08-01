@@ -22,7 +22,6 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Configuration
                 .AddValidatorsFromAssemblies(assemblies)
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
                 .AddScoped<IDomainEventsAccessor, NHibernateDomainEventsAccessor>()
-                .AddSingleton<IEventBus, InMemoryEventBus>()
                 .Scan(selector =>
                 {
                     selector.FromAssemblies(assemblies)
