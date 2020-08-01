@@ -10,8 +10,18 @@ namespace InstantJob.Modules.Jobs.Domain.Mandators
 
         public virtual string Surname { get; protected set; }
 
-        public virtual int? Age { get; protected set; }
-
         public virtual string Email { get; protected set; }
+
+        protected Mandator()
+        {
+        }
+
+        public Mandator(int userId, string name, string surname, string email)
+        {
+            UserId = userId;
+            Name = name;
+            Surname = surname;
+            Email = email;
+        }
     }
 }

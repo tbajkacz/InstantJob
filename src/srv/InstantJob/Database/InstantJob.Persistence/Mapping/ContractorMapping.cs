@@ -6,9 +6,9 @@ namespace InstantJob.Database.Persistence.Mapping
     {
         public ContractorMapping()
         {
+            Map(x => x.UserId);
             Map(x => x.Name);
             Map(x => x.Surname);
-            Map(x => x.Age);
             Map(x => x.Email);
         }
     }
