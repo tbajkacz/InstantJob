@@ -10,8 +10,18 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
     [TestFixture]
     public class ApplyForJobTests : BaseJobTest
     {
-        private Mandator mandator = new Mandator() { Id = NextId() };
-        private Contractor contractor2 = new Contractor() { Id = NextId() };
+        private Mandator mandator;
+        private Contractor contractor2;
+
+        [SetUp]
+        public void SetupApplyForJob()
+        {
+            mandator = new Mandator(0, "", "", "");
+            contractor2 = new Contractor(0, "", "", "");
+
+            mandator.Id = NextId();
+            contractor2.Id = NextId();
+        }
 
         [Test]
         public void ApplyForJob_NotPossible_IfJobWasCanceled()

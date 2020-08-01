@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using InstantJob.Modules.Jobs.Domain.Categories;
 using InstantJob.Modules.Jobs.Domain.Contractors;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
@@ -17,13 +16,19 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 
         protected Job job;
 
-        protected Mandator ownerMandator = new Mandator() { Id = NextId() };
-        protected Contractor contractor = new Contractor() { Id = NextId() };
+        protected Mandator ownerMandator;
+        protected Contractor contractor;
 
         [SetUp]
         public void Setup()
         {
             currentId = 0;
+
+            ownerMandator = new Mandator(0, "", "", "");
+            contractor = new Contractor(0, "", "", "");
+
+            ownerMandator.Id = NextId();
+            contractor.Id = NextId();
 
             job = new Job(
                 "",
