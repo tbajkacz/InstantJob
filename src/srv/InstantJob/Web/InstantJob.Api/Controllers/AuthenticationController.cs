@@ -34,6 +34,7 @@ namespace InstantJob.Web.Api.Controllers
         [AllowAnonymous]
         public async Task SignIn(FindUserByCredentialsQuery query)
         {
+            //TODO refactor into command
             var user = await mediator.Send(query);
 
             if (user == null)
@@ -46,7 +47,7 @@ namespace InstantJob.Web.Api.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.Name),
+                new Claim(ClaimTypes.Role, user.Role.Id.ToString()),
             };
 
             var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
