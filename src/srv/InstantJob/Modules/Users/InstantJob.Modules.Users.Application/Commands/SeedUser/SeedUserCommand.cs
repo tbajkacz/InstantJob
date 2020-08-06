@@ -1,4 +1,5 @@
-﻿using InstantJob.Modules.Users.Domain.Users;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Commands.SeedUser

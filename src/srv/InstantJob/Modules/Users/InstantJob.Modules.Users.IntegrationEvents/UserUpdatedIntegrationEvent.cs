@@ -2,7 +2,7 @@
 
 namespace InstantJob.Modules.Users.IntegrationEvents
 {
-    public class MandatorCreatedIntegrationEvent : IIntegrationEvent
+    public class UserUpdatedIntegrationEvent : IIntegrationEvent
     {
         public int UserId { get; set; }
 
@@ -10,14 +10,11 @@ namespace InstantJob.Modules.Users.IntegrationEvents
 
         public string Surname { get; set; }
 
-        public string Email { get; set; }
-
-        public MandatorCreatedIntegrationEvent(int userId, string name, string surname, string email)
+        public UserUpdatedIntegrationEvent(int userId, string name, string surname)
         {
             UserId = userId;
             Name = name;
             Surname = surname;
-            Email = email;
         }
     }
 }

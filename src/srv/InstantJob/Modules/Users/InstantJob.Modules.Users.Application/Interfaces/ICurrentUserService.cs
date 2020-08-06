@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using InstantJob.Modules.Users.Domain.Users;
+﻿using InstantJob.BuildingBlocks.Domain;
 
 namespace InstantJob.Modules.Users.Application.Interfaces
 {

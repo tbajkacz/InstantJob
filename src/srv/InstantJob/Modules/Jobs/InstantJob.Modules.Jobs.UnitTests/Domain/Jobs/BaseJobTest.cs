@@ -24,8 +24,8 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
         {
             currentId = 0;
 
-            ownerMandator = new Mandator(0, "", "", "");
-            contractor = new Contractor(0, "", "", "");
+            ownerMandator = new Mandator("", "", "");
+            contractor = new Contractor("", "", "");
 
             ownerMandator.Id = NextId();
             contractor.Id = NextId();

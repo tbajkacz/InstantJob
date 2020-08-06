@@ -1,6 +1,4 @@
-﻿using InstantJob.BuildingBlocks.Domain;
-
-namespace InstantJob.Modules.Users.Domain.Users
+﻿namespace InstantJob.BuildingBlocks.Domain
 {
     public class Role : Enumeration
     {

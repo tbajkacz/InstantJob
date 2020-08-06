@@ -1,8 +1,8 @@
-﻿using InstantJob.Database.Persistence.CustomTypes;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Database.Persistence.CustomTypes;
 using InstantJob.Modules.Users.Domain.UserRegistrations;
-using InstantJob.Modules.Users.Domain.Users;
 
-namespace InstantJob.Database.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping.UserModule
 {
     public class UserRegistrationMap : BaseEntityMap<UserRegistration, int>
     {

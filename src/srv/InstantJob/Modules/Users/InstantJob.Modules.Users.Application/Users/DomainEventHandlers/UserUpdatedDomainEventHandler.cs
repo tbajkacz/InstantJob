@@ -6,24 +6,22 @@ using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Users.DomainEventHandlers
 {
-    public class UserCreatedDomainEventHandler : INotificationHandler<UserCreatedDomainEvent>
+    public class UserUpdatedDomainEventHandler : INotificationHandler<UserUpdatedDomainEvent>
     {
         private readonly IMediator mediator;
 
-        public UserCreatedDomainEventHandler(IMediator mediator)
+        public UserUpdatedDomainEventHandler(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
-        public async Task Handle(UserCreatedDomainEvent notification,
+        public async Task Handle(UserUpdatedDomainEvent notification,
             CancellationToken cancellationToken)
         {
-            var integrationEvent = new UserCreatedIntegrationEvent(
+            var integrationEvent = new UserUpdatedIntegrationEvent(
                 notification.UserId,
                 notification.Name,
-                notification.Surname,
-                notification.Email,
-                notification.Role
+                notification.Surname
             );
 
             await mediator.Publish(integrationEvent, cancellationToken);

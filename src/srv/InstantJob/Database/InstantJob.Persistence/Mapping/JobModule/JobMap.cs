@@ -3,7 +3,7 @@ using InstantJob.Database.Persistence.CustomTypes;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Database.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
     internal class JobMap : BaseEntityMap<Job, Guid>
     {

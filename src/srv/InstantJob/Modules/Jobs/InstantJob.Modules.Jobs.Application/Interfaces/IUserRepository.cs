@@ -1,10 +1,9 @@
 ﻿using InstantJob.BuildingBlocks.Application.Interfaces;
-using InstantJob.Modules.Jobs.Domain.Contractors;
+using InstantJob.Modules.Jobs.Domain.Users;
 
 namespace InstantJob.Modules.Jobs.Application.Interfaces
 {
-    public interface IContractorRepository : IRepository<Contractor, int>
+    public interface IUserRepository : IRepository<JobUser, int>
     {
-        
     }
 }

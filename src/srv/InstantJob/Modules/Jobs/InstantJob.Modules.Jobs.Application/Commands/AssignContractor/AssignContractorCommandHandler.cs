@@ -1,41 +1,39 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using InstantJob.BuildingBlocks.Application.Exceptions;
 using InstantJob.Modules.Jobs.Application.Interfaces;
-using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Commands.AssignContractor
 {
     public class AssignContractorCommandHandler : IRequestHandler<AssignContractorCommand>
     {
-        private readonly IJobRepository jobRepository;
-        private readonly IContractorRepository contractorRepository;
-        private readonly IMandatorRepository mandatorRepository;
+        private readonly IJobRepository jobs;
+        private readonly IContractorRepository contractors;
+        private readonly IMandatorRepository mandators;
         private readonly ICurrentMandatorService currentMandator;
 
         public AssignContractorCommandHandler(
-            IJobRepository jobRepository,
-            IContractorRepository contractorRepository,
-            IMandatorRepository mandatorRepository,
+            IJobRepository jobs,
+            IContractorRepository contractors,
+            IMandatorRepository mandators,
             ICurrentMandatorService currentMandator)
         {
-            this.jobRepository = jobRepository;
-            this.contractorRepository = contractorRepository;
-            this.mandatorRepository = mandatorRepository;
+            this.jobs = jobs;
+            this.contractors = contractors;
+            this.mandators = mandators;
             this.currentMandator = currentMandator;
         }
 
         public async Task<Unit> Handle(AssignContractorCommand request, CancellationToken cancellationToken)
         {
-            var job = await jobRepository.GetByIdAsync(request.JobId);
+            var job = await jobs.GetByIdAsync(request.JobId);
 
-            var contractor = await contractorRepository.GetByIdAsync(request.ContractorId);
+            var contractor = await contractors.GetByIdAsync(request.ContractorId);
             var mandator =
-                await mandatorRepository.GetByIdAsync(currentMandator.Id);
+                await mandators.GetByIdAsync(currentMandator.Id);
 
             job.AssignContractor(contractor, mandator.Id);
-            await jobRepository.UpdateAsync(job);
+            await jobs.UpdateAsync(job);
 
             return Unit.Value;
         }

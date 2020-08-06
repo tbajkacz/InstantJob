@@ -3,10 +3,8 @@ using AutoMapper;
 using FluentValidation;
 using InstantJob.BuildingBlocks.Application.Automapper;
 using InstantJob.BuildingBlocks.Application.DomainEvents;
-using InstantJob.BuildingBlocks.Application.EventBus;
 using InstantJob.BuildingBlocks.Application.MediatR;
 using InstantJob.BuildingBlocks.Infrastructure.DomainEvents;
-using InstantJob.BuildingBlocks.Infrastructure.EventBus;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,12 +20,13 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Configuration
                 .AddValidatorsFromAssemblies(assemblies)
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
                 .AddScoped<IDomainEventsAccessor, NHibernateDomainEventsAccessor>()
-                .Scan(selector =>
-                {
-                    selector.FromAssemblies(assemblies)
-                        .AddClasses(filter => filter.AssignableTo(typeof(IIntegrationEventHandler<>)))
-                        .AsSelf()
-                        .WithTransientLifetime();
-                });
+                .Decorate(typeof(INotificationHandler<>), typeof(NotificationHandlerDomainEventsDispatcherDecorator<>));
+                //.Scan(selector =>
+                //{
+                //    selector.FromAssemblies(assemblies)
+                //        .AddClasses(filter => filter.AssignableTo(typeof(IIntegrationEventHandler<>)))
+                //        .AsSelf()
+                //        .WithTransientLifetime();
+                //});
     }
 }

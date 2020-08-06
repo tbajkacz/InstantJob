@@ -3,7 +3,8 @@ using InstantJob.Modules.Jobs.Domain.Mandators;
 
 namespace InstantJob.Modules.Jobs.Application.Interfaces
 {
-    public interface IMandatorRepository : IRepository<Mandator, int>
+    public interface IMandatorRepository: IRepository<Mandator, int>
     {
+        
     }
 }

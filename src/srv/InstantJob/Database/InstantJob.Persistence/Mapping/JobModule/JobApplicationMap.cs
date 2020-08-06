@@ -2,7 +2,7 @@
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
-namespace InstantJob.Database.Persistence.Mapping
+namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
     internal class JobApplicationMap : BaseEntityMap<JobApplication, int>
     {

@@ -42,6 +42,8 @@ namespace InstantJob.Modules.Users.Domain.Users
             Surname = surname;
             Age = age;
             Picture = picture;
+
+            this.AddDomainEvent(new UserUpdatedDomainEvent(Id, Name, Surname, Age, Picture, Role));
         }
 
         public virtual void UpdatePassword(string passwordHash)

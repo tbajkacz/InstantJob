@@ -1,8 +1,9 @@
 ﻿using InstantJob.BuildingBlocks.Application.EventBus;
+using InstantJob.BuildingBlocks.Domain;
 
 namespace InstantJob.Modules.Users.IntegrationEvents
 {
-    public class ContractorCreatedIntegrationEvent : IIntegrationEvent
+    public class UserCreatedIntegrationEvent : IIntegrationEvent
     {
         public int UserId { get; set; }
 
@@ -12,12 +13,15 @@ namespace InstantJob.Modules.Users.IntegrationEvents
 
         public string Email { get; set; }
 
-        public ContractorCreatedIntegrationEvent(int userId, string name, string surname, string email)
+        public Role Role { get; set; }
+
+        public UserCreatedIntegrationEvent(int userId, string name, string surname, string email, Role role)
         {
             UserId = userId;
             Name = name;
             Surname = surname;
             Email = email;
+            Role = role;
         }
     }
 }

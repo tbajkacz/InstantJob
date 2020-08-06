@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Interfaces;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Commands.SeedUser;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command;
-using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Infrastructure.Data

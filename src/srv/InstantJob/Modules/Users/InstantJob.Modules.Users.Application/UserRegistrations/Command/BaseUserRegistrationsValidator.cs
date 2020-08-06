@@ -3,7 +3,6 @@ using System.Linq.Expressions;
 using FluentValidation;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Commands;
-using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Application.UserRegistrations.Command
 {
@@ -12,7 +11,7 @@ namespace InstantJob.Modules.Users.Application.UserRegistrations.Command
         protected override void RuleForRoles(Expression<Func<T, int>> expression)
         {
             RuleFor(expression)
-                .Must(x => Enumeration.FromInt<Role>(x) != Role.Administrator);
+                .Must(x => Enumeration.ContainsId<Role>(x) && Enumeration.FromInt<Role>(x) != Role.Administrator);
             base.RuleForRoles(expression);
         }
     }

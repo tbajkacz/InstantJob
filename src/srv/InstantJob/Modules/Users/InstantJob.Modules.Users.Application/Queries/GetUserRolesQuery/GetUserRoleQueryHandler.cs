@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Interfaces;
-using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Queries.GetUserRolesQuery

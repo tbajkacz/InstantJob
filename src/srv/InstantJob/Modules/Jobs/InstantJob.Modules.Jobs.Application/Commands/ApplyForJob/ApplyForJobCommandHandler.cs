@@ -7,28 +7,28 @@ namespace InstantJob.Modules.Jobs.Application.Commands.ApplyForJob
 {
     public class ApplyForJobCommandHandler : IRequestHandler<ApplyForJobCommand>
     {
-        private readonly IJobRepository jobRepository;
-        private readonly IContractorRepository contractorRepository;
+        private readonly IJobRepository jobs;
+        private readonly IContractorRepository contractors;
         private readonly ICurrentContractorService currentContractor;
 
         public ApplyForJobCommandHandler(
-            IJobRepository jobRepository,
-            IContractorRepository contractorRepository,
+            IJobRepository jobs,
+            IContractorRepository contractors,
             ICurrentContractorService currentContractor)
         {
-            this.jobRepository = jobRepository;
-            this.contractorRepository = contractorRepository;
+            this.jobs = jobs;
+            this.contractors = contractors;
             this.currentContractor = currentContractor;
         }
 
         public async Task<Unit> Handle(ApplyForJobCommand request, CancellationToken cancellationToken)
         {
-            var contractor = await contractorRepository.GetByIdAsync(currentContractor.Id);
-            var job = await jobRepository.GetByIdAsync(request.JobId);
+            var contractor = await contractors.GetByIdAsync(currentContractor.Id);
+            var job = await jobs.GetByIdAsync(request.JobId);
 
             job.ApplyForJob(contractor);
 
-            await jobRepository.UpdateAsync(job);
+            await jobs.UpdateAsync(job);
             return Unit.Value;
         }
     }

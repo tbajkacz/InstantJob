@@ -16,8 +16,8 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
         [SetUp]
         public void SetupApplyForJob()
         {
-            mandator = new Mandator(0, "", "", "");
-            contractor2 = new Contractor(0, "", "", "");
+            mandator = new Mandator("", "", "");
+            contractor2 = new Contractor("", "", "");
 
             mandator.Id = NextId();
             contractor2.Id = NextId();

@@ -63,6 +63,9 @@ namespace InstantJob.BuildingBlocks.Domain
         public static explicit operator int(Enumeration enumeration)
             => enumeration.Id;
 
+        public static bool ContainsId<T>(int id) where T : Enumeration
+            => GetAll<T>().Any(e => e.Id == id);
+
         public static T FromInt<T>(int id) where T : Enumeration
             => GetAll<T>().Single(e => e.Id == id);
     }
