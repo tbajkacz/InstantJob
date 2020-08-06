@@ -1,6 +1,5 @@
 ﻿using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Domain.UserRegistrations.Events;
-using InstantJob.Modules.Users.Domain.Users;
 
 namespace InstantJob.Modules.Users.Domain.UserRegistrations
 {
@@ -23,9 +22,9 @@ namespace InstantJob.Modules.Users.Domain.UserRegistrations
             
         }
 
-        public UserRegistration(int id, string name, string surname, string email, string passwordHash, Role role)
+        //Registration ids are currently auto generated, may change in the future
+        public UserRegistration(string name, string surname, string email, string passwordHash, Role role)
         {
-            Id = id;
             Name = name;
             Surname = surname;
             Email = email;

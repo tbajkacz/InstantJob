@@ -3,6 +3,7 @@ using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.BuildingBlocks.Infrastructure.Configuration;
 using InstantJob.BuildingBlocks.Infrastructure.DomainEvents;
+using InstantJob.BuildingBlocks.Infrastructure.Seeding;
 using InstantJob.Database.Persistence.Configuration;
 using InstantJob.Modules.Jobs.Application.Commands.AddCategory;
 using InstantJob.Modules.Jobs.Application.Interfaces;
@@ -50,14 +51,12 @@ namespace InstantJob.Web.Api
 
             services.AddControllers()
                 .AddExceptionHandlerFilter();
+
+            services.AddHostedService<SeedingService>();
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            using var scope = app.ApplicationServices.CreateScope();
-            var seeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
-            seeder.SeedAsync().GetAwaiter().GetResult();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

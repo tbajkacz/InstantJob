@@ -21,7 +21,6 @@ namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.Registe
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var registration = new UserRegistration(
-                await registrations.NextIdAsync(),
                 request.Name,
                 request.Surname, request.Email,
                 hashService.Hash(request.Password), Enumeration.FromInt<Role>(request.RoleId));

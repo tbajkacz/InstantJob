@@ -20,7 +20,6 @@ namespace InstantJob.Modules.Users.Application.Commands.SeedUser
         public async Task<Unit> Handle(SeedUserCommand request, CancellationToken cancellationToken)
         {
             var registration = new UserRegistration(
-                await registrations.NextIdAsync(),
                 request.Name,
                 request.Surname, request.Email,
                 hashService.Hash(request.Password), request.Role);

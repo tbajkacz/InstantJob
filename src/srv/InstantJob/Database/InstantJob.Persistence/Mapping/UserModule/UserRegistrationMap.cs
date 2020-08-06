@@ -8,6 +8,8 @@ namespace InstantJob.Database.Persistence.Mapping.UserModule
     {
         public UserRegistrationMap()
         {
+            Id(x => x.Id)
+                .GeneratedBy.Increment();
             Map(x => x.Name)
                 .Not.Nullable();
             Map(x => x.Surname)
