@@ -4,8 +4,8 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Exceptions;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Queries.GetUserRolesQuery;
-using InstantJob.Modules.Users.Domain.Users;
 using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
@@ -30,20 +30,19 @@ namespace InstantJob.Web.Api.Extensions
                             var mediator = context.HttpContext.RequestServices.GetRequiredService<IMediator>();
                             try
                             {
-                                var role =
-                                    await mediator.Send(
-                                        new GetUserRoleQuery{ Id = GetId(context.Principal) });
+                                Role role = await mediator.Send(new GetUserRoleQuery { Id = GetId(context.Principal) });
+
                                 var incomingRole = context.Principal.Claims
                                     ?.SingleOrDefault(c =>
                                         c.Type == ClaimTypes.Role)?.Value;
 
-                                if (incomingRole != role.Name)
+                                if (incomingRole != role.Id.ToString())
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();
                                 }
                             }
-                            catch (Exception e) when (e is EntityNotFoundException || e is InvalidUserSessionException)
+                            catch (Exception e) when (e is EntityNotFoundException || e is InvalidUserSessionException || e is ValidationFailedException)
                             {
                                 context.RejectPrincipal();
                             }
