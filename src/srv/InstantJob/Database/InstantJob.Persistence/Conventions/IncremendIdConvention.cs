@@ -4,6 +4,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace InstantJob.Database.Persistence.Conventions
 {
+    [Obsolete("Unused, ids are currently assigned manually")]
     public class IncrementIdConvention : IIdConvention
     {
         public void Apply(IIdentityInstance instance)

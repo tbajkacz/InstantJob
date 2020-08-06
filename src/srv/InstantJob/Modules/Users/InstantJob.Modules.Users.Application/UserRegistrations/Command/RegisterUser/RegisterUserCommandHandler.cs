@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Interfaces;
 using InstantJob.Modules.Users.Domain.UserRegistrations;
-using InstantJob.Modules.Users.Domain.Users;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser
@@ -11,21 +10,23 @@ namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.Registe
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
         private readonly IHashService hashService;
-        private readonly IUserRegistrationRepository userRegistrations;
+        private readonly IUserRegistrationRepository registrations;
 
-        public RegisterUserCommandHandler(IHashService hashService, IUserRegistrationRepository userRegistrations)
+        public RegisterUserCommandHandler(IHashService hashService, IUserRegistrationRepository registrations)
         {
             this.hashService = hashService;
-            this.userRegistrations = userRegistrations;
+            this.registrations = registrations;
         }
 
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var registration = new UserRegistration(request.Name,
+            var registration = new UserRegistration(
+                await registrations.NextIdAsync(),
+                request.Name,
                 request.Surname, request.Email,
                 hashService.Hash(request.Password), Enumeration.FromInt<Role>(request.RoleId));
 
-            await userRegistrations.AddAsync(registration);
+            await registrations.AddAsync(registration);
 
             return registration.Id;
         }

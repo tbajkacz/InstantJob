@@ -23,8 +23,9 @@ namespace InstantJob.Modules.Users.Domain.UserRegistrations
             
         }
 
-        public UserRegistration(string name, string surname, string email, string passwordHash, Role role)
+        public UserRegistration(int id, string name, string surname, string email, string passwordHash, Role role)
         {
+            Id = id;
             Name = name;
             Surname = surname;
             Email = email;

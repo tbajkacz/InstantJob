@@ -18,7 +18,6 @@ namespace InstantJob.Database.Persistence.Configuration
                 .Database(SQLiteConfiguration.Standard.UsingFile(connectionString)
                                                       .IsolationLevel(IsolationLevel.ReadCommitted))
                 .Mappings(x => x.FluentMappings.AddFromAssembly(typeof(AddPersistenceExtension).Assembly)
-                                .Conventions.Add<IncrementIdConvention>()
                                 .Conventions.Add<InstantJobTableNameConvention>())
                 .ExposeConfiguration(x =>
                     new SchemaUpdate(x).Execute(false, true))

@@ -56,7 +56,7 @@ namespace InstantJob.Web.Api
         {
             using var scope = app.ApplicationServices.CreateScope();
             var seeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
-            seeder.SeedAsync();
+            seeder.SeedAsync().GetAwaiter().GetResult();
 
             if (env.IsDevelopment())
             {
