@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Contractors;
 using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
 using InstantJob.Modules.Jobs.Domain.Mandators;
+using InstantJob.Modules.Jobs.Domain.Users;
 using NUnit.Framework;
 
 namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
@@ -10,17 +12,14 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
     [TestFixture]
     public class ApplyForJobTests : BaseJobTest
     {
-        private Mandator mandator;
         private Contractor contractor2;
 
         [SetUp]
         public void SetupApplyForJob()
         {
-            mandator = new Mandator("", "", "");
-            contractor2 = new Contractor("", "", "");
+            var contractor2Id = NextId();
 
-            mandator.Id = NextId();
-            contractor2.Id = NextId();
+            contractor2 = new Contractor(contractor2Id, new JobUser(contractor2Id, "", "", "", Role.Mandator));
         }
 
         [Test]
