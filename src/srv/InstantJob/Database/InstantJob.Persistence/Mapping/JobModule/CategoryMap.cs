@@ -1,9 +1,10 @@
 ﻿
+using System;
 using InstantJob.Modules.Jobs.Domain.Categories;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
-    internal class CategoryMap : BaseEntityMap<Category, int>
+    internal class CategoryMap : BaseEntityMap<Category, Guid>
     {
         public CategoryMap()
         {

@@ -1,8 +1,9 @@
-﻿using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
+﻿using System;
+using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
-    public class CompletionInfoMap : BaseEntityMap<CompletionInfo, int>
+    public class CompletionInfoMap : BaseEntityMap<CompletionInfo, Guid>
     {
         public CompletionInfoMap()
         {

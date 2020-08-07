@@ -15,7 +15,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
         {
         }
 
-        public IEnumerable<Job> Get(int? categoryId, int? skip, int? count)
+        public IEnumerable<Job> Get(Guid? categoryId, int? skip, int? count)
         {
             var query = session.Query<Job>();
             if (categoryId != null)

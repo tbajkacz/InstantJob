@@ -15,6 +15,6 @@ namespace InstantJob.Modules.Jobs.Application.Commands.PostJob
 
         public int DifficultyId { get; set; }
 
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }

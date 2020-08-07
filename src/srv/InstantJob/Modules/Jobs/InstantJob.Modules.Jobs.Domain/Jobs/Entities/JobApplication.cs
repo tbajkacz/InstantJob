@@ -5,7 +5,7 @@ using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 
 namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 {
-    public class JobApplication : BaseEntity<int>
+    public class JobApplication : BaseEntity<Guid>
     {
         public virtual Contractor Contractor { get; protected set; }
 
@@ -17,15 +17,16 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
         {
         }
 
-        public JobApplication(Contractor contractor, DateTime applicationDate, ApplicationStatus status)
+        public JobApplication(Guid id, Contractor contractor, DateTime applicationDate, ApplicationStatus status)
         {
+            Id = id;
             Contractor = contractor;
             ApplicationDate = applicationDate;
             Status = status;
         }
 
         public JobApplication(Contractor contractor)
-            : this(contractor, DateTime.UtcNow, ApplicationStatus.Active)
+            : this(Guid.NewGuid(), contractor, DateTime.UtcNow, ApplicationStatus.Active)
         {
         }
 

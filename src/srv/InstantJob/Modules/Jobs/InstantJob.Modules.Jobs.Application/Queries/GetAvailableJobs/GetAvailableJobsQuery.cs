@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Queries.GetAvailableJobs
 {
     public class GetAvailableJobsQuery : IRequest<IEnumerable<JobOverviewDto>>
     {
-        public int? CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
 
         public int? Skip { get; set; }
 

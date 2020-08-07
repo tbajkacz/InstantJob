@@ -7,6 +7,6 @@ namespace InstantJob.Modules.Jobs.Application.Interfaces
 {
     public interface IJobRepository : IRepository<Job, Guid>
     {
-        IEnumerable<Job> Get(int? categoryId, int? skip, int? count);
+        IEnumerable<Job> Get(Guid? categoryId, int? skip, int? count);
     }
 }

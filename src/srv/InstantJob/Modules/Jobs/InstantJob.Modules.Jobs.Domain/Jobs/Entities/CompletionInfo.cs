@@ -3,7 +3,7 @@ using InstantJob.BuildingBlocks.Domain;
 
 namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 {
-    public class CompletionInfo : BaseEntity<int>
+    public class CompletionInfo : BaseEntity<Guid>
     {
         public virtual DateTime? CompletionDate { get; set; }
 
@@ -12,12 +12,16 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
         public virtual int? Rating { get; protected set; }
 
         public CompletionInfo() 
-            : this(DateTime.UtcNow, null, null)
+            : this(Guid.NewGuid(), DateTime.UtcNow, null, null)
         {
         }
 
-        public CompletionInfo(DateTime completionDate, string comment, int? rating)
+        public CompletionInfo(Guid id, DateTime completionDate, string comment, int? rating)
         {
+            Id = id;
+            CompletionDate = completionDate;
+            Comment = comment;
+            Rating = rating;
         }
     }
 }
