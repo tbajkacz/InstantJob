@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -69,9 +70,9 @@ namespace InstantJob.Web.Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<CreateResponse<int>> Register(RegisterUserCommand command)
+        public async Task<CreateResponse<Guid>> Register(RegisterUserCommand command)
         {
-            return new CreateResponse<int>(await mediator.Send(command));
+            return new CreateResponse<Guid>(await mediator.Send(command));
         }
 
         [HttpPost]

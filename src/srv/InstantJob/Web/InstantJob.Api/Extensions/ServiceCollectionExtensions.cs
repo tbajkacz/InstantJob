@@ -60,9 +60,9 @@ namespace InstantJob.Web.Api.Extensions
                     };
                 });
 
-        private static int GetId(ClaimsPrincipal principal)
+        private static Guid GetId(ClaimsPrincipal principal)
         {
-            if (!int.TryParse(principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value, out int id))
+            if (!Guid.TryParse(principal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value, out Guid id))
             {
                 throw new InvalidUserSessionException();
             }

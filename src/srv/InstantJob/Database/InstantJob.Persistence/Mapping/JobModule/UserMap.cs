@@ -1,8 +1,9 @@
-﻿using InstantJob.Modules.Jobs.Domain.Users;
+﻿using System;
+using InstantJob.Modules.Jobs.Domain.Users;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
-    internal class UserMap : BaseEntityMap<JobUser, int>
+    internal class UserMap : BaseEntityMap<JobUser, Guid>
     {
         public UserMap()
         {

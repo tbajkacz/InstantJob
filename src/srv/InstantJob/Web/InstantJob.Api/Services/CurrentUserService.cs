@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using InstantJob.BuildingBlocks.Domain;
@@ -10,7 +11,7 @@ namespace InstantJob.Web.Api.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
-        public int UserId { get; }
+        public Guid UserId { get; }
 
         public Role Role { get; }
 
@@ -18,7 +19,7 @@ namespace InstantJob.Web.Api.Services
 
         public CurrentUserService(IHttpContextAccessor accessor)
         {
-            if (int.TryParse(FindClaim(accessor, ClaimTypes.NameIdentifier), out int id) &&
+            if (Guid.TryParse(FindClaim(accessor, ClaimTypes.NameIdentifier), out Guid id) &&
                 int.TryParse(FindClaim(accessor, ClaimTypes.Role), out int roleId))
             {
                 UserId = id;

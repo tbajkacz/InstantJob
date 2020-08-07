@@ -1,10 +1,11 @@
-﻿using InstantJob.BuildingBlocks.Domain;
+﻿using System;
+using InstantJob.BuildingBlocks.Domain;
 
 namespace InstantJob.Modules.Users.Domain.Users.Events
 {
     public class UserUpdatedDomainEvent : IDomainEvent
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public string Name { get; set; }
 
@@ -16,7 +17,7 @@ namespace InstantJob.Modules.Users.Domain.Users.Events
 
         public Role Role { get; set; }
 
-        public UserUpdatedDomainEvent(int userId, string name, string surname, int? age, string picture, Role role)
+        public UserUpdatedDomainEvent(Guid userId, string name, string surname, int? age, string picture, Role role)
         {
             UserId = userId;
             Name = name;

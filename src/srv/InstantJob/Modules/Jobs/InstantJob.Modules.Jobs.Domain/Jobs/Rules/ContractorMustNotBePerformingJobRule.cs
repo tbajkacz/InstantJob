@@ -1,4 +1,5 @@
-﻿using InstantJob.BuildingBlocks.Domain;
+﻿using System;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
 namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
@@ -6,9 +7,9 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Rules
     public class ContractorMustNotBePerformingJobRule : IDomainRule
     {
         private readonly Job job;
-        private readonly int contractorId;
+        private readonly Guid contractorId;
 
-        public ContractorMustNotBePerformingJobRule(Job job, int contractorId)
+        public ContractorMustNotBePerformingJobRule(Job job, Guid contractorId)
         {
             this.job = job;
             this.contractorId = contractorId;

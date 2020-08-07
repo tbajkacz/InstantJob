@@ -1,10 +1,11 @@
-﻿using InstantJob.BuildingBlocks.Domain;
+﻿using System;
+using InstantJob.BuildingBlocks.Domain;
 
 namespace InstantJob.Modules.Users.Application.Interfaces
 {
     public interface ICurrentUserService
     {
-        int UserId { get; }
+        Guid UserId { get; }
 
         Role Role { get; }
 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
 using InstantJob.Modules.Users.Application.Interfaces;
 using InstantJob.Modules.Users.Domain.Users;
@@ -7,7 +8,7 @@ using NHibernate.Linq;
 
 namespace InstantJob.Modules.Users.Infrastructure.Data
 {
-    public class NHibernateUserRepository : NHibernateRepositoryBase<User, int>, IUserRepository
+    public class NHibernateUserRepository : NHibernateRepositoryBase<User, Guid>, IUserRepository
     {
         public NHibernateUserRepository(ISession session)
             : base(session)

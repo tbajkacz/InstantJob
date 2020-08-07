@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Interfaces;
@@ -7,7 +8,7 @@ using MediatR;
 
 namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>
     {
         private readonly IHashService hashService;
         private readonly IUserRegistrationRepository registrations;
@@ -18,9 +19,10 @@ namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.Registe
             this.registrations = registrations;
         }
 
-        public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var registration = new UserRegistration(
+                Guid.NewGuid(),
                 request.Name,
                 request.Surname, request.Email,
                 hashService.Hash(request.Password), Enumeration.FromInt<Role>(request.RoleId));

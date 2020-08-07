@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Contractors;
@@ -17,7 +18,7 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
         [SetUp]
         public void SetupApplyForJob()
         {
-            var contractor2Id = NextId();
+            var contractor2Id = Guid.NewGuid();
 
             contractor2 = new Contractor(contractor2Id, new JobUser(contractor2Id, "", "", "", Role.Mandator));
         }

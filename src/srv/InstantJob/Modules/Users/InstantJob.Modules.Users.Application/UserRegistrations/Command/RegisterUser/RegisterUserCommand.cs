@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser
 {
-    public class RegisterUserCommand : IRequest<int>
+    public class RegisterUserCommand : IRequest<Guid>
     {
         public string Name { get; set; }
 

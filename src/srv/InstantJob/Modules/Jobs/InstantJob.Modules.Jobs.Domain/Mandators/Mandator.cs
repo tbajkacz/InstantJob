@@ -1,9 +1,10 @@
-﻿using InstantJob.BuildingBlocks.Domain;
+﻿using System;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Users;
 
 namespace InstantJob.Modules.Jobs.Domain.Mandators
 {
-    public class Mandator : BaseEntity<int>
+    public class Mandator : BaseEntity<Guid>
     {
         public virtual JobUser JobUser { get; protected set; }
 
@@ -11,7 +12,7 @@ namespace InstantJob.Modules.Jobs.Domain.Mandators
         {
         }
 
-        public Mandator(int id, JobUser user)
+        public Mandator(Guid id, JobUser user)
         {
             Id = id;
             JobUser = user;

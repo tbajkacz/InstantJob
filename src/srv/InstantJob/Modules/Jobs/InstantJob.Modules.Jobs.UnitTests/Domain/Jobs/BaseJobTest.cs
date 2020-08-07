@@ -12,10 +12,6 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
 {
     public abstract class BaseJobTest : BaseDomainTest
     {
-        private static int currentId = 0;
-
-        protected static int NextId() => ++currentId;
-
         protected Job job;
 
         protected Mandator ownerMandator;
@@ -24,15 +20,14 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
         [SetUp]
         public void Setup()
         {
-            currentId = 0;
-
-            var ownerMandatorId = NextId();
-            var contractorId = NextId();
+            var ownerMandatorId = Guid.NewGuid();
+            var contractorId = Guid.NewGuid();
 
             ownerMandator = new Mandator(ownerMandatorId, new JobUser(ownerMandatorId, "", "", "", Role.Mandator));
             contractor = new Contractor(contractorId, new JobUser(contractorId, "", "", "", Role.Mandator));
 
             job = new Job(
+                Guid.NewGuid(),
                 "",
                 "",
                 0,

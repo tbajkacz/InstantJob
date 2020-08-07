@@ -46,6 +46,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
         }
 
         public Job(
+            Guid id,
             string title,
             string description,
             decimal price,
@@ -54,6 +55,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Category category,
             Mandator mandator)
         {
+            Id = id;
             Title = title;
             Description = description;
             Price = price;
@@ -74,7 +76,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             applications.Add(new JobApplication(contractor));
         }
 
-        public virtual void WithdrawJobApplication(int contractorId)
+        public virtual void WithdrawJobApplication(Guid contractorId)
         {
             CheckRule(new ContractorMustHaveActiveApplicationRule(this, contractorId));
             CheckRule(new ContractorMustNotBePerformingJobRule(this, contractorId));
@@ -85,7 +87,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
                 .WithdrawApplication();
         }
 
-        public virtual void CompleteJob(int mandatorId)
+        public virtual void CompleteJob(Guid mandatorId)
         {
             CheckRule(new JobIsInProgressRule(Status));
 
@@ -94,7 +96,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Status = JobStatus.Completed;
         }
 
-        public virtual void AssignContractor(Contractor contractor, int mandatorId)
+        public virtual void AssignContractor(Contractor contractor, Guid mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -105,7 +107,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Status = JobStatus.Assigned;
         }
 
-        public virtual void CancelJobAssignment(int mandatorId)
+        public virtual void CancelJobAssignment(Guid mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -116,7 +118,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Status = JobStatus.Available;
         }
 
-        public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty, int mandatorId)
+        public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty, Guid mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -130,7 +132,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Difficulty = difficulty;
         }
 
-        public virtual void CancelJobOffer(int mandatorId)
+        public virtual void CancelJobOffer(Guid mandatorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -139,7 +141,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Status = JobStatus.Canceled;
         }
 
-        public virtual void AcceptJobAssignment(int contractorId)
+        public virtual void AcceptJobAssignment(Guid contractorId)
         {
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
@@ -149,27 +151,27 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
             Status = JobStatus.InProgress;
         }
 
-        public virtual bool IsOwnedBy(int mandatorId)
+        public virtual bool IsOwnedBy(Guid mandatorId)
         {
             return mandatorId == Mandator.Id;
         }
 
-        public virtual bool IsAssignedTo(int contractorId)
+        public virtual bool IsAssignedTo(Guid contractorId)
         {
             return Status.IsAssigned && contractorId == Contractor?.Id;
         }
 
-        public virtual bool IsPerformedBy(int contractorId)
+        public virtual bool IsPerformedBy(Guid contractorId)
         {
             return Status.IsInProgress && contractorId == Contractor?.Id;
         }
 
-        public virtual bool IsCompletedBy(int contractorId)
+        public virtual bool IsCompletedBy(Guid contractorId)
         {
             return Status.IsCompleted && contractorId == Contractor?.Id;
         }
 
-        public virtual bool HasActiveApplication(int contractorId)
+        public virtual bool HasActiveApplication(Guid contractorId)
         {
             return Applications.Any(x => x.Contractor.Id == contractorId && x.Status.IsActive);
         }

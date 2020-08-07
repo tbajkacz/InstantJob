@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Interfaces;
 using InstantJob.Modules.Users.Domain.UserRegistrations;
@@ -20,6 +21,7 @@ namespace InstantJob.Modules.Users.Application.Commands.SeedUser
         public async Task<Unit> Handle(SeedUserCommand request, CancellationToken cancellationToken)
         {
             var registration = new UserRegistration(
+                Guid.NewGuid(),
                 request.Name,
                 request.Surname, request.Email,
                 hashService.Hash(request.Password), request.Role);

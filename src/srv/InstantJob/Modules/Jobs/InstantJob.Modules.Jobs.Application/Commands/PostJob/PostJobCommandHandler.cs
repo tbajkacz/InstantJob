@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Application.Interfaces;
@@ -31,6 +32,7 @@ namespace InstantJob.Modules.Jobs.Application.Commands.PostJob
         {
             await jobRepository.AddAsync(
                 new Job(
+                    Guid.NewGuid(),
                     request.Title,
                     request.Description,
                     request.Price,

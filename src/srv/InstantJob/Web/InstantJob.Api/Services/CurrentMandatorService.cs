@@ -1,4 +1,5 @@
-﻿using InstantJob.Modules.Jobs.Application.Interfaces;
+﻿using System;
+using InstantJob.Modules.Jobs.Application.Interfaces;
 using InstantJob.Modules.Users.Application.Interfaces;
 
 namespace InstantJob.Web.Api.Services
@@ -12,6 +13,6 @@ namespace InstantJob.Web.Api.Services
             this.currentUser = currentUser;
         }
 
-        public int Id => currentUser.UserId;
+        public Guid Id => currentUser.UserId;
     }
 }

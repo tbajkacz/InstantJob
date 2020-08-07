@@ -1,9 +1,10 @@
-﻿using InstantJob.BuildingBlocks.Domain;
+﻿using System;
+using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Users.Events;
 
 namespace InstantJob.Modules.Jobs.Domain.Users
 {
-    public class JobUser : BaseEntity<int>
+    public class JobUser : BaseEntity<Guid>
     {
         public virtual string Name { get; protected set; }
 
@@ -17,7 +18,7 @@ namespace InstantJob.Modules.Jobs.Domain.Users
         {
         }
 
-        public JobUser(int id, string name, string surname, string email, Role role)
+        public JobUser(Guid id, string name, string surname, string email, Role role)
         {
             Id = id;
             Name = name;

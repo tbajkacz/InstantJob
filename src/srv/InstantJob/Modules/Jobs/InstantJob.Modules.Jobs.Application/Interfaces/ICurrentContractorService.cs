@@ -1,7 +1,9 @@
-﻿namespace InstantJob.Modules.Jobs.Application.Interfaces
+﻿using System;
+
+namespace InstantJob.Modules.Jobs.Application.Interfaces
 {
     public interface ICurrentContractorService
     {
-        public int Id { get; }
+        public Guid Id { get; }
     }
 }
