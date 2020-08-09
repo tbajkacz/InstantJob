@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Jobs.Application.Interfaces;
 using InstantJob.Modules.Jobs.Domain.Categories;
@@ -17,7 +18,7 @@ namespace InstantJob.Modules.Jobs.Application.Commands.AddCategory
 
         public async Task<Unit> Handle(AddCategoryCommand request, CancellationToken cancellationToken)
         {
-            await categoryRepository.AddAsync(new Category(request.Name, request.Description));
+            await categoryRepository.AddAsync(new Category(Guid.NewGuid(), request.Name, request.Description));
             return Unit.Value;
         }
     }

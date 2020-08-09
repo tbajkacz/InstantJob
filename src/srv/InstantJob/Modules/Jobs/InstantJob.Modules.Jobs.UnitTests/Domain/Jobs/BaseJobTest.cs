@@ -33,7 +33,7 @@ namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs
                 0,
                 DateTime.UtcNow,
                 Difficulty.Beginner,
-                new Category("", ""),
+                new Category(Guid.NewGuid(), "", ""),
                 ownerMandator);
         }
 

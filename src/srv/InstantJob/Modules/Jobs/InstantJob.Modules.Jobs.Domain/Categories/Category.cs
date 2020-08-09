@@ -19,8 +19,9 @@ namespace InstantJob.Modules.Jobs.Domain.Categories
 
         }
 
-        public Category(string name, string description)
+        public Category(Guid id, string name, string description)
         {
+            Id = id;
             Name = name;
             Description = description;
         }
