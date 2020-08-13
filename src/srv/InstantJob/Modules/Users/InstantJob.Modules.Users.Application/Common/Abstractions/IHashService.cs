@@ -1,4 +1,4 @@
-﻿namespace InstantJob.Modules.Users.Application.UserRegistrations.Abstractions
+﻿namespace InstantJob.Modules.Users.Application.Common.Abstractions
 {
     public interface IHashService
     {
