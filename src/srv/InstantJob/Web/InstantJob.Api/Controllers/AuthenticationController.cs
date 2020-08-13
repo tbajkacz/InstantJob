@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command;
 using InstantJob.Modules.Users.Application.UserRegistrations.Command.ConfirmRegistration;
 using InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser;
 using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;

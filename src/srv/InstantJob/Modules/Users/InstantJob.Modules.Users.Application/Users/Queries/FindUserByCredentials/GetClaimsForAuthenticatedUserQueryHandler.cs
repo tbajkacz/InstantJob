@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Common.Abstractions;
-using InstantJob.Modules.Users.Application.UserRegistrations.Abstractions;
 using InstantJob.Modules.Users.Application.Users.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
