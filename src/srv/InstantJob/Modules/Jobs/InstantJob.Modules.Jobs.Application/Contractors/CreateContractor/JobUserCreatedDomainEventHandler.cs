@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
 using InstantJob.Modules.Jobs.Domain.Contractors;
-using InstantJob.Modules.Jobs.Domain.Users.Events;
+using InstantJob.Modules.Jobs.Domain.JobUsers.Events;
 using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Contractors.CreateContractor

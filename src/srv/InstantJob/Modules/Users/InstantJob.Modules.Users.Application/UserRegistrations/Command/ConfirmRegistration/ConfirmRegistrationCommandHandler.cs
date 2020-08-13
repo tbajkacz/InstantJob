@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Application.UserRegistrations.Abstractions;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.ConfirmRegistration

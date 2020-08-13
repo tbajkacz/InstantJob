@@ -1,6 +1,6 @@
 ﻿using System;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Jobs.Domain.Users;
+using InstantJob.Modules.Jobs.Domain.JobUsers;
 
 namespace InstantJob.Modules.Jobs.Domain.Contractors
 {

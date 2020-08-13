@@ -1,5 +1,5 @@
 ﻿using System;
-using InstantJob.Modules.Jobs.Domain.Users;
+using InstantJob.Modules.Jobs.Domain.JobUsers;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {

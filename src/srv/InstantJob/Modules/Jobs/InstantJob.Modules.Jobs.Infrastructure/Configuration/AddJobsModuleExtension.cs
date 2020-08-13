@@ -1,4 +1,8 @@
-﻿using InstantJob.Modules.Jobs.Application.Interfaces;
+﻿using InstantJob.Modules.Jobs.Application.Categories.Abstractions;
+using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
+using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
+using InstantJob.Modules.Jobs.Application.JobUsers.Abstractions;
+using InstantJob.Modules.Jobs.Application.Mandators.Abstractions;
 using InstantJob.Modules.Jobs.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
 

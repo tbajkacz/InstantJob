@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
 using InstantJob.Modules.Users.Domain.Users;
 using Microsoft.AspNetCore.Http;
 

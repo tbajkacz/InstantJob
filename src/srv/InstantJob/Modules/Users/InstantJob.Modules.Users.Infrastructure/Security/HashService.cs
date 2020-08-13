@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Application.UserRegistrations.Abstractions;
 using Microsoft.Extensions.Options;
 
 namespace InstantJob.Modules.Users.Infrastructure.Security

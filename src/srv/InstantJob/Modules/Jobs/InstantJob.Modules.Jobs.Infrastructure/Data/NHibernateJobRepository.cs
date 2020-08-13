@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
-using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 using NHibernate;
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using InstantJob.Modules.Jobs.Application.Interfaces;
-using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
+using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
 
 namespace InstantJob.Web.Api.Services
 {

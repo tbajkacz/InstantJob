@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using InstantJob.Modules.Jobs.Application.Commands.AddCategory;
-using InstantJob.Modules.Jobs.Application.Commands.UpdateCategoryDescription;
-using InstantJob.Modules.Jobs.Application.Queries.GetCategoriesNames;
+using InstantJob.Modules.Jobs.Application.Categories.Commands.AddCategory;
+using InstantJob.Modules.Jobs.Application.Categories.Commands.UpdateCategoryDescription;
+using InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategoriesNames;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -4,8 +4,8 @@ using System.Linq;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Jobs.Domain.Contractors;
 using InstantJob.Modules.Jobs.Domain.Jobs.Rules;
+using InstantJob.Modules.Jobs.Domain.JobUsers;
 using InstantJob.Modules.Jobs.Domain.Mandators;
-using InstantJob.Modules.Jobs.Domain.Users;
 using NUnit.Framework;
 
 namespace InstantJob.Modules.Jobs.UnitTests.Domain.Jobs

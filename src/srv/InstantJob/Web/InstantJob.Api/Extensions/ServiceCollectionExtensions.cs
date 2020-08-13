@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Exceptions;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Users.Application.Queries.GetUserRolesQuery;
+using InstantJob.Modules.Users.Application.Users.Queries.GetUserRolesQuery;
 using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;

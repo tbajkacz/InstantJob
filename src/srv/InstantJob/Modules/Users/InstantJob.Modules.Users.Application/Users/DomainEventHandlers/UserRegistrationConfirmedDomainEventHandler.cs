@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using InstantJob.Modules.Users.Application.Commands.CreateUser;
+using InstantJob.Modules.Users.Application.Users.Commands.CreateUser;
 using InstantJob.Modules.Users.Domain.UserRegistrations.Events;
 using MediatR;
 

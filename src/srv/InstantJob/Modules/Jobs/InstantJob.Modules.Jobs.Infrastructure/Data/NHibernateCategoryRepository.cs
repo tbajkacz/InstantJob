@@ -1,6 +1,6 @@
 ﻿using System;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
-using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Categories.Abstractions;
 using InstantJob.Modules.Jobs.Domain.Categories;
 using NHibernate;
 

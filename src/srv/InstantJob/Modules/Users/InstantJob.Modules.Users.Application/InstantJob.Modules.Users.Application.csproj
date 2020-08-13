@@ -11,4 +11,8 @@
     <ProjectReference Include="..\InstantJob.Modules.Users.IntegrationEvents\InstantJob.Modules.Users.IntegrationEvents.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\Abstractions\" />
+  </ItemGroup>
+
 </Project>

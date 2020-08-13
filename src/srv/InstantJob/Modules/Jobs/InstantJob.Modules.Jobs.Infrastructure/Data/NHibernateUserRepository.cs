@@ -1,7 +1,7 @@
 ﻿using System;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
-using InstantJob.Modules.Jobs.Application.Interfaces;
-using InstantJob.Modules.Jobs.Domain.Users;
+using InstantJob.Modules.Jobs.Application.JobUsers.Abstractions;
+using InstantJob.Modules.Jobs.Domain.JobUsers;
 using NHibernate;
 
 namespace InstantJob.Modules.Jobs.Infrastructure.Data

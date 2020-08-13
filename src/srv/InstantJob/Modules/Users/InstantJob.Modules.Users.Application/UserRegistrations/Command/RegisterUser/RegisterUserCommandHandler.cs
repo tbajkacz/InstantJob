@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Users.Application.Interfaces;
+using InstantJob.Modules.Users.Application.UserRegistrations.Abstractions;
 using InstantJob.Modules.Users.Domain.UserRegistrations;
 using MediatR;
 

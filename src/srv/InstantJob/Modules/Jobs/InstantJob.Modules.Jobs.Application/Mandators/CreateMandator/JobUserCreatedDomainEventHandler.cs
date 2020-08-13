@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Domain;
-using InstantJob.Modules.Jobs.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Mandators.Abstractions;
+using InstantJob.Modules.Jobs.Domain.JobUsers.Events;
 using InstantJob.Modules.Jobs.Domain.Mandators;
-using InstantJob.Modules.Jobs.Domain.Users.Events;
 using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Mandators.CreateMandator
