@@ -1,9 +1,9 @@
-﻿using InstantJob.Modules.Users.Domain.Users;
+﻿using System.Security.Claims;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Users.Queries.FindUserByCredentials
 {
-    public class FindUserByCredentialsQuery : IRequest<User>
+    public class GetClaimsForAuthenticatedUserQuery : IRequest<ClaimsPrincipal>
     {
         public string Email { get; set; }
 

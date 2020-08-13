@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
+using InstantJob.Modules.Users.Application.Users.Abstractions;
 using MediatR;
 
 namespace InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.Modules.Users.Application.UserRegistrations.Abstractions;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
+using InstantJob.Modules.Users.Application.Users.Abstractions;
 using InstantJob.Modules.Users.Infrastructure.Security;
 using Microsoft.Extensions.Configuration;
 

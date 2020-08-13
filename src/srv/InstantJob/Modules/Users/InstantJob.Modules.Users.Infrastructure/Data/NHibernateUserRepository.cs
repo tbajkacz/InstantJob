@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
+using InstantJob.Modules.Users.Application.Users.Abstractions;
 using InstantJob.Modules.Users.Domain.Users;
 using NHibernate;
 using NHibernate.Linq;
@@ -15,7 +15,7 @@ namespace InstantJob.Modules.Users.Infrastructure.Data
         {
         }
 
-        public async Task<User> FindByEmailAsync(string email)
+        public async Task<User> GetByEmailOrDefaultAsync(string email)
         {
             return await session.Query<User>()
                 .SingleOrDefaultAsync(u => u.Email == email);

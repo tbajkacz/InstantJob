@@ -1,7 +1,7 @@
 ﻿using System;
 using InstantJob.BuildingBlocks.Domain;
 
-namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions
+namespace InstantJob.Modules.Users.Application.Users.Abstractions
 {
     public interface ICurrentUserService
     {

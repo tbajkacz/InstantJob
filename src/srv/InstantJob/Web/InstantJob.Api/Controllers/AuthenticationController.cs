@@ -32,27 +32,18 @@ namespace InstantJob.Web.Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task SignIn(FindUserByCredentialsQuery query)
+        public async Task SignIn(GetClaimsForAuthenticatedUserQuery query)
         {
             //TODO refactor into command
-            var user = await mediator.Send(query);
+            var claims = await mediator.Send(query);
 
-            if (user == null)
+            if (claims == null)
             {
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return;
             }
 
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.Id.ToString()),
-            };
-
-            var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, new AuthenticationProperties { AllowRefresh = true});
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claims, new AuthenticationProperties { AllowRefresh = true});
         }
 
         [HttpPost]

@@ -9,7 +9,7 @@ using InstantJob.Modules.Jobs.Application.Categories.Commands.AddCategory;
 using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
 using InstantJob.Modules.Jobs.Application.Mandators.Abstractions;
 using InstantJob.Modules.Jobs.Infrastructure.Configuration;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.Abstractions;
+using InstantJob.Modules.Users.Application.Users.Abstractions;
 using InstantJob.Modules.Users.Application.Users.Commands.CreateUser;
 using InstantJob.Modules.Users.Infrastructure.Configuration;
 using InstantJob.Web.Api.Extensions;
