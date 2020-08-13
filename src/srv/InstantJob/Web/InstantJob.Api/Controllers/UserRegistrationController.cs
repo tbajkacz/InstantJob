@@ -19,12 +19,22 @@ namespace InstantJob.Web.Api.Controllers
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Creates a new user registration
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<CreateResponse<Guid>> Register(RegisterUserCommand command)
         {
             return new CreateResponse<Guid>(await mediator.Send(command));
         }
 
+        /// <summary>
+        /// Confirms a user registration
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPatch]
         public async Task ConfirmRegistration(ConfirmRegistrationCommand command)
         {

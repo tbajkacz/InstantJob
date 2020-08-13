@@ -24,6 +24,11 @@ namespace InstantJob.Web.Api.Controllers
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Validates user credentials and generates an authentication cookie
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpPost("signin")]
         [AllowAnonymous]
         public async Task SignIn(GetClaimsForAuthenticatedUserQuery query)
@@ -40,24 +45,42 @@ namespace InstantJob.Web.Api.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claims, new AuthenticationProperties { AllowRefresh = true});
         }
 
+        /// <summary>
+        /// Signs the user out
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("signout")]
         public async Task SignOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
+        /// <summary>
+        /// Gets information about the currently logged in user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("user")]
         public async Task<UserDetailsDto> GetCurrentUser()
         {
             return await mediator.Send(new GetUserDetailsQuery());
         }
 
+        /// <summary>
+        /// Changes current users password
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPatch("user/password")]
         public async Task ChangePassword(ChangeUserPasswordCommand command)
         {
             await mediator.Send(command);
         }
 
+        /// <summary>
+        /// Updates current users information
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPatch("user/info")]
         public async Task UpdateInformation(UpdateUserInformationCommand command)
         {

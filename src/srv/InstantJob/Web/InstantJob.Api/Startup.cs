@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using InstantJob.BuildingBlocks.Application.DomainEvents;
 using InstantJob.BuildingBlocks.Application.Interfaces;
 using InstantJob.BuildingBlocks.Infrastructure.Configuration;
@@ -21,6 +23,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace InstantJob.Web.Api
 {
@@ -48,7 +51,15 @@ namespace InstantJob.Web.Api
             services.AddCookieAuthentication(env.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always);
             services.AddAuthorizationWithPolicies();
 
-            services.AddOpenApiDocument(settings => settings.Title = "Instant Job");
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Instant Job", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                options.IncludeXmlComments(xmlPath);
+            });
 
             services.AddControllers()
                 .AddExceptionHandlerFilter();
@@ -63,8 +74,11 @@ namespace InstantJob.Web.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseOpenApi();
-            app.UseSwaggerUi3(settings => settings.Path = "/swagger");
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Instant Job v1");
+            });
 
             app.UseRouting();
 

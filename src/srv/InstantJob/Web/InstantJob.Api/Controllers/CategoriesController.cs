@@ -21,18 +21,32 @@ namespace InstantJob.Web.Api.Controllers
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Gets all categories
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<CategoryNameDto>> GetCategoriesNames()
         {
             return await mediator.Send(new GetCategoriesNamesQuery());
         }
 
+        /// <summary>
+        /// Creates a new category
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task AddCategory(AddCategoryCommand command)
         {
             await mediator.Send(command);
         }
 
+        /// <summary>
+        /// Updates the specified categories description
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPatch]
         public async Task UpdateCategoryDescription(UpdateCategoryDescriptionCommand command)
         {
