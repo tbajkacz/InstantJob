@@ -1,13 +1,9 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.ConfirmRegistration;
-using InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser;
 using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation;
 using InstantJob.Modules.Users.Application.Users.Queries.FindUserByCredentials;
 using InstantJob.Modules.Users.Application.Users.Queries.GetUserById;
-using InstantJob.Web.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -16,8 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstantJob.Web.Api.Controllers
 {
+    [ApiController]
     [Authorize]
-    public class AuthenticationController : RoutedApiController
+    [Route("api/auth")]
+    public class AuthenticationController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -26,7 +24,7 @@ namespace InstantJob.Web.Api.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("signin")]
         [AllowAnonymous]
         public async Task SignIn(GetClaimsForAuthenticatedUserQuery query)
         {
@@ -42,39 +40,25 @@ namespace InstantJob.Web.Api.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claims, new AuthenticationProperties { AllowRefresh = true});
         }
 
-        [HttpPost]
+        [HttpPost("signout")]
         public async Task SignOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
-        [HttpGet]
+        [HttpGet("user")]
         public async Task<UserDetailsDto> GetCurrentUser()
         {
             return await mediator.Send(new GetUserDetailsQuery());
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<CreateResponse<Guid>> Register(RegisterUserCommand command)
-        {
-            return new CreateResponse<Guid>(await mediator.Send(command));
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task ConfirmRegistration(ConfirmRegistrationCommand command)
-        {
-            await mediator.Send(command);
-        }
-
-        [HttpPut]
+        [HttpPatch("user/password")]
         public async Task ChangePassword(ChangeUserPasswordCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch("user/info")]
         public async Task UpdateInformation(UpdateUserInformationCommand command)
         {
             await mediator.Send(command);

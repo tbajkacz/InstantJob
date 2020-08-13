@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstantJob.Web.Api.Controllers
 {
+    [ApiController]
     [Authorize]
-    public class CategoriesController : RoutedApiController
+    [Route("api/categories")]
+    public class CategoriesController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -31,7 +33,7 @@ namespace InstantJob.Web.Api.Controllers
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch]
         public async Task UpdateCategoryDescription(UpdateCategoryDescriptionCommand command)
         {
             await mediator.Send(command);

@@ -18,8 +18,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstantJob.Web.Api.Controllers
 {
+    [ApiController]
     [Authorize]
-    public class JobsController : RoutedApiController
+    [Route("api/jobs")]
+    public class JobsController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -34,12 +36,6 @@ namespace InstantJob.Web.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Difficulty>> GetDifficulties()
-        {
-            return await mediator.Send(new GetDifficultiesQuery());
-        }
-
         [HttpGet("{id}")]
         public async Task<JobDetailsDto> GetJobDetails(Guid id)
         {
@@ -52,40 +48,46 @@ namespace InstantJob.Web.Api.Controllers
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task UpdateJobDetails(UpdateJobDetailsCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPost]
+        [HttpPost("{id}/applications/apply")]
         public async Task ApplyForJob(ApplyForJobCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch("{id}/assignment/assign")]
         public async Task AssignContractor(AssignContractorCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch("{id}/assignment/accept")]
         public async Task AcceptJobAssignment(AcceptJobAssignmentCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch("{id}/cancel")]
         public async Task CancelJob(CancelJobCommand command)
         {
             await mediator.Send(command);
         }
 
-        [HttpPut]
+        [HttpPatch("{id}/complete")]
         public async Task CompleteJob(CompleteJobCommand command)
         {
             await mediator.Send(command);
+        }
+
+        [HttpGet("difficulties")]
+        public async Task<IEnumerable<Difficulty>> GetDifficulties()
+        {
+            return await mediator.Send(new GetDifficultiesQuery());
         }
     }
 }
