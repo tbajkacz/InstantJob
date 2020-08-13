@@ -12,6 +12,7 @@ using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace InstantJob.Web.Api.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/jobs")]
     public class JobsController : ControllerBase
     {
@@ -58,6 +58,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Policies.Mandator)]
         public async Task PostJob(PostJobCommand command)
         {
             await mediator.Send(command);
@@ -69,6 +70,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]
+        [Authorize(Policies.Mandator)]
         public async Task UpdateJobDetails(UpdateJobDetailsCommand command, Guid id)
         {
             //TODO custom model binder?
@@ -82,6 +84,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost("{id}/applications/apply")]
+        [Authorize(Policies.Contractor)]
         public async Task ApplyForJob(ApplyForJobCommand command, Guid id)
         {
             command.JobId = id;
@@ -94,6 +97,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/assignment/assign")]
+        [Authorize(Policies.Mandator)]
         public async Task AssignContractor(AssignContractorCommand command, Guid id)
         {
             command.JobId = id;
@@ -106,6 +110,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/assignment/accept")]
+        [Authorize(Policies.Contractor)]
         public async Task AcceptJobAssignment(AcceptJobAssignmentCommand command, Guid id)
         {
             command.JobId = id;
@@ -118,6 +123,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/cancel")]
+        [Authorize(Policies.Mandator)]
         public async Task CancelJob(CancelJobCommand command, Guid id)
         {
             command.JobId = id;
@@ -130,6 +136,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/complete")]
+        [Authorize(Policies.Mandator)]
         public async Task CompleteJob(CompleteJobCommand command, Guid id)
         {
             command.JobId = id;

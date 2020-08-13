@@ -73,7 +73,7 @@ namespace InstantJob.Web.Api.Extensions
             => services.AddAuthorization(cfg =>
             {
                 cfg.AddPolicy(Policies.Administrator, p => p.RequireRole(Role.Administrator.Name));
-                cfg.AddPolicy(Policies.Mandatee,
+                cfg.AddPolicy(Policies.Contractor,
                               p => p.RequireAssertion(ctx => ctx.User.IsInRole(Role.Contractor.Name) ||
                                                              ctx.User.IsInRole(Role.Administrator.Name)
                 ));

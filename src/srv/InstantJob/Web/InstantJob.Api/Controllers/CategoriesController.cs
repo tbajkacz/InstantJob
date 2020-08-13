@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using InstantJob.Modules.Jobs.Application.Categories.Commands.AddCategory;
 using InstantJob.Modules.Jobs.Application.Categories.Commands.UpdateCategoryDescription;
 using InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategoriesNames;
+using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace InstantJob.Web.Api.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/categories")]
     public class CategoriesController : ControllerBase
     {
@@ -37,6 +37,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Policies.Administrator)]
         public async Task AddCategory(AddCategoryCommand command)
         {
             await mediator.Send(command);
@@ -48,6 +49,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch]
+        [Authorize(Policies.Administrator)]
         public async Task UpdateCategoryDescription(UpdateCategoryDescriptionCommand command)
         {
             await mediator.Send(command);
