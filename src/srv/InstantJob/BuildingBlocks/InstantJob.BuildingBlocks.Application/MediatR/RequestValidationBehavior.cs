@@ -24,9 +24,10 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
 
             var validationFailures = validators
                 .Select(v => v.Validate(validationContext))
-                .SelectMany(result => result.Errors.Where(f => f != null));
+                .SelectMany(result => result.Errors.Where(f => f != null))
+                .ToList();
 
-            if (validationFailures.Count() != 0)
+            if (validationFailures.Count != 0)
             {
                 throw new ValidationFailedException(validationFailures);
             }
