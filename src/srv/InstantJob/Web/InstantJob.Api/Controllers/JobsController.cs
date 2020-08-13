@@ -68,9 +68,11 @@ namespace InstantJob.Web.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
-        public async Task UpdateJobDetails(UpdateJobDetailsCommand command)
+        [HttpPatch("{id}")]
+        public async Task UpdateJobDetails(UpdateJobDetailsCommand command, Guid id)
         {
+            //TODO custom model binder?
+            command.JobId = id;
             await mediator.Send(command);
         }
 
@@ -80,8 +82,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost("{id}/applications/apply")]
-        public async Task ApplyForJob(ApplyForJobCommand command)
+        public async Task ApplyForJob(ApplyForJobCommand command, Guid id)
         {
+            command.JobId = id;
             await mediator.Send(command);
         }
 
@@ -91,8 +94,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/assignment/assign")]
-        public async Task AssignContractor(AssignContractorCommand command)
+        public async Task AssignContractor(AssignContractorCommand command, Guid id)
         {
+            command.JobId = id;
             await mediator.Send(command);
         }
 
@@ -102,8 +106,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/assignment/accept")]
-        public async Task AcceptJobAssignment(AcceptJobAssignmentCommand command)
+        public async Task AcceptJobAssignment(AcceptJobAssignmentCommand command, Guid id)
         {
+            command.JobId = id;
             await mediator.Send(command);
         }
 
@@ -113,8 +118,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/cancel")]
-        public async Task CancelJob(CancelJobCommand command)
+        public async Task CancelJob(CancelJobCommand command, Guid id)
         {
+            command.JobId = id;
             await mediator.Send(command);
         }
 
@@ -124,8 +130,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPatch("{id}/complete")]
-        public async Task CompleteJob(CompleteJobCommand command)
+        public async Task CompleteJob(CompleteJobCommand command, Guid id)
         {
+            command.JobId = id;
             await mediator.Send(command);
         }
 
