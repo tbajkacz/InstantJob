@@ -8,6 +8,7 @@ using InstantJob.Modules.Jobs.Application.Jobs.Commands.CancelJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.CompleteJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.UpdateJobDetails;
+using InstantJob.Modules.Jobs.Application.Jobs.Commands.WithdrawJobApplication;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails;
@@ -86,6 +87,20 @@ namespace InstantJob.Web.Api.Controllers
         [HttpPost("{id}/applications/apply")]
         [Authorize(Policies.Contractor)]
         public async Task ApplyForJob(ApplyForJobCommand command, Guid id)
+        {
+            command.JobId = id;
+            await mediator.Send(command);
+        }
+
+        /// <summary>
+        /// Withdraws contractors job application from the specified job
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPatch("{id}/applications/withdraw")]
+        [Authorize(Policies.Contractor)]
+        public async Task WithdrawJobApplication(WithdrawJobApplicationCommand command, Guid id)
         {
             command.JobId = id;
             await mediator.Send(command);
