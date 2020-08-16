@@ -89,6 +89,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual void CompleteJob(Guid mandatorId)
         {
+            CheckRule(new IsJobOwnerRule(this, mandatorId));
             CheckRule(new JobIsInProgressRule(Status));
 
             CompletionInfo = new CompletionInfo();
@@ -98,6 +99,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual void AssignContractor(Contractor contractor, Guid mandatorId)
         {
+            CheckRule(new IsJobOwnerRule(this, mandatorId));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
@@ -109,6 +111,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual void CancelJobAssignment(Guid mandatorId)
         {
+            CheckRule(new IsJobOwnerRule(this, mandatorId));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
@@ -120,6 +123,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual void UpdateJobDetails(string title, string description, decimal price, DateTime? deadline, Difficulty difficulty, Guid mandatorId)
         {
+            CheckRule(new IsJobOwnerRule(this, mandatorId));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
@@ -134,6 +138,7 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual void CancelJobOffer(Guid mandatorId)
         {
+            CheckRule(new IsJobOwnerRule(this, mandatorId));
             CheckRule(new JobWasNotCanceledRule(Status));
             CheckRule(new JobIsNotInProgressRule(Status));
             CheckRule(new JobIsNotCompletedRule(Status));
