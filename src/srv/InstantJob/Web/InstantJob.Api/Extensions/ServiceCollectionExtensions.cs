@@ -78,7 +78,7 @@ namespace InstantJob.Web.Api.Extensions
                                                              ctx.User.IsInRole(Role.Administrator.Name)
                 ));
                 cfg.AddPolicy(Policies.Mandator,
-                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Role.Contractor.Name) ||
+                              p => p.RequireAssertion(ctx => ctx.User.IsInRole(Role.Mandator.Name) ||
                                                              ctx.User.IsInRole(Role.Administrator.Name)
                 ));
             });
