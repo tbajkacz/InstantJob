@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Users.Abstractions;
-using InstantJob.Modules.Users.Domain.Users;
 using Microsoft.AspNetCore.Http;
 
 namespace InstantJob.Web.Api.Services
@@ -19,11 +17,10 @@ namespace InstantJob.Web.Api.Services
 
         public CurrentUserService(IHttpContextAccessor accessor)
         {
-            if (Guid.TryParse(FindClaim(accessor, ClaimTypes.NameIdentifier), out Guid id) &&
-                int.TryParse(FindClaim(accessor, ClaimTypes.Role), out int roleId))
+            if (Guid.TryParse(FindClaim(accessor, ClaimTypes.NameIdentifier), out Guid id))
             {
                 UserId = id;
-                Role = Enumeration.FromInt<Role>(roleId);
+                Role = Enumeration.GetAll<Role>().SingleOrDefault(r => r.Name == FindClaim(accessor, ClaimTypes.Role));
                 Email = FindClaim(accessor, ClaimTypes.Email);
             }
         }

@@ -36,7 +36,7 @@ namespace InstantJob.Web.Api.Extensions
                                     ?.SingleOrDefault(c =>
                                         c.Type == ClaimTypes.Role)?.Value;
 
-                                if (incomingRole != role.Id.ToString())
+                                if (incomingRole != role.Name)
                                 {
                                     await context.HttpContext.SignOutAsync();
                                     context.RejectPrincipal();

@@ -33,7 +33,6 @@ namespace InstantJob.Web.Api.Controllers
         [AllowAnonymous]
         public async Task SignIn(GetClaimsForAuthenticatedUserQuery query)
         {
-            //TODO refactor into command
             var claims = await mediator.Send(query);
 
             if (claims == null)

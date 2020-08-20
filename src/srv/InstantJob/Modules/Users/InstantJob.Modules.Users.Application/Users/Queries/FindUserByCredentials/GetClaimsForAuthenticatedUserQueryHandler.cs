@@ -34,7 +34,7 @@ namespace InstantJob.Modules.Users.Application.Users.Queries.FindUserByCredentia
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.Name.ToString()),
             };
 
             return new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
