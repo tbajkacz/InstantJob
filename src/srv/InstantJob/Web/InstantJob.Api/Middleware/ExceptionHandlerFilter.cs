@@ -3,8 +3,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace InstantJob.Web.Api.Middleware
 {
@@ -19,7 +22,7 @@ namespace InstantJob.Web.Api.Middleware
             {
                 case ValidationFailedException validationException:
                     statusCode = HttpStatusCode.BadRequest;
-                    response = JsonSerializer.Serialize(validationException.Failures);
+                    response = JsonConvert.SerializeObject(validationException.Failures);
                     break;
                 case EntityAccessException _:
                     statusCode = HttpStatusCode.Forbidden;
@@ -28,10 +31,10 @@ namespace InstantJob.Web.Api.Middleware
                     statusCode = HttpStatusCode.NotFound;
                     break;
             }
-
-            context.HttpContext.Response.ContentType = "application/json";
-            context.HttpContext.Response.StatusCode = (int)statusCode;
-            await context.HttpContext.Response.WriteAsync(response);
+            context.Result = new ObjectResult(response)
+            {
+                StatusCode = (int)statusCode,
+            };
         }
     }
 
