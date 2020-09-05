@@ -1,8 +1,13 @@
-﻿using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
+﻿using InstantJob.BuildingBlocks.Domain;
+using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation;
+using InstantJob.Modules.Users.Application.Users.Queries.GetAvailableRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NHibernate.Mapping;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InstantJob.Web.Api.Controllers
@@ -39,6 +44,17 @@ namespace InstantJob.Web.Api.Controllers
         public async Task UpdateInformation(UpdateUserInformationCommand command)
         {
             await mediator.Send(command);
+        }
+
+        /// <summary>
+        /// Gets available user roles
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("roles")]
+        [AllowAnonymous]
+        public async Task<IEnumerable<Role>> GetAvailableRoles()
+        {
+            return await mediator.Send(new GetAvailableRolesQuery());
         }
     }
 }
