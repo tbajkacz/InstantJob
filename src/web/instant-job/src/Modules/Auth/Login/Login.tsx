@@ -4,10 +4,10 @@ import { Redirect } from "react-router";
 import "../../../styles/Login.scss";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthParams } from "../../../Common/Auth/authTypes";
-import { CardHeader, Form, CardFooter, FormGroup, Button } from "reactstrap";
+import { CardHeader, Form, CardFooter, FormGroup, Button, Label } from "reactstrap";
 import { FormInput, FormInputConfig } from "../../../Common/FormInput";
-import { useForm } from "react-hook-form";
 import routes from "../../../Common/routes";
+import { combineClasses } from "./../../../Common/componentUtility";
 
 interface LoginProps {
   className?: string;
@@ -19,11 +19,19 @@ export function Login(props: LoginProps) {
     password: "",
   });
 
-  const auth = useAuth();
-  const { register, handleSubmit, errors } = useForm();
+  const [signInFailed, setsignInFailed] = useState(false);
 
-  const onSubmit = () => {
-    auth.signIn(params);
+  const auth = useAuth();
+  //const { validationResponse, setValidationResponse } = useState();
+
+  const onSubmit = (e: React.MouseEvent<any, MouseEvent>) => {
+    setsignInFailed(false);
+    e.preventDefault();
+    auth.signIn(params).then((response) => {
+      if (response === false) {
+        setsignInFailed(true);
+      }
+    });
   };
 
   const onChange = (name: string, value: string) => {
@@ -32,7 +40,7 @@ export function Login(props: LoginProps) {
 
   const config: FormInputConfig = {
     onChange,
-    errors,
+    //errors,
   };
 
   return auth.currentUser ? (
@@ -45,32 +53,17 @@ export function Login(props: LoginProps) {
         </CardHeader>
         <div className="ui-login-card-body">
           <Form>
-            <FormInput
-              className="flex-fill"
-              config={config}
-              type="text"
-              name="email"
-              icon={faUser}
-              inputRef={register({
-                required: true,
-              })}
-            />
-            <FormInput
-              className="flex-fill"
-              config={config}
-              type="password"
-              name="password"
-              icon={faKey}
-              inputRef={register({
-                required: true,
-              })}
-            />
+            <Label className="text-danger" hidden={!signInFailed}>
+              {signInFailed ? "Invalid user credentials" : ""}
+            </Label>
+            <FormInput className="flex-fill" config={config} type="text" name="email" icon={faUser} />
+            <FormInput className="flex-fill" config={config} type="password" name="password" icon={faKey} />
             {/* <FormGroup className="ui-login-remember-me">
               <Input type="checkbox" onChange={(e) => setParams({ ...params!, rememberMe: e.currentTarget.checked })} />
               <Label>Remember me</Label>
             </FormGroup> */}
             <FormGroup>
-              <Button color="primary" block={true} type="submit" onClick={handleSubmit(onSubmit)}>
+              <Button color="primary" block={true} type="submit" onClick={onSubmit}>
                 Login
               </Button>
             </FormGroup>

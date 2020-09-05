@@ -5,7 +5,7 @@ import { Auth, CurrentUser, AuthParams } from "./authTypes";
 import Axios from "axios";
 
 export const AuthContext = React.createContext<Auth>({
-  signIn: () => null,
+  signIn: () => new Promise(() => null),
   signOut: () => null,
 });
 
@@ -31,14 +31,25 @@ export function useProvideAuth() {
   const [currentUser, setCurrentUser] = useState<CurrentUser>();
   const [promise, setPromise] = useState<Promise<any> | undefined>();
 
-  const signIn = (params?: AuthParams) => {
-    authService.SignIn(params).then((r) => {
-      setPromise(
-        authService.GetCurrentUser().then((r) => {
-          setCurrentUser(r.data);
-        })
-      );
-    });
+  const signIn = async (params?: AuthParams) => {
+    let result = await authService.SignIn(params).then(
+      (r) => {
+        setPromise(
+          authService.GetCurrentUser().then((r) => {
+            setCurrentUser(r.data);
+          })
+        );
+      },
+      (error) => {
+        if (error.response.status === 401) {
+          return false;
+        }
+      }
+    );
+
+    if (result === false) {
+      return false;
+    }
   };
 
   const signOut = () => {

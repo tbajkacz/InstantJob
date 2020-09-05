@@ -17,7 +17,7 @@ export interface AuthParams {
 
 export interface Auth {
   currentUser?: CurrentUser;
-  signIn: (params?: AuthParams) => void;
+  signIn: (params?: AuthParams) => Promise<false | undefined>;
   signOut: () => void;
   promise?: Promise<any>;
 }

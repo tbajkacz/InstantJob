@@ -20,7 +20,7 @@ interface FormInputProps {
   defaultValue?: string | number;
   errorMsg?: string;
   icon?: IconProp;
-  inputRef: (instance: HTMLInputElement | null) => void;
+  inputRef?: (instance: HTMLInputElement | null) => void;
 }
 
 export function FormInput(props: FormInputProps) {
