@@ -1,4 +1,6 @@
-﻿namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser
+﻿using FluentValidation;
+
+namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.RegisterUser
 {
     public class RegisterUserCommandValidator : BaseUserRegistrationsValidator<RegisterUserCommand>
     {
@@ -9,6 +11,9 @@
             RuleForEmail(x => x.Email);
             RuleForPassword(x => x.Password);
             RuleForRoles(x => x.RoleId);
+            RuleFor(x => x.PasswordConfirmation)
+                .Equal(x => x.Password)
+                .WithMessage("Passwords must match");
         }
     }
 }

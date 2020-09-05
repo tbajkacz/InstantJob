@@ -13,6 +13,8 @@ namespace InstantJob.Modules.Users.Application.UserRegistrations.Command.Registe
 
         public string Password { get; set; }
 
+        public string PasswordConfirmation { get; set; }
+
         public int RoleId { get; set; }
     }
 }
