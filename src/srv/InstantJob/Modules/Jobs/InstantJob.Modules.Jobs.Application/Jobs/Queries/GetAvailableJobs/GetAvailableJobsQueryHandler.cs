@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,8 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
         {
             return Task.FromResult(jobRepository.Get(request.CategoryId, request.Skip, request.Count)
                 .Where(x => x.Status.IsAvailable)
-                .Select(mapper.Map<JobOverviewDto>));
+                .Where(x => x.Deadline.HasValue && x.Deadline.Value > DateTime.Now)
+                .Select(mapper.Map<JobOverviewDto>));    
         }
     }
 }

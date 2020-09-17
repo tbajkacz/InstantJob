@@ -9,6 +9,8 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 {
     public class JobDetailsDto : IMapFrom<Job>
     {
+        public string Id { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
