@@ -1,7 +1,7 @@
 const routes = {
   Home: "/home",
   Login: "/login",
-  Register: "register",
+  Register: "/register",
   Profile: "/profile",
   Jobs: "/jobs",
 };

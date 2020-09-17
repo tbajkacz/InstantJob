@@ -4,12 +4,13 @@ import { FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { combineClasses } from "./componentUtility";
+import ValidationErrors from "./validationErrors";
 
 export interface FormInputConfig {
   onChange: (name: string, value: string) => void;
   isDisabled?: (name: string) => boolean;
   isHidden?: (name: string) => boolean;
-  errors?: Partial<Record<string, FieldError>>;
+  validationErrors?: ValidationErrors;
 }
 
 interface FormInputProps {
@@ -24,16 +25,17 @@ interface FormInputProps {
 }
 
 export function FormInput(props: FormInputProps) {
-  const defaultErrorMsg = (name: string) => `Field ${name} is required`;
-
   const [value, setValue] = useState("");
 
   const isHidden = () => props.config.isHidden && props.config.isHidden(props.name);
   const isDisabled = () => props.config.isDisabled && props.config.isDisabled(props.name);
 
   const renderError = () => {
-    if (props.config.errors && props.config.errors[props.name] && !isHidden() && !isDisabled()) {
-      return props.errorMsg ? props.errorMsg : defaultErrorMsg(props.name);
+    if (props.config.validationErrors && !isHidden() && !isDisabled()) {
+      let propKey = Object.keys(props.config.validationErrors).find((k) => k.toLowerCase() == props.name.toLowerCase());
+      if (propKey) {
+        return props.config.validationErrors[propKey][0];
+      }
     }
   };
 
@@ -50,7 +52,9 @@ export function FormInput(props: FormInputProps) {
         ) : null}
         <input
           className={combineClasses(
-            props.config.errors && props.config.errors[props.name] ? "ui-input-dark is-invalid" : "ui-input-dark",
+            props.config.validationErrors && props.config.validationErrors[props.name]
+              ? "ui-input-dark is-invalid"
+              : "ui-input-dark",
             props.className
           )}
           name={props.name}

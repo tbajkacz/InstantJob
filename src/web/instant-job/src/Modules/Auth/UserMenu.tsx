@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../../Common/Auth/authContext";
 import { Link } from "react-router-dom";
-import SignInOutButton from "./SignInOutButton";
+import NavbarButton from "./NavbarButton";
 import routes from "../../Common/routes";
 
 export default React.memo(function UserMenu() {
@@ -10,11 +10,16 @@ export default React.memo(function UserMenu() {
   return auth.currentUser ? (
     <div className="text-light">
       <p className="mr-2 d-inline">Welcome, {auth.currentUser.name + " " + auth.currentUser.surname}</p>
-      <SignInOutButton onClick={() => auth.signOut()}>Sign out</SignInOutButton>
+      <NavbarButton onClick={() => auth.signOut()}>Sign out</NavbarButton>
     </div>
   ) : (
-    <Link to={routes.Login}>
-      <SignInOutButton>Sign in</SignInOutButton>
-    </Link>
+    <div>
+      <Link to={routes.Login}>
+        <NavbarButton>Sign in</NavbarButton>
+      </Link>
+      <Link className="ml-1" to={routes.Register}>
+        <NavbarButton>Sign up</NavbarButton>
+      </Link>
+    </div>
   );
 });

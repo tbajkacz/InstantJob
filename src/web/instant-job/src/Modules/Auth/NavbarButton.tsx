@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "reactstrap";
 
-interface SignInOutButtonProps {
+interface NavbarButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
 }
 
-export default function SignInOutButton(props: SignInOutButtonProps) {
+export default function NavbarButton(props: NavbarButtonProps) {
   return (
     <Button size="sm" color="secondary" onClick={props.onClick}>
       {props.children}

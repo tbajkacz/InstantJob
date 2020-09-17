@@ -9,6 +9,7 @@ import Home from "./Modules/Home/Home";
 import JobsList from "./Modules/Jobs/JobsList";
 import UserProfile from "./Modules/Profile/UserProfile";
 import { Login } from "./Modules/Auth/Login/Login";
+import Register from "./Modules/Auth/Register/Register";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route path={routes.Login}>
               <Login className="d-flex justify-content-center mt-5" />
+            </Route>
+            <Route path={routes.Register}>
+              <Register className="d-flex justify-content-center mt-5" />
             </Route>
             <Route>
               <Redirect to={routes.Home} />

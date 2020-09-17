@@ -8,6 +8,7 @@ import { CardHeader, Form, CardFooter, FormGroup, Button, Label } from "reactstr
 import { FormInput, FormInputConfig } from "../../../Common/FormInput";
 import routes from "../../../Common/routes";
 import { combineClasses } from "./../../../Common/componentUtility";
+import { Link } from "react-router-dom";
 
 interface LoginProps {
   className?: string;
@@ -71,7 +72,7 @@ export function Login(props: LoginProps) {
         </div>
         <CardFooter>
           <small className="text-white">
-            Don't have an account? <a href="mailto:tomasz.bajkacz@gmail.com">Contact</a> your administrator
+            Don't have an account? <Link to={routes.Register}>Click here to register</Link>
           </small>
         </CardFooter>
       </div>
