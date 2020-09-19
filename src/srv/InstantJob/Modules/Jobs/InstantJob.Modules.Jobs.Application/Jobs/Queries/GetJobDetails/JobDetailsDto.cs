@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
 using InstantJob.BuildingBlocks.Application.Automapper;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
@@ -27,7 +26,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 
         public bool WasCanceled { get; set; }
 
-        public string CategoryName { get; set; }
+        public JobDetailsCategoryDto Category { get; set; }
 
         public JobDetailsMandatorDto Mandator { get; set; }
 
@@ -36,11 +35,5 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
         public bool IsCompleted { get; set; }
 
         public bool IsInProgress { get; set; }
-
-        public void CreateMap(Profile profile)
-        {
-            profile.CreateMap<Job, JobDetailsDto>()
-                .ForMember(x => x.CategoryName, mce => mce.MapFrom(x => x.Category.Name));
-        }
     }
 }

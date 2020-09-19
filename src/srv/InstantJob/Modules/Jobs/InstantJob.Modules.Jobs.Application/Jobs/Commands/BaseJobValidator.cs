@@ -17,7 +17,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Commands
         {
             RuleFor(expression)
                 .NotNull()
-                .MaximumLength(250);
+                .MaximumLength(1500);
         }
 
         protected void RuleForPrice(Expression<Func<T, decimal>> expression)
