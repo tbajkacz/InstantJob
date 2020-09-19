@@ -84,7 +84,7 @@ namespace InstantJob.Web.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPost("{id}/applications/apply")]
+        [HttpPost("{id}/applications")]
         [Authorize(Policies.Contractor)]
         public async Task ApplyForJob(ApplyForJobCommand command, Guid id)
         {
@@ -98,7 +98,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <param name="command"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPatch("{id}/applications/withdraw")]
+        [HttpDelete("{id}/applications")]
         [Authorize(Policies.Contractor)]
         public async Task WithdrawJobApplication(WithdrawJobApplicationCommand command, Guid id)
         {
@@ -137,7 +137,7 @@ namespace InstantJob.Web.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPatch("{id}/cancel")]
+        [HttpDelete("{id}")]
         [Authorize(Policies.Mandator)]
         public async Task CancelJob(CancelJobCommand command, Guid id)
         {
