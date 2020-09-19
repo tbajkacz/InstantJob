@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using InstantJob.Modules.Jobs.Application.Categories.Commands.AddCategory;
 using InstantJob.Modules.Jobs.Application.Categories.Commands.UpdateCategoryDescription;
-using InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategoriesNames;
+using InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategories;
 using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -26,9 +26,9 @@ namespace InstantJob.Web.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<CategoryNameDto>> GetCategoriesNames()
+        public async Task<IEnumerable<CategoryDto>> GetCategoriesNames()
         {
-            return await mediator.Send(new GetCategoriesNamesQuery());
+            return await mediator.Send(new GetCategoriesQuery());
         }
 
         /// <summary>

@@ -2,9 +2,9 @@
 using InstantJob.BuildingBlocks.Application.Automapper;
 using InstantJob.Modules.Jobs.Domain.Categories;
 
-namespace InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategoriesNames
+namespace InstantJob.Modules.Jobs.Application.Categories.Queries.GetCategories
 {
-    public class CategoryNameDto : IMapFrom<Category>
+    public class CategoryDto : IMapFrom<Category>
     {
         public Guid Id { get; set; }
 
