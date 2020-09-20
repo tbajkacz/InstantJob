@@ -1,0 +1,18 @@
+@import "./Variables.scss";
+@import "./Common.scss";
+@import "../../node_modules/bootstrap";
+
+.ui-footer-wrapper-dark {
+  @extend .ui-element-bg-dark;
+  @extend .pt-4;
+  @extend .mt-md-5;
+  @extend .pt-md-5;
+  @extend .pb-md-5;
+  @extend .text-white;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+
+  border-top: #ffffff 1px solid;
+  background-color: $uiBgColor !important;
+}

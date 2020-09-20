@@ -16,15 +16,6 @@ $listHeight: 500px;
   border-radius: $uiElementBorderRadius;
 }
 
-.ui-side-list-wrapper {
-  @extend .pl-0;
-  @extend .pr-0;
-  @extend .pt-1;
-  @extend .pb-1;
-  @extend .mr-1;
-  border-radius: $uiElementBorderRadius;
-}
-
 .ui-list-header {
   @extend .text-white;
   @extend .p-2;
@@ -39,9 +30,13 @@ $listHeight: 500px;
 
 .ui-list-dark {
   @extend .list-group;
-  overflow: auto;
-  max-height: $listHeight;
-  min-height: 500px;
+  overflow: hidden;
+  /*min-height: 500px;*/
+}
+
+.ui-position-bottom {
+  position: absolute;
+  bottom: 0;
 }
 
 .ui-list-item-dark {
@@ -53,17 +48,27 @@ $listHeight: 500px;
   &:not(.ui-selected):hover {
     background-color: $uiElementHoverBgColor;
   }
+  &:not(.ui-selected):active {
+    background-color: $uiElementActiveBgColor;
+  }
   &:hover {
     cursor: pointer;
   }
   &:after {
     content: "";
     position: absolute;
-    left: 1%;
+    left: 0%;
     bottom: 0;
     height: 1px;
-    width: 98%;
+    width: 100%;
     border-bottom: 1px solid $uiElementInputColor;
+  }
+  & a {
+    color: $primaryColor;
+
+    &:hover {
+      color: $primaryColorHover;
+    }
   }
   border: 0;
   margin-top: 3px;

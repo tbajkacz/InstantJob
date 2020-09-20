@@ -1,25 +1,65 @@
+import axios from "axios";
+import { buildQuery } from "../../Common/buildQuery";
+import {
+  AcceptJobAssignmentCommand,
+  ApplyForJobCommand,
+  AssignContractorCommand,
+  CancelJobCommand,
+  CompleteJobCommand,
+  GetJobDetailsQuery,
+  GetJobsQuery,
+  JobDetails,
+  JobDifficulty,
+  JobOverview,
+  PostJobCommand,
+  UpdateJobInformationCommand,
+  WithdrawJobApplicationCommand,
+} from "./jobsTypes";
+
 class JobsService {
-  GetJobs() {}
+  GetJobs(query: GetJobsQuery) {
+    return axios.get<JobOverview[]>(`/api/jobs${buildQuery(query)}`);
+  }
 
-  PostJob() {}
+  PostJob(params: PostJobCommand) {
+    return axios.post("/api/jobs", params);
+  }
 
-  GetJobDetails() {}
+  GetJobDetails(params: GetJobDetailsQuery) {
+    return axios.get<JobDetails>(`/api/jobs/${params.jobId}`);
+  }
 
-  UpdateJobInformation() {}
+  UpdateJobInformation(params: UpdateJobInformationCommand) {
+    return axios.patch(`/api/jobs/${params.jobId}`, params);
+  }
 
-  ApplyForJob() {}
+  ApplyForJob(params: ApplyForJobCommand) {
+    return axios.post(`/api/jobs/${params.jobId}/applications`);
+  }
 
-  WithdrawJobApplication() {}
+  WithdrawJobApplication(params: WithdrawJobApplicationCommand) {
+    return axios.delete(`/api/jobs/${params.jobId}/applications`);
+  }
 
-  AssignContractor() {}
+  AssignContractor(params: AssignContractorCommand) {
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/assign`);
+  }
 
-  AcceptJobAssignment() {}
+  AcceptJobAssignment(params: AcceptJobAssignmentCommand) {
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/accept`);
+  }
 
-  CancelJobOffer() {}
+  CancelJobOffer(params: CancelJobCommand) {
+    return axios.delete(`/api/jobs/${params.jobId}`);
+  }
 
-  CompleteJob() {}
+  CompleteJob(params: CompleteJobCommand) {
+    return axios.patch(`/api/jobs/${params.jobId}/complete`);
+  }
 
-  GetJobDifficulties() {}
+  GetJobDifficulties() {
+    return axios.get<JobDifficulty[]>("/api/jobs/difficulties");
+  }
 }
 
 export const jobsService = new JobsService();

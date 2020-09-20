@@ -17,6 +17,7 @@ interface FormInputProps {
   className?: string;
   config: FormInputConfig;
   name: string;
+  displayName: string;
   type?: "text" | "number" | "password";
   defaultValue?: string | number;
   errorMsg?: string;
@@ -32,7 +33,9 @@ export function FormInput(props: FormInputProps) {
 
   const renderError = () => {
     if (props.config.validationErrors && !isHidden() && !isDisabled()) {
-      let propKey = Object.keys(props.config.validationErrors).find((k) => k.toLowerCase() == props.name.toLowerCase());
+      let propKey = Object.keys(props.config.validationErrors).find(
+        (k) => k.toLowerCase() === props.name.toLowerCase()
+      );
       if (propKey) {
         return props.config.validationErrors[propKey][0];
       }
@@ -42,7 +45,7 @@ export function FormInput(props: FormInputProps) {
   return (
     <FormGroup className={combineClasses(props.className, isHidden() ? "mb-0" : undefined)}>
       <label className="flex-row ui-input-label" hidden={isHidden()}>
-        <small>{props.name.charAt(0).toUpperCase() + props.name.slice(1)}</small>
+        <small>{props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1)}</small>
       </label>
       <div className="d-flex">
         {props.icon ? (
@@ -59,7 +62,7 @@ export function FormInput(props: FormInputProps) {
           )}
           name={props.name}
           type={props.type}
-          placeholder={props.name}
+          placeholder={props.displayName}
           onChange={(e) => {
             setValue(e.currentTarget.value);
             props.config.onChange(props.name, e.currentTarget.value);

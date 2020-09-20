@@ -13,6 +13,8 @@ export interface FormSelectConfig {
 interface FormSelectProps {
   options: string[];
   name: string;
+  displayName: string;
+  defaultValue?: string;
   className?: string;
   config: FormSelectConfig;
 }
@@ -29,18 +31,23 @@ export default function FormSelect(props: FormSelectProps) {
       }
     }
   };
+
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    props.config.onChange(props.name, e.currentTarget.value);
+  };
   return (
     <FormGroup>
       <label className="flex-row ui-input-label" hidden={isHidden()}>
-        <small>{props.name.charAt(0).toUpperCase() + props.name.slice(1)}</small>
+        <small>{props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1)}</small>
       </label>
       <div>
-        <select className={combineClasses("ui-select-dark", props.className)}>
+        <select className={combineClasses("ui-select-dark", props.className)} onChange={onSelectChange}>
           {props.options.map((o) => (
-            <option>{o}</option>
+            <option selected={o === props.defaultValue}>{o}</option>
           ))}
         </select>
       </div>
+      <small className="text-danger">{renderError()}</small>
     </FormGroup>
   );
 }

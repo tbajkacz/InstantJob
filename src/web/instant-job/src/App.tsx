@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/App.scss";
-import { HashRouter, Link, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter, Link, Switch, Route, Redirect, Router, useHistory, BrowserRouter } from "react-router-dom";
 import { ProvideAuth } from "./Common/Auth/authContext";
 import { Navbar, NavItem, Nav } from "reactstrap";
 import UserMenu from "./Modules/Auth/UserMenu";
@@ -10,11 +10,13 @@ import JobsList from "./Modules/Jobs/JobsList";
 import UserProfile from "./Modules/Profile/UserProfile";
 import { Login } from "./Modules/Auth/Login/Login";
 import Register from "./Modules/Auth/Register/Register";
+import JobDetailedView from "./Modules/Jobs/JobDetailedView";
+import Footer from "./Modules/Footer/Footer";
 
 function App() {
   return (
     <ProvideAuth>
-      <HashRouter>
+      <BrowserRouter>
         <Navbar className="ui-element-bg-dark shadow">
           <div className="navbar-brand">
             <Link className="navbar-brand text-light mr-0" to={routes.Home}>
@@ -30,13 +32,16 @@ function App() {
           </Nav>
           <UserMenu />
         </Navbar>
-        <div className="mt-5">
+        <div className="mt-5 contentv">
           <Switch>
             <Route path={routes.Home}>
               <Home />
             </Route>
-            <Route path={routes.Jobs}>
+            <Route path={routes.Jobs} exact>
               <JobsList />
+            </Route>
+            <Route path={routes.DetailedJob} exact>
+              <JobDetailedView />
             </Route>
             <Route path={routes.Profile}>
               <UserProfile />
@@ -52,7 +57,10 @@ function App() {
             </Route>
           </Switch>
         </div>
-      </HashRouter>
+        <div>
+          <Footer className="footerv" />
+        </div>
+      </BrowserRouter>
     </ProvideAuth>
   );
 }

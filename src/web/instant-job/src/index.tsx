@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/Common.scss";
 import "./styles/Input.scss";
 import "./styles/List.scss";
 import "./styles/Modal.scss";
 import "./styles/Select.scss";
 import "./styles/Card.scss";
+import "./styles/Footer.scss";
 
 ReactDOM.render(
   <React.StrictMode>

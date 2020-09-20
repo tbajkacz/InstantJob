@@ -57,8 +57,22 @@ export function Login(props: LoginProps) {
             <Label className="text-danger" hidden={!signInFailed}>
               {signInFailed ? "Invalid user credentials" : ""}
             </Label>
-            <FormInput className="flex-fill" config={config} type="text" name="email" icon={faUser} />
-            <FormInput className="flex-fill" config={config} type="password" name="password" icon={faKey} />
+            <FormInput
+              className="flex-fill"
+              config={config}
+              type="text"
+              name="email"
+              displayName="Email"
+              icon={faUser}
+            />
+            <FormInput
+              className="flex-fill"
+              config={config}
+              type="password"
+              name="password"
+              displayName="Password"
+              icon={faKey}
+            />
             {/* <FormGroup className="ui-login-remember-me">
               <Input type="checkbox" onChange={(e) => setParams({ ...params!, rememberMe: e.currentTarget.checked })} />
               <Label>Remember me</Label>

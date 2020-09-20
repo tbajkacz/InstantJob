@@ -15,3 +15,19 @@ body {
     color: #cccccc !important;
   }
 }
+
+html,
+body,
+#root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+.contentv {
+  flex: 1 0 auto;
+}
+.footerv {
+  flex-shrink: 0;
+}
