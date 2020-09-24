@@ -12,8 +12,9 @@ interface JobsListProps {
 }
 
 export interface JobsListQuery {
-  search: string;
-  categoryId: string;
+  search?: string;
+  categoryId?: string;
+  difficultyId?: number;
 }
 
 export default function JobsList(props: JobsListProps) {
@@ -25,10 +26,6 @@ export default function JobsList(props: JobsListProps) {
 
   const location = useLocation();
 
-  const onFiltersChanged = () => {
-    //updateJobs();
-  };
-
   const formatTitle = () => {
     if (jobsList && jobsList.length > 0) {
       return `Found ${jobsList.length} available job ${jobsList.length > 1 ? "offers" : "offer"}`;
@@ -37,11 +34,20 @@ export default function JobsList(props: JobsListProps) {
   };
 
   const updateJobs = () => {
-    console.log(queryParams);
     setLoadingPromise(
-      jobsService.GetJobs(queryParams ? { categoryId: queryParams.categoryId } : {}).then((r) => {
-        setJobsList(r.data);
-      })
+      jobsService
+        .GetJobs(
+          queryParams
+            ? {
+                categoryId: queryParams.categoryId,
+                searchString: queryParams.search,
+                difficultyId: queryParams.difficultyId,
+              }
+            : {}
+        )
+        .then((r) => {
+          setJobsList(r.data);
+        })
     );
   };
 
@@ -52,11 +58,11 @@ export default function JobsList(props: JobsListProps) {
       <LoadingIndicator promise={loadingPromise}>
         <div className={props.className}>
           {jobsList ? (
-            <div className="ui-list-flex-container">
-              <div className="ui-list-wrapper col-sm-9">
-                <TopFilterPanel className="ui-list-header" filtersChanged={onFiltersChanged} />
+            <div className="ui-flex-container">
+              <div className="ui-wrapper col-sm-9">
+                <TopFilterPanel className="ui-header" />
                 <small className="text-white">TODO Sortowanie</small>
-                <h3 className="ui-list-header">{formatTitle()}</h3>
+                <h3 className="ui-header">{formatTitle()}</h3>
                 <ul className="ui-list-dark">
                   {jobsList.map((c) => (
                     <JobListItem key={c.id} job={c} />

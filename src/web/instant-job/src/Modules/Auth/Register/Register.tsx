@@ -93,7 +93,7 @@ export default function Register(props: RegisterProps) {
                 className="flex-fill"
                 options={availableRoles.map((r) => r.name)}
                 config={selectConfig}
-                name="roleid"
+                name="roleId"
                 displayName="Account Type"
               />
               <FormGroup>

@@ -4,30 +4,6 @@
 
 $listHeight: 500px;
 
-.ui-list-flex-container {
-  @extend .d-flex;
-  @extend .justify-content-center;
-}
-
-.ui-list-wrapper {
-  @extend .shadow-sm;
-  @extend .ui-element-bg-dark;
-  @extend .p-0;
-  border-radius: $uiElementBorderRadius;
-}
-
-.ui-list-header {
-  @extend .text-white;
-  @extend .p-2;
-  @extend .mb-0;
-}
-
-.ui-list-header {
-  border-bottom-color: $uiElementInputColor;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-}
-
 .ui-list-dark {
   @extend .list-group;
   overflow: hidden;
@@ -63,13 +39,7 @@ $listHeight: 500px;
     width: 100%;
     border-bottom: 1px solid $uiElementInputColor;
   }
-  & a {
-    color: $primaryColor;
 
-    &:hover {
-      color: $primaryColorHover;
-    }
-  }
   border: 0;
   margin-top: 3px;
 }

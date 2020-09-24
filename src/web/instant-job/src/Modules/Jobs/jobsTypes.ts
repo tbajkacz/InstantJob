@@ -1,5 +1,7 @@
 export interface GetJobsQuery {
   categoryId?: string;
+  searchString?: string;
+  difficultyId?: number;
   skip?: number;
   count?: number;
 }

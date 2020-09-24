@@ -33,6 +33,7 @@ export default function FormSelect(props: FormSelectProps) {
   };
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.currentTarget.id);
     props.config.onChange(props.name, e.currentTarget.value);
   };
   return (
@@ -43,7 +44,9 @@ export default function FormSelect(props: FormSelectProps) {
       <div>
         <select className={combineClasses("ui-select-dark", props.className)} onChange={onSelectChange}>
           {props.options.map((o) => (
-            <option selected={o === props.defaultValue}>{o}</option>
+            <option id={o} selected={o === props.defaultValue}>
+              {o}
+            </option>
           ))}
         </select>
       </div>
