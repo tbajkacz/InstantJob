@@ -15,12 +15,22 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
         {
         }
 
-        public IEnumerable<Job> Get(Guid? categoryId, int? skip, int? count)
+        public IEnumerable<Job> Get(Guid? categoryId, int? difficultyId, string searchString, int? skip, int? count)
         {
-            var query = session.Query<Job>();
+            // TODO ToList() is not optimal, because the query will be executed in memory,
+            // NHibernate doesn't want to cooperate without it, replace it with EFC
+            IEnumerable<Job> query = session.Query<Job>().ToList();
             if (categoryId != null)
             {
                 query = query.Where(j => j.Category.Id == categoryId);
+            }
+            if (difficultyId != null)
+            {
+                query = query.Where(j => j.Difficulty.Id == difficultyId);
+            }
+            if (searchString != null)
+            {
+                query = query.Where(j => j.Title.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
             }
             if (skip != null)
             {
@@ -31,7 +41,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
                 query = query.Take(count.Value);
             }
 
-            return query;
+            return query.ToList();
         }
     }
 }

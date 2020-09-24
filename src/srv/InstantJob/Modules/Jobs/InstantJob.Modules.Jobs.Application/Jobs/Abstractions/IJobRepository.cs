@@ -7,6 +7,6 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Abstractions
 {
     public interface IJobRepository : IRepository<Job, Guid>
     {
-        IEnumerable<Job> Get(Guid? categoryId, int? skip, int? count);
+        IEnumerable<Job> Get(Guid? categoryId, int? difficultyId, string searchString, int? skip, int? count);
     }
 }
