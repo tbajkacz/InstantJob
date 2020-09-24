@@ -3,7 +3,6 @@ using AutoMapper;
 using InstantJob.BuildingBlocks.Application.Automapper;
 using InstantJob.Modules.Jobs.Domain.Contractors;
 using InstantJob.Modules.Jobs.Domain.JobUsers;
-using InstantJob.Modules.Jobs.Domain.Mandators;
 
 namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 {
@@ -20,7 +19,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
         {
             profile.CreateMap<JobUser, JobDetailsContractorDto>();
 
-            profile.CreateMap<Mandator, JobDetailsContractorDto>()
+            profile.CreateMap<Contractor, JobDetailsContractorDto>()
                 .AfterMap((m, dto, context) => context.Mapper.Map(m.JobUser, dto));
         }
     }
