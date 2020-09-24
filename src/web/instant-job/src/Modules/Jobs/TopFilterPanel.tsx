@@ -11,6 +11,7 @@ import { categoriesService } from "../Categories/categoriesService";
 import { JobsListQuery } from "./JobsList";
 import { JobCategory, JobDifficulty } from "./jobsTypes";
 import { jobsService } from "./jobsService";
+import useEffectAsync from "./../../Common/useEffectAsync";
 
 interface TopFilterPanelProps {
   className?: string;
@@ -25,15 +26,16 @@ interface TopFilterPanelPropsState {
 export default function TopFilterPanel(props: TopFilterPanelProps) {
   const placeholderCategory = { id: "", name: "All categories" };
   const placeholderDifficulty = { id: 0, name: "All difficulties" };
+  const initialState: TopFilterPanelPropsState = {
+    nameSearch: "",
+    categorySearch: "",
+    difficultySearch: "",
+  };
 
   const [categories, setCategories] = useState<JobCategory[]>([placeholderCategory]);
   const [difficulties, setDifficulties] = useState<JobDifficulty[]>([placeholderDifficulty]);
 
-  const [state, setState] = useState<TopFilterPanelPropsState>({
-    nameSearch: "",
-    categorySearch: "",
-    difficultySearch: "",
-  });
+  const [state, setState] = useState<TopFilterPanelPropsState>(initialState);
   const history = useHistory();
   const queryParams = useQueryParams<JobsListQuery>();
 
@@ -52,11 +54,23 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     categoriesService.GetCategories().then((r) => {
       setCategories([placeholderCategory, ...r.data]);
     });
-
     jobsService.GetJobDifficulties().then((r) => {
       setDifficulties([placeholderDifficulty, ...r.data]);
     });
   }, []);
+
+  useEffect(() => {
+    if (queryParams) {
+      let categoryName = categories.find((c) => c.id === queryParams?.categoryId)?.name;
+      let difficultyName = difficulties.find((d) => d.id == queryParams?.difficultyId)?.name;
+
+      setState({
+        nameSearch: queryParams.search ? queryParams.search : initialState.nameSearch,
+        categorySearch: categoryName ? categoryName : initialState.categorySearch,
+        difficultySearch: difficultyName ? difficultyName : initialState.difficultySearch,
+      });
+    }
+  }, [difficulties, categories]);
 
   const onFiltersChanged = () => {
     let category = categories.find((c) => c.name === state.categorySearch);

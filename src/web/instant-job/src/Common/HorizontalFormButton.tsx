@@ -20,7 +20,9 @@ export default function HorizontalFormButton(props: HorizontalFormButtonProps) {
       <div>
         <small style={{ visibility: "hidden" }}>.</small>
       </div>
-      <Button onClick={onClick}>Search</Button>
+      <Button color="primary" onClick={onClick}>
+        Search
+      </Button>
     </div>
   );
 }
