@@ -93,6 +93,20 @@ namespace InstantJob.Web.Api.Controllers
         }
 
         /// <summary>
+        /// Checks if a contractor has an active application for this job
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/applications/hasActive")]
+        [Authorize(Policies.Contractor)]
+        public async Task<HasActiveApplicationDto> HasActiveApplication([FromQuery] HasActiveApplicationQuery query, [FromRoute] Guid id)
+        {
+            query.JobId = id;
+            return await mediator.Send(query);
+        }
+
+        /// <summary>
         /// Withdraws contractors job application from the specified job
         /// </summary>
         /// <param name="command"></param>
