@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using InstantJob.Modules.Jobs.Application.Contractors.Queries.GetContractorJobsInfo;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.AcceptJobAssignment;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.ApplyForJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.AssignContractor;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.CancelJob;
+using InstantJob.Modules.Jobs.Application.Jobs.Commands.CancelJobAssignment;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.CompleteJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob;
 using InstantJob.Modules.Jobs.Application.Jobs.Commands.UpdateJobDetails;
@@ -52,6 +54,18 @@ namespace InstantJob.Web.Api.Controllers
         public async Task<JobDetailsDto> GetJobDetails(Guid id)
         {
             return await mediator.Send(new GetJobDetailsQuery(id));
+        }
+
+        /// <summary>
+        /// Returns jobs which a contractor has participated in
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("contractor/{id}")]
+        [Authorize(Policies.Mandator)]
+        public async Task<ContractorJobsInfoDto> GetContractorJobsInfo(Guid id)
+        {
+            return await mediator.Send(new GetContractorJobsInfoQuery(id));
         }
 
         /// <summary>
@@ -129,6 +143,20 @@ namespace InstantJob.Web.Api.Controllers
         [HttpPatch("{id}/assignment/assign")]
         [Authorize(Policies.Mandator)]
         public async Task AssignContractor(AssignContractorCommand command, Guid id)
+        {
+            command.JobId = id;
+            await mediator.Send(command);
+        }
+
+        
+        /// <summary>
+        /// Cancels job assignment before accepted by contractor
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPatch("{id}/assignment/cancel")]
+        [Authorize(Policies.Mandator)]
+        public async Task CancelJobAssignment(CancelJobAssignmentCommand command, Guid id)
         {
             command.JobId = id;
             await mediator.Send(command);

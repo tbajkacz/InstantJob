@@ -32,6 +32,8 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 
         public JobDetailsContractorDto Contractor { get; set; }
 
+        public JobStatus Status { get; set; }
+
         public bool IsCompleted { get; set; }
 
         public bool IsInProgress { get; set; }
