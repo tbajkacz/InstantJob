@@ -1,7 +1,9 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
+using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
@@ -20,7 +22,11 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
         public async Task<JobDetailsDto> Handle(GetJobDetailsQuery request, CancellationToken cancellationToken)
         {
             var job = await jobRepository.GetByIdAsync(request.Id);
-            return mapper.Map<JobDetailsDto>(job);
+
+            var dto = mapper.Map<JobDetailsDto>(job);
+            dto.Applications = dto.Applications.Where(a => a.Status == ApplicationStatus.Active).ToList();
+
+            return dto;
         }
     }
 }

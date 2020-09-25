@@ -59,7 +59,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.Data
             {
                 throw new EntityNotFoundException(typeof(TEntity), entity.Id);
             }
-            await session.MergeAsync(entity);
+            await session.UpdateAsync(entity);
         }
 
         protected virtual bool EntityExists(TId id)

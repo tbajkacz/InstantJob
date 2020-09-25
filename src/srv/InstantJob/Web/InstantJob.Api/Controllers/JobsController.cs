@@ -12,6 +12,7 @@ using InstantJob.Modules.Jobs.Application.Jobs.Commands.WithdrawJobApplication;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails;
+using InstantJob.Modules.Jobs.Application.Jobs.Queries.HasActiveApplication;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Web.Api.Constants;
 using MediatR;
@@ -114,7 +115,7 @@ namespace InstantJob.Web.Api.Controllers
         /// <returns></returns>
         [HttpDelete("{id}/applications")]
         [Authorize(Policies.Contractor)]
-        public async Task WithdrawJobApplication(WithdrawJobApplicationCommand command, Guid id)
+        public async Task WithdrawJobApplication([FromRoute] WithdrawJobApplicationCommand command, Guid id)
         {
             command.JobId = id;
             await mediator.Send(command);
