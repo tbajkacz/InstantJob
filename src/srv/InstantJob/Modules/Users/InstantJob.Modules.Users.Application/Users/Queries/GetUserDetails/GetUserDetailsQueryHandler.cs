@@ -4,7 +4,7 @@ using AutoMapper;
 using InstantJob.Modules.Users.Application.Users.Abstractions;
 using MediatR;
 
-namespace InstantJob.Modules.Users.Application.Users.Queries.GetUserById
+namespace InstantJob.Modules.Users.Application.Users.Queries.GetUserDetails
 {
     public class GetUserDetailsQueryHandler : IRequestHandler<GetUserDetailsQuery, UserDetailsDto>
     {

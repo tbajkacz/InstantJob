@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation;
 using InstantJob.Modules.Users.Application.Users.Queries.FindUserByCredentials;
-using InstantJob.Modules.Users.Application.Users.Queries.GetUserById;
+using InstantJob.Modules.Users.Application.Users.Queries.GetUserDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

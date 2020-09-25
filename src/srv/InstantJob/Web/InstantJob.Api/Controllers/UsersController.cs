@@ -2,11 +2,12 @@
 using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation;
 using InstantJob.Modules.Users.Application.Users.Queries.GetAvailableRoles;
+using InstantJob.Modules.Users.Application.Users.Queries.GetUserById;
+using InstantJob.Modules.Users.Application.Users.Queries.GetUserDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NHibernate.Mapping;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,6 +23,16 @@ namespace InstantJob.Web.Api.Controllers
         public UsersController(IMediator mediator)
         {
             this.mediator = mediator;
+        }
+
+        /// <summary>
+        /// Returns user info for the id specified in route
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{userId}")]
+        public Task<UserByIdDto> GetUserInfo(Guid userId)
+        {
+            return mediator.Send(new GetUserByIdQuery { UserId = userId });
         }
 
         /// <summary>
