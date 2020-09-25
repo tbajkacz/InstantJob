@@ -12,6 +12,7 @@ import { Login } from "./Modules/Auth/Login/Login";
 import Register from "./Modules/Auth/Register/Register";
 import JobDetailedView from "./Modules/Jobs/JobDetailedView";
 import Footer from "./Modules/Footer/Footer";
+import ApplicationsList from "./Modules/Jobs/ApplicationsList";
 
 function App() {
   return (
@@ -37,14 +38,17 @@ function App() {
             <Route path={routes.Home}>
               <Home />
             </Route>
+            <Route path={routes.Profile} exact>
+              <UserProfile />
+            </Route>
             <Route path={routes.Jobs} exact>
               <JobsList />
             </Route>
             <Route path={routes.DetailedJob} exact>
               <JobDetailedView />
             </Route>
-            <Route path={routes.Profile}>
-              <UserProfile />
+            <Route path={routes.Applications} exact>
+              <ApplicationsList />
             </Route>
             <Route path={routes.Login}>
               <Login className="d-flex justify-content-center mt-5" />

@@ -4,10 +4,13 @@ import {
   AcceptJobAssignmentCommand,
   ApplyForJobCommand,
   AssignContractorCommand,
+  CancelAssignmentCommand,
   CancelJobCommand,
   CompleteJobCommand,
   GetJobDetailsQuery,
   GetJobsQuery,
+  HasActiveApplicationQuery,
+  HasActiveApplicationResponse,
   JobDetails,
   JobDifficulty,
   JobOverview,
@@ -34,19 +37,27 @@ class JobsService {
   }
 
   ApplyForJob(params: ApplyForJobCommand) {
-    return axios.post(`/api/jobs/${params.jobId}/applications`);
+    return axios.post(`/api/jobs/${params.jobId}/applications`, params);
+  }
+
+  HasActiveApplication(params: HasActiveApplicationQuery) {
+    return axios.get<HasActiveApplicationResponse>(`/api/jobs/${params.jobId}/applications/hasActive`);
   }
 
   WithdrawJobApplication(params: WithdrawJobApplicationCommand) {
-    return axios.delete(`/api/jobs/${params.jobId}/applications`);
+    return axios.delete(`/api/jobs/${params.jobId}/applications`, { headers: { "Content-Type": "application/json" } });
   }
 
   AssignContractor(params: AssignContractorCommand) {
-    return axios.patch(`/api/jobs/${params.jobId}/assignment/assign`);
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/assign`, params);
+  }
+
+  CancelAssignment(params: CancelAssignmentCommand) {
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/cancel`, params);
   }
 
   AcceptJobAssignment(params: AcceptJobAssignmentCommand) {
-    return axios.patch(`/api/jobs/${params.jobId}/assignment/accept`);
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/accept`), params;
   }
 
   CancelJobOffer(params: CancelJobCommand) {
@@ -54,7 +65,7 @@ class JobsService {
   }
 
   CompleteJob(params: CompleteJobCommand) {
-    return axios.patch(`/api/jobs/${params.jobId}/complete`);
+    return axios.patch(`/api/jobs/${params.jobId}/complete`, params);
   }
 
   GetJobDifficulties() {

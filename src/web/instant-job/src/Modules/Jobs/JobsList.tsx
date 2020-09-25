@@ -53,26 +53,26 @@ export default function JobsList(props: JobsListProps) {
 
   useEffect(updateJobs, [location.search]);
 
+  if (!jobsList) {
+    return null;
+  }
+
   return (
-    <div className={props.className}>
-      <LoadingIndicator promise={loadingPromise}>
-        <div className={props.className}>
-          {jobsList ? (
-            <div className="ui-flex-container">
-              <div className="ui-wrapper col-sm-9">
-                <TopFilterPanel className="ui-header" />
-                <small className="text-white">TODO Sortowanie</small>
-                <h3 className="ui-header">{formatTitle()}</h3>
-                <ul className="ui-list-dark">
-                  {jobsList.map((c) => (
-                    <JobListItem key={c.id} job={c} />
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ) : null}
+    <LoadingIndicator promise={loadingPromise}>
+      <div className={props.className}>
+        <div className="ui-flex-container">
+          <div className="ui-wrapper col-sm-9">
+            <TopFilterPanel className="ui-header" />
+            <small className="text-white">TODO Sortowanie</small>
+            <h3 className="ui-header">{formatTitle()}</h3>
+            <ul className="ui-list-dark">
+              {jobsList.map((c) => (
+                <JobListItem key={c.id} job={c} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </LoadingIndicator>
-    </div>
+      </div>
+    </LoadingIndicator>
   );
 }

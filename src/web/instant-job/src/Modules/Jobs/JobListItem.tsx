@@ -6,6 +6,7 @@ import routes from "../../Common/routes";
 import { JobOverview } from "./jobsTypes";
 import { formatDate } from "./../../Common/dateFormatter";
 import JobsFilterBadgePill from "./JobsFilterBadgePill";
+import UserProfileAnchor from "../../Common/UserProfileAnchor";
 
 interface JobsListItemProps {
   job: JobOverview;
@@ -17,7 +18,7 @@ interface JobsListItemQuery {
 }
 
 export default React.memo(function JobListItem(props: JobsListItemProps) {
-  let itemClass = false ? "ui-list-item-dark ui-selected" : "ui-list-item-dark";
+  let itemClass = false ? "ui-list-item-dark-interactive ui-selected" : "ui-list-item-dark-interactive";
 
   const history = useHistory();
 
@@ -52,10 +53,7 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
         <div>{renderPrice()}</div>
         <small className="ui-position-bottom">
           {`${formatDate(postedDate)} by `}
-          <a
-            className="ui-anchor"
-            href={`${routes.Profile}/${props.job.mandator.id}`}
-          >{`${props.job.mandator.name} ${props.job.mandator.surname}`}</a>
+          <UserProfileAnchor user={props.job.mandator} />
         </small>
       </div>
     </li>

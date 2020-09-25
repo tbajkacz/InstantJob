@@ -32,6 +32,14 @@ export interface ApplyForJobCommand {
   jobId: string;
 }
 
+export interface HasActiveApplicationQuery {
+  jobId: string;
+}
+
+export interface HasActiveApplicationResponse {
+  hasActiveApplication: boolean;
+}
+
 export interface WithdrawJobApplicationCommand {
   jobId: string;
 }
@@ -39,6 +47,10 @@ export interface WithdrawJobApplicationCommand {
 export interface AssignContractorCommand {
   jobId: string;
   contractorId: string;
+}
+
+export interface CancelAssignmentCommand {
+  jobId: string;
 }
 
 export interface AcceptJobAssignmentCommand {
@@ -77,6 +89,7 @@ export interface JobDetails {
   category: JobCategory;
   mandator: Mandator;
   contractor: Contractor;
+  status: JobStatus;
   isCompleted: boolean;
   isInProgress: boolean;
 }
@@ -106,4 +119,14 @@ export interface Contractor {
   id: string;
   name: string;
   surname: string;
+}
+
+export interface JobStatus {
+  id: number;
+  name: string;
+  isInProgress: boolean;
+  isAssigned: boolean;
+  isCompleted: boolean;
+  isAvailable: boolean;
+  isCanceled: boolean;
 }

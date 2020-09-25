@@ -1,7 +1,7 @@
 const roles = {
-  admin: "admin",
-  contractor: "contractor",
-  mandator: "mandator",
-  guest: "guest",
+  admin: "Admin",
+  contractor: "Contractor",
+  mandator: "Mandator",
+  guest: "Guest",
 };
 export default roles;

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import LoadingIndicator from "../../Common/LoadingIndicator";
 import { jobsService } from "./jobsService";
 import { JobDetails } from "./jobsTypes";
 import { combineClasses } from "./../../Common/componentUtility";
 import { useAuth } from "../../Common/Auth/authContext";
-import roles from "../../Common/roles";
 import { Button } from "reactstrap";
-import routes from "../../Common/routes";
+import routes, { routeParams } from "../../Common/routes";
 import { formatDate, getFormattedTimeLeft } from "./../../Common/dateFormatter";
 import JobsFilterBadgePill from "./JobsFilterBadgePill";
 import { JobsListQuery } from "./JobsList";
 import { buildQuery } from "../../Common/buildQuery";
+import roles from "./../../Common/roles";
+import UserProfileAnchor from "./../../Common/UserProfileAnchor";
 
 export interface JobDetailedViewProps {
   className?: string;
@@ -31,43 +32,101 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
 
   const [jobDetails, setJobDetails] = useState<JobDetails>();
   const [loadingPromise, setLoadingPromise] = useState<Promise<any>>();
+  const [hasActiveApplication, setHasActiveApplication] = useState<boolean>();
+
+  const [entityHasUpdatedToggle, setEntityHasUpdatedToggle] = useState<boolean>();
 
   const auth = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
-    setLoadingPromise(
-      jobsService.GetJobDetails({ jobId }).then((r) => {
-        setJobDetails(r.data);
-      })
-    );
+    setLoadingPromise(refreshJobDetails());
   }, []);
+
+  useEffect(() => {
+    if (jobDetails && auth.currentUser?.role.name === roles.contractor) {
+      jobsService.HasActiveApplication({ jobId: jobDetails.id }).then((r) => {
+        setHasActiveApplication(r.data.hasActiveApplication);
+      });
+    }
+  }, [jobDetails]);
+
+  useEffect(() => {
+    refreshJobDetails();
+  }, [entityHasUpdatedToggle]);
+
+  const refreshJobDetails = () => {
+    return jobsService.GetJobDetails({ jobId }).then((r) => {
+      setJobDetails(r.data);
+    });
+  };
+
+  const applyForJob = () => {
+    if (auth.currentUser && auth.currentUser.role.name === roles.contractor && jobDetails) {
+      jobsService.ApplyForJob({ jobId: jobDetails.id }).then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
+    }
+  };
+
+  const withdrawJobApplication = () => {
+    if (auth.currentUser && auth.currentUser.role.name === roles.contractor && jobDetails) {
+      jobsService
+        .WithdrawJobApplication({ jobId: jobDetails.id })
+        .then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
+    }
+  };
+
+  const redirectToBrowseApplications = () => {
+    if (jobDetails) {
+      history.push(routes.Applications.replace(routeParams.jobId, jobDetails.id));
+    }
+  };
 
   if (!jobDetails) {
     return <div>Invalid job details</div>;
   }
 
-  const renderApplicationsSection = () => {
-    let content: JSX.Element | string;
-    if (jobDetails.isCompleted) {
-      content = "This job has already been completed";
-    } else if (jobDetails.isInProgress) {
-      content = "This job is already in progres";
-    } else if (jobDetails.wasCanceled) {
-      content = "This job offer was canceled";
-    } else {
-      content = (
-        <>
-          <h5>{`Offered price: ${jobDetails.price ? `$${jobDetails.price}` : "not specified"}`}</h5>
-          <div>{jobDetails.applications.length} applications for this job</div>
-          <h6 className="mt-2">{renderTimeLeft()}</h6>
-          {auth.currentUser?.role?.name?.toLowerCase() === roles.contractor ? (
-            <Button className="btn-block mt-1">Apply</Button>
-          ) : null}
-        </>
-      );
-    }
+  const renderContractorUnassignedApplicationsSection = () => {
+    return (
+      <Button
+        color="primary"
+        className="btn-block mt-1"
+        onClick={!hasActiveApplication ? applyForJob : withdrawJobApplication}
+      >
+        {!hasActiveApplication ? "Apply" : "Withdraw application"}
+      </Button>
+    );
+  };
 
-    return content;
+  const renderMandatorUnassignedApplicationsSection = () => {
+    return (
+      <Button color="primary" className="btn-block mt-1" onClick={redirectToBrowseApplications}>
+        Browse applications
+      </Button>
+    );
+  };
+
+  const renderApplicationsCountSection = () => {
+    return `${jobDetails.applications.length} ${
+      jobDetails.applications.length === 1 ? "application" : "applications"
+    } for this job`;
+  };
+
+  const renderApplicationSection = () => {
+    if (jobDetails.isCompleted) {
+      return "This job has already been completed";
+    } else if (jobDetails.isInProgress) {
+      return "This job is already in progres";
+    } else if (jobDetails.wasCanceled) {
+      return "This job offer was canceled";
+    } else {
+      if (auth.currentUser?.role?.name === roles.mandator) {
+        return renderMandatorUnassignedApplicationsSection();
+      }
+      if (auth.currentUser?.role?.name === roles.contractor) {
+        return renderContractorUnassignedApplicationsSection();
+      }
+      return null;
+    }
   };
 
   const renderTimeLeft = () => {
@@ -94,16 +153,17 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
                 {jobDetails.difficulty.name}
               </JobsFilterBadgePill>
             </div>
-            <div className="col-sm-2">{renderApplicationsSection()}</div>
+            <div className="col-sm-2">
+              <h5>{`Offered price: ${jobDetails.price ? `$${jobDetails.price}` : "not specified"}`}</h5>
+              <div>{renderApplicationsCountSection()}</div>
+              <h6 className="mt-2">{renderTimeLeft()}</h6>
+              {renderApplicationSection()}
+            </div>
           </div>
           <div className="ui-content">
             <div className="col-sm-12">
               <h6>
-                Posted by{" "}
-                <a
-                  href={`${routes.Profile}/${jobDetails.mandator.id}`}
-                >{`${jobDetails.mandator.name} ${jobDetails.mandator.surname}`}</a>{" "}
-                at {formatDate(jobDetails.postedDate)}
+                Posted by <UserProfileAnchor user={jobDetails.mandator} /> at {formatDate(jobDetails.postedDate)}
               </h6>
             </div>
           </div>
