@@ -2,6 +2,10 @@ export function formatDate(date: Date) {
   return `${new Date(date).toLocaleDateString("pl-PL")} ${new Date(date).toLocaleTimeString("pl-PL")}`;
 }
 
+export function formatDateShort(date: Date) {
+  return `${new Date(date).toLocaleDateString("pl-PL")}`;
+}
+
 export function getFormattedTimeLeft(date: Date): TimeLeft {
   let now = getNowUTCDate();
   if (date <= now) {

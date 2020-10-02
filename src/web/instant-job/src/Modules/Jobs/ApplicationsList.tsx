@@ -46,11 +46,10 @@ export default function ApplicationsList(props: ApplicationsListProps) {
                 <ApplicationsListItem
                   key={a.applicationDate.toString()}
                   application={a}
-                  isUnassigned={!jobDetails.status.isAssigned}
-                  isInProgress={jobDetails.status.isInProgress}
                   jobId={jobDetails.id}
                   onAction={onAction}
                   assignedContractor={jobDetails.contractor}
+                  status={jobDetails.status}
                 />
               ))}
             </ul>

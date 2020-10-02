@@ -21,6 +21,9 @@ interface TopFilterPanelPropsState {
   nameSearch: string;
   categorySearch: string;
   difficultySearch: string;
+  mandatorId?: string;
+  contractorId?: string;
+  status?: string;
 }
 
 export default function TopFilterPanel(props: TopFilterPanelProps) {
@@ -30,6 +33,9 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     nameSearch: "",
     categorySearch: "",
     difficultySearch: "",
+    mandatorId: "",
+    contractorId: "",
+    status: "",
   };
 
   const [categories, setCategories] = useState<JobCategory[]>([placeholderCategory]);
@@ -65,7 +71,8 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
       let difficultyName = difficulties.find((d) => d.id == queryParams?.difficultyId)?.name;
 
       setState({
-        nameSearch: queryParams.search ? queryParams.search : initialState.nameSearch,
+        ...queryParams,
+        nameSearch: queryParams.searchString ? queryParams.searchString : initialState.nameSearch,
         categorySearch: categoryName ? categoryName : initialState.categorySearch,
         difficultySearch: difficultyName ? difficultyName : initialState.difficultySearch,
       });
@@ -79,12 +86,25 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     let difficultyId = difficulty && difficulty.id !== 0 ? difficulty.id : undefined;
 
     let query: JobsListQuery = {
-      search: state.nameSearch,
+      searchString: state.nameSearch,
       categoryId,
       difficultyId: difficultyId,
+      contractorId: state.contractorId,
+      mandatorId: state.mandatorId,
+      status: state.status,
     };
 
     history.push(`${routes.Jobs}${buildQuery(query)}`);
+  };
+
+  const onClearFilters = () => {
+    history.push(
+      `${routes.Jobs}${buildQuery({
+        contractorId: state.contractorId,
+        mandatorId: state.mandatorId,
+        status: state.status,
+      })}`
+    );
   };
 
   const tryGetDefaultCategoryValue = () => {
@@ -106,10 +126,15 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     <Form>
       <div className={props.className}>
         <div className="row">
-          <div className="col-sm-4">
-            <FormInput defaultValue={queryParams?.search} name="nameSearch" displayName="Search" config={inputConfig} />
+          <div className="col-md-4">
+            <FormInput
+              defaultValue={queryParams?.searchString}
+              name="nameSearch"
+              displayName="Search"
+              config={inputConfig}
+            />
           </div>
-          <div className="col-sm-3">
+          <div className="col-md-3">
             <FormSelect
               name="categorySearch"
               displayName="Category"
@@ -118,7 +143,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
               defaultValue={tryGetDefaultCategoryValue()}
             />
           </div>
-          <div className="col-sm-3">
+          <div className="col-md-3">
             <FormSelect
               name="difficultySearch"
               displayName="Difficulty"
@@ -127,8 +152,13 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
               defaultValue={tryGetDefaultDifficultyValue()}
             />
           </div>
-          <div className="col-sm-2">
-            <HorizontalFormButton onClick={onFiltersChanged}>Search</HorizontalFormButton>
+          <div className="col-md-1 btn-group">
+            <HorizontalFormButton className="mr-2" color="primary" onClick={onFiltersChanged}>
+              Search
+            </HorizontalFormButton>
+            <HorizontalFormButton onClick={onClearFilters} color="secondary">
+              Reset
+            </HorizontalFormButton>
           </div>
         </div>
       </div>

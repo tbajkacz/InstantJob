@@ -57,7 +57,7 @@ class JobsService {
   }
 
   AcceptJobAssignment(params: AcceptJobAssignmentCommand) {
-    return axios.patch(`/api/jobs/${params.jobId}/assignment/accept`), params;
+    return axios.patch(`/api/jobs/${params.jobId}/assignment/accept`, params);
   }
 
   CancelJobOffer(params: CancelJobCommand) {

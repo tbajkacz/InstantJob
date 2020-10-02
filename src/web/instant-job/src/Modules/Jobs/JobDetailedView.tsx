@@ -75,6 +75,14 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     }
   };
 
+  const acceptAssignment = () => {
+    if (auth.currentUser && auth.currentUser.role.name === roles.contractor && jobDetails) {
+      jobsService
+        .AcceptJobAssignment({ jobId: jobDetails.id })
+        .then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
+    }
+  };
+
   const redirectToBrowseApplications = () => {
     if (jobDetails) {
       history.push(routes.Applications.replace(routeParams.jobId, jobDetails.id));
@@ -97,7 +105,23 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     );
   };
 
-  const renderMandatorUnassignedApplicationsSection = () => {
+  const renderContractorAssignedApplicationsSection = () => {
+    if (
+      auth.currentUser &&
+      auth.currentUser.role.name === roles.contractor &&
+      auth.currentUser.id === jobDetails.contractor.id
+    ) {
+      return (
+        <Button color="primary" className="btn-block mt-1" onClick={acceptAssignment}>
+          Begin job
+        </Button>
+      );
+    }
+
+    return "This job is already assigned to another contractor";
+  };
+
+  const renderMandatorNotInProgressApplicationsSection = () => {
     return (
       <Button color="primary" className="btn-block mt-1" onClick={redirectToBrowseApplications}>
         Browse applications
@@ -111,18 +135,32 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     } for this job`;
   };
 
+  const renderCompletionInfo = () => {
+    return (
+      <>
+        Completed on {formatDate(jobDetails.completionInfo.completionDate)} by {jobDetails.contractor.name}{" "}
+        {jobDetails.contractor.surname}
+      </>
+    );
+  };
+
   const renderApplicationSection = () => {
-    if (jobDetails.isCompleted) {
-      return "This job has already been completed";
-    } else if (jobDetails.isInProgress) {
-      return "This job is already in progres";
-    } else if (jobDetails.wasCanceled) {
+    if (jobDetails.status.isCompleted) {
+      return renderCompletionInfo();
+    } else if (jobDetails.status.isInProgress) {
+      return "This job is already in progress";
+    } else if (jobDetails.status.isCanceled) {
       return "This job offer was canceled";
+    } else if (jobDetails.status.isAssigned) {
+      if (auth.currentUser?.role?.name === roles.mandator) {
+        return renderMandatorNotInProgressApplicationsSection();
+      } else if (auth.currentUser?.role?.name === roles.contractor) {
+        return renderContractorAssignedApplicationsSection();
+      }
     } else {
       if (auth.currentUser?.role?.name === roles.mandator) {
-        return renderMandatorUnassignedApplicationsSection();
-      }
-      if (auth.currentUser?.role?.name === roles.contractor) {
+        return renderMandatorNotInProgressApplicationsSection();
+      } else if (auth.currentUser?.role?.name === roles.contractor) {
         return renderContractorUnassignedApplicationsSection();
       }
       return null;

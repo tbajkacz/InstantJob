@@ -14,6 +14,7 @@ export default function JobsFilterBadgePill(props: JobsFilterBadgePillProps) {
     e.stopPropagation();
     history.push(props.href);
   };
+
   return (
     <small>
       <a className="ui-anchor-pill" href={props.href} onClick={onCategoryAnchorClick}>

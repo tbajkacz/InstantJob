@@ -81,17 +81,15 @@ export interface JobDetails {
   title: string;
   description: string;
   applications: JobApplication[];
+  completionInfo: JobCompletionInfo;
   price: number;
   postedDate: Date;
   deadline: Date;
   difficulty: JobDifficulty;
-  wasCanceled: boolean;
   category: JobCategory;
   mandator: Mandator;
   contractor: Contractor;
   status: JobStatus;
-  isCompleted: boolean;
-  isInProgress: boolean;
 }
 
 export interface JobCategory {
@@ -102,6 +100,12 @@ export interface JobCategory {
 export interface JobApplication {
   contractor: Contractor;
   applicationDate: Date;
+}
+
+export interface JobCompletionInfo {
+  completionDate: Date;
+  comment: string;
+  rating: number | undefined;
 }
 
 export interface JobDifficulty {
@@ -130,3 +134,11 @@ export interface JobStatus {
   isAvailable: boolean;
   isCanceled: boolean;
 }
+
+export const jobStatusName = {
+  Available: "Available",
+  Assigned: "Assigned",
+  InProgress: "InProgress",
+  Completed: "Completed",
+  Canceled: "Canceled",
+};

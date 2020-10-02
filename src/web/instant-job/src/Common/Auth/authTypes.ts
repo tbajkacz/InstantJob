@@ -4,6 +4,7 @@ export interface Role {
 }
 
 export interface CurrentUser {
+  id: string;
   name: string;
   surname: string;
   email: string;
