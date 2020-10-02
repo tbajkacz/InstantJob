@@ -20,6 +20,8 @@ namespace InstantJob.Modules.Users.Domain.Users
 
         public virtual Role Role { get; protected set; }
 
+        public virtual DateTime CreationDate { get; protected set; } = DateTime.UtcNow;
+
         protected User()
         {
         }

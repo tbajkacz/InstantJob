@@ -22,6 +22,7 @@ namespace InstantJob.Database.Persistence.Mapping.UserModule
             Map(x => x.Picture);
             Map(x => x.Role)
                 .CustomType<EnumerationType<Role>>();
+            Map(x => x.CreationDate);
         }
     }
 }
