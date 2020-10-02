@@ -13,6 +13,7 @@ import Register from "./Modules/Auth/Register/Register";
 import JobDetailedView from "./Modules/Jobs/JobDetailedView";
 import Footer from "./Modules/Footer/Footer";
 import ApplicationsList from "./Modules/Jobs/ApplicationsList";
+import FindProfile from "./Modules/Profile/FindProfile";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
                 Jobs
               </Link>
             </NavItem>
+            <NavItem>
+              <Link className="ui-nav-link" to={routes.SearchUser}>
+                Find user
+              </Link>
+            </NavItem>
           </Nav>
           <UserMenu />
         </Navbar>
@@ -37,6 +43,9 @@ function App() {
           <Switch>
             <Route path={routes.Home}>
               <Home />
+            </Route>
+            <Route path={routes.SearchUser} exact>
+              <FindProfile />
             </Route>
             <Route path={routes.Profile} exact>
               <UserProfile />

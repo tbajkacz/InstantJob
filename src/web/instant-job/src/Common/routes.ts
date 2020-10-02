@@ -8,6 +8,7 @@ const routes = {
   Categories: "/categories",
   DetailedCategory: "/categories/:categoryName",
   Applications: "/jobs/:jobId/applications",
+  SearchUser: "/profile/find",
 };
 
 export const routeParams = {
