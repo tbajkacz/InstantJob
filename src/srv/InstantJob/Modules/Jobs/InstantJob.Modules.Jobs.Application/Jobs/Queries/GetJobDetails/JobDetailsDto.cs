@@ -24,8 +24,6 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 
         public Difficulty Difficulty { get; set; }
 
-        public bool WasCanceled { get; set; }
-
         public JobDetailsCategoryDto Category { get; set; }
 
         public JobDetailsMandatorDto Mandator { get; set; }
@@ -34,8 +32,6 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
 
         public JobStatus Status { get; set; }
 
-        public bool IsCompleted { get; set; }
-
-        public bool IsInProgress { get; set; }
+        public JobCompletionInfoDto CompletionInfo { get; set; }
     }
 }

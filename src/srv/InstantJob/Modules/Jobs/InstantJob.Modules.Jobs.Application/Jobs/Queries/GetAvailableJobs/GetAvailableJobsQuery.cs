@@ -12,8 +12,14 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
 
         public string SearchString { get; set; }
 
+        public Guid? MandatorId { get; set; }
+
+        public Guid? ContractorId { get; set; }
+
         public int? Skip { get; set; }
 
         public int? Count { get; set; }
+
+        public string Status { get; set; }
     }
 }
