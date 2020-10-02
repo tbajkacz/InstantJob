@@ -68,5 +68,8 @@ namespace InstantJob.BuildingBlocks.Domain
 
         public static T FromInt<T>(int id) where T : Enumeration
             => GetAll<T>().Single(e => e.Id == id);
+
+        public static T FromString<T>(string name) where T : Enumeration
+            => GetAll<T>().SingleOrDefault(e => e.Name == name);
     }
 }
