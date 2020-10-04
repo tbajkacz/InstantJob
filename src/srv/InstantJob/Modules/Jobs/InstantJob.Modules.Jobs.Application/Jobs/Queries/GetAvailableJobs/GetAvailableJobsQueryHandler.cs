@@ -30,10 +30,10 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
                     request.DifficultyId,
                     request.SearchString,
                     request.Status,
+                    request.IncludeExpired ?? false,
                     request.Skip,
                     request.Count
                     )
-                .Where(x => x.Deadline.HasValue && x.Deadline.Value > DateTime.Now)
                 .Select(mapper.Map<JobOverviewDto>));    
         }
     }

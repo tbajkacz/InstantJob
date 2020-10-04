@@ -21,5 +21,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
         public int? Count { get; set; }
 
         public string Status { get; set; }
+
+        public bool? IncludeExpired { get; set; }
     }
 }

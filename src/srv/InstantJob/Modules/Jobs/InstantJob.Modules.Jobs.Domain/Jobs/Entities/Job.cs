@@ -41,6 +41,8 @@ namespace InstantJob.Modules.Jobs.Domain.Jobs.Entities
 
         public virtual JobStatus Status { get; protected set; }
 
+        public virtual bool HasExpired => Deadline.HasValue && Deadline.Value <= DateTime.Now;
+
         protected Job()
         {
         }

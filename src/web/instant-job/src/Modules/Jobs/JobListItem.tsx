@@ -35,6 +35,10 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
     return props.job.description;
   };
 
+  const formatJobStatus = () => {
+    return props.job.status.name.replace(/([A-Z])/g, " $1").trim();
+  };
+
   const postedDate = new Date(props.job.postedDate);
 
   return (
@@ -48,6 +52,7 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
         <JobsFilterBadgePill href={`${routes.Jobs}${buildQuery({ difficultyId: props.job.difficulty.id })}`}>
           {props.job.difficulty.name}
         </JobsFilterBadgePill>
+        <JobsFilterBadgePill>{formatJobStatus()}</JobsFilterBadgePill>
       </div>
       <div className="col-sm-3">
         <div>{renderPrice()}</div>

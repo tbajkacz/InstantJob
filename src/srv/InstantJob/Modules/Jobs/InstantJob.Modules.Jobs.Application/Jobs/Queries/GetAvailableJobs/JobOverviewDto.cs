@@ -19,6 +19,8 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
 
         public Difficulty Difficulty { get; set; }
 
+        public JobStatus Status { get; set; }
+
         public JobOverviewCategoryDto Category { get; set; }
 
         public JobOverviewMandatorDto Mandator { get; set; }

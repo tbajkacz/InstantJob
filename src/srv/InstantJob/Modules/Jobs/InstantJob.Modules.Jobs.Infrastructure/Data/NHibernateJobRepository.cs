@@ -4,6 +4,7 @@ using System.Linq;
 using InstantJob.BuildingBlocks.Domain;
 using InstantJob.BuildingBlocks.Infrastructure.Data;
 using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
+using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 using NHibernate;
@@ -24,6 +25,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
             int? difficultyId,
             string searchString,
             string status,
+            bool includeExpired,
             int? skip,
             int? count)
         {
@@ -50,13 +52,24 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
             {
                 query = query.Where(j => j.Title.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
             }
-            if (!string.IsNullOrEmpty(status) && Enumeration.FromString<JobStatus>(status) != null)
+            if (!string.IsNullOrEmpty(status) && Enumeration.FromString<JobStatusQuery>(status) != null)
             {
-                query = query.Where(j => j.Status.Name == status);
+                if (status == JobStatusQuery.Any.Name)
+                {
+                    // No filtering is required
+                }
+                else
+                {
+                    query = query.Where(j => j.Status.Name == status);
+                }
             }
             else
             {
                 query = query.Where(j => j.Status == JobStatus.Available);
+            }
+            if (!includeExpired)
+            {
+                query = query.Where(j => !j.HasExpired);
             }
             if (skip != null)
             {

@@ -118,7 +118,11 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
       );
     }
 
-    return "This job is already assigned to another contractor";
+    return (
+      <>
+        This job is already assigned to <UserProfileAnchor user={jobDetails.contractor} />
+      </>
+    );
   };
 
   const renderMandatorNotInProgressApplicationsSection = () => {
@@ -148,7 +152,11 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     if (jobDetails.status.isCompleted) {
       return renderCompletionInfo();
     } else if (jobDetails.status.isInProgress) {
-      return "This job is already in progress";
+      return (
+        <>
+          This job is already in progress by <UserProfileAnchor user={jobDetails.contractor} />
+        </>
+      );
     } else if (jobDetails.status.isCanceled) {
       return "This job offer was canceled";
     } else if (jobDetails.status.isAssigned) {

@@ -74,6 +74,7 @@ export interface JobOverview {
   difficulty: JobDifficulty;
   category: JobCategory;
   mandator: Mandator;
+  status: JobStatus;
 }
 
 export interface JobDetails {
@@ -141,4 +142,5 @@ export const jobStatusName = {
   InProgress: "InProgress",
   Completed: "Completed",
   Canceled: "Canceled",
+  Any: "Any",
 };

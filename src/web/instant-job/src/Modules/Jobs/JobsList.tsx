@@ -19,6 +19,7 @@ export interface JobsListQuery {
   status?: string;
   mandatorId?: string;
   contractorId?: string;
+  includeExpired?: boolean;
 }
 
 interface JobUserInfo {
