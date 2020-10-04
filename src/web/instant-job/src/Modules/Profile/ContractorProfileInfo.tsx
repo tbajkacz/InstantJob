@@ -29,6 +29,7 @@ export default function ContractorProfileInfo(props: ContractorProfileProps) {
     const query: JobsListQuery = {
       contractorId: props.userId,
       status,
+      includeExpired: true,
     };
 
     history.push(`${routes.Jobs}${buildQuery(query)}`);

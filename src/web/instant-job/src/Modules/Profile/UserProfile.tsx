@@ -32,15 +32,15 @@ export default function UserProfile(props: UserProfileProps) {
         setUserProfileInfo(r.data);
       })
     );
-  }, []);
+  }, [params]);
 
   const renderRoleDependentSection = () => {
-    if (auth.currentUser?.role?.name) {
-      switch (auth.currentUser.role.name) {
+    if (userProfileInfo?.role?.name) {
+      switch (userProfileInfo.role.name) {
         case roles.contractor:
           return <ContractorProfileInfo userId={params.userId} />;
         case roles.mandator:
-          return <MandatorProfileInfo />;
+          return <MandatorProfileInfo userId={params.userId} />;
       }
     }
   };
