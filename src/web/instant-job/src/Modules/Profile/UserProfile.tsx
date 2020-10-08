@@ -63,6 +63,7 @@ export default function UserProfile(props: UserProfileProps) {
             </div>
             <div className="ml-4">
               <h2>{`${userProfileInfo.name} ${userProfileInfo.surname}`}</h2>
+              <h6>{`${userProfileInfo.email}`}</h6>
               <small>{`${userProfileInfo.role.name} since ${formatDateShort(userProfileInfo.creationDate)}`}</small>
             </div>
           </div>

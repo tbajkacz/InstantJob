@@ -40,7 +40,7 @@ $listHeight: 500px;
   @extend .ui-list-item-dark;
 
   &:not(.ui-selected):active {
-    background-color: $uiElementActiveBgColor;
+    background-color: $uiElementActiveBgColor !important;
   }
   &:not(.ui-selected):hover {
     background-color: $uiElementHoverBgColor;

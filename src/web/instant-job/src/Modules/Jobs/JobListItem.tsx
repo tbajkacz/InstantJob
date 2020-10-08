@@ -18,8 +18,6 @@ interface JobsListItemQuery {
 }
 
 export default React.memo(function JobListItem(props: JobsListItemProps) {
-  let itemClass = false ? "ui-list-item-dark-interactive ui-selected" : "ui-list-item-dark-interactive";
-
   const history = useHistory();
 
   const redirectToJob = () => history.push(`${routes.Jobs}/${props.job.id}`);
@@ -42,7 +40,7 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
   const postedDate = new Date(props.job.postedDate);
 
   return (
-    <li className={combineClasses(itemClass, "row")} onClick={redirectToJob}>
+    <li className={combineClasses("ui-list-item-dark-interactive", "row")} onClick={redirectToJob}>
       <div className="col-sm-9">
         <div className="h5">{props.job.title}</div>
         <div>{renderDescription()}</div>

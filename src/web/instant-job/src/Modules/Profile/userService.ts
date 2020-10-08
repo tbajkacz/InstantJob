@@ -1,7 +1,10 @@
 import axios from "axios";
+import { buildQuery } from "../../Common/buildQuery";
 import { Role } from "./../../Common/Auth/authTypes";
 import {
   ContractorStatistics,
+  FindUserByNameQuery,
+  FindUserByNameResponse,
   GetStatisticsQuery,
   GetUserByIdQuery,
   MandatorStatistics,
@@ -10,6 +13,10 @@ import {
 class UserService {
   getUserById(query: GetUserByIdQuery) {
     return axios.get<UserProfileInfo>(`/api/users/${query.userId}`);
+  }
+
+  findByName(query: FindUserByNameQuery) {
+    return axios.get<FindUserByNameResponse>(`/api/users${buildQuery(query)}`);
   }
 
   getAvailableRoles() {

@@ -76,10 +76,16 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
   };
 
   const acceptAssignment = () => {
-    if (auth.currentUser && auth.currentUser.role.name === roles.contractor && jobDetails) {
+    if (auth.currentUser && jobDetails && auth.currentUser.id === jobDetails.contractor.id) {
       jobsService
         .AcceptJobAssignment({ jobId: jobDetails.id })
         .then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
+    }
+  };
+
+  const completeJob = () => {
+    if (auth.currentUser && jobDetails && auth.currentUser.id === jobDetails.mandator.id) {
+      jobsService.CompleteJob({ jobId: jobDetails.id }).then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
     }
   };
 
@@ -152,9 +158,20 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     if (jobDetails.status.isCompleted) {
       return renderCompletionInfo();
     } else if (jobDetails.status.isInProgress) {
+      if (auth.currentUser && auth.currentUser.id === jobDetails.mandator.id) {
+        return (
+          <Button onClick={completeJob} color="primary">
+            Mark as completed
+          </Button>
+        );
+      }
       return (
         <>
-          This job is already in progress by <UserProfileAnchor user={jobDetails.contractor} />
+          This job is already in progress by{" "}
+          <UserProfileAnchor
+            customText={auth.currentUser?.id === jobDetails.contractor.id ? "You" : ""}
+            user={jobDetails.contractor}
+          />
         </>
       );
     } else if (jobDetails.status.isCanceled) {

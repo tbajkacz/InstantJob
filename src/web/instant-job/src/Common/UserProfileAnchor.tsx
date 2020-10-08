@@ -6,6 +6,7 @@ import routes, { routeParams } from "./routes";
 
 interface UserProfileAnchorProps {
   user: Mandator | Contractor;
+  customText?: string;
 }
 
 export default function UserProfileAnchor(props: UserProfileAnchorProps) {
@@ -20,5 +21,16 @@ export default function UserProfileAnchor(props: UserProfileAnchorProps) {
     history.push(href);
   };
 
-  return <a className="ui-anchor" href={href} onClick={onAnchorClick}>{`${props.user.name} ${props.user.surname}`}</a>;
+  const getDisplayedText = () => {
+    if (props.customText) {
+      return props.customText;
+    }
+    return `${props.user.name} ${props.user.surname}`;
+  };
+
+  return (
+    <a className="ui-anchor" href={href} onClick={onAnchorClick}>
+      {getDisplayedText()}
+    </a>
+  );
 }

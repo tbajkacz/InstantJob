@@ -28,3 +28,17 @@ export interface MandatorStatistics {
 export interface GetStatisticsQuery {
   id: string;
 }
+
+export interface FindUserByNameQuery {
+  search: string;
+}
+
+export interface FindUserByNameResponse {
+  users: UserBasicInfo[];
+}
+
+export interface UserBasicInfo {
+  id: string;
+  name: string;
+  surname: string;
+}
