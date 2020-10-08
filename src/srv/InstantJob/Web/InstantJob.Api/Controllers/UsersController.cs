@@ -1,6 +1,7 @@
 ﻿using InstantJob.BuildingBlocks.Domain;
 using InstantJob.Modules.Users.Application.Users.Commands.ChangeUserPassword;
 using InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformation;
+using InstantJob.Modules.Users.Application.Users.Queries.FindByName;
 using InstantJob.Modules.Users.Application.Users.Queries.GetAvailableRoles;
 using InstantJob.Modules.Users.Application.Users.Queries.GetUserById;
 using InstantJob.Modules.Users.Application.Users.Queries.GetUserDetails;
@@ -33,6 +34,16 @@ namespace InstantJob.Web.Api.Controllers
         public Task<UserByIdDto> GetUserInfo(Guid userId)
         {
             return mediator.Send(new GetUserByIdQuery { UserId = userId });
+        }
+
+        /// <summary>
+        /// Returns basic informations of users matching the query
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public Task<FindByNameDto> GetUserInfo([FromQuery] FindByNameQuery query)
+        {
+            return mediator.Send(query);
         }
 
         /// <summary>
