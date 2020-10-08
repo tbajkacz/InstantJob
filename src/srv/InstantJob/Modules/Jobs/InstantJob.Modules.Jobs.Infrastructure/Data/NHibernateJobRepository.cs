@@ -52,7 +52,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
             {
                 query = query.Where(j => j.Title.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
             }
-            if (!string.IsNullOrEmpty(status) && Enumeration.FromString<JobStatusQuery>(status) != null)
+            if (!string.IsNullOrEmpty(status) && (Enumeration.FromString<JobStatus>(status) != null || Enumeration.FromString<JobStatusQuery>(status) != null))
             {
                 if (status == JobStatusQuery.Any.Name)
                 {
