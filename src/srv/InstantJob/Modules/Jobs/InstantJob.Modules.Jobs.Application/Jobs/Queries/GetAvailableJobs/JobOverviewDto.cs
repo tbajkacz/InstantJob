@@ -24,5 +24,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
         public JobOverviewCategoryDto Category { get; set; }
 
         public JobOverviewMandatorDto Mandator { get; set; }
+
+        public bool HasExpired { get; set; }
     }
 }
