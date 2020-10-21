@@ -11,7 +11,7 @@ using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob
 {
-    public class PostJobCommandHandler : IRequestHandler<PostJobCommand>
+    public class PostJobCommandHandler : IRequestHandler<PostJobCommand, Guid>
     {
         private readonly IJobRepository jobRepository;
         private readonly ICategoryRepository categoryRepository;
@@ -30,20 +30,22 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob
             this.currentMandator = currentMandator;
         }
 
-        public async Task<Unit> Handle(PostJobCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(PostJobCommand request, CancellationToken cancellationToken)
         {
+            var guid = Guid.NewGuid();
+
             await jobRepository.AddAsync(
                 new Job(
-                    Guid.NewGuid(),
+                    guid,
                     request.Title,
                     request.Description,
                     request.Price,
                     request.Deadline,
                     Enumeration.FromInt<Difficulty>(request.DifficultyId),
-                    await categoryRepository.GetByIdAsync(request.CategoryId),
+                    await categoryRepository.GetByIdAsync(new Guid(request.CategoryId)),
                     await mandatorRepository.GetByIdAsync(currentMandator.Id))
                 );
-            return Unit.Value;
+            return guid;
         }
     }
 }

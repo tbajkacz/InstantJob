@@ -3,7 +3,7 @@ using MediatR;
 
 namespace InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob
 {
-    public class PostJobCommand : IRequest
+    public class PostJobCommand : IRequest<Guid>
     {
         public string Title { get; set; }
 
@@ -15,6 +15,6 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Commands.PostJob
 
         public int DifficultyId { get; set; }
 
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
     }
 }

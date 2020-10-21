@@ -16,6 +16,7 @@ using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.HasActiveApplication;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
+using InstantJob.Web.Api.Common;
 using InstantJob.Web.Api.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -75,9 +76,9 @@ namespace InstantJob.Web.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Policies.Mandator)]
-        public async Task PostJob(PostJobCommand command)
+        public async Task<CreateResponse<Guid>> PostJob(PostJobCommand command)
         {
-            await mediator.Send(command);
+            return new CreateResponse<Guid>(await mediator.Send(command));
         }
 
         /// <summary>

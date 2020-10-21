@@ -79,6 +79,14 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
             {
                 query = query.Take(count.Value);
             }
+            query = query.OrderBy(j => j.Status switch
+            { 
+                _ when j.Status == JobStatus.Available => 1,
+                _ when j.Status == JobStatus.Assigned => 2,
+                _ when j.Status == JobStatus.InProgress => 3,
+                _ when j.Status == JobStatus.Completed => 4,
+                _ => 5
+            }).ThenByDescending(j => j.PostedDate);
 
             return query.ToList();
         }

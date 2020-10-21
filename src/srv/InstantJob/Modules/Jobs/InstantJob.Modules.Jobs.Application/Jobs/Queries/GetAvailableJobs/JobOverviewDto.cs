@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using AutoMapper;
 using InstantJob.BuildingBlocks.Application.Automapper;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
@@ -26,5 +28,13 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs
         public JobOverviewMandatorDto Mandator { get; set; }
 
         public bool HasExpired { get; set; }
+
+        public int ApplicationsCount { get; set; }
+
+        public void CreateMap(Profile profile)
+        {
+            profile.CreateMap<Job, JobOverviewDto>()
+                .ForMember(d => d.ApplicationsCount, mce => mce.MapFrom(j => j.Applications.Where(a => a.Status.IsActive).Count()));
+        }
     }
 }
