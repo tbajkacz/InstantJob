@@ -5,7 +5,7 @@ import { useAuth } from "./Auth/authContext";
 import roles from "./roles";
 
 interface RestrictedProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   redirectToLogin?: boolean;
   roles: string[];
 }
@@ -34,5 +34,5 @@ export default function Restricted(props: RestrictedProps) {
 
   const redirectOrNull = () => (props.redirectToLogin && complete ? redirect : null);
 
-  return hasAnyOfRoles() ? props.children : redirectOrNull();
+  return <>{hasAnyOfRoles() ? props.children : redirectOrNull()}</>;
 }

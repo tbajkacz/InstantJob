@@ -9,6 +9,7 @@ const routes = {
   DetailedCategory: "/categories/:categoryName",
   Applications: "/jobs/:jobId/applications",
   SearchUser: "/profile/find",
+  ContractorApplications: "/applications",
 };
 
 export const routeParams = {

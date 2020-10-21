@@ -13,10 +13,12 @@ export interface FormSelectConfig {
 interface FormSelectProps {
   options: string[];
   name: string;
+  validationName?: string;
   displayName: string;
   defaultValue?: string;
   className?: string;
   config: FormSelectConfig;
+  required?: boolean;
 }
 
 export default function FormSelect(props: FormSelectProps) {
@@ -25,7 +27,9 @@ export default function FormSelect(props: FormSelectProps) {
 
   const renderError = () => {
     if (props.config.validationErrors && !isHidden() && !isDisabled()) {
-      let propKey = Object.keys(props.config.validationErrors).find((k) => k.toLowerCase() == props.name.toLowerCase());
+      let propKey = Object.keys(props.config.validationErrors).find(
+        (k) => k.toLowerCase() == (props.validationName ? props.validationName.toLowerCase() : props.name.toLowerCase())
+      );
       if (propKey) {
         return props.config.validationErrors[propKey][0];
       }
@@ -39,7 +43,9 @@ export default function FormSelect(props: FormSelectProps) {
   return (
     <FormGroup>
       <label className="flex-row ui-input-label" hidden={isHidden()}>
-        <small>{props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1)}</small>
+        <small>
+          {props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1) + (props.required ? "*" : "")}
+        </small>
       </label>
       <div>
         <select className={combineClasses("ui-select-dark", props.className)} onChange={onSelectChange}>

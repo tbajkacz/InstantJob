@@ -22,6 +22,7 @@ interface FormInputProps {
   defaultValue?: string | number;
   errorMsg?: string;
   icon?: IconProp;
+  required?: boolean;
   inputRef?: (instance: HTMLInputElement | null) => void;
 }
 
@@ -45,7 +46,9 @@ export function FormInput(props: FormInputProps) {
   return (
     <FormGroup className={combineClasses(props.className, isHidden() ? "mb-0" : undefined)}>
       <label className="flex-row ui-input-label" hidden={isHidden()}>
-        <small>{props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1)}</small>
+        <small>
+          {props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1) + (props.required ? "*" : "")}
+        </small>
       </label>
       <div className="d-flex">
         {props.icon ? (
