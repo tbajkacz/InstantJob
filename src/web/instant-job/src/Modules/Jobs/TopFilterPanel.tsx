@@ -12,6 +12,7 @@ import { JobsListQuery } from "./JobsList";
 import { JobCategory, JobDifficulty } from "./jobsTypes";
 import { jobsService } from "./jobsService";
 import useEffectAsync from "./../../Common/useEffectAsync";
+import JobModal from "./JobModal";
 
 interface TopFilterPanelProps {
   className?: string;
@@ -24,6 +25,7 @@ interface TopFilterPanelPropsState {
   mandatorId?: string;
   contractorId?: string;
   status?: string;
+  includeExpired?: boolean;
 }
 
 export default function TopFilterPanel(props: TopFilterPanelProps) {
@@ -36,6 +38,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     mandatorId: "",
     contractorId: "",
     status: "",
+    includeExpired: undefined,
   };
 
   const [categories, setCategories] = useState<JobCategory[]>([placeholderCategory]);
@@ -103,6 +106,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
         contractorId: state.contractorId,
         mandatorId: state.mandatorId,
         status: state.status,
+        includeExpired: state.includeExpired,
       })}`
     );
   };
@@ -123,45 +127,47 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
   };
 
   return (
-    <Form>
-      <div className={props.className}>
-        <div className="row">
-          <div className="col-md-4">
-            <FormInput
-              defaultValue={queryParams?.searchString}
-              name="nameSearch"
-              displayName="Search"
-              config={inputConfig}
-            />
-          </div>
-          <div className="col-md-3">
-            <FormSelect
-              name="categorySearch"
-              displayName="Category"
-              config={selectConfig}
-              options={categories.map((c) => c.name)}
-              defaultValue={tryGetDefaultCategoryValue()}
-            />
-          </div>
-          <div className="col-md-3">
-            <FormSelect
-              name="difficultySearch"
-              displayName="Difficulty"
-              config={selectConfig}
-              options={difficulties.map((c) => c.name)}
-              defaultValue={tryGetDefaultDifficultyValue()}
-            />
-          </div>
-          <div className="col-md-1 btn-group">
-            <HorizontalFormButton className="mr-2" color="primary" onClick={onFiltersChanged}>
-              Search
-            </HorizontalFormButton>
-            <HorizontalFormButton onClick={onClearFilters} color="secondary">
-              Reset
-            </HorizontalFormButton>
+    <>
+      <Form>
+        <div className={props.className}>
+          <div className="row">
+            <div className="col-md-4">
+              <FormInput
+                defaultValue={queryParams?.searchString}
+                name="nameSearch"
+                displayName="Search"
+                config={inputConfig}
+              />
+            </div>
+            <div className="col-md-3">
+              <FormSelect
+                name="categorySearch"
+                displayName="Category"
+                config={selectConfig}
+                options={categories.map((c) => c.name)}
+                defaultValue={tryGetDefaultCategoryValue()}
+              />
+            </div>
+            <div className="col-md-3">
+              <FormSelect
+                name="difficultySearch"
+                displayName="Difficulty"
+                config={selectConfig}
+                options={difficulties.map((c) => c.name)}
+                defaultValue={tryGetDefaultDifficultyValue()}
+              />
+            </div>
+            <div className="col-md-1 btn-group">
+              <HorizontalFormButton className="mr-2" color="primary" onClick={onFiltersChanged}>
+                Search
+              </HorizontalFormButton>
+              <HorizontalFormButton onClick={onClearFilters} color="secondary">
+                Reset
+              </HorizontalFormButton>
+            </div>
           </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </>
   );
 }

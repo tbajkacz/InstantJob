@@ -37,6 +37,12 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
     return props.job.status.name.replace(/([A-Z])/g, " $1").trim();
   };
 
+  const renderStatusInfo = () => {
+    if (props.job.status.isAvailable) {
+      return `${props.job.applicationsCount} applications`;
+    }
+  };
+
   const postedDate = new Date(props.job.postedDate);
 
   return (
@@ -54,6 +60,7 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
       </div>
       <div className="col-sm-3">
         <div>{renderPrice()}</div>
+        <div>{renderStatusInfo()}</div>
         <small className="ui-position-bottom">
           {`${formatDate(postedDate)} by `}
           <UserProfileAnchor user={props.job.mandator} />

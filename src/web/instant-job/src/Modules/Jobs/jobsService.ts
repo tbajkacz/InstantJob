@@ -1,5 +1,6 @@
 import axios from "axios";
 import { buildQuery } from "../../Common/buildQuery";
+import ValidationErrors from "../../Common/validationErrors";
 import {
   AcceptJobAssignmentCommand,
   ApplyForJobCommand,
@@ -11,6 +12,8 @@ import {
   GetJobsQuery,
   HasActiveApplicationQuery,
   HasActiveApplicationResponse,
+  JobCategory,
+  JobCreatedResponse,
   JobDetails,
   JobDifficulty,
   JobOverview,
@@ -25,7 +28,7 @@ class JobsService {
   }
 
   PostJob(params: PostJobCommand) {
-    return axios.post("/api/jobs", params);
+    return axios.post<JobCreatedResponse>("/api/jobs", params);
   }
 
   GetJobDetails(params: GetJobDetailsQuery) {
@@ -70,6 +73,10 @@ class JobsService {
 
   GetJobDifficulties() {
     return axios.get<JobDifficulty[]>("/api/jobs/difficulties");
+  }
+
+  GetJobCategories() {
+    return axios.get<JobCategory[]>("/api/categories");
   }
 }
 

@@ -3,19 +3,19 @@ import { useParams } from "react-router";
 import LoadingIndicator from "../../Common/LoadingIndicator";
 import { jobsService } from "./jobsService";
 import { JobDetails } from "./jobsTypes";
-import ApplicationsListItem from "./ApplicationsListItem";
+import JobApplicationsListItem from "./JobApplicationsListItem";
 
-export interface ApplicationsListProps {
+export interface JobApplicationsListProps {
   className?: string;
 }
 
-export interface ApplicationsListRouteProps {
+export interface JobApplicationsListRouteProps {
   jobId: string;
 }
 
-export default function ApplicationsList(props: ApplicationsListProps) {
+export default function JobApplicationsList(props: JobApplicationsListProps) {
   const [jobDetails, setJobDetails] = useState<JobDetails>();
-  const queryParams = useParams<ApplicationsListRouteProps>();
+  const queryParams = useParams<JobApplicationsListRouteProps>();
 
   const [loadingPromise, setLoadingPromise] = useState<Promise<any>>();
 
@@ -43,7 +43,7 @@ export default function ApplicationsList(props: ApplicationsListProps) {
             <h3 className="ui-header">{`${jobDetails.applications.length} applications for ${jobDetails.title}`}</h3>
             <ul className="ui-list-dark">
               {jobDetails.applications.map((a) => (
-                <ApplicationsListItem
+                <JobApplicationsListItem
                   key={a.applicationDate.toString()}
                   application={a}
                   jobId={jobDetails.id}

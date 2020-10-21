@@ -75,6 +75,7 @@ export interface JobOverview {
   category: JobCategory;
   mandator: Mandator;
   status: JobStatus;
+  applicationsCount: number;
 }
 
 export interface JobDetails {
@@ -144,3 +145,7 @@ export const jobStatusName = {
   Canceled: "Canceled",
   Any: "Any",
 };
+
+export interface JobCreatedResponse {
+  id: string;
+}

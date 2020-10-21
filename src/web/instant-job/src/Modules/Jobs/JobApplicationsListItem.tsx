@@ -5,7 +5,7 @@ import UserProfileAnchor from "../../Common/UserProfileAnchor";
 import { jobsService } from "./jobsService";
 import { Contractor, JobApplication, JobStatus } from "./jobsTypes";
 
-interface ApplicationsListItemProps {
+interface JobApplicationsListItemProps {
   application: JobApplication;
   jobId: string;
   assignedContractor: Contractor | undefined;
@@ -13,7 +13,7 @@ interface ApplicationsListItemProps {
   onAction: () => void;
 }
 
-export default function ApplicationsListItem(props: ApplicationsListItemProps) {
+export default function JobApplicationsListItem(props: JobApplicationsListItemProps) {
   const assignContractor = () => {
     jobsService
       .AssignContractor({ jobId: props.jobId, contractorId: props.application.contractor.id })
@@ -49,7 +49,6 @@ export default function ApplicationsListItem(props: ApplicationsListItemProps) {
     <li className="row ui-list-item-dark">
       <div className="col-sm-10">
         <div>
-          TODO Picture, age, completed jobs etc ||
           {"Contractor "} <UserProfileAnchor user={props.application.contractor} />
           {" applied at "}
           {`${formatDate(props.application.applicationDate)}`}
