@@ -42,3 +42,9 @@ export interface UserBasicInfo {
   name: string;
   surname: string;
 }
+
+export interface ContractorApplication {
+  jobId: string;
+  jobTitle: string;
+  applicationDate: Date;
+}

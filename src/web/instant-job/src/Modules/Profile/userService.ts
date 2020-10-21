@@ -2,6 +2,7 @@ import axios from "axios";
 import { buildQuery } from "../../Common/buildQuery";
 import { Role } from "./../../Common/Auth/authTypes";
 import {
+  ContractorApplication,
   ContractorStatistics,
   FindUserByNameQuery,
   FindUserByNameResponse,
@@ -29,6 +30,10 @@ class UserService {
 
   getMandatorStatistics(query: GetStatisticsQuery) {
     return axios.get<MandatorStatistics>(`/api/statistics/mandator/${query.id}`);
+  }
+
+  getContractorApplications() {
+    return axios.get<ContractorApplication[]>(`/api/contractors/applications`);
   }
 }
 

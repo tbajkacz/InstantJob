@@ -3,8 +3,14 @@ import { FormInput, FormInputConfig } from "../../Common/FormInput";
 import { UserBasicInfo } from "./userTypes";
 import { userService } from "./userService";
 import FindProfileListItem from "./FindProfileListItem";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-export default function FindProfile() {
+interface FindProfileModalProps {
+  isOpen: boolean;
+  toggle: () => void;
+}
+
+export default function FindProfileModal(props: FindProfileModalProps) {
   const [search, setSearch] = useState<string>();
   const [matchedUsers, setMatchedUsers] = useState<UserBasicInfo[]>();
 
@@ -17,6 +23,11 @@ export default function FindProfile() {
   const onChange = (name: string, value: string) => {
     setSearch(value);
   };
+
+  useEffect(() => {
+    setSearch("");
+    setMatchedUsers([]);
+  }, [props.isOpen]);
 
   //executes only if 500ms have passed since the latest search change
   useEffect(() => {
@@ -41,7 +52,7 @@ export default function FindProfile() {
       return (
         <ul className="ui-list-dark col-sm-12">
           {matchedUsers?.map((u) => (
-            <FindProfileListItem key={u.id} userInfo={u} />
+            <FindProfileListItem key={u.id} userInfo={u} onClick={props.toggle} />
           ))}
         </ul>
       );
@@ -49,13 +60,19 @@ export default function FindProfile() {
   };
 
   return (
-    <div className={"ui-flex-container"}>
-      <div className="ui-wrapper col-sm-4">
+    <Modal isOpen={props.isOpen} toggle={props.toggle}>
+      <ModalHeader>User search</ModalHeader>
+      <ModalBody>
         <div className="ui-header">
           <FormInput config={config} name="search" displayName="Type a name or surname to search for a specific user" />
         </div>
-        <div className="ui-content justify-content-center">{renderList()}</div>
-      </div>
-    </div>
+        <div className="ui-content">{renderList()}</div>
+      </ModalBody>
+      <ModalFooter>
+        <Button color="secondary" onClick={props.toggle}>
+          Close
+        </Button>
+      </ModalFooter>
+    </Modal>
   );
 }

@@ -5,12 +5,14 @@ import { UserBasicInfo } from "./userTypes";
 
 interface FindProfileListItemProps {
   userInfo: UserBasicInfo;
+  onClick: () => void;
 }
 
 export default function FindProfileListItem(props: FindProfileListItemProps) {
   const history = useHistory();
 
   const redirectToUserProfile = () => {
+    props.onClick();
     history.push(`${routes.Profile.replace(routeParams.userId, props.userInfo.id)}`);
   };
 
