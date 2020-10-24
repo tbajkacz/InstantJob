@@ -87,7 +87,10 @@ input:focus {
   @extend .shadow-none;
   background-color: transparent !important;
   border-color: transparent !important;
-
+  & svg {
+    @extend .mr-2;
+    float: right !important;
+  }
   &:active {
     & svg path {
       color: $uiElementActiveBgColor !important;

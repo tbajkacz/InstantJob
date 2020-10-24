@@ -3,26 +3,17 @@ import { Link } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "reactstrap";
 import UserMenu from "../Modules/Auth/UserMenu";
 import routes from "./routes";
-import { useHistory, useLocation } from "react-router";
-import JobModal from "../Modules/Jobs/JobModal";
+import { useLocation } from "react-router";
 import Restricted from "./Restricted";
 import roles from "./roles";
 import { useAuth } from "./Auth/authContext";
 import { jobStatusName } from "../Modules/Jobs/jobsTypes";
 import { buildQuery } from "./buildQuery";
-import { JobsListQuery } from "../Modules/Jobs/JobsList";
 import FindProfileModal from "../Modules/Profile/FindProfile";
 
 export default function AppNavbar() {
-  const history = useHistory();
-  const [isPostJobModalOpen, setIsPostJobModalOpen] = useState(false);
-  const togglePostJobModal = () => {
-    setIsPostJobModalOpen(!isPostJobModalOpen);
-  };
-
   const [isFindUserModalOpen, setIsFindUserModalOpen] = useState(false);
   const toggleFindUserModal = () => {
-    console.log("wtf");
     setIsFindUserModalOpen(!isFindUserModalOpen);
   };
 
@@ -51,13 +42,6 @@ export default function AppNavbar() {
     });
   };
 
-  const postJobRoute = () => {
-    if (location.pathname.includes(routes.Jobs)) {
-      return location.pathname + location.search;
-    }
-    return routes.Jobs;
-  };
-
   return (
     <Navbar className="ui-element-bg-dark shadow">
       <div className="navbar-brand">
@@ -78,11 +62,6 @@ export default function AppNavbar() {
         </NavItem>
         <Restricted roles={[roles.mandator]}>
           <NavItem>
-            <Link className="ui-nav-link" to={postJobRoute()} onClick={togglePostJobModal}>
-              Post job offer
-            </Link>
-          </NavItem>
-          <NavItem>
             <Link className="ui-nav-link" to={`${routes.Jobs}${buildMandatorJobsQuery()}`}>
               Your jobs
             </Link>
@@ -102,12 +81,6 @@ export default function AppNavbar() {
         </Restricted>
       </Nav>
       <UserMenu />
-      <JobModal
-        type="add"
-        isOpen={isPostJobModalOpen}
-        toggle={togglePostJobModal}
-        onSuccessClosed={(id) => history.push(`${routes.Jobs}/${id}`)}
-      />
       <FindProfileModal isOpen={isFindUserModalOpen} toggle={toggleFindUserModal} />
     </Navbar>
   );

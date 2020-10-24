@@ -5,8 +5,13 @@ import { JobOverview, jobStatusName } from "./jobsTypes";
 import { jobsService } from "./jobsService";
 import TopFilterPanel from "./TopFilterPanel";
 import { useQueryParams } from "../../Common/buildQuery";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { userService } from "../Profile/userService";
+import JobModal from "./JobModal";
+import { Link } from "react-router-dom";
+import routes from "../../Common/routes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface JobsListProps {
   className?: string;
@@ -37,6 +42,19 @@ export default function JobsList(props: JobsListProps) {
   const [jobUserInfo, setJobUserInfo] = useState<JobUserInfo>();
 
   const location = useLocation();
+
+  const history = useHistory();
+  const [isPostJobModalOpen, setIsPostJobModalOpen] = useState(false);
+  const togglePostJobModal = () => {
+    setIsPostJobModalOpen(!isPostJobModalOpen);
+  };
+
+  const postJobRoute = () => {
+    if (location.pathname.includes(routes.Jobs)) {
+      return location.pathname + location.search;
+    }
+    return routes.Jobs;
+  };
 
   const updateJobs = () => {
     setLoadingPromise(
@@ -101,8 +119,12 @@ export default function JobsList(props: JobsListProps) {
         <div className="ui-flex-container">
           <div className="ui-wrapper col-sm-9">
             <TopFilterPanel className="ui-header" />
-            {/*<small className="text-white">TODO Sortowanie</small>*/}
-            <h3 className="ui-header">{formatTitle()}</h3>
+            <div className="ui-header row">
+              <h3 className="col-md-11 pr-0">{formatTitle()} </h3>
+              <Link className="ui-nav-link ui-icon-button col-md-1" to={postJobRoute()} onClick={togglePostJobModal}>
+                <FontAwesomeIcon icon={faPlus} size="2x" />
+              </Link>
+            </div>
             <ul className="ui-list-dark">
               {jobsList.map((c) => (
                 <JobListItem key={c.id} job={c} />
@@ -111,6 +133,12 @@ export default function JobsList(props: JobsListProps) {
           </div>
         </div>
       </div>
+      <JobModal
+        type="add"
+        isOpen={isPostJobModalOpen}
+        toggle={togglePostJobModal}
+        onSuccessClosed={(id) => history.push(`${routes.Jobs}/${id}`)}
+      />
     </LoadingIndicator>
   );
 }
