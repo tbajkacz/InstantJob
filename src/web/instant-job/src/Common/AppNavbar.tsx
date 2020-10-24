@@ -106,7 +106,7 @@ export default function AppNavbar() {
         type="add"
         isOpen={isPostJobModalOpen}
         toggle={togglePostJobModal}
-        onClosed={(id) => history.push(`${routes.Jobs}/${id}`)}
+        onSuccessClosed={(id) => history.push(`${routes.Jobs}/${id}`)}
       />
       <FindProfileModal isOpen={isFindUserModalOpen} toggle={toggleFindUserModal} />
     </Navbar>

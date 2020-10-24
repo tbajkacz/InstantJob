@@ -9,7 +9,7 @@ import HorizontalFormButton from "../../Common/HorizontalFormButton";
 import routes from "../../Common/routes";
 import { categoriesService } from "../Categories/categoriesService";
 import { JobsListQuery } from "./JobsList";
-import { JobCategory, JobDifficulty } from "./jobsTypes";
+import { JobCategory, JobDifficulty, JobStatus } from "./jobsTypes";
 import { jobsService } from "./jobsService";
 import useEffectAsync from "./../../Common/useEffectAsync";
 import JobModal from "./JobModal";
@@ -31,6 +31,15 @@ interface TopFilterPanelPropsState {
 export default function TopFilterPanel(props: TopFilterPanelProps) {
   const placeholderCategory = { id: "", name: "All categories" };
   const placeholderDifficulty = { id: 0, name: "All difficulties" };
+  const placeholderJobStatus: JobStatus = {
+    id: 1,
+    name: "Available",
+    isAssigned: false,
+    isAvailable: true,
+    isCanceled: false,
+    isCompleted: false,
+    isInProgress: false,
+  };
   const initialState: TopFilterPanelPropsState = {
     nameSearch: "",
     categorySearch: "",
@@ -43,6 +52,8 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
 
   const [categories, setCategories] = useState<JobCategory[]>([placeholderCategory]);
   const [difficulties, setDifficulties] = useState<JobDifficulty[]>([placeholderDifficulty]);
+  const [statuses, setStatuses] = useState<JobStatus[]>([placeholderJobStatus]);
+  const [includeExpiredOptions, setIncludeExpiredOptions] = useState([{ name: "false" }, { name: "true" }]);
 
   const [state, setState] = useState<TopFilterPanelPropsState>(initialState);
   const history = useHistory();
@@ -66,6 +77,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     jobsService.GetJobDifficulties().then((r) => {
       setDifficulties([placeholderDifficulty, ...r.data]);
     });
+    jobsService.GetJobStatuses().then((r) => setStatuses([...r.data]));
   }, []);
 
   useEffect(() => {
@@ -75,6 +87,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
 
       setState({
         ...queryParams,
+        status: queryParams.status ? queryParams.status : initialState.status,
         nameSearch: queryParams.searchString ? queryParams.searchString : initialState.nameSearch,
         categorySearch: categoryName ? categoryName : initialState.categorySearch,
         difficultySearch: difficultyName ? difficultyName : initialState.difficultySearch,
@@ -95,6 +108,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
       contractorId: state.contractorId,
       mandatorId: state.mandatorId,
       status: state.status,
+      includeExpired: state.includeExpired,
     };
 
     history.push(`${routes.Jobs}${buildQuery(query)}`);
@@ -126,12 +140,26 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
     return undefined;
   };
 
+  const tryGetDefaultStatusValue = () => {
+    if (queryParams && queryParams.status) {
+      return statuses.find((s) => s.name === queryParams.status)?.name;
+    }
+    return placeholderJobStatus.name;
+  };
+
+  const tryGetIncludeExpiredDefaultValue = () => {
+    if (queryParams && queryParams.includeExpired) {
+      return includeExpiredOptions.find((i) => i.name === queryParams.includeExpired!.toString())?.name;
+    }
+    return undefined;
+  };
+
   return (
     <>
       <Form>
         <div className={props.className}>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <FormInput
                 defaultValue={queryParams?.searchString}
                 name="nameSearch"
@@ -139,7 +167,28 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
                 config={inputConfig}
               />
             </div>
-            <div className="col-md-3">
+
+            <div className="col-md-4">
+              <FormSelect
+                name="status"
+                displayName="Status"
+                config={selectConfig}
+                options={statuses.map((c) => c.name)}
+                defaultValue={tryGetDefaultStatusValue()}
+              />
+            </div>
+            <div className="col-md-2">
+              <FormSelect
+                name="includeExpired"
+                displayName="Include expired"
+                config={selectConfig}
+                options={includeExpiredOptions.map((c) => c.name)}
+                defaultValue={tryGetIncludeExpiredDefaultValue()}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-5">
               <FormSelect
                 name="categorySearch"
                 displayName="Category"
@@ -148,7 +197,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
                 defaultValue={tryGetDefaultCategoryValue()}
               />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-5">
               <FormSelect
                 name="difficultySearch"
                 displayName="Difficulty"
@@ -157,7 +206,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
                 defaultValue={tryGetDefaultDifficultyValue()}
               />
             </div>
-            <div className="col-md-1 btn-group">
+            <div className="col-md-2 btn-group">
               <HorizontalFormButton className="mr-2" color="primary" onClick={onFiltersChanged}>
                 Search
               </HorizontalFormButton>

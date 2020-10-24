@@ -43,6 +43,14 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
     }
   };
 
+  const renderExpiredPill = () => {
+    if (!props.job.hasExpired) {
+      return;
+    }
+
+    return <JobsFilterBadgePill type="danger">Expired</JobsFilterBadgePill>;
+  };
+
   const postedDate = new Date(props.job.postedDate);
 
   return (
@@ -50,13 +58,17 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
       <div className="col-sm-9">
         <div className="h5">{props.job.title}</div>
         <div>{renderDescription()}</div>
-        <JobsFilterBadgePill href={`${routes.Jobs}${buildQuery({ categoryId: props.job.category.id })}`}>
+        <JobsFilterBadgePill type="primary" href={`${routes.Jobs}${buildQuery({ categoryId: props.job.category.id })}`}>
           {props.job.category.name}
         </JobsFilterBadgePill>
-        <JobsFilterBadgePill href={`${routes.Jobs}${buildQuery({ difficultyId: props.job.difficulty.id })}`}>
+        <JobsFilterBadgePill
+          type="primary"
+          href={`${routes.Jobs}${buildQuery({ difficultyId: props.job.difficulty.id })}`}
+        >
           {props.job.difficulty.name}
         </JobsFilterBadgePill>
-        <JobsFilterBadgePill>{formatJobStatus()}</JobsFilterBadgePill>
+        <JobsFilterBadgePill type="primary">{formatJobStatus()}</JobsFilterBadgePill>
+        {renderExpiredPill()}
       </div>
       <div className="col-sm-3">
         <div>{renderPrice()}</div>

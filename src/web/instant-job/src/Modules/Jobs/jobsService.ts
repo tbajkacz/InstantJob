@@ -17,6 +17,7 @@ import {
   JobDetails,
   JobDifficulty,
   JobOverview,
+  JobStatus,
   PostJobCommand,
   UpdateJobInformationCommand,
   WithdrawJobApplicationCommand,
@@ -77,6 +78,10 @@ class JobsService {
 
   GetJobCategories() {
     return axios.get<JobCategory[]>("/api/categories");
+  }
+
+  GetJobStatuses() {
+    return axios.get<JobStatus[]>("/api/jobs/statuses");
   }
 }
 

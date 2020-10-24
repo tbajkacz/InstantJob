@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 export interface JobsFilterBadgePillProps {
   children: string;
   href?: string;
+  type: "primary" | "danger";
 }
 
 export default function JobsFilterBadgePill(props: JobsFilterBadgePillProps) {
@@ -22,9 +23,18 @@ export default function JobsFilterBadgePill(props: JobsFilterBadgePillProps) {
     history.push(getHref());
   };
 
+  const getClassName = () => {
+    switch (props.type) {
+      case "danger":
+        return "ui-anchor-pill-danger";
+      case "primary":
+        return "ui-anchor-pill";
+    }
+  };
+
   return (
     <small>
-      <a className="ui-anchor-pill" href={getHref()} onClick={onCategoryAnchorClick}>
+      <a className={getClassName()} href={getHref()} onClick={onCategoryAnchorClick}>
         {props.children}
       </a>
     </small>

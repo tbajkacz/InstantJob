@@ -73,7 +73,7 @@ $today-bg-color: $uiElementActiveBgColor;
   &__text {
     @extend .ui-input-dark;
     background-color: $uiElementInputColor;
-    color: #6c757d;
+    color: rgb(197, 197, 197);
     padding: 10px;
     //border: 1px solid $divider-color;
     outline: none;

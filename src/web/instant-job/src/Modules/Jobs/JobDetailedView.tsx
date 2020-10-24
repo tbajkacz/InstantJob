@@ -13,6 +13,9 @@ import { JobsListQuery } from "./JobsList";
 import { buildQuery } from "../../Common/buildQuery";
 import roles from "./../../Common/roles";
 import UserProfileAnchor from "./../../Common/UserProfileAnchor";
+import JobModal from "./JobModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 export interface JobDetailedViewProps {
   className?: string;
@@ -39,9 +42,14 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
   const auth = useAuth();
   const history = useHistory();
 
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
+  const [refresh, setRefresh] = useState(false);
+  const onEditModalClosed = () => setRefresh(!refresh);
+
   useEffect(() => {
     setLoadingPromise(refreshJobDetails());
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     if (jobDetails && auth.currentUser?.role.name === roles.contractor) {
@@ -157,6 +165,8 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
   const renderApplicationSection = () => {
     if (jobDetails.status.isCompleted) {
       return renderCompletionInfo();
+    } else if (jobDetails.hasExpired) {
+      return "This job offer has expired";
     } else if (jobDetails.status.isInProgress) {
       if (auth.currentUser && auth.currentUser.id === jobDetails.mandator.id) {
         return (
@@ -196,23 +206,48 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     let timeLeft = getFormattedTimeLeft(jobDetails.deadline);
     let timeTypeText = timeLeft.count === 1 ? timeLeft.type.substring(0, timeLeft.type.length - 1) : timeLeft.type;
 
-    return `${timeLeft.count} ${timeTypeText} left`;
+    return timeLeft.count >= 0 ? `${timeLeft.count} ${timeTypeText} left` : "";
+  };
+
+  const titleSubstr = () => {
+    if (jobDetails.title.length > 50) {
+      return jobDetails.title.substring(0, 50) + "...";
+    }
+    return jobDetails.title;
+  };
+
+  const renderTitle = () => {
+    if (auth.currentUser?.role.name === roles.mandator) {
+      return (
+        <div className="row">
+          <h2 className="col-md-auto mr-0 pr-0">{titleSubstr()}</h2>
+          <Button className="inline col-md-auto ui-icon-button" onClick={toggleEditModal}>
+            <FontAwesomeIcon icon={faEdit} color="white" />
+          </Button>
+        </div>
+      );
+    }
+    return titleSubstr();
   };
 
   return (
     <LoadingIndicator promise={loadingPromise}>
       <div className={combineClasses(props.className, "ui-flex-container")}>
         <div className="ui-wrapper col-sm-9">
-          <div className="ui-header">
-            <h2>{jobDetails.title}</h2>
-          </div>
+          <div className="ui-header">{renderTitle()}</div>
           <div className="ui-content">
             <div className="col-sm-10">
               <p>{jobDetails.description}</p>
-              <JobsFilterBadgePill href={`${routes.Jobs}${buildQuery({ categoryId: jobDetails.category.id })}`}>
+              <JobsFilterBadgePill
+                type="primary"
+                href={`${routes.Jobs}${buildQuery({ categoryId: jobDetails.category.id })}`}
+              >
                 {jobDetails.category.name}
               </JobsFilterBadgePill>
-              <JobsFilterBadgePill href={`${routes.Jobs}${buildQuery({ difficultyId: jobDetails.difficulty.id })}`}>
+              <JobsFilterBadgePill
+                type="primary"
+                href={`${routes.Jobs}${buildQuery({ difficultyId: jobDetails.difficulty.id })}`}
+              >
                 {jobDetails.difficulty.name}
               </JobsFilterBadgePill>
             </div>
@@ -231,6 +266,13 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
             </div>
           </div>
         </div>
+        <JobModal
+          type="edit"
+          jobDetails={jobDetails}
+          isOpen={isEditModalOpen}
+          toggle={toggleEditModal}
+          onSuccessClosed={onEditModalClosed}
+        />
       </div>
     </LoadingIndicator>
   );

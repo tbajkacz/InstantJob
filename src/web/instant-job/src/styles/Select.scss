@@ -4,7 +4,7 @@
 .ui-select-dark {
   @extend .form-control;
   background-color: $uiElementInputColor;
-  color: $uiPlaceholderColor;
+  color: rgb(197, 197, 197);
   border-radius: $uiElementBorderRadius;
   border: 0;
   &:focus {

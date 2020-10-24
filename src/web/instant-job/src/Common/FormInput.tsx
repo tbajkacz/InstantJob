@@ -7,7 +7,7 @@ import { combineClasses } from "./componentUtility";
 import ValidationErrors from "./validationErrors";
 
 export interface FormInputConfig {
-  onChange: (name: string, value: string) => void;
+  onChange: (name: string, value: any) => void;
   isDisabled?: (name: string) => boolean;
   isHidden?: (name: string) => boolean;
   validationErrors?: ValidationErrors;
@@ -68,7 +68,10 @@ export function FormInput(props: FormInputProps) {
           placeholder={props.displayName}
           onChange={(e) => {
             setValue(e.currentTarget.value);
-            props.config.onChange(props.name, e.currentTarget.value);
+            props.config.onChange(
+              props.name,
+              props.type === "number" ? Number.parseFloat(e.currentTarget.value) : e.currentTarget.value
+            );
           }}
           readOnly={isDisabled()}
           hidden={isHidden()}

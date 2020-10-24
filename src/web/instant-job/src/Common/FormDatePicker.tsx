@@ -1,4 +1,5 @@
 import { DatePicker } from "@y0c/react-datepicker";
+import dayjs from "dayjs";
 import React from "react";
 import ValidationErrors from "./validationErrors";
 
@@ -8,6 +9,7 @@ interface FormDatePickerProps {
   validationName: string;
   validationErrors?: ValidationErrors;
   required?: boolean;
+  defaultValue: Date;
 }
 
 export default function FormDatePicker(props: FormDatePickerProps) {
@@ -33,7 +35,7 @@ export default function FormDatePicker(props: FormDatePickerProps) {
       <label className="flex-row ui-input-label">
         <small>{props.displayName + (props.required ? "*" : "")}</small>
       </label>
-      <DatePicker onChange={onChange} />
+      <DatePicker onChange={onChange} initialDate={dayjs(props.defaultValue)} />
       <small className="text-danger">{renderError()}</small>
     </div>
   );

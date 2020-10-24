@@ -68,9 +68,32 @@ input:focus {
   }
 }
 
-.ui-anchor-pill {
+.ui-anchor-pill-base {
   @extend .mr-2;
   @extend .badge;
   @extend .badge-pill;
   @extend .badge-primary;
+}
+.ui-anchor-pill {
+  @extend .ui-anchor-pill-base;
+  @extend .badge-primary;
+}
+.ui-anchor-pill-danger {
+  @extend .ui-anchor-pill-base;
+  @extend .badge-danger;
+}
+
+.ui-icon-button {
+  @extend .shadow-none;
+  background-color: transparent !important;
+  border-color: transparent !important;
+
+  &:active {
+    & svg path {
+      color: $uiElementActiveBgColor !important;
+    }
+    &:hover {
+      color: $uiElementHoverBgColor !important;
+    }
+  }
 }

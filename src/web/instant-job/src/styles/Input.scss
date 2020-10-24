@@ -6,6 +6,7 @@
   background-color: $uiElementInputColor;
   border-radius: $uiElementBorderRadius;
   border: 0 !important;
+  color: rgb(197, 197, 197);
   &:focus {
     background-color: $uiElementInputColor;
     color: white;

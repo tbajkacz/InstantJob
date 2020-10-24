@@ -14,6 +14,7 @@ using InstantJob.Modules.Jobs.Application.Jobs.Commands.WithdrawJobApplication;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetAvailableJobs;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetDifficulties;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails;
+using InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobStatuses;
 using InstantJob.Modules.Jobs.Application.Jobs.Queries.HasActiveApplication;
 using InstantJob.Modules.Jobs.Domain.Jobs.Constants;
 using InstantJob.Web.Api.Common;
@@ -210,6 +211,16 @@ namespace InstantJob.Web.Api.Controllers
         public async Task<IEnumerable<Difficulty>> GetDifficulties()
         {
             return await mediator.Send(new GetDifficultiesQuery());
+        }
+
+        /// <summary>
+        /// Gets a list of all job statuses
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("statuses")]
+        public Task<IEnumerable<JobStatus>> GetJobStatuses()
+        {
+            return mediator.Send(new GetJobStatusesQuery()); 
         }
     }
 }

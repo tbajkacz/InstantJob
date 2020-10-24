@@ -41,8 +41,8 @@ export default function FormSelect(props: FormSelectProps) {
     props.config.onChange(props.name, e.currentTarget.value);
   };
   return (
-    <FormGroup>
-      <label className="flex-row ui-input-label" hidden={isHidden()}>
+    <FormGroup hidden={isHidden()}>
+      <label className="flex-row ui-input-label">
         <small>
           {props.displayName.charAt(0).toUpperCase() + props.displayName.slice(1) + (props.required ? "*" : "")}
         </small>

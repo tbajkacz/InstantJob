@@ -33,5 +33,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetJobDetails
         public JobStatus Status { get; set; }
 
         public JobCompletionInfoDto CompletionInfo { get; set; }
+
+        public bool HasExpired { get; set; }
     }
 }

@@ -76,6 +76,7 @@ export interface JobOverview {
   mandator: Mandator;
   status: JobStatus;
   applicationsCount: number;
+  hasExpired: boolean;
 }
 
 export interface JobDetails {
@@ -92,6 +93,7 @@ export interface JobDetails {
   mandator: Mandator;
   contractor: Contractor;
   status: JobStatus;
+  hasExpired: boolean;
 }
 
 export interface JobCategory {
