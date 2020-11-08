@@ -15,6 +15,8 @@ namespace InstantJob.Modules.Users.Application.Users.Queries.GetUserDetails
 
         public string Email { get; set; }
 
+        public string Description { get; set; }
+
         public Role Role { get; set; }
     }
 }

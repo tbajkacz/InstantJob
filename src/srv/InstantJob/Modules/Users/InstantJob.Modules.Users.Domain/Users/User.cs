@@ -18,6 +18,8 @@ namespace InstantJob.Modules.Users.Domain.Users
 
         public virtual string Picture { get; protected set; }
 
+        public virtual string Description { get; protected set; }
+
         public virtual Role Role { get; protected set; }
 
         public virtual DateTime CreationDate { get; protected set; } = DateTime.UtcNow;
@@ -39,12 +41,13 @@ namespace InstantJob.Modules.Users.Domain.Users
             this.AddDomainEvent(new UserCreatedDomainEvent(Id, Name, Surname, Email, Role));
         }
 
-        public virtual void UpdateInformation(string name, string surname, int? age, string picture)
+        public virtual void UpdateInformation(string name, string surname, int? age, string picture, string description)
         {
             Name = name;
             Surname = surname;
             Age = age;
             Picture = picture;
+            Description = description;
 
             this.AddDomainEvent(new UserUpdatedDomainEvent(Id, Name, Surname, Age, Picture, Role));
         }

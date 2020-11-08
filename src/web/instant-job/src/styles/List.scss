@@ -38,16 +38,7 @@ $listHeight: 500px;
 
 .ui-list-item-dark-interactive {
   @extend .ui-list-item-dark;
-
-  &:not(.ui-selected):active {
-    background-color: $uiElementActiveBgColor !important;
-  }
-  &:not(.ui-selected):hover {
-    background-color: $uiElementHoverBgColor;
-  }
-  &:hover {
-    cursor: pointer;
-  }
+  @extend .ui-interactive;
 }
 
 .ui-side-list-item-dark {

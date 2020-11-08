@@ -43,15 +43,21 @@ export default function ContractorProfileInfo(props: ContractorProfileProps) {
     <div className="col-sm-12">
       <div className="ui-header">
         <h5>{statistics.assignedJobs} assigned jobs</h5>
-        <Button onClick={() => redirectToJobs(jobStatusName.Assigned)}>View assigned jobs</Button>
+        <Button size="sm" onClick={() => redirectToJobs(jobStatusName.Assigned)}>
+          View assigned jobs
+        </Button>
       </div>
       <div className="ui-header">
         <h5>{statistics.inProgressJobs} jobs in progress</h5>
-        <Button onClick={() => redirectToJobs(jobStatusName.InProgress)}>View jobs in progress</Button>
+        <Button size="sm" onClick={() => redirectToJobs(jobStatusName.InProgress)}>
+          View jobs in progress
+        </Button>
       </div>
       <div className="ui-header">
         <h5>{statistics.completedJobs} completed jobs</h5>
-        <Button onClick={() => redirectToJobs(jobStatusName.Completed)}>View completed jobs</Button>
+        <Button size="sm" onClick={() => redirectToJobs(jobStatusName.Completed)}>
+          View completed jobs
+        </Button>
       </div>
     </div>
     //--------------------

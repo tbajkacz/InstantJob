@@ -20,7 +20,7 @@ namespace InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformat
         {
             var user = await users.GetByIdAsync(currentUser.UserId);
 
-            user.UpdateInformation(request.Name, request.Surname, request.Age, request.Picture);
+            user.UpdateInformation(request.Name, request.Surname, request.Age, request.Picture, request.Description);
             await users.UpdateAsync(user);
 
             return Unit.Value;

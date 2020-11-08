@@ -5,7 +5,7 @@ import { useAuth } from "./Auth/authContext";
 import roles from "./roles";
 
 interface RestrictedProps {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | null;
   redirectToLogin?: boolean;
   roles: string[];
 }

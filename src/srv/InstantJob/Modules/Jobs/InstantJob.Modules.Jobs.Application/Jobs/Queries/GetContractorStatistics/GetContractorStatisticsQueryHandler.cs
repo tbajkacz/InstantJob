@@ -27,6 +27,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
             var assignedJobs = contractorJobs.Where(j => j.Status.IsAssigned);
             var inProgressJobs = contractorJobs.Where(j => j.Status.IsInProgress);
             var completedJobs = contractorJobs.Where(j => j.Status.IsCompleted);
+            var applicationsCount = jobRepository.Get().Where(j => j.Status.IsAvailable && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Count();
 
             var completedJobsAverageRating = completedJobs.Select(j => j.CompletionInfo?.Rating).Average();
 
@@ -35,6 +36,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
                 AssignedJobs = assignedJobs.Count(),
                 InProgressJobs = inProgressJobs.Count(),
                 CompletedJobs = completedJobs.Count(),
+                ApplicationsCount = applicationsCount,
                 AverageRating = completedJobsAverageRating
             });
         }

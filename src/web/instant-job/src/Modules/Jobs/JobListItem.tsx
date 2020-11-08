@@ -27,20 +27,23 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
   };
 
   const renderDescription = () => {
-    if (props.job.description.length > 300) {
-      return props.job.description.substring(0, 300) + "...";
+    if (props.job.description.length > 200) {
+      return props.job.description.substring(0, 200) + "...";
     }
     return props.job.description;
   };
 
   const formatJobStatus = () => {
-    return props.job.status.name.replace(/([A-Z])/g, " $1").trim();
+    return `${props.job.status.name.replace(/([A-Z])/g, " $1").trim()} ${
+      props.job.status.isAvailable ? ` - ${renderStatusInfo()}` : ""
+    }`;
   };
 
   const renderStatusInfo = () => {
     if (props.job.status.isAvailable) {
-      return `${props.job.applicationsCount} applications`;
+      return `${props.job.applicationsCount} application${props.job.applicationsCount != 1 ? "s" : ""}`;
     }
+    return undefined;
   };
 
   const renderExpiredPill = () => {
@@ -67,12 +70,13 @@ export default React.memo(function JobListItem(props: JobsListItemProps) {
         >
           {props.job.difficulty.name}
         </JobsFilterBadgePill>
-        <JobsFilterBadgePill type="primary">{formatJobStatus()}</JobsFilterBadgePill>
+        <JobsFilterBadgePill type={props.job.status.isAvailable ? "success" : "primary"}>
+          {formatJobStatus()}
+        </JobsFilterBadgePill>
         {renderExpiredPill()}
       </div>
       <div className="col-sm-3">
         <div>{renderPrice()}</div>
-        <div>{renderStatusInfo()}</div>
         <small className="ui-position-bottom">
           {`${formatDate(postedDate)} by `}
           <UserProfileAnchor user={props.job.mandator} />

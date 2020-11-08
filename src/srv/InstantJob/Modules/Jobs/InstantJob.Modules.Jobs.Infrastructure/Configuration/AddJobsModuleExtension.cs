@@ -1,4 +1,5 @@
-﻿using InstantJob.Modules.Jobs.Application.Categories.Abstractions;
+﻿using InstantJob.BuildingBlocks.Application.Interfaces;
+using InstantJob.Modules.Jobs.Application.Categories.Abstractions;
 using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
 using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
 using InstantJob.Modules.Jobs.Application.JobUsers.Abstractions;
@@ -15,6 +16,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Configuration
                        .AddScoped<ICategoryRepository, NHibernateCategoryRepository>()
                        .AddScoped<IUserRepository, NHibernateUserRepository>()
                        .AddScoped<IMandatorRepository, NHibernateMandatorRepository>()
-                       .AddScoped<IContractorRepository, NHibernateContractorRepository>();
+                       .AddScoped<IContractorRepository, NHibernateContractorRepository>()
+                       .AddScoped<IDataSeeder, JobModuleSeeder>();
     }
 }

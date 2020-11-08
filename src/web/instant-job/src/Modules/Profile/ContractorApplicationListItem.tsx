@@ -16,11 +16,10 @@ export default function ContractorApplicationListItem(props: ContractorApplicati
     history.push(routes.DetailedJob.replace(routeParams.jobId, props.application.jobId));
   };
   return (
-    <li className="row ui-list-item-dark-interactive" onClick={onClick}>
-      <div className="col-sm-10">
-        <div>{`${props.application.jobTitle}`}</div>
-        <div>{`${formatDate(props.application.applicationDate)}`}</div>
-      </div>
-    </li>
+    <tr className="ui-interactive" onClick={onClick}>
+      <td>{props.application.jobId}</td>
+      <td>{props.application.jobTitle}</td>
+      <td>{formatDate(props.application.applicationDate)}</td>
+    </tr>
   );
 }

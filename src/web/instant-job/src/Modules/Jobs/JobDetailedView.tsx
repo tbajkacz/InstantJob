@@ -188,13 +188,13 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
       return "This job offer was canceled";
     } else if (jobDetails.status.isAssigned) {
       if (auth.currentUser?.role?.name === roles.mandator) {
-        return renderMandatorNotInProgressApplicationsSection();
+        return null;
       } else if (auth.currentUser?.role?.name === roles.contractor) {
         return renderContractorAssignedApplicationsSection();
       }
     } else {
       if (auth.currentUser?.role?.name === roles.mandator) {
-        return renderMandatorNotInProgressApplicationsSection();
+        return null;
       } else if (auth.currentUser?.role?.name === roles.contractor) {
         return renderContractorUnassignedApplicationsSection();
       }
@@ -217,17 +217,16 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
   };
 
   const renderTitle = () => {
-    if (auth.currentUser?.role.name === roles.mandator) {
-      return (
-        <div className="row">
-          <h2 className="col-md-auto mr-0 pr-0">{titleSubstr()}</h2>
+    return (
+      <div className="row">
+        <h2 className="col-md-auto mr-0 pr-0">{titleSubstr()}</h2>
+        {auth.currentUser?.role.name === roles.mandator ? (
           <Button className="inline col-md-auto ui-icon-button" onClick={toggleEditModal}>
             <FontAwesomeIcon icon={faEdit} color="white" />
           </Button>
-        </div>
-      );
-    }
-    return titleSubstr();
+        ) : null}
+      </div>
+    );
   };
 
   return (
@@ -237,7 +236,7 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
           <div className="ui-header">{renderTitle()}</div>
           <div className="ui-content">
             <div className="col-sm-10">
-              <p>{jobDetails.description}</p>
+              <p style={{ whiteSpace: "pre-wrap" }}>{jobDetails.description}</p>
               <JobsFilterBadgePill
                 type="primary"
                 href={`${routes.Jobs}${buildQuery({ categoryId: jobDetails.category.id })}`}
@@ -256,6 +255,9 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
               <div>{renderApplicationsCountSection()}</div>
               <h6 className="mt-2">{renderTimeLeft()}</h6>
               {renderApplicationSection()}
+              <Button color="secondary" className="btn-block mt-2" onClick={redirectToBrowseApplications}>
+                Browse applications
+              </Button>
             </div>
           </div>
           <div className="ui-content">
@@ -263,6 +265,9 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
               <h6>
                 Posted by <UserProfileAnchor user={jobDetails.mandator} /> at {formatDate(jobDetails.postedDate)}
               </h6>
+            </div>
+            <div className="col-sm-12">
+              <small>Job id: {jobDetails.id}</small>
             </div>
           </div>
         </div>

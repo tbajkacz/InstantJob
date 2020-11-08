@@ -22,7 +22,7 @@ function App() {
     <ProvideAuth>
       <BrowserRouter>
         <AppNavbar />
-        <div className="mt-5 contentv">
+        <div className="mt-4 contentv">
           <Switch>
             <Route path={routes.Home}>
               <Home />

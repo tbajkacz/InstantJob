@@ -119,8 +119,7 @@ export default function TopFilterPanel(props: TopFilterPanelProps) {
       `${routes.Jobs}${buildQuery({
         contractorId: state.contractorId,
         mandatorId: state.mandatorId,
-        status: state.status,
-        includeExpired: state.includeExpired,
+        includeExpired: false,
       })}`
     );
   };

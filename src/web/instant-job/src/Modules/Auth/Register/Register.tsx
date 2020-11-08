@@ -72,29 +72,29 @@ export default function Register(props: RegisterProps) {
           </CardHeader>
           <div className="ui-login-card-body">
             <Form>
-              <FormInput className="flex-fill" config={inputConfig} type="text" name="name" displayName="Name" />
-              <FormInput className="flex-fill" config={inputConfig} type="text" name="surname" displayName="Surname" />
-              <FormInput className="flex-fill" config={inputConfig} type="text" name="email" displayName="Email" />
+              <FormInput className="flex-fill" config={inputConfig} type="text" name="name" displayName="Name*" />
+              <FormInput className="flex-fill" config={inputConfig} type="text" name="surname" displayName="Surname*" />
+              <FormInput className="flex-fill" config={inputConfig} type="text" name="email" displayName="Email*" />
               <FormInput
                 className="flex-fill"
                 config={inputConfig}
                 type="password"
                 name="password"
-                displayName="Password"
+                displayName="Password*"
               />
               <FormInput
                 className="flex-fill"
                 config={inputConfig}
                 type="password"
                 name="passwordConfirmation"
-                displayName="Password Confirmation"
+                displayName="Password Confirmation*"
               />
               <FormSelect
                 className="flex-fill"
                 options={availableRoles.map((r) => r.name)}
                 config={selectConfig}
                 name="roleId"
-                displayName="Account Type"
+                displayName="Account Type*"
               />
               <FormGroup>
                 <Button color="primary" block={true} type="submit" onClick={onSubmit}>

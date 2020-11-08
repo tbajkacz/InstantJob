@@ -62,7 +62,7 @@ export function Login(props: LoginProps) {
               config={config}
               type="text"
               name="email"
-              displayName="Email"
+              displayName="Email*"
               icon={faUser}
             />
             <FormInput
@@ -70,7 +70,7 @@ export function Login(props: LoginProps) {
               config={config}
               type="password"
               name="password"
-              displayName="Password"
+              displayName="Password*"
               icon={faKey}
             />
             {/* <FormGroup className="ui-login-remember-me">

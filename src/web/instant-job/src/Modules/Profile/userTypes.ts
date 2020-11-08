@@ -6,6 +6,7 @@ export interface UserProfileInfo {
   email: string;
   role: Role;
   picture: string;
+  description: string;
   age: number | undefined;
   creationDate: Date;
 }
@@ -19,6 +20,7 @@ export interface ContractorStatistics {
   inProgressJobs: number;
   completedJobs: number;
   averageRating: number;
+  applicationsCount: number;
 }
 
 export interface MandatorStatistics {

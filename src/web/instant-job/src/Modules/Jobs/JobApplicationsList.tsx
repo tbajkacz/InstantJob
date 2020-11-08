@@ -41,18 +41,32 @@ export default function JobApplicationsList(props: JobApplicationsListProps) {
         <div className="ui-flex-container">
           <div className="ui-wrapper col-sm-9">
             <h3 className="ui-header">{`${jobDetails.applications.length} applications for ${jobDetails.title}`}</h3>
-            <ul className="ui-list-dark">
-              {jobDetails.applications.map((a) => (
-                <JobApplicationsListItem
-                  key={a.applicationDate.toString()}
-                  application={a}
-                  jobId={jobDetails.id}
-                  onAction={onAction}
-                  assignedContractor={jobDetails.contractor}
-                  status={jobDetails.status}
-                />
-              ))}
-            </ul>
+            <table className="ui-table-dark">
+              <thead>
+                <tr>
+                  <th scope="col" className="col-sm-5">
+                    Contractor
+                  </th>
+                  <th scope="col" className="col-sm-5">
+                    Application date
+                  </th>
+                  <th scope="col" className="col-sm-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {jobDetails.applications.map((a) => (
+                  <JobApplicationsListItem
+                    key={a.applicationDate.toString()}
+                    application={a}
+                    jobId={jobDetails.id}
+                    onAction={onAction}
+                    assignedContractor={jobDetails.contractor}
+                    status={jobDetails.status}
+                    mandatorId={jobDetails.mandator.id}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

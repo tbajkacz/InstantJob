@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
+import { useAuth } from "../../Common/Auth/authContext";
 import { formatDate } from "../../Common/dateFormatter";
 import UserProfileAnchor from "../../Common/UserProfileAnchor";
 import { jobsService } from "./jobsService";
@@ -7,6 +8,7 @@ import { Contractor, JobApplication, JobStatus } from "./jobsTypes";
 
 interface JobApplicationsListItemProps {
   application: JobApplication;
+  mandatorId: string;
   jobId: string;
   assignedContractor: Contractor | undefined;
   status: JobStatus;
@@ -14,6 +16,7 @@ interface JobApplicationsListItemProps {
 }
 
 export default function JobApplicationsListItem(props: JobApplicationsListItemProps) {
+  const auth = useAuth();
   const assignContractor = () => {
     jobsService
       .AssignContractor({ jobId: props.jobId, contractorId: props.application.contractor.id })
@@ -27,7 +30,12 @@ export default function JobApplicationsListItem(props: JobApplicationsListItemPr
   const renderActionButton = () => {
     if (!props.status.isAssigned && !props.status.isInProgress) {
       return (
-        <Button color="primary" className="btn-block" onClick={assignContractor}>
+        <Button
+          color="primary"
+          className="btn-block"
+          onClick={assignContractor}
+          disabled={props.mandatorId !== auth.currentUser?.id}
+        >
           Assign
         </Button>
       );
@@ -37,7 +45,12 @@ export default function JobApplicationsListItem(props: JobApplicationsListItemPr
       props.application.contractor.id === props.assignedContractor.id
     ) {
       return (
-        <Button color="primary" className="btn-block" onClick={cancelAssignment}>
+        <Button
+          color="primary"
+          className="btn-block"
+          onClick={cancelAssignment}
+          disabled={props.mandatorId !== auth.currentUser?.id}
+        >
           Unassign
         </Button>
       );
@@ -46,16 +59,12 @@ export default function JobApplicationsListItem(props: JobApplicationsListItemPr
   };
 
   return (
-    <li className="row ui-list-item-dark">
-      <div className="col-sm-10">
-        <div>
-          {"Contractor "} <UserProfileAnchor user={props.application.contractor} />
-          {" applied at "}
-          {`${formatDate(props.application.applicationDate)}`}
-        </div>
-      </div>
-
-      <div className="col-sm-2">{renderActionButton()}</div>
-    </li>
+    <tr className="">
+      <td>
+        <UserProfileAnchor user={props.application.contractor} />
+      </td>
+      <td>{formatDate(props.application.applicationDate)}</td>
+      <td>{renderActionButton()}</td>
+    </tr>
   );
 }

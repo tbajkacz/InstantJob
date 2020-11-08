@@ -31,7 +31,7 @@ export default function FormDatePicker(props: FormDatePickerProps) {
   };
 
   return (
-    <div className="form-group mb-1">
+    <div className="form-group">
       <label className="flex-row ui-input-label">
         <small>{props.displayName + (props.required ? "*" : "")}</small>
       </label>

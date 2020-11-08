@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 export interface JobsFilterBadgePillProps {
   children: string;
   href?: string;
-  type: "primary" | "danger";
+  type: "primary" | "danger" | "success";
 }
 
 export default function JobsFilterBadgePill(props: JobsFilterBadgePillProps) {
@@ -29,6 +29,8 @@ export default function JobsFilterBadgePill(props: JobsFilterBadgePillProps) {
         return "ui-anchor-pill-danger";
       case "primary":
         return "ui-anchor-pill";
+      case "success":
+        return "ui-anchor-pill-success";
     }
   };
 

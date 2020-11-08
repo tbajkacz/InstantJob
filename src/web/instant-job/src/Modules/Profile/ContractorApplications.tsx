@@ -28,11 +28,26 @@ export default function ContractorApplications() {
     <div className="ui-flex-container">
       <div className="ui-wrapper col-sm-9">
         <h3 className="ui-header">Your applications</h3>
-        <ul className="ui-list-dark">
-          {contractorApplications.map((a) => (
-            <ContractorApplicationListItem application={a} />
-          ))}
-        </ul>
+        <table className="ui-table-dark">
+          <thead>
+            <tr>
+              <th scope="col" className="col-sm-3">
+                Job id
+              </th>
+              <th scope="col" className="col-sm-6">
+                Job name
+              </th>
+              <th scope="col" className="col-sm-2">
+                Application date
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {contractorApplications.map((a) => (
+              <ContractorApplicationListItem application={a} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

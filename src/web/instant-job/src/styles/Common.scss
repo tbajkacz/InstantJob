@@ -45,6 +45,7 @@ input:focus {
   @extend .text-white;
   @extend .p-2;
   @extend .mb-0;
+  @extend .pl-3;
   border-bottom-color: $uiElementInputColor;
   border-bottom-width: 2px;
   border-bottom-style: solid;
@@ -82,7 +83,10 @@ input:focus {
   @extend .ui-anchor-pill-base;
   @extend .badge-danger;
 }
-
+.ui-anchor-pill-success {
+  @extend .ui-anchor-pill-base;
+  @extend .badge-success;
+}
 .ui-icon-button {
   @extend .shadow-none;
   background-color: transparent !important;
@@ -98,5 +102,23 @@ input:focus {
     &:hover {
       color: $uiElementHoverBgColor !important;
     }
+  }
+}
+
+.ui-table-dark {
+  @extend .table;
+  @extend .ui-element-bg-dark;
+  color: white !important;
+}
+
+.ui-interactive {
+  &:not(.ui-selected):active {
+    background-color: $uiElementActiveBgColor !important;
+  }
+  &:not(.ui-selected):hover {
+    background-color: $uiElementHoverBgColor;
+  }
+  &:hover {
+    cursor: pointer;
   }
 }

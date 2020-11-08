@@ -2,6 +2,8 @@
 {
     public class GetContractorStatisticsDto
     {
+        public int ApplicationsCount { get; set; }
+
         public int AssignedJobs { get; set; }
 
         public int InProgressJobs { get; set; }

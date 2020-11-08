@@ -4,12 +4,14 @@ namespace InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformat
 {
     public class UpdateUserInformationCommand : IRequest
     {
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Surname { get; set; }
+        public string Surname { get; set; }
 
-        public virtual int? Age { get; set; }
+        public int? Age { get; set; }
 
-        public virtual string Picture { get; set; }
+        public string Picture { get; set; }
+
+        public string Description { get; set; }
     }
 }

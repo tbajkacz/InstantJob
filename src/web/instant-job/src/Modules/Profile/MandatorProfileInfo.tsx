@@ -42,7 +42,9 @@ export default function MandatorProfileInfo(props: MandatorProfileInfoProps) {
     <div className="col-sm-12">
       <div className="ui-header">
         <h5>{statistics.postedJobs} posted jobs</h5>
-        <Button onClick={redirectToJobs}>View posted jobs</Button>
+        <Button size="sm" onClick={redirectToJobs}>
+          View posted jobs
+        </Button>
       </div>
     </div>
   );
