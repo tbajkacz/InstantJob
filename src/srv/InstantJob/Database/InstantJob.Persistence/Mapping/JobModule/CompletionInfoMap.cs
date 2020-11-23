@@ -3,7 +3,7 @@ using InstantJob.Modules.Jobs.Domain.Jobs.Entities;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
-    public class CompletionInfoMap : BaseEntityMap<CompletionInfo, Guid>
+    public class CompletionInfoMap : BaseGuidEntityMap<CompletionInfo>
     {
         public CompletionInfoMap()
         {

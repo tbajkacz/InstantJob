@@ -15,11 +15,12 @@ namespace InstantJob.Database.Persistence.Configuration
         public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString)
         {
             var fact = Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.UsingFile(connectionString)
+                .Database(PostgreSQLConfiguration.Standard.ConnectionString(connectionString)
                                                       .IsolationLevel(IsolationLevel.ReadCommitted))
                 .Mappings(x => x.FluentMappings.AddFromAssembly(typeof(AddPersistenceExtension).Assembly)
                                 .Conventions.Add<AssignedIdConvention>()
-                                .Conventions.Add<InstantJobTableNameConvention>())
+                                .Conventions.Add<InstantJobTableNameConvention>()
+                                .Conventions.Add<StringLengthConvention>())
                 .ExposeConfiguration(x =>
                     new SchemaUpdate(x).Execute(false, true))
                 .BuildSessionFactory();

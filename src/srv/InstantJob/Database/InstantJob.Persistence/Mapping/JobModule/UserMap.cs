@@ -3,7 +3,7 @@ using InstantJob.Modules.Jobs.Domain.JobUsers;
 
 namespace InstantJob.Database.Persistence.Mapping.JobModule
 {
-    internal class UserMap : BaseEntityMap<JobUser, Guid>
+    internal class UserMap : BaseGuidEntityMap<JobUser>
     {
         public UserMap()
         {
