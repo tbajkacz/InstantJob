@@ -1,12 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.EventBus;
 using InstantJob.Modules.Jobs.Application.JobUsers.Abstractions;
-using InstantJob.Modules.Users.IntegrationEvents;
 
 namespace InstantJob.Modules.Jobs.Application.JobUsers.UpdateJobUser
 {
-    public class UserUpdatedIntegrationEventHandler : IIntegrationEventHandler<UserUpdatedIntegrationEvent>
+    public class UserUpdatedIntegrationEventHandler : IntegrationEventHandlerBase<UserUpdatedMessage>
     {
         private readonly IUserRepository users;
 
@@ -15,12 +13,11 @@ namespace InstantJob.Modules.Jobs.Application.JobUsers.UpdateJobUser
             this.users = users;
         }
 
-        public async Task Handle(UserUpdatedIntegrationEvent notification,
-            CancellationToken cancellationToken)
+        public override async Task HandleAsync(UserUpdatedMessage message)
         {
-            var user = await users.GetByIdAsync(notification.UserId);
+            var user = await users.GetByIdAsync(message.UserId);
 
-            user.UpdateInformation(notification.Name, notification.Surname);
+            user.UpdateInformation(message.Name, message.Surname);
 
             await users.UpdateAsync(user);
         }

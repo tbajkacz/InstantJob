@@ -17,5 +17,10 @@ namespace InstantJob.Modules.Users.IntegrationEvents
             Name = name;
             Surname = surname;
         }
+
+        public static string GetKey()
+        {
+            return "Modules.Users.IntegrationEvents.UserUpdatedDomainEventHandler";
+        }
     }
 }

@@ -1,18 +1,20 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using InstantJob.BuildingBlocks.Application.EventBus;
 using InstantJob.Modules.Users.Domain.Users.Events;
 using InstantJob.Modules.Users.IntegrationEvents;
 using MediatR;
+using Newtonsoft.Json;
 
 namespace InstantJob.Modules.Users.Application.Users.DomainEventHandlers
 {
     public class UserUpdatedDomainEventHandler : INotificationHandler<UserUpdatedDomainEvent>
     {
-        private readonly IMediator mediator;
+        private readonly IEventBus eventBus;
 
-        public UserUpdatedDomainEventHandler(IMediator mediator)
+        public UserUpdatedDomainEventHandler(IEventBus eventBus)
         {
-            this.mediator = mediator;
+            this.eventBus = eventBus;
         }
 
         public async Task Handle(UserUpdatedDomainEvent notification,
@@ -24,7 +26,7 @@ namespace InstantJob.Modules.Users.Application.Users.DomainEventHandlers
                 notification.Surname
             );
 
-            await mediator.Publish(integrationEvent, cancellationToken);
+            await eventBus.PublishAsync(UserUpdatedIntegrationEvent.GetKey(), JsonConvert.SerializeObject(integrationEvent));
         }
     }
 }

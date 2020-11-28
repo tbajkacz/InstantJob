@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using System;
 
 namespace InstantJob.BuildingBlocks.Application.EventBus
 {
-    public interface IIntegrationEvent : INotification
+    public interface IIntegrationEvent
     {
+        static string GetKey() => throw new NotImplementedException();
     }
 }

@@ -24,5 +24,10 @@ namespace InstantJob.Modules.Users.IntegrationEvents
             Email = email;
             Role = role;
         }
+
+        public static string GetKey()
+        {
+            return "Modules.Users.IntegrationEvents.UserCreatedIntegrationEvent";
+        }
     }
 }

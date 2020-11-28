@@ -17,6 +17,11 @@ namespace InstantJob.BuildingBlocks.Domain
             Name = name;
         }
 
+        // json ctor
+        protected Enumeration()
+        {
+        }
+
         public override string ToString() => Name;
 
         public static IEnumerable<T> GetAll<T>() where T : Enumeration

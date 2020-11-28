@@ -6,6 +6,12 @@
         public static readonly Role Contractor = new Role(2, "Contractor");
         public static readonly Role Administrator = new Role(3, "Administrator");
 
+        // json ctor
+        private Role()
+            : base()
+        {
+        }
+
         protected Role(int id, string name)
             : base(id, name)
         {

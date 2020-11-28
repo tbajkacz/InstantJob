@@ -9,11 +9,14 @@ using InstantJob.BuildingBlocks.Infrastructure.Seeding;
 using InstantJob.Database.Persistence.Configuration;
 using InstantJob.Modules.Jobs.Application.Categories.Commands.AddCategory;
 using InstantJob.Modules.Jobs.Application.Contractors.Abstractions;
+using InstantJob.Modules.Jobs.Application.JobUsers.CreateJobUser;
+using InstantJob.Modules.Jobs.Application.JobUsers.UpdateJobUser;
 using InstantJob.Modules.Jobs.Application.Mandators.Abstractions;
 using InstantJob.Modules.Jobs.Infrastructure.Configuration;
 using InstantJob.Modules.Users.Application.Users.Abstractions;
 using InstantJob.Modules.Users.Application.Users.Commands.CreateUser;
 using InstantJob.Modules.Users.Infrastructure.Configuration;
+using InstantJob.Modules.Users.IntegrationEvents;
 using InstantJob.Web.Api.Extensions;
 using InstantJob.Web.Api.Middleware;
 using InstantJob.Web.Api.Services;
@@ -41,6 +44,13 @@ namespace InstantJob.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddBasicServicesForAssemblies(typeof(AddCategoryCommand).Assembly, typeof(CreateUserCommand).Assembly);
+            services.AddInMemoryEventBus()
+                .RegisterIntegrationEventHandlers(cfg =>
+                {
+                    cfg.AddHandler<UserCreatedIntegrationEventHandler>(UserCreatedIntegrationEvent.GetKey());
+                    cfg.AddHandler<UserUpdatedIntegrationEventHandler>(UserUpdatedIntegrationEvent.GetKey());
+                });
+
             services.AddPersistence(configuration.GetConnectionString("Database"));
             services.AddUsersModule(configuration);
             services.AddJobsModule();
