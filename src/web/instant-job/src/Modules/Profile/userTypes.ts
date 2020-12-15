@@ -16,11 +16,24 @@ export interface GetUserByIdQuery {
 }
 
 export interface ContractorStatistics {
-  assignedJobs: number;
-  inProgressJobs: number;
-  completedJobs: number;
+  assignedJobsCount: number;
+  inProgressJobsCount: number;
+  completedJobsCount: number;
   averageRating: number;
   applicationsCount: number;
+  completedJobs: JobStatistic[];
+  assignedJobs: JobStatistic[];
+  inProgressJobs: JobStatistic[];
+  activeApplications: JobApplicationStatistic[];
+}
+export interface JobStatistic {
+  id: string;
+  title: string;
+}
+
+export interface JobApplicationStatistic {
+  jobId: string;
+  jobTitle: string;
 }
 
 export interface MandatorStatistics {

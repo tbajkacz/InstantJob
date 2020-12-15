@@ -5,14 +5,6 @@ namespace InstantJob.BuildingBlocks.Domain
     public abstract class BaseEntity<TId> : BaseEntity
     {
         public virtual TId Id { get; set; }
-
-        protected void CheckRule(IDomainRule rule)
-        {
-            if (rule.IsViolated())
-            {
-                throw new DomainException(rule);
-            }
-        }
     }
 
     public abstract class BaseEntity
@@ -29,6 +21,14 @@ namespace InstantJob.BuildingBlocks.Domain
         public virtual void ClearDomainEvents()
         {
             domainEvents.Clear();
+        }
+
+        protected virtual void CheckRule(IDomainRule rule)
+        {
+            if (rule.IsViolated())
+            {
+                throw new DomainException(rule);
+            }
         }
     }
 }

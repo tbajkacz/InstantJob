@@ -5,7 +5,7 @@ using System;
 
 namespace InstantJob.Database.Persistence.Mapping
 {
-    public class BaseGuidEntityMap<TEntity> : ClassMap<TEntity> where TEntity : BaseEntity<Guid>
+    internal class BaseGuidEntityMap<TEntity> : ClassMap<TEntity> where TEntity : BaseEntity<Guid>
     {
         public BaseGuidEntityMap()
         {

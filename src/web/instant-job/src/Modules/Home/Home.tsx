@@ -102,7 +102,7 @@ export default function Home() {
         <div className="ui-card-dark">
           <div className="card-body">
             <h5 className="card-title">Your jobs in progress</h5>
-            <p className="card-text">You have {contractorStatistics.inProgressJobs} jobs in progress</p>
+            <p className="card-text">You have {contractorStatistics.inProgressJobsCount} jobs in progress</p>
             <Link to={buildJobsRedirect()} className="btn btn-primary">
               Your jobs in progress
             </Link>

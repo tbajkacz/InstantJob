@@ -1,4 +1,5 @@
-﻿using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
+﻿using AutoMapper;
+using InstantJob.Modules.Jobs.Application.Jobs.Abstractions;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -9,10 +10,12 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
     public class GetContractorStatisticsQueryHandler : IRequestHandler<GetContractorStatisticsQuery, GetContractorStatisticsDto>
     {
         private readonly IJobRepository jobRepository;
+        private readonly IMapper mapper;
 
-        public GetContractorStatisticsQueryHandler(IJobRepository jobRepository)
+        public GetContractorStatisticsQueryHandler(IJobRepository jobRepository, IMapper mapper)
         {
             this.jobRepository = jobRepository;
+            this.mapper = mapper;
         }
 
         public Task<GetContractorStatisticsDto> Handle(GetContractorStatisticsQuery request, CancellationToken cancellationToken)
@@ -33,11 +36,19 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
 
             return Task.FromResult(new GetContractorStatisticsDto
             {
-                AssignedJobs = assignedJobs.Count(),
-                InProgressJobs = inProgressJobs.Count(),
-                CompletedJobs = completedJobs.Count(),
+                AssignedJobsCount = assignedJobs.Count(),
+                InProgressJobsCount = inProgressJobs.Count(),
+                CompletedJobsCount = completedJobs.Count(),
                 ApplicationsCount = applicationsCount,
-                AverageRating = completedJobsAverageRating
+                AverageRating = completedJobsAverageRating,
+                CompletedJobs = completedJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
+                InProgressJobs = inProgressJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
+                AssignedJobs = assignedJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
+                ActiveApplications = jobRepository.Get().Where(j => j.Status.IsAssigned && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Select(j => new StatisticsApplicationDto
+                {
+                    JobId = j.Id,
+                    JobTitle = j.Title
+                }).ToList()
             });
         }
     }

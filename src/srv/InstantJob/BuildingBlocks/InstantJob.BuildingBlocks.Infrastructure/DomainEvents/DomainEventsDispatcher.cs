@@ -15,7 +15,7 @@ namespace InstantJob.BuildingBlocks.Infrastructure.DomainEvents
             this.mediator = mediator;
         }
 
-        public async Task DispatchDomainEvents()
+        public async Task DispatchDomainEventsAsync()
         {
             var domainEvents = accessor.PopUnhandledDomainEvents();
 

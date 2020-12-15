@@ -20,7 +20,7 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
         {
             await decorated.Handle(notification, cancellationToken);
 
-            await dispatcher.DispatchDomainEvents();
+            await dispatcher.DispatchDomainEventsAsync();
         }
     }
 }

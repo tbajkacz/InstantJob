@@ -30,7 +30,7 @@ namespace InstantJob.Modules.Jobs.Infrastructure.Data
             int? count)
         {
             // TODO ToList() is not optimal, because the query will be executed in memory,
-            // NHibernate doesn't want to cooperate without it, replace it with EFC
+            // TODO replace with EFC
             IEnumerable<Job> query = session.Query<Job>().ToList();
             if (categoryId != null)
             {

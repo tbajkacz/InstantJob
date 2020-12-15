@@ -26,16 +26,16 @@ namespace InstantJob.BuildingBlocks.Application.MediatR
                 uow.BeginTransaction();
             }
 
-            var nextRequest = await next();
+            var result = await next();
 
-            await dispatcher.DispatchDomainEvents();
+            await dispatcher.DispatchDomainEventsAsync();
 
             if (uow.Active)
             {
                 await uow.CommitAsync();
             }
 
-            return nextRequest;
+            return result;
         }
     }
 }

@@ -4,6 +4,6 @@ namespace InstantJob.BuildingBlocks.Application.DomainEvents
 {
     public interface IDomainEventsDispatcher
     {
-        Task DispatchDomainEvents();
+        Task DispatchDomainEventsAsync();
     }
 }

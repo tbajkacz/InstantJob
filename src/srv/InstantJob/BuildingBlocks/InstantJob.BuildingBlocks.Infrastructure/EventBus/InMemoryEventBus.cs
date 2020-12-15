@@ -37,13 +37,10 @@ namespace InstantJob.BuildingBlocks.Infrastructure.EventBus
 
             foreach (var sub in subscriptions.Where(s => s.Key == key))
             {
-                var handler = scope.ServiceProvider.GetRequiredService(sub.HandlerType);
-
-                await (Task)handler.GetType().GetDeclaredMethod(nameof(IIntegrationEventHandler.Invoke))
-                    .Invoke(handler, new object[] { message });
+                await ((IIntegrationEventHandler)scope.ServiceProvider.GetRequiredService(sub.HandlerType)).InvokeAsync(message);
             }
 
-            await dispatcher.DispatchDomainEvents();
+            await dispatcher.DispatchDomainEventsAsync();
 
             if (uow.Active)
             {

@@ -23,7 +23,6 @@ export function Login(props: LoginProps) {
   const [signInFailed, setsignInFailed] = useState(false);
 
   const auth = useAuth();
-  //const { validationResponse, setValidationResponse } = useState();
 
   const onSubmit = (e: React.MouseEvent<any, MouseEvent>) => {
     setsignInFailed(false);
@@ -41,7 +40,6 @@ export function Login(props: LoginProps) {
 
   const config: FormInputConfig = {
     onChange,
-    //errors,
   };
 
   return auth.currentUser ? (
@@ -73,10 +71,6 @@ export function Login(props: LoginProps) {
               displayName="Password*"
               icon={faKey}
             />
-            {/* <FormGroup className="ui-login-remember-me">
-              <Input type="checkbox" onChange={(e) => setParams({ ...params!, rememberMe: e.currentTarget.checked })} />
-              <Label>Remember me</Label>
-            </FormGroup> */}
             <FormGroup>
               <Button color="primary" block={true} type="submit" onClick={onSubmit}>
                 Login

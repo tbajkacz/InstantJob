@@ -14,7 +14,7 @@ export default React.memo(function Footer(props: FooterProps) {
             <div>Instant Job</div>
             <small>© 2020-2021</small>
           </div>
-          <div className="col-sm-4">asd</div>
+          <div className="col-sm-4"></div>
           <div className="col-sm-5"></div>
         </div>
       </div>

@@ -94,16 +94,56 @@ Greetings",
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Quick HTML/CSS/Liquid/Javascript job",
+                    "Web job management application",
+                    @"Hello,
+I need a simple application which will allow its users to post and apply for job offers.
+
+The application should have the following functionalities:
+- login
+- registration
+- viewing and filtering job offers
+- posting and editing job offers
+- applying for job offers
+
+If you are interested, please apply for this job offer.",
+                    random.Next(100, 1253),
+                    DateTime.Now.AddDays(random.Next(5, 60)),
+                    Difficulty.Intermediate,
+                    categories[13],
+                    mandators[1]
+                ),
+                new Job(
+                    Guid.NewGuid(),
+                    "Web job management application",
+                    @"Hello,
+I need a simple application which will allow its users to post and apply for job offers.
+
+The application should have the following functionalities:
+- login
+- registration
+- viewing and filtering job offers
+- posting and editing job offers
+- applying for job offers
+
+If you are interested, please apply for this job offer.",
+                    random.Next(100, 1253),
+                    DateTime.Now.AddDays(random.Next(5, 60)),
+                    Difficulty.Intermediate,
+                    categories[13],
+                    mandators[1]
+                ),
+                new Job(
+                    Guid.NewGuid(),
+                    "Google drive integration",
                     @"Hello
 
-I need some code putting on my site
+I need someone to create a backend google drive module for my application
 
-From my website developers...
+It should allow to use a predefined google account which will access user accounts by using dropbox auth tokens.
 
-If you are wanting to add additional pages or make custom changes to pages not supported in the code editor, the developers below understand Uscreen and can help you. You may also use any other developer you choose as long as they understand HTML/CSS/Liquid as well as Javascript.
+The app should allow to connect/disconnect users from their dropbox account and upload large files. If you need more information, please email me and we can discuss details. The price is adjustable.
 
-We recommend limiting custom changes to the home page and additional HTML pages. The catalog, content, author, category, checkout, and login pages are not intended to be customized with code. We do not guarantee that customizations will continue to work in the future as new features or versions of the platform are released. If you decide to customize pages outside of the home page or additional HTML pages, please be prepared to hire a developer in the future to resolve issues that may arise.",
+Greetings",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Beginner,
@@ -112,14 +152,30 @@ We recommend limiting custom changes to the home page and additional HTML pages.
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Update Debian 7.11 to Debian 10",
-                    @"Dear Sirs and Madames,
+                    "Quick HTML/CSS/Javascript job",
+                    @"Hello
 
-one of our customers runs a web portal on a server with Debian 7.11 and Plesk. We would like you to give us the appropriate steps / commands to upgrade to Debian 10 via SSH (e.g. Putty).
+I need a simple feature for my website
+
+The website has a few forms which should allow to generate pdf files off them. You can choose to work with a partner who knows HTML/CSS as well as Javascript.
+
+Fresh developers who are quick learners are welcome, there are several experienced developers who will be happy to assist you with your task",
+                    random.Next(100, 1253),
+                    DateTime.Now.AddDays(random.Next(5, 60)),
+                    Difficulty.Beginner,
+                    categories[13],
+                    mandators[0]
+                ),
+                new Job(
+                    Guid.NewGuid(),
+                    "Update Debian version 7.11 to version 10",
+                    @"Welcome,
+
+one of our customers runs a web application on a server with Debian 7.11. We would like to create a tutorial featuring all steps to upgrade to Debian 10 via SSH (e.g. Putty).
 
 sudo apt-get update & upgrade doesn't work because the Debian sources have changed.
 
-All in all a matter of a few minutes - but we don't have the time to read it all up at the moment.",
+It should be a really simple task, so if you are willing to perform it, please apply.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Intermediate,
@@ -128,9 +184,11 @@ All in all a matter of a few minutes - but we don't have the time to read it all
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Use Stripe API to collect Credit Card Payment",
-                    @" - input credit card details for Stripe API
-- display whether payment is successful or not",
+                    "Use Paypal API to collect product payment",
+                    @"Hey,
+we have an online store which we would want to integrate with paypal payments.
+
+We are looking for an experienced developer, with prior experience in similar tasks.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
@@ -171,8 +229,8 @@ Thanks",
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Need Game Dev Team for MMO Game For PC",
-                    @"Looking for a team to create a new MMO racing game, please apply and mail me for more details",
+                    "Need Game Dev for C# MMO Game",
+                    @"Looking an experienced C# unity developer for a new mmo project",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
