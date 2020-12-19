@@ -28,9 +28,13 @@ export default function JobApplicationsListItem(props: JobApplicationsListItemPr
   };
 
   const renderActionButton = () => {
+    if (props.mandatorId !== auth.currentUser?.id || props.status.isCompleted) {
+      return "";
+    }
     if (!props.status.isAssigned && !props.status.isInProgress) {
       return (
         <Button
+          size="sm"
           color="primary"
           className="btn-block"
           onClick={assignContractor}
@@ -46,6 +50,7 @@ export default function JobApplicationsListItem(props: JobApplicationsListItemPr
     ) {
       return (
         <Button
+          size="sm"
           color="primary"
           className="btn-block"
           onClick={cancelAssignment}

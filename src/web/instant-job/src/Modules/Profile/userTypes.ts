@@ -37,7 +37,15 @@ export interface JobApplicationStatistic {
 }
 
 export interface MandatorStatistics {
-  postedJobs: number;
+  postedJobsCount: number;
+  postedJobsInProgressCount: number;
+  postedJobsCompletedCount: number;
+  postedJobsWaitingForAssignmentCount: number;
+
+  postedJobs: JobStatistic[];
+  postedJobsInProgress: JobStatistic[];
+  postedJobsCompleted: JobStatistic[];
+  postedJobsWaitingForAssignment: JobStatistic[];
 }
 
 export interface GetStatisticsQuery {

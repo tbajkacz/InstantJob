@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import routes from "../../Common/routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Restricted from "../../Common/Restricted";
+import roles from "./../../Common/roles";
 
 interface JobsListProps {
   className?: string;
@@ -121,9 +123,11 @@ export default function JobsList(props: JobsListProps) {
             <TopFilterPanel className="ui-header" />
             <div className="ui-header row">
               <h3 className="col-md-11 pr-0">{formatTitle()} </h3>
-              <Link className="ui-nav-link ui-icon-button col-md-1" to={postJobRoute()} onClick={togglePostJobModal}>
-                <FontAwesomeIcon icon={faPlus} size="2x" />
-              </Link>
+              <Restricted roles={[roles.mandator]}>
+                <Link className="ui-nav-link ui-icon-button col-md-1" to={postJobRoute()} onClick={togglePostJobModal}>
+                  <FontAwesomeIcon icon={faPlus} size="2x" />
+                </Link>
+              </Restricted>
             </div>
             <ul className="ui-list-dark">
               {jobsList.map((c) => (

@@ -19,13 +19,13 @@ interface RegisterProps {
 }
 
 export default function Register(props: RegisterProps) {
-  const [params, setParams] = useState<RegisterParams>({
+  const [params, setParams] = useState({
     name: "",
     surname: "",
     email: "",
     password: "",
     passwordConfirmation: "",
-    roleId: 0,
+    role: "",
   });
   const placeholderRole: Role = { id: -1, name: "Select an account type" };
 
@@ -41,10 +41,16 @@ export default function Register(props: RegisterProps) {
   }, []);
 
   const onSubmit = (e: React.MouseEvent<any, MouseEvent>) => {
+    const role = availableRoles.find((r) => r.name === params.role);
     e.preventDefault();
-    registerService.register(params).then(undefined, (error) => {
-      setValidationErrors(error.response.data);
-    });
+    registerService
+      .register({
+        ...params,
+        roleId: role ? role.id : 0,
+      })
+      .then(undefined, (error) => {
+        setValidationErrors(error.response.data);
+      });
   };
 
   const onChange = (name: string, value: string) => {
@@ -93,7 +99,8 @@ export default function Register(props: RegisterProps) {
                 className="flex-fill"
                 options={availableRoles.map((r) => r.name)}
                 config={selectConfig}
-                name="roleId"
+                name="role"
+                validationName="roleId"
                 displayName="Account Type*"
               />
               <FormGroup>

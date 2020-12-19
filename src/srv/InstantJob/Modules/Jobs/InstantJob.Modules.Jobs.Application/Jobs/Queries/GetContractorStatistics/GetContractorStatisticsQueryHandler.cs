@@ -41,10 +41,10 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
                 CompletedJobsCount = completedJobs.Count(),
                 ApplicationsCount = applicationsCount,
                 AverageRating = completedJobsAverageRating,
-                CompletedJobs = completedJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
-                InProgressJobs = inProgressJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
-                AssignedJobs = assignedJobs.Select(j => mapper.Map<StatisticsJobOverviewDto>(j)).ToList(),
-                ActiveApplications = jobRepository.Get().Where(j => j.Status.IsAssigned && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Select(j => new StatisticsApplicationDto
+                CompletedJobs = completedJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
+                InProgressJobs = inProgressJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
+                AssignedJobs = assignedJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
+                ActiveApplications = jobRepository.Get().Where(j => j.Status.IsAssigned && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Select(j => new ContractorStatisticsApplicationDto
                 {
                     JobId = j.Id,
                     JobTitle = j.Title

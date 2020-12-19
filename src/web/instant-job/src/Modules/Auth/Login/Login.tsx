@@ -73,7 +73,7 @@ export function Login(props: LoginProps) {
             />
             <FormGroup>
               <Button color="primary" block={true} type="submit" onClick={onSubmit}>
-                Login
+                Sign in
               </Button>
             </FormGroup>
           </Form>

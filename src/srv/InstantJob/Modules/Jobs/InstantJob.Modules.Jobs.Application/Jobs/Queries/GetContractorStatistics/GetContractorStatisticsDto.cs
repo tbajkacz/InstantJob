@@ -17,23 +17,23 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
 
         public double? AverageRating { get; set; }
 
-        public List<StatisticsJobOverviewDto> CompletedJobs { get; set; }
+        public List<ContractorStatisticsJobOverviewDto> CompletedJobs { get; set; }
 
-        public List<StatisticsJobOverviewDto> AssignedJobs { get; set; }
+        public List<ContractorStatisticsJobOverviewDto> AssignedJobs { get; set; }
 
-        public List<StatisticsJobOverviewDto> InProgressJobs { get; set; }
+        public List<ContractorStatisticsJobOverviewDto> InProgressJobs { get; set; }
 
-        public List<StatisticsApplicationDto> ActiveApplications { get; set; }
+        public List<ContractorStatisticsApplicationDto> ActiveApplications { get; set; }
     }
     
-    public class StatisticsJobOverviewDto : IMapFrom<Job>
+    public class ContractorStatisticsJobOverviewDto : IMapFrom<Job>
     {
         public Guid Id { get; set; }
 
         public string Title { get; set; }
     }
 
-    public class StatisticsApplicationDto
+    public class ContractorStatisticsApplicationDto
     {
         public Guid JobId { get; set; }
 
