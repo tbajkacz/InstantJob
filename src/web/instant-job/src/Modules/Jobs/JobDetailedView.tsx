@@ -97,6 +97,14 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     }
   };
 
+  const cancelJob = () => {
+    if (auth.currentUser && jobDetails && auth.currentUser.id === jobDetails.mandator.id) {
+      jobsService
+        .CancelJobOffer({ jobId: jobDetails.id })
+        .then(() => setEntityHasUpdatedToggle(!entityHasUpdatedToggle));
+    }
+  };
+
   const redirectToBrowseApplications = () => {
     if (jobDetails) {
       history.push(routes.Applications.replace(routeParams.jobId, jobDetails.id));
@@ -187,14 +195,18 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
     } else if (jobDetails.status.isCanceled) {
       return "This job offer was canceled";
     } else if (jobDetails.status.isAssigned) {
-      if (auth.currentUser?.role?.name === roles.mandator) {
-        return null;
-      } else if (auth.currentUser?.role?.name === roles.contractor) {
+      if (auth.currentUser?.role?.name === roles.contractor) {
         return renderContractorAssignedApplicationsSection();
+      } else {
+        return `This job offer is assigned to ${jobDetails.contractor.name} ${jobDetails.contractor.surname}`;
       }
     } else {
       if (auth.currentUser?.role?.name === roles.mandator) {
-        return null;
+        return (
+          <Button className="btn-block" onClick={cancelJob} color="primary">
+            Cancel job offer
+          </Button>
+        );
       } else if (auth.currentUser?.role?.name === roles.contractor) {
         return renderContractorUnassignedApplicationsSection();
       }
@@ -228,6 +240,15 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
       </div>
     );
   };
+  const renderBrowseApplicationsButton = () => {
+    if (jobDetails.status.isAssigned || jobDetails.status.isAvailable) {
+      return (
+        <Button color="secondary" className="btn-block mt-2" onClick={redirectToBrowseApplications}>
+          Browse applications
+        </Button>
+      );
+    }
+  };
 
   return (
     <LoadingIndicator promise={loadingPromise}>
@@ -255,9 +276,7 @@ export default function JobDetailedView(props: JobDetailedViewProps) {
               <div>{renderApplicationsCountSection()}</div>
               <h6 className="mt-2">{renderTimeLeft()}</h6>
               {renderApplicationSection()}
-              <Button color="secondary" className="btn-block mt-2" onClick={redirectToBrowseApplications}>
-                Browse applications
-              </Button>
+              {renderBrowseApplicationsButton()}
             </div>
           </div>
           <div className="ui-content">

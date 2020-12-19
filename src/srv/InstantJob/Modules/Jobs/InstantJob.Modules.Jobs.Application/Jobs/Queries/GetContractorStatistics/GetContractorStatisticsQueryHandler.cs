@@ -30,7 +30,7 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
             var assignedJobs = contractorJobs.Where(j => j.Status.IsAssigned);
             var inProgressJobs = contractorJobs.Where(j => j.Status.IsInProgress);
             var completedJobs = contractorJobs.Where(j => j.Status.IsCompleted);
-            var applicationsCount = jobRepository.Get().Where(j => j.Status.IsAvailable && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Count();
+            var jobsWithActiveApplications = jobRepository.Get().Where(j => j.Status.IsAvailable && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId));
 
             var completedJobsAverageRating = completedJobs.Select(j => j.CompletionInfo?.Rating).Average();
 
@@ -39,12 +39,12 @@ namespace InstantJob.Modules.Jobs.Application.Jobs.Queries.GetContractorStatisti
                 AssignedJobsCount = assignedJobs.Count(),
                 InProgressJobsCount = inProgressJobs.Count(),
                 CompletedJobsCount = completedJobs.Count(),
-                ApplicationsCount = applicationsCount,
+                ApplicationsCount = jobsWithActiveApplications.Count(),
                 AverageRating = completedJobsAverageRating,
                 CompletedJobs = completedJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
                 InProgressJobs = inProgressJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
                 AssignedJobs = assignedJobs.Select(j => mapper.Map<ContractorStatisticsJobOverviewDto>(j)).ToList(),
-                ActiveApplications = jobRepository.Get().Where(j => j.Status.IsAssigned && j.Applications.Any(a => a.Status.IsActive && a.Contractor.Id == request.ContractorId)).Select(j => new ContractorStatisticsApplicationDto
+                ActiveApplications = jobsWithActiveApplications.Select(j => new ContractorStatisticsApplicationDto
                 {
                     JobId = j.Id,
                     JobTitle = j.Title

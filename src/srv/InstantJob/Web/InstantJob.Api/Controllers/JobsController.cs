@@ -180,14 +180,13 @@ namespace InstantJob.Web.Api.Controllers
         /// <summary>
         /// Cancels the specified job
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(Policies.Mandator)]
-        public async Task CancelJob(CancelJobCommand command, Guid id)
+        public async Task CancelJob(Guid id)
         {
-            command.JobId = id;
-            await mediator.Send(command);
+            await mediator.Send(new CancelJobCommand { JobId = id });
         }
 
         /// <summary>
