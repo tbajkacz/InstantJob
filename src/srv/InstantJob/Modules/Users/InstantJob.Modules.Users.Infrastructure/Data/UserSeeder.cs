@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InstantJob.BuildingBlocks.Application.Interfaces;
@@ -50,7 +51,7 @@ namespace InstantJob.Modules.Users.Infrastructure.Data
                     Name = "Tomasz",
                     Password = "root",
                     Role = Role.Contractor,
-                    Surname = "Bajkacz",
+                    Surname = "Bajkacz"
                 },
                 new SeedUserCommand
                 {

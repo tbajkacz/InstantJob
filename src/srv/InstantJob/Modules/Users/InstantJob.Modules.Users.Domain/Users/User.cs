@@ -16,7 +16,7 @@ namespace InstantJob.Modules.Users.Domain.Users
 
         public virtual string Email { get; protected set; }
 
-        public virtual string Picture { get; protected set; }
+        public virtual byte[] Picture { get; protected set; }
 
         public virtual string Description { get; protected set; }
 
@@ -41,7 +41,7 @@ namespace InstantJob.Modules.Users.Domain.Users
             this.AddDomainEvent(new UserCreatedDomainEvent(Id, Name, Surname, Email, Role));
         }
 
-        public virtual void UpdateInformation(string name, string surname, int? age, string picture, string description)
+        public virtual void UpdateInformation(string name, string surname, int? age, byte[] picture, string description)
         {
             Name = name;
             Surname = surname;

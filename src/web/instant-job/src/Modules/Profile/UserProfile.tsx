@@ -56,7 +56,11 @@ export default function UserProfile(props: UserProfileProps) {
           <div className="ui-header row">
             <div className="col-sm-1">
               <img
-                src="https://alaakriedy.net/wp-content/uploads/2016/05/placeholder-1100x1100.png"
+                src={
+                  userProfileInfo.picture
+                    ? `data:image/jpeg;base64,${userProfileInfo.picture}`
+                    : "https://alaakriedy.net/wp-content/uploads/2016/05/placeholder-1100x1100.png"
+                }
                 height="100px"
                 width="100px"
               />

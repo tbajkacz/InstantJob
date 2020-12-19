@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using InstantJob.Modules.Users.Application.Users.Abstractions;
 using MediatR;
@@ -20,7 +21,7 @@ namespace InstantJob.Modules.Users.Application.Users.Commands.UpdateUserInformat
         {
             var user = await users.GetByIdAsync(currentUser.UserId);
 
-            user.UpdateInformation(request.Name, request.Surname, request.Age, request.Picture, request.Description);
+            user.UpdateInformation(request.Name, request.Surname, request.Age, Convert.FromBase64String(request.Picture), request.Description);
             await users.UpdateAsync(user);
 
             return Unit.Value;

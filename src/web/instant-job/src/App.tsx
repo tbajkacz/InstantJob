@@ -28,7 +28,9 @@ function App() {
               <Home />
             </Route>
             <Route path={routes.Profile} exact>
-              <UserProfile />
+              <Restricted redirectToLogin roles={[roles.contractor, roles.mandator, roles.admin]}>
+                <UserProfile />
+              </Restricted>
             </Route>
             <Route path={routes.Jobs} exact>
               <JobsList />

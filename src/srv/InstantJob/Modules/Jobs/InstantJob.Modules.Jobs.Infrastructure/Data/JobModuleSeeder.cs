@@ -94,7 +94,7 @@ Greetings",
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Web job management application",
+                    "Mobile job management application",
                     @"Hello,
 I need a simple application which will allow its users to post and apply for job offers.
 
@@ -114,7 +114,7 @@ If you are interested, please apply for this job offer.",
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Web job management application",
+                    "Desktop job management application",
                     @"Hello,
 I need a simple application which will allow its users to post and apply for job offers.
 

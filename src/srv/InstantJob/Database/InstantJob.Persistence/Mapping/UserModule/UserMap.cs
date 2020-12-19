@@ -19,7 +19,8 @@ namespace InstantJob.Database.Persistence.Mapping.UserModule
             Map(x => x.Email)
                 .Not.Nullable()
                 .Unique();
-            Map(x => x.Picture);
+            Map(x => x.Picture)
+                .CustomType("BinaryBlob");
             Map(x => x.Role)
                 .CustomType<EnumerationType<Role>>();
             Map(x => x.CreationDate);
