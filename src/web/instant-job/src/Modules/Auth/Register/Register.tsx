@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RegisterParams } from "./registerTypes";
 import { useAuth } from "../../../Common/Auth/authContext";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import routes from "../../../Common/routes";
 import { CardHeader, Form, FormGroup, Button, CardFooter } from "reactstrap";
 import { FormInput, FormInputConfig } from "../../../Common/FormInput";
@@ -33,7 +33,10 @@ export default function Register(props: RegisterProps) {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>();
   const [availableRoles, setAvailableRoles] = useState<Role[]>([placeholderRole]);
   const [loadingPromise, setLoadingPromise] = useState<Promise<any>>();
+  const [confirmButtonVisible, setConfirmButtonVisible] = useState(false);
+  const [newUserId, setNewUserId] = useState<string>();
 
+  const history = useHistory();
   useEffect(() => {
     setLoadingPromise(
       userService.getAvailableRoles().then((response) => setAvailableRoles([placeholderRole, ...response.data]))
@@ -48,9 +51,26 @@ export default function Register(props: RegisterProps) {
         ...params,
         roleId: role ? role.id : 0,
       })
-      .then(undefined, (error) => {
-        setValidationErrors(error.response.data);
+      .then(
+        (r) => {
+          setNewUserId(r.data.id);
+          setConfirmButtonVisible(true);
+        },
+        (error) => {
+          setValidationErrors(error.response.data);
+        }
+      );
+  };
+
+  const onConfirm = (e: React.MouseEvent<any, MouseEvent>) => {
+    if (newUserId) {
+      e.preventDefault();
+      registerService.confirmRegistration({ id: newUserId }).then((r) => {
+        auth.signIn({ email: params.email, password: params.password }).then((ri) => {
+          history.push(routes.Home);
+        });
       });
+    }
   };
 
   const onChange = (name: string, value: string) => {
@@ -106,6 +126,11 @@ export default function Register(props: RegisterProps) {
               <FormGroup>
                 <Button color="primary" block={true} type="submit" onClick={onSubmit}>
                   Sign up
+                </Button>
+              </FormGroup>
+              <FormGroup hidden={!confirmButtonVisible}>
+                <Button color="primary" block={true} type="submit" onClick={onConfirm}>
+                  Confirm
                 </Button>
               </FormGroup>
             </Form>

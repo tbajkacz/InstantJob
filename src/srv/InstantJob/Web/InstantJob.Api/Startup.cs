@@ -84,6 +84,9 @@ namespace InstantJob.Web.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {

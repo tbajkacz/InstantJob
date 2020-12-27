@@ -1,1 +1,0 @@
-docker run --name instantjobdb -p 5432:5432 -e POSTGRES_PASSWORD=instantjob -e POSTGRES_DB=instantjob -e POSTGRES_USER=instantjob -d postgres

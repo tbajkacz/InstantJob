@@ -372,3 +372,5 @@ MigrationBackup/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/srv/InstantJob/Web/InstantJob.Api/wwwroot
+src/web/instant-job/build
