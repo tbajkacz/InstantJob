@@ -155,11 +155,11 @@ Greetings",
                     "Quick HTML/CSS/Javascript job",
                     @"Hello
 
-I need a simple feature for my website
+I need an addition on my website
 
-The website has a few forms which should allow to generate pdf files off them. You can choose to work with a partner who knows HTML/CSS as well as Javascript.
+The website has a few forms which should allow to generate pdf files off them. You can choose to work with a partner who knows React/Angular.
 
-Fresh developers who are quick learners are welcome, there are several experienced developers who will be happy to assist you with your task",
+Fresh developers who can learn quick are welcome, there are several experienced developers can assist you.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Beginner,
@@ -168,12 +168,10 @@ Fresh developers who are quick learners are welcome, there are several experienc
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Update Debian version 7.11 to version 10",
+                    "Update Debian 7.11 to 10",
                     @"Welcome,
 
-one of our customers runs a web application on a server with Debian 7.11. We would like to create a tutorial featuring all steps to upgrade to Debian 10 via SSH (e.g. Putty).
-
-sudo apt-get update & upgrade doesn't work because the Debian sources have changed.
+We need to upgrade Debian version 7.11 to version 10.
 
 It should be a really simple task, so if you are willing to perform it, please apply.",
                     random.Next(100, 1253),
@@ -197,8 +195,8 @@ We are looking for an experienced developer, with prior experience in similar ta
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Unity3D Mobile Game",
-                    @"Hello, I'm looking for an experienced Unity3D Game Developer to create casual mobile games. Send your 3D Games portfolio made with Unity for mobile.",
+                    "Unity3D Mobile development",
+                    @"Hello, I'm looking for an senior Unity Game Developer. An ideal candidate should have prior experience with such games, please send your portfiolio.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
@@ -207,20 +205,14 @@ We are looking for an experienced developer, with prior experience in similar ta
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "CONTENT WRITING JOB",
+                    "Copywriter job",
                     @"Hi,
 
-We are looking for freelance copy- and content writers to write several blogs and articles on a range of different topics. I need someone who is willing to accept a rate of $20 per 1000words. Are you reliable and doing a great job, then I may have bigger opportunities awaiting for you soon, as I am looking to build a team of trusted copywriters for my business.
+We need a freelance copywriter, who has experience in SEO.
 
-Do you have experience in SEO and writing affiliate blogs, then please let me know, as this is a big advantage.
+Please send some examples of your work (preferably online preview).
 
-Big plus if you are able to adapt your writing style. Please let me know in your cover letter what your strengths are regarding writing (blog, product descriptions, emails, landing pages etc.)
-
-Please do provide examples of content you've written (Google Docs link, Word links will not be opened).
-
-Look forward to hearing from you.
-
-Thanks",
+Thanks.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Intermediate,
@@ -239,28 +231,12 @@ Thanks",
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "PHP MySQL website development ",
-                    @"PHP MySQL developer required for completion of my website. About 30% of the 2nd version of the website still remains, and I require a new developer to finish off the process.
+                    "PHP web development",
+                    @"We have detailed project requirements and we need a new developer to extend our application.
 
-Very detailed project REQUIREMENTS document has been produced for the remainder of the dev, as well as screen videos which explain changes and updates required.
+The job should take no more than 2-3 months of full-time work.
 
-The code is well structured, well written and code notes are clear.
-
-This next phase of dev is estimated at between 100 to 120 hours. An additional similar phase will follow.
-
-Important: Some of the work is complex. There is report builder functionality, user functionality and report output functionality (PDF). Database complexity as well. Work includes some UI/UX look and feel, but this is not the emphasis. All colour pallets and fonts styles will be provided. **It is therefore important for you to demonstrate your ability to handle this complexity in references.
-
-The top applications will be contacted and detailed scope of work and requirement documents will be shared and discussed in order for them to develop a quote for the work.
-
-Please include the following details in your expression of interest:
-
-Skills and experience with PHP, MySQL and related
-
-Reference work
-
-Availability over the next 2 months
-
-I will review responses and engage with those that I feel are most suited for the job. Apologies - I will not be able to respond to everyone. I will only respond to those that I feel should be engaged further.",
+Please send your applications.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
@@ -269,12 +245,9 @@ I will review responses and engage with those that I feel are most suited for th
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "Build me a new Hybrid Mobile App",
-                    @"I want you to Build me a new Hybrid Mobile App. The detail are in the attched Document.
-
-Go through it and Give me a timeline and Quote. You will be working for me. This is an agency project. If you succeed you will get more projects from me.
-
-Once you give me the quote you can't back out or increase the Dev the question at the end of Doc to start your Bid description else you won't be considered.",
+                    "Mobile + web app development",
+                    @"I need a new application which will work both on web browsers and mobile devices.
+Please email me.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Intermediate,
@@ -283,10 +256,10 @@ Once you give me the quote you can't back out or increase the Dev the question a
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "wechat mini program backend dev",
-                    @"i am building WeChat mini-program solution for my e-commerce solution and I need a backend developer, i have database dev and frontend dev for now.
+                    "Wechat backend developer",
+                    @"I'm in the process of building a WeChat solution for my e-commerce project and I need a new backend developer.
 
-need to be done: backend system or service, i.e. order handling, payment, user login/registration. The Tencent cloud DB management features and photo search. ",
+Example tasks: order and payment handling, user login or registration.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
@@ -295,12 +268,8 @@ need to be done: backend system or service, i.e. order handling, payment, user l
                 ),
                 new Job(
                     Guid.NewGuid(),
-                    "server migration -- 3",
-                    @" - First, and highly recommended: take an image backup of your EFI partition e.g. using Macrium Reflect Free using the pre-installed Windows 10
-
-- Make sure your BIOS is at the latest version (I lost time by not doing this right away, previous versions had defects making it even more difficult, ...)
-
-- Make a bootable USB disk or hard drive from your downloaded copy of the Linux Mint or Ubuntu ISO file. UNetBootin (diskimage mode) or Rufus work great. You can do this from the pre-installed WIndows 10. Make sure it's UEFI enabled (GPT formatted USB). Good reading here.",
+                    "Server migration",
+                    @"I need someone to perform a server migration. Please make sure that there will be a data backup in case of a failure.",
                     random.Next(100, 1253),
                     DateTime.Now.AddDays(random.Next(5, 60)),
                     Difficulty.Expert,
